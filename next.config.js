@@ -6,8 +6,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   swcMinify: true,
+  distDir: 'dist',
   reactStrictMode: process.env.NODE_ENV === 'production',
-  output: 'standalone',
   images: {
     loader: 'custom',
     loaderFile: '/nextImageLoader.js',

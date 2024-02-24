@@ -17,6 +17,8 @@ export async function generateStaticParams() {
   return languages.map(lng => ({ lng }))
 }
 
+export const runtime = 'edge'
+
 export const viewport: Viewport = {
   initialScale: 1,
   width: 'device-width',

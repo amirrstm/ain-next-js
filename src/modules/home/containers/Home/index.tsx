@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation'
 import clsx from 'clsx'
 import { Play, PlayCircle, PlayIcon } from 'lucide-react'
 
+import Header from '@/components/layout/header'
+
 import { useTranslation } from '@/app/i18n/client'
 
 import HeroHeader from '../../components/Hero'
@@ -19,6 +21,7 @@ const HomeContainer: React.FC = () => {
 
   return (
     <main className="bg-secondary">
+      <Header />
       <section
         className={clsx(
           'bg-secondary bg-no-repeat  bg-cover bg-center',

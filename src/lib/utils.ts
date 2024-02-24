@@ -77,3 +77,17 @@ export const uploadFile = async (uploadFile: File) => {
 
   return response.data.data
 }
+
+export const persianToEnglishNumbers = (input: string): string => {
+  const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
+  const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+  let output = ''
+
+  for (let i = 0; i < input.length; i++) {
+    const index = persianNumbers.indexOf(input[i])
+    output += index !== -1 ? englishNumbers[index] : input[i]
+  }
+
+  return output
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import { Sparkle } from 'lucide-react'
@@ -10,9 +11,10 @@ import Link from '@/components/ui/link'
 
 import { useTranslation } from '@/app/i18n/client'
 
-type Props = { lng: string }
-const Header: React.FC<Props> = ({ lng }) => {
-  const { t } = useTranslation(lng, 'Layout')
+type Props = {}
+const Header: React.FC<Props> = () => {
+  const { lng } = useParams()
+  const { t } = useTranslation(lng as string, 'Layout')
 
   return (
     <header className="fixed top-2 sm:top-5 left-0 w-full z-50 px-1">
@@ -36,15 +38,15 @@ const Header: React.FC<Props> = ({ lng }) => {
         <div className="flex-1">
           <div className="flex items-center justify-end gap-6">
             <div className="hidden sm:gap-6 sm:items-center sm:flex">
-              <Link lng={lng} href={'/about'}>
+              <Link lng={lng as string} href={'/about'}>
                 {t('Header.About')}
               </Link>
 
-              <Link lng={lng} href={'/pricing'}>
+              <Link lng={lng as string} href={'/pricing'}>
                 {t('Header.Pricing')}
               </Link>
 
-              <Link lng={lng} href={'/login'}>
+              <Link lng={lng as string} href={'/login'}>
                 {t('Header.SignIn')}
               </Link>
             </div>

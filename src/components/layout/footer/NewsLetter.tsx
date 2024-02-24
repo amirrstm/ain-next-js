@@ -10,8 +10,6 @@ import { useToast } from '@/components/ui/use-toast'
 
 import { useTranslation } from '@/app/i18n/client'
 
-import { subscribeUser } from '../services'
-
 const isEmailValidRegex = (email: string) => {
   const re = /\S+@\S+\.\S+/
   return re.test(email)
@@ -33,20 +31,6 @@ const NewsLetter: React.FC = () => {
     }
 
     setLoading(true)
-    subscribeUser(email)
-      .then(() => {
-        setLoading(false)
-        toast({ title: t('Footer.NewsLetterSuccess'), variant: 'success' })
-        setEmail('')
-      })
-      .catch(e => {
-        if (Array.isArray(e.messages)) {
-          e.messages.forEach((message: string) => {
-            toast({ title: message, variant: 'destructive' })
-          })
-        }
-        setLoading(false)
-      })
   }
 
   return (

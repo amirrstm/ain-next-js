@@ -5,6 +5,7 @@ import React from 'react'
 import { PageLang } from '@/interface/General.model'
 
 import { useTranslation as serverSideTrans } from '@/app/i18n'
+import LoginContainer from '@/modules/auth/containers/Login'
 
 export async function generateMetadata({ params }: PageLang): Promise<Metadata> {
   const { t } = await serverSideTrans(params.lng, 'Auth')
@@ -16,5 +17,5 @@ export async function generateMetadata({ params }: PageLang): Promise<Metadata> 
 }
 
 export default async function Login() {
-  return <p>Login</p>
+  return <LoginContainer />
 }

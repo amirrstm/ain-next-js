@@ -11,7 +11,7 @@ const Footer: React.FC<Props> = ({ lng }) => {
 
   return (
     <>
-      <footer className={clsx('bg-secondary mt-6')}></footer>
+      <footer></footer>
 
       {/* <div className="container flex justify-center py-4">
         <div className="text-sm">© {new Date().getFullYear()} INevesht</div>

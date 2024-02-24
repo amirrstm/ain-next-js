@@ -15,21 +15,15 @@ export function SWRProvider({ children }: { children: React.ReactNode }) {
       value={{
         fetcher: url => axios.get(url).then(res => res.data),
         onError: (err: { error: string; status: number; messages: string[] }) => {
-          if (err.status === 401) {
-            toast({
-              title: 'Unauthorized',
-              variant: 'destructive',
-            })
-          }
-
-          if (err.status === 422) {
+          if (err.messages && err.messages.length > 0) {
             err.messages.forEach(message => {
               toast({
-                title: err.error,
-                description: message,
+                title: message,
                 variant: 'destructive',
               })
             })
+          } else {
+            toast({ title: err.error, variant: 'destructive' })
           }
         },
       }}

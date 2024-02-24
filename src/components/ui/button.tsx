@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { RotateCcw } from 'lucide-react'
+import { RotateCw } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -48,14 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
-        {loading ? (
-          <>
-            <RotateCcw className="mr-2 h-4 w-4 animate-spin" />
-            Please wait
-          </>
-        ) : (
-          children
-        )}
+        {loading ? <RotateCw className="mr-2 h-4 w-4 animate-spin" /> : children}
       </Comp>
     )
   },

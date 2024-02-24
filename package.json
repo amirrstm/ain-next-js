@@ -1,5 +1,5 @@
 {
-  "name": "solutions-shop",
+  "name": "ainevis-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -51,7 +51,6 @@
     "query-string": "^8.2.0",
     "react": "^18",
     "react-client-captcha": "^1.0.3",
-    "react-code-input": "^3.10.1",
     "react-cookie": "^6.1.1",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18",

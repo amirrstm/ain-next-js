@@ -1,21 +1,21 @@
-import { Metadata, Viewport } from 'next'
+import { Metadata } from 'next'
 
+import { PageLang } from '@/interface/General.model'
+
+import { useTranslation as serverSideTrans } from '@/app/i18n'
+import { appViewport } from '@/constants'
 import HomeContainer from '@/modules/home/containers/Home'
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: PageLang): Promise<Metadata> {
+  const { t } = await serverSideTrans(params.lng, 'Meta')
+
   return {
-    title: 'AINevis',
-    description: 'AINevis',
+    title: t('Home.Title'),
+    description: t('Home.Description'),
   }
 }
 
-export const viewport: Viewport = {
-  initialScale: 1,
-  minimumScale: 1,
-  maximumScale: 1,
-  width: 'device-width',
-  themeColor: '#0f0f0f',
-}
+export const viewport = appViewport.appDefaultViewport
 
 export default async function Home() {
   return <HomeContainer />

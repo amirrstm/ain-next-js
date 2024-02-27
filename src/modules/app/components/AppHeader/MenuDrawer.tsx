@@ -9,7 +9,7 @@ import DashboardMenu from '@/components/ui/dashboard-menu'
 
 import { useTranslation } from '@/app/i18n/client'
 
-import UserProfile from '../Sidebar/UserProfile'
+import UserProfile from '../AppSideBar/UserProfile'
 
 type Props = {
   open: boolean

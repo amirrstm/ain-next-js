@@ -47,7 +47,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             icon={menu.icon}
             title={<span className="text-sm">{menu.title}</span>}
             className={{
-              'bg-gray-50 border-gray-100 text-primary': pathname.includes(menu.link),
+              'bg-gray-50 border-gray-100 text-primary': pathname === `/${lng}${menu.link}`,
             }}
           />
         ))}
@@ -60,13 +60,16 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
       <div className="mb-8">
         <DashboardMenu
           lng={lng as string}
-          link="/category"
+          link="/app/copywriting"
           icon={
             <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
               <Edit2 className="w-4 h-4 text-white" />
             </div>
           }
           title={<span className="text-sm">{t('Menus.Copywriting')}</span>}
+          className={{
+            'bg-gray-50 border-gray-100 text-primary': pathname.includes('/app/copywriting'),
+          }}
         />
 
         <DashboardMenu

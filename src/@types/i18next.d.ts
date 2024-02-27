@@ -1,6 +1,7 @@
 import 'i18next'
 
 import AuthNS from './locales/en/Auth.json'
+import CopywritingNS from './locales/en/Copywriting.json'
 import LayoutNS from './locales/en/Layout.json'
 import MainNS from './locales/en/Main.json'
 import MetaNs from './locales/en/Meta.json'
@@ -14,6 +15,7 @@ declare module 'i18next' {
       Meta: typeof MetaNs
       User: typeof UserNS
       Layout: typeof LayoutNS
+      Copywriting: typeof CopywritingNS
     }
   }
 }

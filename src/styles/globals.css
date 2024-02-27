@@ -66,3 +66,32 @@
 .slide-out-bottom {
   animation: slide-out-top 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+
+/* CODEX STYLES */
+
+.codex-editor.codex-editor--rtl .ce-toolbar__actions {
+  left: -55px;
+}
+
+.cdx-search-field__icon {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.ce-popover-item__icon {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.tc-popover__item {
+  padding: 2px 2px 2px 14px !important;
+}
+
+.tc-popover__item-icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.ce-rawtool__textarea.cdx-input {
+  direction: ltr !important;
+}

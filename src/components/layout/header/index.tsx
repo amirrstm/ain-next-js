@@ -11,8 +11,8 @@ import Link from '@/components/ui/link'
 
 import { useTranslation } from '@/app/i18n/client'
 
-type Props = {}
-const Header: React.FC<Props> = () => {
+type Props = { dark?: boolean }
+const Header: React.FC<Props> = ({ dark = true }) => {
   const { lng } = useParams()
   const { t } = useTranslation(lng as string, 'Layout')
 
@@ -20,18 +20,19 @@ const Header: React.FC<Props> = () => {
     <header className="fixed top-2 sm:top-5 left-0 w-full z-50 px-1">
       <div
         className={clsx(
-          'border border-gray-800',
-          'flex justify-between backdrop-blur-2xl text-background max-w-3xl mx-auto items-center rounded-full py-3 px-6',
+          'border',
+          dark ? 'border-gray-800 text-background' : 'border-gray-200',
+          'flex justify-between backdrop-blur-2xl max-w-3xl mx-auto items-center rounded-full py-3 px-6',
         )}
-        style={{ background: 'rgba(15, 15, 15, 0.6)' }}
+        style={{ background: dark ? 'rgba(15, 15, 15, 0.6)' : 'rgba(255, 255, 255, 0.6)' }}
       >
         <div className="relative h-7 sm:h-8">
           <Image
             alt="logo"
             width={200}
             height={200}
-            src="/images/main-logo.png"
             className="w-full h-full object-contain"
+            src={dark ? '/images/main-logo.png' : '/images/logo-black.png'}
           />
         </div>
 

@@ -8,7 +8,6 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 
 const nextConfig = {
   swcMinify: true,
-  output: 'standalone',
   reactStrictMode: process.env.NODE_ENV === 'production',
   images: {
     loader: 'custom',

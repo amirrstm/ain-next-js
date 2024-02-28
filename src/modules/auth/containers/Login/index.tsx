@@ -16,16 +16,19 @@ import { loginUser, verifyUser } from '../../services'
 const LoginContainer: React.FC = () => {
   const { toast } = useToast()
   const [userId, setUserId] = useState('')
-  const [isCode, setIsCode] = useState(true)
+  const [mobile, setMobile] = useState('')
+  const [isCode, setIsCode] = useState(false)
 
   const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.LOGIN, loginUser)
   const { trigger: verifyTrigger, isMutating: verifyLoading } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
 
   const onSubmit = (data: { mobile: string }) => {
-    trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then(data => {
+    trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then(res => {
       setIsCode(true)
-      setUserId(data.userId)
-      toast({ title: data.message, variant: 'success' })
+      setMobile(data.mobile)
+
+      setUserId(res.userId)
+      toast({ title: res.message, variant: 'success' })
     })
   }
 
@@ -53,7 +56,12 @@ const LoginContainer: React.FC = () => {
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
         {isCode ? (
-          <CodeForm onSubmit={onCodeSubmit} loading={verifyLoading} onBack={() => setIsCode(false)} />
+          <CodeForm
+            onSubmit={onCodeSubmit}
+            loading={verifyLoading}
+            onBack={() => setIsCode(false)}
+            onResend={() => onSubmit({ mobile })}
+          />
         ) : (
           <LoginForm onSubmit={onSubmit} loading={isMutating} />
         )}

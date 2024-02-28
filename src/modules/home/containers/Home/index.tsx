@@ -1,14 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
-import { Play, PlayCircle, PlayIcon } from 'lucide-react'
+import { PlayCircle } from 'lucide-react'
 
 import Header from '@/components/layout/header'
-
-import { useTranslation } from '@/app/i18n/client'
 
 import HeroHeader from '../../components/Hero'
 
@@ -16,9 +13,6 @@ const videoUrl =
   'https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fe835b205df6c119d305b9b7f5a9ccf7c.cdn.bubble.io%2Ff1707176143454x733542022181023900%2Fwww.krater.ai-hp-appfeature.png?w=1536&h=844&auto=compress&dpr=1&fit=max'
 
 const HomeContainer: React.FC = () => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Layout')
-
   return (
     <main className="bg-secondary">
       <Header />

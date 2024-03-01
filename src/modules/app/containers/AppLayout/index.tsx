@@ -1,18 +1,23 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import { History, Home, LayoutDashboard, Settings } from 'lucide-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useTranslation } from '@/app/i18n/client'
+import useUserStore from '@/lib/store/auth'
+import { getUserProfile } from '@/modules/auth/services'
 
 import AppHeader from '../../components/AppHeader'
 import AppSiderBar from '../../components/AppSideBar'
 
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const pathname = usePathname()
   const { lng } = useParams()
+  const { user, setUser } = useUserStore()
   const { t } = useTranslation(lng as string, 'Layout')
 
   const menus = [
@@ -21,6 +26,16 @@ export default function AppLayoutContainer({ children }: { children: React.React
     { title: t('Menus.History'), link: '/history', icon: <History className="w-5 h-5" /> },
     { title: t('Menus.Settings'), link: '/settings', icon: <Settings className="w-5 h-5" /> },
   ]
+
+  useEffect(() => {
+    if (!user) {
+      router.push(`${lng}/login?return=${pathname}`)
+    } else {
+      getUserProfile().then(res => {
+        setUser(res)
+      })
+    }
+  }, [])
 
   return (
     <main className="block md:flex bg-gray-100 md:bg-white">

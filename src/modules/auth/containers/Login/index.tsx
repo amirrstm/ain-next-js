@@ -1,26 +1,39 @@
 'use client'
 
+import { useParams, useRouter } from 'next/navigation'
+
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
 import { useToast } from '@/components/ui/use-toast'
 
 import ENDPOINTS from '@/lib/Endpoints'
+import useUserStore from '@/lib/store/auth'
 import { persianToEnglishNumbers } from '@/lib/utils'
 
 import CodeForm from '../../components/CodeForm'
 import LoginForm from '../../components/LoginForm'
-import { loginUser, verifyUser } from '../../services'
+import { getUserProfile, loginUser, verifyUser } from '../../services'
 
 const LoginContainer: React.FC = () => {
+  const router = useRouter()
+  const { lng } = useParams()
   const { toast } = useToast()
+
+  const { user, setUser } = useUserStore()
   const [userId, setUserId] = useState('')
   const [mobile, setMobile] = useState('')
   const [isCode, setIsCode] = useState(false)
 
   const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.LOGIN, loginUser)
   const { trigger: verifyTrigger, isMutating: verifyLoading } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
+
+  useEffect(() => {
+    if (user) {
+      router.push(`/${lng}/app`)
+    }
+  }, [])
 
   const onSubmit = (data: { mobile: string }) => {
     trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then(res => {
@@ -33,8 +46,15 @@ const LoginContainer: React.FC = () => {
   }
 
   const onCodeSubmit = (data: { code: string }) => {
-    verifyTrigger({ code: data.code, userId }).then(data => {
-      console.log(data)
+    verifyTrigger({ code: data.code, userId }).then(() => {
+      getUserProfile().then(data => {
+        setUser(data)
+        if (data.firstName) {
+          router.push(`/${lng}/app`)
+        } else {
+          router.push(`/${lng}/user-name`)
+        }
+      })
     })
   }
 

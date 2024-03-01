@@ -3,8 +3,10 @@
 import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
-import { Globe, Laptop, LibraryBig, Megaphone, Paperclip, Plus, Slack } from 'lucide-react'
-import React from 'react'
+import { LibraryBig, Plus } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+
+import { Category } from '@/interface/Category.model'
 
 import { Button } from '@/components/ui/button'
 import DashboardMenu from '@/components/ui/dashboard-menu'
@@ -12,18 +14,49 @@ import Link from '@/components/ui/link'
 
 import { useTranslation } from '@/app/i18n/client'
 
+import useCategories from '../../hooks/useCategories'
+import { CATEGORY_ICONS, SUB_CATEGORY_ICONS } from '../../utils'
+
 const CategoryContainer: React.FC = () => {
   const { lng } = useParams()
+  const { data } = useCategories()
   const { t } = useTranslation(lng as string, 'Copywriting')
 
-  const menus = [
-    { title: 'همه‌ی دسته‌بندی ها', icon: <LibraryBig className="w-5 h-5" /> },
-    { title: 'برند سازی و تبلیغات', icon: <Megaphone className="w-5 h-5" /> },
-    { title: 'محتوای وب‌سایت', icon: <Laptop className="w-5 h-5" /> },
-    { title: 'شبکه‌های مجازی', icon: <Slack className="w-5 h-5" /> },
-    { title: 'ویرایستاری', icon: <Paperclip className="w-5 h-5" /> },
-    { title: 'دیگر', icon: <Globe className="w-5 h-5" /> },
-  ]
+  const [subMenus, setSubMenus] = useState<Category[]>([])
+  const [selectedMenu, setSelectedMenu] = useState<Category>()
+
+  useEffect(() => {
+    if (data) {
+      setSelectedMenu(data[0])
+
+      const result: Category[] = []
+      data[0].children.forEach(obj => {
+        obj.children.forEach(obj2 => {
+          result.push(obj2)
+        })
+      })
+
+      setSubMenus(result)
+    }
+  }, [data])
+
+  const onSelectParent = (menu: Category | string) => {
+    if (menu === 'copywriting' && data) {
+      setSelectedMenu(data[0])
+
+      const result: Category[] = []
+      data[0].children.forEach(obj => {
+        obj.children.forEach(obj2 => {
+          result.push(obj2)
+        })
+      })
+
+      setSubMenus(result)
+    } else if (typeof menu !== 'string') {
+      setSelectedMenu(menu)
+      setSubMenus(menu.children)
+    }
+  }
 
   return (
     <div className="p-4 xl:p-6">
@@ -34,16 +67,26 @@ const CategoryContainer: React.FC = () => {
               <h1 className="text-xl font-bold">{t('Category.Title')}</h1>
             </div>
 
-            <div className="p-4 space-y-4">
-              {menus.map((menu, index) => (
+            {data && (
+              <div className="p-4 space-y-4">
                 <DashboardMenu
-                  key={index}
                   lng={lng as string}
-                  icon={menu.icon}
-                  title={<span className="text-sm">{menu.title}</span>}
+                  icon={CATEGORY_ICONS['copywriting']}
+                  onClick={() => onSelectParent('copywriting')}
+                  title={<span className="text-sm">{t('Category.AllCategories')}</span>}
                 />
-              ))}
-            </div>
+
+                {data[0].children.map((menu, index) => (
+                  <DashboardMenu
+                    key={index}
+                    lng={lng as string}
+                    icon={CATEGORY_ICONS[menu.slug]}
+                    onClick={() => onSelectParent(menu)}
+                    title={<span className="text-sm">{menu.name}</span>}
+                  />
+                ))}
+              </div>
+            )}
 
             <div className="p-4 border-t">
               <Button className="w-full gap-2" variant="secondary">
@@ -54,36 +97,38 @@ const CategoryContainer: React.FC = () => {
           </div>
         </div>
 
-        <div className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-9 2xl:col-span-9">
-          <div className="border rounded-xl bg-white shadow-md">
+        <div className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-9 2xl:col-span-9 h-full">
+          <div className="border rounded-xl bg-white shadow-md h-full">
             <div className="p-4 flex items-center justify-between border-b">
               <div className="flex gap-2 items-center">
                 <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
-                  <LibraryBig className="w-5 h-5" />
+                  {selectedMenu && CATEGORY_ICONS[selectedMenu.slug]}
                 </div>
-                <h2 className="text-xl font-bold">{'همه‌ی دسته‌بندی ها'}</h2>
+                <h2 className="text-xl font-bold">
+                  {selectedMenu?.slug === 'copywriting' ? t('Category.AllCategories') : selectedMenu?.name}
+                </h2>
               </div>
             </div>
 
             <div className="p-4 w-full">
               <div className="grid grid-cols-12 gap-4">
-                {Array.from({ length: 40 }).map((_, index) => (
+                {subMenus.map((menu, index) => (
                   <div className="col-span-12 xl:col-span-4" key={index}>
                     <Link
                       lng={lng as string}
-                      href="/app/copywriting/1"
+                      href={`/app/copywriting/${menu._id}`}
                       className={clsx(
                         'cursor-pointer group transition-all ease-in-out duration-200',
                         'border rounded-xl bg-gray-50 shadow-sm hover:shadow-primary p-3 min-h-[100px] flex gap-4 items-center',
                       )}
                     >
-                      <LibraryBig className="w-6 h-6 group-hover:text-primary" />
+                      <span className="group-hover:text-primary">
+                        {SUB_CATEGORY_ICONS[menu.slug] || <LibraryBig className="w-6 h-6" />}
+                      </span>
 
                       <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-                        <h3 className="font-semibold">{'برند سازی و تبلیغات'}</h3>
-                        <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-                          {'برند سازی و تبلیغات برای شرکتا و محصولات رای شرکت‌ها و محصولات برند س'}
-                        </p>
+                        <h3 className="font-semibold">{menu.name}</h3>
+                        <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">{menu.description}</p>
                       </div>
                     </Link>
                   </div>

@@ -9,10 +9,10 @@ export default async function fetchWithUrl<P>(input: RequestInfo, init?: Request
       headers: cookies().get('token')?.value
         ? {
             'Content-Type': 'application/json',
-            HTTP_ACCEPT_LANGUAGE: i18next.language ?? 'de',
+            'X-CUSTOM-LANG': i18next.language ?? 'fa',
             Authorization: `Bearer ${cookies().get('token')?.value}`,
           }
-        : { 'Content-Type': 'application/json', HTTP_ACCEPT_LANGUAGE: i18next.language ?? 'de' },
+        : { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': i18next.language ?? 'fa' },
     })
 
     const data = await response.json()

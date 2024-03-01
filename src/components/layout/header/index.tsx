@@ -43,19 +43,21 @@ const Header: React.FC<Props> = ({ dark = true }) => {
                 {t('Header.About')}
               </Link>
 
-              <Link lng={lng as string} href={'/pricing'}>
+              {/* <Link lng={lng as string} href={'/pricing'}>
                 {t('Header.Pricing')}
-              </Link>
+              </Link> */}
 
               <Link lng={lng as string} href={'/login'}>
                 {t('Header.SignIn')}
               </Link>
             </div>
 
-            <Button className="rounded-full px-8 gap-2">
-              <Sparkle />
-              {t('Header.SignUp')}
-            </Button>
+            <Link lng={lng as string} href={'/login'}>
+              <Button className="rounded-full px-8 gap-2">
+                <Sparkle />
+                {t('Header.SignUp')}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

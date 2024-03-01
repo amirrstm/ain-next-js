@@ -1,6 +1,8 @@
 /* eslint-disable */
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import i18next from 'i18next'
+
+import { refreshAccessToken } from '@/modules/auth/services'
 
 const REQUEST_TIMEOUT = 1000 * 60 * 5 // 5 Minutes
 
@@ -20,7 +22,9 @@ const axiosRequestMiddleware = (config: InternalAxiosRequestConfig) => {
   if (config.headers) {
     config.headers['x-custom-lang'] = i18next.language ?? 'de'
 
-    const latestToken = localStorage.getItem('token')
+    const latestToken = config.url?.includes('/auth/user/refresh')
+      ? localStorage.getItem('refreshToken')
+      : localStorage.getItem('accessToken')
     if (latestToken) {
       config.headers['Authorization'] = `Bearer ${latestToken}`
     }
@@ -34,8 +38,17 @@ function axiosResponseMiddleware(response: AxiosResponse) {
   return response
 }
 
-function axiosErrorMiddleware(error: AxiosError) {
+async function axiosErrorMiddleware(error: AxiosError) {
   const isErrorResponseValid = !!error.response
+  const statusCode = Object(error.response?.data).statusCode
+
+  if (statusCode === 5000 && error.response?.status === 401) {
+    const refreshToken = localStorage.getItem('refreshToken') as string
+
+    if (refreshToken) {
+      return await refreshAccessToken().then(() => AxiosClient.request(error.config as AxiosRequestConfig))
+    }
+  }
 
   if (isErrorResponseValid) {
     const messages: string[] = []

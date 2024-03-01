@@ -1,7 +1,21 @@
+import { Plan } from '@/interface/Plan.model'
+
 export interface User {
-  id: number
+  _id: string
+  lastName: string
+  updatedAt: string
+  firstName: string
+  signUpDate: string
+  signUpFrom: string
+  userPlan: UserPlan
+  mobileNumber: string
 }
 
-export interface StoreUser {
-  id: number
+export interface UserPlan {
+  plan: Plan
+  _id: string
+  used: number
+  createdAt: string
+  planExpired: string
+  updatedAt: string
 }

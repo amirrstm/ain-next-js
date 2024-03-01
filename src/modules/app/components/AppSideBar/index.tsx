@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
 
-import { Edit2, ImageIcon, MessagesSquare } from 'lucide-react'
+import { Edit2, MessagesSquare } from 'lucide-react'
 import React from 'react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
@@ -81,17 +81,6 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             </div>
           }
           title={<span className="text-sm">{t('Menus.Chat')}</span>}
-        />
-
-        <DashboardMenu
-          lng={lng as string}
-          link="/category"
-          icon={
-            <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
-              <ImageIcon className="w-4 h-4 text-white" />
-            </div>
-          }
-          title={<span className="text-sm">{t('Menus.Image')}</span>}
         />
       </div>
 

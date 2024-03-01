@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import Link from '@/components/ui/link'
 import Rating from '@/components/ui/rating'
 
 import { useTranslation } from '@/app/i18n/client'
@@ -33,10 +34,12 @@ const HeroHeader: React.FC = () => {
       </div>
 
       <div className="mt-12">
-        <Button className="rounded-full gap-2 items-center px-6">
-          {t('Home.GetStarted')}
-          <ArrowLeft className="w-4 h-4" />
-        </Button>
+        <Link lng={lng as string} href="/login">
+          <Button className="rounded-full gap-2 items-center px-6">
+            {t('Home.GetStarted')}
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
+        </Link>
       </div>
 
       <div className="max-w-[250px] text-center flex flex-col items-center mt-4">

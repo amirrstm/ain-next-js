@@ -1,18 +1,18 @@
 import { create, StateCreator } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { StoreUser } from '@/modules/auth/interface/auth.model'
+import { User } from '@/modules/auth/interface/auth.model'
 
 export interface UserInterface {
-  user?: StoreUser
+  user?: User
   reset: () => void
-  setUser: (user: StoreUser) => void
+  setUser: (user: User) => void
 }
 
 export const userSlice: StateCreator<UserInterface> = (set, get) => ({
   user: undefined,
   reset: () => set({ user: undefined }),
-  setUser: (user: StoreUser) => set({ user }),
+  setUser: (user: User) => set({ user }),
 })
 
 const useUserStore = create<UserInterface>()(

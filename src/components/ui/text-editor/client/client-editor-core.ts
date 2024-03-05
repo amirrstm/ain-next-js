@@ -17,32 +17,32 @@ export class ClientEditorCore implements EditorCore {
 
   constructor({ tools, ...config }: EditorConfig) {
     const extendTools = {
-      // default tools
       paragraph: {
         class: Paragraph,
         inlineToolbar: true,
       },
+
       header: Header,
-      linkTool: LinkTool,
-      quote: {
-        class: Quote,
-        config: {
-          quotePlaceholder: 'نقل قول خود را اینجا وارد کنید',
-          captionPlaceholder: 'نام نویسنده یا منبع نقل قول خود را اینجا وارد کنید',
-        },
-      },
-      embed: Embed,
-      table: Table,
       list: List,
-      warning: {
-        class: Warning,
-        config: {
-          titlePlaceholder: 'عنوان',
-          messagePlaceholder: 'پیام',
-        },
-      },
-      raw: Raw,
-      marker: Marker,
+      // quote: {
+      //   class: Quote,
+      //   config: {
+      //     quotePlaceholder: 'نقل قول خود را اینجا وارد کنید',
+      //     captionPlaceholder: 'نام نویسنده یا منبع نقل قول خود را اینجا وارد کنید',
+      //   },
+      // },
+      // embed: Embed,
+      // linkTool: LinkTool,
+      // table: Table,
+      // warning: {
+      //   class: Warning,
+      //   config: {
+      //     titlePlaceholder: 'عنوان',
+      //     messagePlaceholder: 'پیام',
+      //   },
+      // },
+      // raw: Raw,
+      // marker: Marker,
       ...tools,
     }
 

@@ -2,51 +2,51 @@
 
 import { useParams } from 'next/navigation'
 
-import edjsHTML from 'editorjs-html'
-import { ChevronRight, LibraryBig, Wand2 } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { ChevronRight } from 'lucide-react'
+import React, { useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
 
-import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import Link from '@/components/ui/link'
-import { createReactEditorJS } from '@/components/ui/text-editor'
-import { Textarea } from '@/components/ui/textarea'
+import { useToast } from '@/components/ui/use-toast'
 
 import { useTranslation } from '@/app/i18n/client'
 
-import { SUB_CATEGORY_ICONS } from '../../utils'
-
-const ReactEditorJS = createReactEditorJS()
+import ContentEditor from '../../components/ContentEditor'
+import ContentForm from '../../components/ContentForm'
+import { getPromptResponse } from '../../services'
 
 interface Props {
   category: { data: AppCategory }
 }
 
 const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
-  const form = useForm()
   const { lng } = useParams()
+  const { toast } = useToast()
   const { t } = useTranslation(lng as string, 'Copywriting')
 
+  const [content, setContent] = useState<string>()
+  const [loading, setLoading] = useState<boolean>(false)
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
-  useEffect(() => {
-    if (category) {
-      setAppCategory(category.data)
-
-      category.data.inputs.forEach(input => {
-        form.register(input.name, { required: { value: input.isRequired, message: 'لطفا این بخش را خالی نذارید' } })
-      })
-    }
-  }, [category])
-
   const onSubmit = (data: Record<string, unknown>) => {
-    console.log(data)
+    setLoading(true)
+    setContent(undefined)
+    getPromptResponse({
+      inputs: data,
+      category: category.data._id,
+    })
+      .then(data => {
+        setLoading(false)
+        setContent(data.content)
+      })
+      .catch(e => {
+        setLoading(false)
+        toast({ title: t('Content.Error'), variant: 'destructive' })
+      })
   }
 
-  if (!appCategory) return null
+  if (!category.data) return null
 
   return (
     <div className="p-4 xl:p-6">
@@ -60,79 +60,18 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
               <h1 className="text-lg font-bold">{t('Category.BackToCategories')}</h1>
             </Link>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-8">
-                {appCategory.inputs.map(input => (
-                  <FormField
-                    key={input._id}
-                    control={form.control}
-                    name={input.name}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{input.title}</FormLabel>
-                        <FormControl>
-                          <Textarea rows={input.multiline ? 4 : 1} placeholder={input.placeholder} {...field} />
-                        </FormControl>
-
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                ))}
-
-                <div className="p-4">
-                  <Button type="submit" className="w-full gap-2">
-                    <Wand2 className="w-5 h-5" />
-                    <span>{t('Category.Generate')}</span>
-                  </Button>
-
-                  <span className="text-xs text-gray-400 mt-2 block">{t('Category.GenerateCost')}</span>
-                </div>
-              </form>
-            </Form>
+            <ContentForm
+              loading={loading}
+              onSubmit={onSubmit}
+              category={category.data}
+              appCategory={appCategory}
+              setAppCategory={setAppCategory}
+            />
           </div>
         </div>
 
         <div className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-8 2xl:col-span-9">
-          <div className="border rounded-xl bg-white shadow-md">
-            <div className="p-4 flex items-center justify-between border-b">
-              <div className="flex gap-2 items-center">
-                <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
-                  {SUB_CATEGORY_ICONS[appCategory.slug] || <LibraryBig className="w-6 h-6" />}
-                </div>
-                <h2 className="text-xl font-bold">{appCategory.name}</h2>
-              </div>
-            </div>
-
-            <div className="p-4 w-full">
-              <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-12" spellCheck={false}>
-                  <ReactEditorJS
-                    onChange={(data, api) => {
-                      data.saver.save().then(outputData => {
-                        console.log(outputData)
-                        const edjs = edjsHTML()
-                        // console.log(edjs.parse(outputData))
-                        console.log(edjs.parse(outputData))
-                      })
-                    }}
-                    defaultValue={{
-                      time: 1635603431943,
-                      blocks: [
-                        {
-                          id: 'x_p-xddPzV',
-                          type: 'paragraph',
-                          data: {
-                            text: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
-                          },
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <ContentEditor loading={loading} appCategory={appCategory} content={content} />
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ const ENDPOINTS = {
     VERIFY: '/auth/user/verify-mobile',
     UPDATE_NAME: '/user/user/update-name',
 
+    PROMPT: '/user/user/prompt',
     GET_PROFILE: '/auth/user/profile',
     REFRESH_TOKEN: '/auth/user/refresh',
   },

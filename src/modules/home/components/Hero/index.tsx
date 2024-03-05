@@ -63,16 +63,6 @@ const HeroHeader: React.FC = () => {
               className="w-full h-full object-contain"
             />
           </div>
-
-          <div className="relative h-7 sm:h-6">
-            <Image
-              alt="google-ai"
-              width={100}
-              height={100}
-              src="/images/google-ai.png"
-              className="w-full h-full object-contain"
-            />
-          </div>
         </div>
       </div>
     </div>

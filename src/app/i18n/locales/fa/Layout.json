@@ -12,7 +12,9 @@
   "Home": {
     "GetStarted": "همین الان رایگان شروع کنید",
     "PoweredBy": "برگرفته از",
-    "Rating": "تا کنون بیش از <strong class='text-white'>{{count}} نفر</strong>  در آی نویس از خدمات ما استفاده کرده اند"
+    "Rating": "تا کنون بیش از <strong class='text-white'>{{count}} نفر</strong>  در آی نویس از خدمات ما استفاده کرده اند",
+
+    "Benefits": "مزایا"
   },
 
   "Menus": {

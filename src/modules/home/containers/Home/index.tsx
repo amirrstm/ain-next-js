@@ -7,6 +7,7 @@ import { PlayCircle } from 'lucide-react'
 
 import Header from '@/components/layout/header'
 
+import Benefits from '../../components/Benefits'
 import HeroHeader from '../../components/Hero'
 
 const videoUrl =
@@ -14,7 +15,7 @@ const videoUrl =
 
 const HomeContainer: React.FC = () => {
   return (
-    <main className="bg-secondary">
+    <main>
       <Header />
       <section
         className={clsx(
@@ -25,31 +26,35 @@ const HomeContainer: React.FC = () => {
         <HeroHeader />
       </section>
 
-      <div className="max-w-6xl mx-auto py-12 px-6 bg-black">
-        <div className="relative w-full sm:h-auto rounded-2xl shadow-xl overflow-hidden">
-          <Image
-            alt="open-ai"
-            width={800}
-            height={800}
-            src={videoUrl}
-            loader={() => videoUrl}
-            className="w-full h-full object-contain"
-          />
-
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            <div
-              className="p-4 rounded-full absolute w-24 h-24"
-              style={{
-                background: 'rgba(0,43,175,0.3)',
-                boxShadow: '0px 0px 150px 2px hsl(var(--primary))',
-              }}
+      <div className="bg-secondary">
+        <div className="max-w-6xl mx-auto py-12 px-6 bg-secondary">
+          <div className="relative w-full sm:h-auto rounded-2xl shadow-xl overflow-hidden">
+            <Image
+              alt="open-ai"
+              width={800}
+              height={800}
+              src={videoUrl}
+              loader={() => videoUrl}
+              className="w-full h-full object-contain"
             />
-            <div className="bg-primary w-20 h-20 rounded-full flex items-center justify-center text-white relative z-10 cursor-pointer">
-              <PlayCircle className="w-10 h-10" />
+
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <div
+                className="p-4 rounded-full absolute w-24 h-24"
+                style={{
+                  background: 'rgba(0,43,175,0.3)',
+                  boxShadow: '0px 0px 150px 2px hsl(var(--primary))',
+                }}
+              />
+              <div className="bg-primary w-20 h-20 rounded-full flex items-center justify-center text-white relative z-10 cursor-pointer">
+                <PlayCircle className="w-10 h-10" />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <Benefits />
     </main>
   )
 }

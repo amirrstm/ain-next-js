@@ -55,6 +55,7 @@
     "dayjs": "^1.11.10",
     "editorjs-html": "^3.4.3",
     "framer-motion": "^10.16.4",
+    "html-to-text": "^9.0.5",
     "i18next": "^23.6.0",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",
@@ -88,6 +89,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.1",
+    "@types/html-to-text": "^9.0.4",
     "@types/luxon": "^3.3.4",
     "@types/node": "^20",
     "@types/react": "^18",

@@ -38,7 +38,18 @@ export default function RootLayout({
   return (
     <html lang={lng} suppressHydrationWarning={true} dir={lng === 'fa' ? 'rtl' : 'ltr'}>
       <link rel="icon" href="/en/favicon.ico" sizes="any" />
-      <Script src="https://widget.raychat.io/5dd86d71c7efa0502a9ad84a?version=2" />
+      <Script
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `;(function () {
+            d = document
+            s = d.createElement('script')
+            s.src = 'https://widget-react.raychat.io/install/widget.js'
+            s.async = 1
+            d.getElementsByTagName('head')[0].appendChild(s)
+          })()`,
+        }}
+      />
 
       <body suppressHydrationWarning={true} className={lng === 'fa' ? YekanBakhFont.className : PoppinsFont.className}>
         <StoreProvider>

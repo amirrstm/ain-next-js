@@ -37,13 +37,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang={lng} suppressHydrationWarning={true} dir={lng === 'fa' ? 'rtl' : 'ltr'}>
-      <Head>
-        <link rel="icon" href="/en/favicon.ico" sizes="any" />
-        <Script
-          id="raychat-widget-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `window.RAYCHAT_TOKEN = "21b040cb-badb-4389-9533-40c42cced7ff";
+      <link rel="icon" href="/en/favicon.ico" sizes="any" />
+      <Script
+        id="raychat-widget-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `window.RAYCHAT_TOKEN = "21b040cb-badb-4389-9533-40c42cced7ff";
             (function () {
             d = document;
             s = d.createElement("script");
@@ -51,9 +50,8 @@ export default function RootLayout({
             s.async = 1;
             d.getElementsByTagName("head")[0].appendChild(s);
             })();`,
-          }}
-        />
-      </Head>
+        }}
+      />
 
       <body suppressHydrationWarning={true} className={lng === 'fa' ? YekanBakhFont.className : PoppinsFont.className}>
         <StoreProvider>

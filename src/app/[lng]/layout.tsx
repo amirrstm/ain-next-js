@@ -43,13 +43,14 @@ export default function RootLayout({
           id="raychat-widget-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `;(function () {
-              d = document
-              s = d.createElement('script')
-              s.src = 'https://widget-react.raychat.io/install/widget.js'
-              s.async = 1
-              d.getElementsByTagName('head')[0].appendChild(s)
-            })()`,
+            __html: `window.RAYCHAT_TOKEN = "21b040cb-badb-4389-9533-40c42cced7ff";
+            (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://widget-react.raychat.io/install/widget.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+            })();`,
           }}
         />
       </Head>

@@ -25,9 +25,10 @@ const LoginContainer: React.FC = () => {
   const [userId, setUserId] = useState('')
   const [mobile, setMobile] = useState('')
   const [isCode, setIsCode] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.LOGIN, loginUser)
-  const { trigger: verifyTrigger, isMutating: verifyLoading } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
+  const { trigger: verifyTrigger } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
 
   useEffect(() => {
     if (user) {
@@ -46,16 +47,19 @@ const LoginContainer: React.FC = () => {
   }
 
   const onCodeSubmit = (data: { code: string }) => {
-    verifyTrigger({ code: data.code, userId }).then(() => {
-      getUserProfile().then(data => {
-        setUser(data)
-        if (data.firstName) {
-          router.push(`/${lng}/app`)
-        } else {
-          router.push(`/${lng}/user-name`)
-        }
+    setLoading(true)
+    verifyTrigger({ code: data.code, userId })
+      .then(() => {
+        getUserProfile().then(data => {
+          setUser(data)
+          if (data.firstName) {
+            router.push(`/${lng}/app`)
+          } else {
+            router.push(`/${lng}/user-name`)
+          }
+        })
       })
-    })
+      .catch(() => setLoading(false))
   }
 
   return (
@@ -77,8 +81,8 @@ const LoginContainer: React.FC = () => {
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
         {isCode ? (
           <CodeForm
+            loading={loading}
             onSubmit={onCodeSubmit}
-            loading={verifyLoading}
             onBack={() => setIsCode(false)}
             onResend={() => onSubmit({ mobile })}
           />

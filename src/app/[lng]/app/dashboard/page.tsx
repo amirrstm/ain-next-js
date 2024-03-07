@@ -4,19 +4,18 @@ import { PageLang } from '@/interface/General.model'
 
 import { useTranslation as serverSideTrans } from '@/app/i18n'
 import { appViewport } from '@/constants'
-import DashboardContainer from '@/modules/app/containers/Dashboard'
 
 export async function generateMetadata({ params }: PageLang): Promise<Metadata> {
   const { t } = await serverSideTrans(params.lng, 'Meta')
 
   return {
-    title: t('App.Title'),
-    description: t('App.Description'),
+    title: t('Dashboard.Title'),
+    description: t('Dashboard.Description'),
   }
 }
 
 export const viewport = appViewport.appDefaultViewport
 
-export default async function App() {
-  return <DashboardContainer />
+export default async function Dashboard() {
+  return <></>
 }

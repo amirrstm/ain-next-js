@@ -80,6 +80,7 @@
     "react-select": "^5.8.0",
     "react-type-animation": "^3.2.0",
     "react-verification-input": "^4.1.0",
+    "recharts": "^2.12.2",
     "sass": "^1.69.5",
     "swr": "^2.2.4",
     "tailwind-merge": "^2.0.0",

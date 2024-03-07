@@ -10,10 +10,12 @@ import { Button } from '@/components/ui/button'
 import Link from '@/components/ui/link'
 
 import { useTranslation } from '@/app/i18n/client'
+import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
 const Header: React.FC<Props> = ({ dark = true }) => {
   const { lng } = useParams()
+  const { user } = useUserStore()
   const { t } = useTranslation(lng as string, 'Layout')
 
   return (
@@ -47,15 +49,17 @@ const Header: React.FC<Props> = ({ dark = true }) => {
                 {t('Header.Pricing')}
               </Link> */}
 
-              <Link lng={lng as string} href={'/login'}>
-                {t('Header.SignIn')}
-              </Link>
+              {!user && (
+                <Link lng={lng as string} href={'/login'}>
+                  {t('Header.SignIn')}
+                </Link>
+              )}
             </div>
 
-            <Link lng={lng as string} href={'/login'}>
+            <Link lng={lng as string} href={user ? '/app' : '/login'}>
               <Button className="rounded-full px-8 gap-2">
                 <Sparkle />
-                {t('Header.SignUp')}
+                {user ? t('Header.OpenApp') : t('Header.SignUp')}
               </Button>
             </Link>
           </div>

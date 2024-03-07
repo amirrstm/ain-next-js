@@ -22,7 +22,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   const menus = [
     { title: t('Menus.Home'), link: '/app', icon: <Home className="w-5 h-5" /> },
-    { title: t('Menus.Dashboard'), link: '/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
+    { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
     { title: t('Menus.History'), link: '/history', icon: <History className="w-5 h-5" /> },
     { title: t('Menus.Settings'), link: '/settings', icon: <Settings className="w-5 h-5" /> },
   ]

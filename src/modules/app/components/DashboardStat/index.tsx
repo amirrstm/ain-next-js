@@ -9,13 +9,22 @@ import React from 'react'
 import { Progress } from '@/components/ui/progress'
 
 import { useTranslation } from '@/app/i18n/client'
+import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const DashboardStat: React.FC = () => {
   const { lng } = useParams()
+  const { user } = useUserStore()
   const { t } = useTranslation(lng as string, 'Layout')
 
-  const progress = 60
+  if (!user) return null
+
+  const used = user.userPlan.used
+  const plan = user.userPlan.plan
+
+  const progress = (used / plan.generation) * 100
+
+  console.log(user)
 
   return (
     <div className="mt-4 md:mt-10">
@@ -29,18 +38,20 @@ const DashboardStat: React.FC = () => {
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
-              124.5~ {t('Dashboard.Stats.Hours')}
+              {used * 3.14 + 1}~ {t('Dashboard.Stats.Hours')}
             </h2>
           </div>
 
           <div className="px-3 md:px-5 border-s border-e">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.Generations')}</p>
-            <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>100 / 60</h2>
+            <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
+              {plan?.generation} / {used}
+            </h2>
           </div>
 
           <div className="ps-3 md:ps-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.Plan')}</p>
-            <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>طرح دانش</h2>
+            <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>{plan?.name}</h2>
           </div>
         </div>
 

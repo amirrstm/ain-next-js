@@ -17,7 +17,10 @@ const UserProfile: React.FC = () => {
   const { user, reset } = useUserStore()
   const { t } = useTranslation(lng as string, 'User')
 
-  const progress = user?.userPlan?.used || 0
+  const used = user?.userPlan?.used || 0
+  const plan = user?.userPlan?.plan?.generation || 0
+
+  const progress = (used / plan) * 100
 
   const onLogout = () => {
     reset()

@@ -1,5 +1,6 @@
 import { Viewport } from 'next'
 import Head from 'next/head'
+import Script from 'next/script'
 
 import SiteLayout from '@/components/layout/SiteLayout'
 import { Toaster } from '@/components/ui/toaster'
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang={lng} suppressHydrationWarning={true} dir={lng === 'fa' ? 'rtl' : 'ltr'}>
       <link rel="icon" href="/en/favicon.ico" sizes="any" />
+      <Script src="https://widget.raychat.io/5dd86d71c7efa0502a9ad84a?version=2" />
 
       <body suppressHydrationWarning={true} className={lng === 'fa' ? YekanBakhFont.className : PoppinsFont.className}>
         <StoreProvider>

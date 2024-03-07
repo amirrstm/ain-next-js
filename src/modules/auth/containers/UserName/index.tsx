@@ -3,7 +3,7 @@
 import { useParams, useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
 import ENDPOINTS from '@/lib/Endpoints'
@@ -15,8 +15,10 @@ import { updateName } from '../../services'
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
   const { lng } = useParams()
+  const [loading, setLoading] = useState(false)
+
   const { setUser, user } = useUserStore()
-  const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
+  const { trigger } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
 
   useEffect(() => {
     if (user && user.firstName) {
@@ -27,12 +29,15 @@ const UserNameContainer: React.FC = () => {
   const onSubmit = (data: { name: string }) => {
     const nameSplit = data.name.split(' ')
 
-    trigger({ firstName: nameSplit[0], lastName: nameSplit[1] }).then(() => {
-      if (user) {
-        setUser({ ...user, firstName: nameSplit[0], lastName: nameSplit[1] })
-      }
-      router.push(`/${lng}/app`)
-    })
+    setLoading(true)
+    trigger({ firstName: nameSplit[0], lastName: nameSplit[1] })
+      .then(() => {
+        if (user) {
+          setUser({ ...user, firstName: nameSplit[0], lastName: nameSplit[1] })
+        }
+        router.push(`/${lng}/app`)
+      })
+      .catch(() => setLoading(false))
   }
 
   return (
@@ -52,7 +57,7 @@ const UserNameContainer: React.FC = () => {
       />
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
-        <NameForm onSubmit={onSubmit} loading={isMutating} />
+        <NameForm onSubmit={onSubmit} loading={loading} />
       </div>
     </div>
   )

@@ -9,13 +9,6 @@ import { TypeAnimation } from 'react-type-animation'
 
 import { useTranslation } from '@/app/i18n/client'
 
-const messages = [
-  'ایجاد متن برای شبکه های اجتماعی',
-  'تولید محتوا برای وبلاگ',
-  'تولید محتوا برای وبسایت',
-  'تولید محتوا برای ایمیل مارکتینگ',
-]
-
 const DashboardHeader: React.FC = () => {
   const { lng } = useParams()
   const { t } = useTranslation(lng as string, 'Layout')

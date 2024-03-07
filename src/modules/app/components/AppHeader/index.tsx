@@ -31,7 +31,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
           <span>{t('Header.Menu')}</span>
         </div>
 
-        <div className="relative h-7 sm:h-8">
+        <div className="relative h-5 sm:h-8">
           <Image
             alt="logo"
             width={200}

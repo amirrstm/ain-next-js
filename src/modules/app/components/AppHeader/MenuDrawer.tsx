@@ -61,13 +61,14 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
 
             <div className="my-4 space-y-4">
               {menus.map((menu, index) => (
-                <DashboardMenu
-                  key={index}
-                  lng={lng as string}
-                  link={menu.link}
-                  icon={menu.icon}
-                  title={<span className="text-sm">{menu.title}</span>}
-                />
+                <div key={index} onClick={onClose}>
+                  <DashboardMenu
+                    lng={lng as string}
+                    link={menu.link}
+                    icon={menu.icon}
+                    title={<span className="text-sm">{menu.title}</span>}
+                  />
+                </div>
               ))}
             </div>
 

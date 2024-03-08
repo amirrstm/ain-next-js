@@ -42,7 +42,7 @@ const LoginContainer: React.FC = () => {
       setMobile(data.mobile)
 
       setUserId(res.userId)
-      toast({ title: res.message, variant: 'success' })
+      toast({ title: res.code, variant: 'success' })
     })
   }
 

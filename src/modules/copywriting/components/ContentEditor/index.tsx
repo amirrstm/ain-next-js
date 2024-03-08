@@ -129,7 +129,7 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
               <span className="flex-1 leading-normal">{t('Content.Loading')}</span>
             </div>
           ) : (
-            <>
+            <div className="p-2 text-center">
               <div className="border shadow-md rounded-lg max-w-sm p-4 text-center">
                 <p className="text-gray-500 flex">
                   <IconBolt className="text-primary" />
@@ -137,10 +137,14 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
                 </p>
               </div>
 
-              <Link lng={lng as string} href="/history" className="text-xs text-gray-400 hover:text-primary mt-3">
+              <Link
+                href="/app/history"
+                lng={lng as string}
+                className="text-xs text-center text-gray-400 hover:text-primary mt-3"
+              >
                 {t('Content.Tip')}
               </Link>
-            </>
+            </div>
           )}
         </div>
       ) : (

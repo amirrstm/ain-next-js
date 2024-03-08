@@ -13,6 +13,14 @@ const ENDPOINTS = {
     LIST: '/public/category/list',
     GET: (id: string) => `/public/category/get/${id}`,
   },
+
+  DASHBOARD: {
+    HISTORY: '/user/history/dashboard',
+  },
+
+  HISTORY: {
+    GET: (page: number) => `/user/history/list?page=${page}`,
+  },
 }
 
 export default ENDPOINTS

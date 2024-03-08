@@ -59,6 +59,7 @@
     "i18next": "^23.6.0",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",
+    "jalaliday": "^2.3.0",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.292.0",
     "luxon": "^3.4.3",

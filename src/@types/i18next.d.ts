@@ -2,6 +2,7 @@ import 'i18next'
 
 import AuthNS from './locales/en/Auth.json'
 import CopywritingNS from './locales/en/Copywriting.json'
+import HistoryNS from './locales/en/History.json'
 import LayoutNS from './locales/en/Layout.json'
 import MainNS from './locales/en/Main.json'
 import MetaNs from './locales/en/Meta.json'
@@ -17,6 +18,7 @@ declare module 'i18next' {
       User: typeof UserNS
       Layout: typeof LayoutNS
       Pricing: typeof PricingNg
+      History: typeof HistoryNS
       Copywriting: typeof CopywritingNS
     }
   }

@@ -14,12 +14,13 @@ import Link from '@/components/ui/link'
 
 import { useTranslation } from '@/app/i18n/client'
 
+import CategoryLoading from '../../components/Loading'
 import useCategories from '../../hooks/useCategories'
 import { CATEGORY_ICONS, SUB_CATEGORY_ICONS } from '../../utils'
 
-const CategoryContainer: React.FC = () => {
+const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
   const { lng } = useParams()
-  const { data } = useCategories()
+  const { data, isLoading } = useCategories()
   const { t } = useTranslation(lng as string, 'Copywriting')
 
   const [subMenus, setSubMenus] = useState<Category[]>([])
@@ -58,8 +59,10 @@ const CategoryContainer: React.FC = () => {
     }
   }
 
+  if (isLoading) return <CategoryLoading />
+
   return (
-    <div className="p-4 xl:p-6">
+    <div className={!inner ? 'p-4 xl:p-6' : ''}>
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="hidden md:block col-span-6 lg:col-span-5 xl:col-span-3 2xl:col-span-3">
           <div className="border rounded-xl bg-white shadow-md block sticky top-8">
@@ -104,11 +107,26 @@ const CategoryContainer: React.FC = () => {
                 <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
                   {selectedMenu && CATEGORY_ICONS[selectedMenu.slug]}
                 </div>
-                <h2 className="text-xl font-bold">
+                <h2 className="md:text-xl font-bold">
                   {selectedMenu?.slug === 'copywriting' ? t('Category.AllCategories') : selectedMenu?.name}
                 </h2>
               </div>
             </div>
+
+            {data && (
+              <div className="p-4 flex w-full overflow-x-auto md:hidden gap-2">
+                {data[0].children.map((menu, index) => (
+                  <DashboardMenu
+                    key={index}
+                    lng={lng as string}
+                    icon={CATEGORY_ICONS[menu.slug]}
+                    onClick={() => onSelectParent(menu)}
+                    className="flex-shrink-0 bg-gray-100"
+                    title={<span className="text-sm">{menu.name}</span>}
+                  />
+                ))}
+              </div>
+            )}
 
             <div className="p-4 w-full">
               <div className="grid grid-cols-12 gap-4">

@@ -24,8 +24,6 @@ const DashboardStat: React.FC = () => {
 
   const progress = (used / plan.generation) * 100
 
-  console.log(user)
-
   return (
     <div className="mt-4 md:mt-10">
       <p className="flex items-center gap-2">
@@ -38,7 +36,8 @@ const DashboardStat: React.FC = () => {
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
-              {used * 3.14 + 1}~ {t('Dashboard.Stats.Hours')}
+              {used * 3.14}
+              {used === 0 ? '' : '~'} {t('Dashboard.Stats.Hours')}
             </h2>
           </div>
 

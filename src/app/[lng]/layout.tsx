@@ -1,5 +1,4 @@
 import { Viewport } from 'next'
-import Head from 'next/head'
 import Script from 'next/script'
 
 import SiteLayout from '@/components/layout/SiteLayout'

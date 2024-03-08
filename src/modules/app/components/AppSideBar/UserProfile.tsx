@@ -5,6 +5,7 @@ import { Lock } from 'lucide-react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
+import Link from '@/components/ui/link'
 import { Progress } from '@/components/ui/progress'
 
 import { useTranslation } from '@/app/i18n/client'
@@ -25,6 +26,7 @@ const UserProfile: React.FC = () => {
   const onLogout = () => {
     reset()
     router.push(`/${lng}/login`)
+    window.location.reload()
   }
 
   return (
@@ -42,7 +44,7 @@ const UserProfile: React.FC = () => {
 
       <div className="border-t p-4 bg-blue-50">
         <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
-          {t('Generations')}: {user?.userPlan?.plan?.generation} / {progress}
+          {t('Generations')}: {user?.userPlan?.plan?.generation} / {used}
         </p>
 
         <div className="mt-4 bg-gray-200 rounded-full">
@@ -51,10 +53,12 @@ const UserProfile: React.FC = () => {
           </div>
         </div>
 
-        <Button className="w-full mt-4 gap-2">
-          <Lock className="w-4 h-4" />
-          {t('Upgrade')}
-        </Button>
+        <Link lng="fa" href="/pricing">
+          <Button className="w-full mt-4 gap-2">
+            <Lock className="w-4 h-4" />
+            {t('Upgrade')}
+          </Button>
+        </Link>
       </div>
     </div>
   )

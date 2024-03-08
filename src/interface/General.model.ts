@@ -19,4 +19,15 @@ export interface ResponseMeta {
   timestamp: number
   repoVersion: string
   languages: string[]
+  pagination: MetaPagination
+}
+
+export interface MetaPagination {
+  page: number
+  orderBy: string
+  perPage: number
+  search: string
+  total: number
+  totalPage: number
+  orderDirection: string
 }

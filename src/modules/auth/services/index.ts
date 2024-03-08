@@ -12,11 +12,12 @@ import { setUserToken } from '../utils'
 export async function loginUser(
   url = '',
   { arg }: { arg: { mobileNumber: string } },
-): Promise<{ message: string; userId: string }> {
+): Promise<{ message: string; userId: string; code: string }> {
   try {
-    const res = await axios.post<{ message: string; data: { userId: string } }>(url, arg)
+    const res = await axios.post<{ message: string; data: { userId: string; code: string } }>(url, arg)
 
     return {
+      code: res.data.data.code,
       message: res.data.message,
       userId: res.data.data.userId,
     }

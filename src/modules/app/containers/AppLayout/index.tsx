@@ -29,7 +29,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   useEffect(() => {
     if (!user) {
-      router.push(`${lng}/login?return=${pathname}`)
+      router.push(`/${lng}/login?return=${pathname}`)
     } else {
       getUserProfile().then(res => {
         setUser(res)

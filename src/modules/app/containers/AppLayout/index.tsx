@@ -4,7 +4,7 @@ import { useParams, usePathname, useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import { History, Home, LayoutDashboard, Settings } from 'lucide-react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
@@ -18,6 +18,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
   const pathname = usePathname()
   const { lng } = useParams()
   const { user, setUser } = useUserStore()
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation(lng as string, 'Layout')
 
   const menus = [
@@ -31,11 +32,15 @@ export default function AppLayoutContainer({ children }: { children: React.React
     if (!user) {
       router.push(`/${lng}/login?return=${pathname}`)
     } else {
+      setLoading(true)
       getUserProfile().then(res => {
         setUser(res)
+        setLoading(false)
       })
     }
   }, [])
+
+  if (loading) return null
 
   return (
     <main className="block md:flex bg-gray-100 md:bg-white">

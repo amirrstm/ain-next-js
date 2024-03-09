@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
+import { IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { AnimatePresence, motion as m } from 'framer-motion'
-import { X } from 'lucide-react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
 
@@ -49,7 +49,7 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
               </div>
 
               <div className="cursor-pointer" onClick={onClose}>
-                <X className="w-7 h-7" />
+                <IconX className="w-7 h-7" />
               </div>
             </div>
 

@@ -3,8 +3,8 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { IconArrowLeft } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
@@ -35,7 +35,7 @@ const HeroHeader: React.FC = () => {
         <Link href="/login">
           <Button className="rounded-full gap-2 items-center px-6">
             {t('Home.GetStarted')}
-            <ArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="w-4 h-4" />
           </Button>
         </Link>
       </div>

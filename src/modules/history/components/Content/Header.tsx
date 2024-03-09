@@ -1,4 +1,4 @@
-import { LibraryBig } from 'lucide-react'
+import { IconBooks } from '@tabler/icons-react'
 import React from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
@@ -10,7 +10,7 @@ const ContentHeader: React.FC<{ category: AppCategory }> = ({ category }) => {
     <div className="p-4 flex items-center justify-between border-b">
       <div className="flex gap-2">
         <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
-          {SUB_CATEGORY_ICONS[category.slug] || <LibraryBig className="w-6 h-6" />}
+          {SUB_CATEGORY_ICONS[category.slug] || <IconBooks className="w-6 h-6" />}
         </div>
         <div className="flex-1">
           <h2 className="text-lg font-bold">{category.name}</h2>

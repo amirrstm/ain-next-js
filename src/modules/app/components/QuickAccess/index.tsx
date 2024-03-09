@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-import { Edit2, History, LayoutGrid, MessagesSquare } from 'lucide-react'
+import { IconGridDots, IconHistory, IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
 import React from 'react'
 
 import { Link } from '@/components/ui/navigation'
@@ -13,7 +13,7 @@ const QuickAccess: React.FC = () => {
   return (
     <div className="mt-4 md:mt-10">
       <p className="flex items-center gap-2">
-        <LayoutGrid className="w-4 h-4 md:w-7 md:h-7 text-primary" />
+        <IconGridDots className="w-4 h-4 md:w-7 md:h-7 text-primary" />
         <span className="text-base md:text-xl">{t('Dashboard.Access.QuickAccess')}</span>
       </p>
 
@@ -25,7 +25,7 @@ const QuickAccess: React.FC = () => {
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <Edit2 className="text-white w-5 h-5" />
+                <IconPencil className="text-white w-5 h-5" />
               </div>
             </div>
 
@@ -43,7 +43,7 @@ const QuickAccess: React.FC = () => {
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <History className="text-white w-5 h-5" />
+                <IconHistory className="text-white w-5 h-5" />
               </div>
             </div>
 
@@ -61,7 +61,7 @@ const QuickAccess: React.FC = () => {
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <MessagesSquare className="text-white w-5 h-5" />
+                <IconMessage2Bolt className="text-white w-5 h-5" />
               </div>
             </div>
 

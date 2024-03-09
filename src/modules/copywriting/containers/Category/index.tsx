@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { IconBooks, IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { LibraryBig, Plus } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 import { Category } from '@/interface/Category.model'
@@ -88,7 +88,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
 
             <div className="p-4 border-t">
               <Button className="w-full gap-2" variant="secondary">
-                <Plus className="w-5 h-5" />
+                <IconPlus className="w-5 h-5" />
                 <span>{t('Category.RequestTemplate')}</span>
               </Button>
             </div>
@@ -134,7 +134,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                       )}
                     >
                       <span className="group-hover:text-primary">
-                        {SUB_CATEGORY_ICONS[menu.slug] || <LibraryBig className="w-6 h-6" />}
+                        {SUB_CATEGORY_ICONS[menu.slug] || <IconBooks className="w-6 h-6" />}
                       </span>
 
                       <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">

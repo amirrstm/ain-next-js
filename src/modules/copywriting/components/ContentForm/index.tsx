@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { Wand2 } from 'lucide-react'
+import { IconWand } from '@tabler/icons-react'
 import React, { Dispatch, SetStateAction, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -57,11 +57,11 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
 
         <div className="p-4">
           <Button type="submit" className="w-full gap-2" loading={loading}>
-            <Wand2 className="w-5 h-5" />
+            <IconWand className="w-5 h-5" />
             <span>{t('Category.Generate')}</span>
           </Button>
 
-          <span className="text-xs text-gray-400 mt-2 block">{t('Category.GenerateCost')}</span>
+          <span className="text-xs text-gray-400 mt-2 block text-center">{t('Category.GenerateCost')}</span>
         </div>
       </form>
     </Form>

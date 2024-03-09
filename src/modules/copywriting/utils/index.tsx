@@ -1,33 +1,38 @@
 import {
   IconAdjustmentsStar,
   IconArrowsMaximize,
+  IconBooks,
   IconBrandBlogger,
   IconBrandGoogle,
   IconBrandInstagram,
   IconBrandLinkedin,
+  IconBrandSlack,
   IconBrandX,
   IconBrandYoutube,
   IconConfetti,
+  IconDeviceLaptop,
   IconHash,
   IconHeading,
   IconMailBolt,
   IconMessageStar,
+  IconPaperclip,
   IconPencilHeart,
   IconQuestionMark,
   IconSeo,
+  IconSpeakerphone,
   IconTextCaption,
   IconTopologyStar3,
+  IconWorld,
 } from '@tabler/icons-react'
-import { Globe, Laptop, LibraryBig, Megaphone, Paperclip, Slack } from 'lucide-react'
 import { ReactNode } from 'react'
 
 export const CATEGORY_ICONS: Record<string, ReactNode> = {
-  copywriting: <LibraryBig className="w-5 h-5" />,
-  'branding-ads': <Megaphone className="w-5 h-5" />,
-  'website-copy': <Laptop className="w-5 h-5" />,
-  'social-media': <Slack className="w-5 h-5" />,
-  publication: <Paperclip className="w-5 h-5" />,
-  other: <Globe className="w-5 h-5" />,
+  copywriting: <IconBooks className="w-6 h-6" />,
+  'branding-ads': <IconSpeakerphone className="w-6 h-6" />,
+  'website-copy': <IconDeviceLaptop className="w-6 h-6" />,
+  'social-media': <IconBrandSlack className="w-6 h-6" />,
+  publication: <IconPaperclip className="w-6 h-6" />,
+  other: <IconWorld className="w-6 h-6" />,
 }
 
 export const SUB_CATEGORY_ICONS: Record<string, ReactNode> = {

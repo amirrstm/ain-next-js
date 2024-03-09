@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { IconCheck, IconCircleCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Check, CheckCircle2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -62,7 +62,7 @@ const SinglePlan: React.FC<Props> = ({ isPopular }) => {
 
         <div className="mt-6">
           <Button className="w-full flex gap-2">
-            <Check className="w-4 h-4" />
+            <IconCheck className="w-4 h-4" />
             {t('Order')}
           </Button>
         </div>
@@ -78,7 +78,7 @@ const SingleSpec: React.FC<{ title: string }> = ({ title }) => {
     <li className="flex justify-between items-center gap-2">
       <span className="text-sm text-white">{title}</span>
 
-      <CheckCircle2 className="w-4 h-4 text-green-300" />
+      <IconCircleCheck className="w-4 h-4 text-green-300" />
     </li>
   )
 }

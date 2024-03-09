@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import React from 'react'
 import ReactPaginate from 'react-paginate'
 
@@ -14,8 +14,8 @@ const Pagination: React.FC<Props> = ({ forcePage, pageCount, paginate }) => {
       nextLinkClassName={'page-number'}
       containerClassName={'pagination'}
       previousLinkClassName={'page-number'}
-      nextLabel={<ChevronRight className="w-4 h-4 flex" />}
-      previousLabel={<ChevronLeft className="w-4 h-4 flex" />}
+      nextLabel={<IconChevronRight className="w-4 h-4 flex" />}
+      previousLabel={<IconChevronLeft className="w-4 h-4 flex" />}
     />
   )
 }

@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-import { ChevronRight } from 'lucide-react'
+import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
@@ -64,7 +64,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
           <div className="border rounded-xl bg-white shadow-md block sticky top-8">
             <Link href="/app/copywriting" className="p-4 border-b flex gap-2 items-center">
               <div className="border rounded-full p-1">
-                <ChevronRight />
+                <IconChevronRight />
               </div>
               <h1 className="text-lg font-bold">{t('Category.BackToCategories')}</h1>
             </Link>

@@ -10,7 +10,6 @@ const nextConfig = {
     loader: 'custom',
     loaderFile: '/nextImageLoader.js',
   },
-  transpilePackages: ['lucide-react'],
 }
 
 module.exports = withNextIntl(nextConfig)

@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
+import { IconLock } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Lock } from 'lucide-react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -54,7 +54,7 @@ const UserProfile: React.FC = () => {
 
         <Link href="/pricing">
           <Button className="w-full mt-4 gap-2">
-            <Lock className="w-4 h-4" />
+            <IconLock className="w-4 h-4" />
             {t('Upgrade')}
           </Button>
         </Link>

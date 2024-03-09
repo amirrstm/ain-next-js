@@ -3,8 +3,8 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Sparkle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
@@ -46,7 +46,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
 
             <Link href={user ? '/app' : '/login'}>
               <Button className="rounded-full px-8 gap-2">
-                <Sparkle />
+                <IconSparkles />
                 {user ? t('Header.OpenApp') : t('Header.SignUp')}
               </Button>
             </Link>

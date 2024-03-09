@@ -2,11 +2,11 @@
 
 import { useTranslations } from 'next-intl'
 
+import { IconDashboard } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fa'
 import jalaliday from 'jalaliday'
-import { LayoutDashboard } from 'lucide-react'
 import React, { useEffect } from 'react'
 
 import { Progress } from '@/components/ui/progress'
@@ -58,7 +58,7 @@ const MonthlyChartContainer: React.FC = () => {
   return (
     <div className="md:p-8 px-2 py-4">
       <div className="flex items-center gap-2 mb-2 md:mb-4 mr-3 md:mr-0">
-        <LayoutDashboard className="w-6 h-6" />
+        <IconDashboard className="w-6 h-6" />
         <span className="text-lg">{t('Menus.Dashboard')}</span>
       </div>
 
@@ -70,13 +70,15 @@ const MonthlyChartContainer: React.FC = () => {
               <p className={clsx(YekanBakhNumFont.className, 'text-sm text-gray-400 mt-1')}>
                 {t('Dashboard.Stats.Quota', {
                   to: dayjs().calendar('jalali').format('DD MMMM YYYY'),
-                  from: dayjs().calendar('jalali').subtract(1, 'month').format('DD MMMM YYYY'),
+                  from: dayjs(user.userPlan?.createdAt).calendar('jalali').subtract(1, 'day').format('DD MMMM YYYY'),
                 })}
               </p>
             </div>
 
             <p className={clsx(YekanBakhNumFont.className, 'text-sm md:text-base')}>
-              {t('Dashboard.Stats.GenerationReset', { date: `${dayjs().calendar('jalali').month()} ام` })}
+              {t('Dashboard.Stats.GenerationReset', {
+                date: `${dayjs(user.userPlan?.createdAt).calendar('jalali').date() - 1} ام`,
+              })}
             </p>
           </div>
 

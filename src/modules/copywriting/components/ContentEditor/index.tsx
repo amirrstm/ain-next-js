@@ -1,11 +1,10 @@
 import { useTranslations } from 'next-intl'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
-import { IconBolt } from '@tabler/icons-react'
+import { IconBolt, IconBooks } from '@tabler/icons-react'
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
 import { convert } from 'html-to-text'
-import { LibraryBig } from 'lucide-react'
 import React, { useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
@@ -94,7 +93,7 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
       <div className="p-4 flex items-center justify-between border-b">
         <div className="flex gap-2">
           <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
-            {SUB_CATEGORY_ICONS[appCategory.slug] || <LibraryBig className="w-6 h-6" />}
+            {SUB_CATEGORY_ICONS[appCategory.slug] || <IconBooks className="w-6 h-6" />}
           </div>
           <div className="flex-1">
             <h2 className="text-lg font-bold">{appCategory.name}</h2>

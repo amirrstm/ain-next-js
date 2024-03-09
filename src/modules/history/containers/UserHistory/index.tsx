@@ -2,13 +2,12 @@
 
 import { useTranslations } from 'next-intl'
 
-import { IconArrowLeft } from '@tabler/icons-react'
+import { IconArrowLeft, IconBooks, IconHistory } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fa'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import jalaliday from 'jalaliday'
-import { History, LibraryBig } from 'lucide-react'
 import { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
@@ -50,7 +49,7 @@ const UserHistoryContainer: React.FC = () => {
     <div className="p-2 md:py-3 md:px-8">
       <div className="flex items-center justify-between gap-2 md:mb-4 pt-2 pb-4 md:pb-0 border-b md:border-none">
         <div className="flex items-center gap-2">
-          <History className="w-6 h-6" />
+          <IconHistory className="w-6 h-6" />
           <span className="text-lg">{t('Layout.Menus.History')}</span>
         </div>
 
@@ -96,7 +95,7 @@ const UserHistoryContainer: React.FC = () => {
                   >
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 bg-secondary !text-white rounded-md flex items-center justify-center">
-                        {SUB_CATEGORY_ICONS[item.category.slug] || <LibraryBig className="w-6 h-6" />}
+                        {SUB_CATEGORY_ICONS[item.category.slug] || <IconBooks className="w-6 h-6" />}
                       </div>
                       <h3 className="font-semibold">{item.category.name}</h3>
                     </div>

@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
+import { IconLoader } from '@tabler/icons-react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { RotateCw } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -48,7 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
-        {loading ? <RotateCw className="mr-2 h-4 w-4 animate-spin" /> : children}
+        {loading ? <IconLoader className="mr-2 h-4 w-4 animate-spin" /> : children}
       </Comp>
     )
   },

@@ -3,8 +3,10 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
-import { Menu } from 'lucide-react'
+import { IconMenu2 } from '@tabler/icons-react'
 import React, { useState } from 'react'
+
+import { Link } from '@/components/ui/navigation'
 
 import MenuDrawer from './MenuDrawer'
 
@@ -24,19 +26,21 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
     <>
       <div className="flex justify-between items-center px-3 py-4 border-b bg-white">
         <div className="flex gap-2 items-center cursor-pointer" onClick={() => setOpen(true)}>
-          <Menu />
+          <IconMenu2 />
           <span className="text-sm">{t('Header.Menu')}</span>
         </div>
 
-        <div className="relative w-[120px] h-5 sm:h-8">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src="/images/logo-black.png"
-            className="w-full h-full object-contain"
-          />
-        </div>
+        <Link href="/app">
+          <div className="relative w-[120px] h-7 sm:h-8">
+            <Image
+              alt="logo"
+              width={200}
+              height={200}
+              src="/images/logo-black.png"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </Link>
       </div>
 
       <MenuDrawer menus={menus} open={open} onClose={() => setOpen(false)} />

@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { IconTarget } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Target } from 'lucide-react'
 import React from 'react'
 
 import { Progress } from '@/components/ui/progress'
@@ -25,7 +25,7 @@ const DashboardStat: React.FC = () => {
   return (
     <div className="mt-4 md:mt-10">
       <p className="flex items-center gap-2">
-        <Target className="w-4 h-4 md:w-7 md:h-7 text-primary" />
+        <IconTarget className="w-4 h-4 md:w-7 md:h-7 text-primary" />
         <span className="text-base md:text-xl">{t('Dashboard.Stats.Last30Days')}</span>
       </p>
 

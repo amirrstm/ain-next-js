@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { IconSend2 } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { SendHorizonal } from 'lucide-react'
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 
@@ -45,7 +45,7 @@ const DashboardHeader: React.FC = () => {
           </div>
 
           <div className="w-9 h-9 flex items-center justify-center bg-[#ffffff22] rounded-md">
-            <SendHorizonal className="w-5 h-5 rotate-180 text-white" />
+            <IconSend2 className="w-5 h-5 rotate-180 text-white" />
           </div>
         </div>
       </div>

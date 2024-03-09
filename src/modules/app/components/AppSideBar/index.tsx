@@ -4,11 +4,12 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
-import { Edit2, MessagesSquare } from 'lucide-react'
+import { IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
 import React from 'react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import LineDivider from '@/components/ui/line-divider'
+import { Link } from '@/components/ui/navigation'
 
 import UserProfile from './UserProfile'
 
@@ -27,7 +28,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
   return (
     <div className="p-5 fixed right-0 top-0 bottom-0 max-w-[250px] w-full h-full overflow-y-auto flex flex-col justify-between">
       <div>
-        <div className="relative h-7 sm:h-8">
+        <Link href="/app" className="flex relative h-7 sm:h-8">
           <Image
             alt="logo"
             width={200}
@@ -35,7 +36,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             src="/images/logo-black.png"
             className="w-full h-full object-contain"
           />
-        </div>
+        </Link>
 
         <div className="mt-8 space-y-4">
           {menus.map((menu, index) => (
@@ -60,7 +61,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             link="/app/copywriting"
             icon={
               <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
-                <Edit2 className="w-4 h-4 text-white" />
+                <IconPencil className="w-4 h-4 text-white" />
               </div>
             }
             title={<span className="text-sm">{t('Menus.Copywriting')}</span>}
@@ -73,7 +74,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             link="/app/chat"
             icon={
               <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
-                <MessagesSquare className="w-4 h-4 text-white" />
+                <IconMessage2Bolt className="w-4 h-4 text-white" />
               </div>
             }
             title={<span className="text-sm">{t('Menus.Chat')}</span>}

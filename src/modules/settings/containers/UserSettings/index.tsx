@@ -48,7 +48,6 @@ const UserSettingsContainer: React.FC = () => {
     trigger(data)
       .then(() => {
         if (user) {
-          se
           setUser({ ...user, firstName: data.firstName, lastName: data.lastName })
           toast({ title: t('Settings.Success'), variant: 'success' })
         }

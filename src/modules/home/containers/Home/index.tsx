@@ -5,9 +5,10 @@ import Image from 'next/image'
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
 
+import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 
-import Benefits from '../../components/Benefits'
+import Contents from '../../components/Contents'
 import HeroHeader from '../../components/Hero'
 
 const HomeContainer: React.FC = () => {
@@ -24,7 +25,7 @@ const HomeContainer: React.FC = () => {
       </section>
 
       <div className="bg-secondary">
-        <div className="max-w-6xl mx-auto py-12 px-6 bg-secondary">
+        <div className="max-w-6xl mx-auto py-8 px-6 bg-secondary">
           <div className="relative w-full sm:h-auto rounded-2xl shadow-xl overflow-hidden">
             <Image
               alt="open-ai"
@@ -50,7 +51,9 @@ const HomeContainer: React.FC = () => {
         </div>
       </div>
 
-      <Benefits />
+      <Contents />
+
+      <Footer />
     </main>
   )
 }

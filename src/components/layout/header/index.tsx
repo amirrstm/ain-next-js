@@ -26,7 +26,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
         )}
         style={{ background: dark ? 'rgba(15, 15, 15, 0.6)' : 'rgba(255, 255, 255, 0.6)' }}
       >
-        <div className="relative w-[140px] h-7 sm:h-8">
+        <Link href="/" className="relative w-[140px] h-7 sm:h-8 flex">
           <Image
             alt="logo"
             width={200}
@@ -34,7 +34,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
             className="w-full h-full object-contain"
             src={dark ? '/images/main-logo.png' : '/images/logo-black.png'}
           />
-        </div>
+        </Link>
 
         <div className="flex-1">
           <div className="flex items-center justify-end gap-6">

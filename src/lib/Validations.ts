@@ -15,6 +15,11 @@ const fa: Translations = {
     Code: faIsRequired('کد تایید'),
     Name: faIsRequired('نام'),
   },
+
+  Profile: {
+    FirstName: faIsRequired('نام'),
+    LastName: faIsRequired('نام خانوادگی'),
+  },
 }
 
 const translations: Record<string, Translations> = { en, fa }

@@ -51,7 +51,7 @@ const HeroHeader: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <p className="text-white text-xs text-center">{t('Home.PoweredBy')}</p>
 
         <div className="flex gap-6 items-center mt-2">

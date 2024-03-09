@@ -25,7 +25,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
     { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-6 h-6" /> },
     { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <IconDashboard className="w-6 h-6" /> },
     { title: t('Menus.History'), link: '/app/history', icon: <IconHistory className="w-6 h-6" /> },
-    { title: t('Menus.Settings'), link: '/settings', icon: <IconSettings className="w-6 h-6" /> },
+    { title: t('Menus.Settings'), link: '/app/settings', icon: <IconSettings className="w-6 h-6" /> },
   ]
 
   useEffect(() => {

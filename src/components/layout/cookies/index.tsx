@@ -1,6 +1,6 @@
 'use client'
 
-import { Cookie } from 'lucide-react'
+import { IconCookie } from '@tabler/icons-react'
 import React, { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -29,7 +29,7 @@ const Cookies: React.FC<Props> = ({ showCookies, setShowCookies }) => {
             className="w-16 h-16 bg-primary rounded-full p-1 group:hover:bg-opacity-60"
           >
             <div className="w-full h-full rounded-full border flex items-center justify-center">
-              <Cookie className="w-10 h-10 text-white" strokeWidth={1} />
+              <IconCookie className="w-10 h-10 text-white" strokeWidth={1} />
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Cookies: React.FC<Props> = ({ showCookies, setShowCookies }) => {
           <div className="absolute bottom-2 left-2 md:bottom-6 md:left-6 z-10">
             <div className="w-16 h-16 bg-primary rounded-full p-1">
               <div className="w-full h-full rounded-full border flex items-center justify-center">
-                <Cookie className="w-10 h-10 text-white" strokeWidth={1} />
+                <IconCookie className="w-10 h-10 text-white" strokeWidth={1} />
               </div>
             </div>
           </div>

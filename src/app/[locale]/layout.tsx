@@ -2,6 +2,8 @@ import { Viewport } from 'next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import Script from 'next/script'
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 import SiteLayout from '@/components/layout/SiteLayout'
 import { Toaster } from '@/components/ui/toaster'
 
@@ -47,6 +49,7 @@ export default function RootLayout({
             })();`,
         }}
       />
+      <GoogleAnalytics gaId="G-30HPPFMJ63" />
 
       <body
         suppressHydrationWarning={true}

@@ -11,6 +11,7 @@ export const CodeInput: React.FC<Props> = ({ name, value, onChange, onBlur, erro
         onBlur={onBlur}
         onChange={onChange}
         validChars="0123456789"
+        inputProps={{ inputMode: 'numeric' }}
         classNames={{
           container: 'w-full flex justify-center',
           character: `w-10 rounded-md border-gray-300 ${error && 'border-red-500'}`,

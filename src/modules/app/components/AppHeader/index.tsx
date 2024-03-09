@@ -23,12 +23,12 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
   return (
     <>
       <div className="flex justify-between items-center px-3 py-4 border-b bg-white">
-        <div className="flex gap-2 cursor-pointer" onClick={() => setOpen(true)}>
+        <div className="flex gap-2 items-center cursor-pointer" onClick={() => setOpen(true)}>
           <Menu />
-          <span>{t('Header.Menu')}</span>
+          <span className="text-sm">{t('Header.Menu')}</span>
         </div>
 
-        <div className="relative h-5 sm:h-8">
+        <div className="relative w-[120px] h-5 sm:h-8">
           <Image
             alt="logo"
             width={200}

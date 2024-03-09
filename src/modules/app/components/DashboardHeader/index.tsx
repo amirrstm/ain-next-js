@@ -13,7 +13,7 @@ const DashboardHeader: React.FC = () => {
   return (
     <div
       className={clsx(
-        'bg-secondary bg-no-repeat  bg-cover bg-center rounded-2xl py-6 md:py-10 px-3 md:px-6',
+        'bg-secondary bg-no-repeat  bg-cover bg-center rounded-2xl py-6 md:py-16 px-3 md:px-6',
         'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
       )}
     >

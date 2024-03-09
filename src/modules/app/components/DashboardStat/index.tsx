@@ -34,7 +34,7 @@ const DashboardStat: React.FC = () => {
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
-              {Math.ceil(used * 3.14).toFixed(2)}
+              {Math.ceil(used * 1.14)}
               {used === 0 ? '' : '~'} {t('Dashboard.Stats.Hours')}
             </h2>
           </div>

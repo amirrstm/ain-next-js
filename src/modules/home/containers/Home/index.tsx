@@ -31,10 +31,9 @@ const HomeContainer: React.FC = () => {
           <div className="relative w-full sm:h-auto rounded-2xl shadow-xl overflow-hidden">
             <Image
               alt="open-ai"
-              width={800}
-              height={800}
-              src={videoUrl}
-              loader={() => videoUrl}
+              width={1000}
+              height={1000}
+              src="/images/app-layout.png"
               className="w-full h-full object-contain"
             />
 

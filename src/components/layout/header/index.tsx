@@ -26,7 +26,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
         )}
         style={{ background: dark ? 'rgba(15, 15, 15, 0.6)' : 'rgba(255, 255, 255, 0.6)' }}
       >
-        <div className="relative h-7 sm:h-8">
+        <div className="relative w-[140px] h-7 sm:h-8">
           <Image
             alt="logo"
             width={200}

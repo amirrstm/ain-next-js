@@ -11,6 +11,7 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
   return {
     title: t('Home.Title'),
+    keywords: t('Home.Keywords'),
     description: t('Home.Description'),
   }
 }

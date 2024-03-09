@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -18,7 +18,6 @@ import { getUserProfile, loginUser, verifyUser } from '../../services'
 
 const LoginContainer: React.FC = () => {
   const router = useRouter()
-  const { lng } = useParams()
   const { toast } = useToast()
 
   const { user, setUser } = useUserStore()
@@ -32,7 +31,7 @@ const LoginContainer: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      router.push(`/${lng}/app`)
+      router.push(`/app`)
     }
   }, [])
 
@@ -53,9 +52,9 @@ const LoginContainer: React.FC = () => {
         getUserProfile().then(data => {
           setUser(data)
           if (data.firstName) {
-            router.push(`/${lng}/app`)
+            router.push(`/app`)
           } else {
-            router.push(`/${lng}/user-name`)
+            router.push(`/user-name`)
           }
         })
       })

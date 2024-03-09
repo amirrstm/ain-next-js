@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -14,7 +14,6 @@ import { updateName } from '../../services'
 
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
-  const { lng } = useParams()
   const [loading, setLoading] = useState(false)
 
   const { setUser, user } = useUserStore()
@@ -22,7 +21,7 @@ const UserNameContainer: React.FC = () => {
 
   useEffect(() => {
     if (user && user.firstName) {
-      router.push(`/${lng}/app`)
+      router.push(`/app`)
     }
   }, [])
 
@@ -35,7 +34,7 @@ const UserNameContainer: React.FC = () => {
         if (user) {
           setUser({ ...user, firstName: nameSplit[0], lastName: nameSplit[1] })
         }
-        router.push(`/${lng}/app`)
+        router.push(`/app`)
       })
       .catch(() => setLoading(false))
   }

@@ -1,23 +1,16 @@
-import { useParams } from 'next/navigation'
-
 import { ChevronRight } from 'lucide-react'
 import React from 'react'
 
-import { useTranslation } from '@/app/i18n/client'
-
-import Link from './link'
+import { Link } from './navigation'
 
 type Props = { items: { title: string; link?: string }[] }
 const Breadcrumb: React.FC<Props> = ({ items }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Main')
-
   return (
     <nav>
       <ol className="m-0 p-0 flex items-center text-sm">
         <li className="flex items-center">
-          <Link lng={lng as string} href="/" className="text-primary">
-            {t('Home')}
+          <Link href="/" className="text-primary">
+            Home
           </Link>
           <span className="mx-1 text-neutral-500 dark:text-neutral-400 flex">
             <ChevronRight className="w-4 h-4" />
@@ -31,7 +24,7 @@ const Breadcrumb: React.FC<Props> = ({ items }) => {
             </li>
           ) : (
             <li key={index} className="flex items-center">
-              <Link lng={lng as string} href={item.link} className="text-primary">
+              <Link href={item.link} className="text-primary">
                 {item.title}
               </Link>
               <span className="mx-1 text-neutral-500 dark:text-neutral-400 flex">

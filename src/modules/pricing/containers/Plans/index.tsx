@@ -1,19 +1,16 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import React from 'react'
 
 import Header from '@/components/layout/header'
 
-import { useTranslation } from '@/app/i18n/client'
-
 import SinglePlan from '../../components/SinglePlan'
 
 const PlansContainer: React.FC = () => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Pricing')
+  const t = useTranslations('Pricing')
 
   return (
     <main>

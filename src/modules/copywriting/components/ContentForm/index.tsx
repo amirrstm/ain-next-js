@@ -1,4 +1,4 @@
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { Wand2 } from 'lucide-react'
 import React, { Dispatch, SetStateAction, useEffect } from 'react'
@@ -10,8 +10,6 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 
-import { useTranslation } from '@/app/i18n/client'
-
 interface Props {
   loading: boolean
   category: AppCategory
@@ -22,8 +20,7 @@ interface Props {
 
 const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit, setAppCategory }) => {
   const form = useForm()
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Copywriting')
+  const t = useTranslations('Copywriting')
 
   useEffect(() => {
     if (category) {

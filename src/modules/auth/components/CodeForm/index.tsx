@@ -1,7 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import clsx from 'clsx'
@@ -13,7 +13,6 @@ import { Button } from '@/components/ui/button'
 import { CodeInput } from '@/components/ui/code-input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
-import { useTranslation } from '@/app/i18n/client'
 import Validations from '@/lib/Validations'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -26,8 +25,7 @@ type Props = {
   onSubmit: (data: z.infer<typeof formSchema>) => void
 }
 const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Auth')
+  const t = useTranslations('Auth')
   const [minutes, setMinutes] = useState(5)
   const [seconds, setSeconds] = useState(0)
 

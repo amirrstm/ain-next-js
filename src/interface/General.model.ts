@@ -1,6 +1,6 @@
 export interface PageLang {
   params: {
-    lng: string
+    locale: string
   }
 }
 

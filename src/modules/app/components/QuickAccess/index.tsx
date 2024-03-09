@@ -1,19 +1,14 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { Edit2, History, LayoutGrid, MessagesSquare } from 'lucide-react'
 import React from 'react'
 
-import Link from '@/components/ui/link'
-
-import { useTranslation } from '@/app/i18n/client'
-import useUserStore from '@/lib/store/auth'
+import { Link } from '@/components/ui/navigation'
 
 const QuickAccess: React.FC = () => {
-  const { lng } = useParams()
-  const { user } = useUserStore()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
 
   return (
     <div className="mt-4 md:mt-10">
@@ -24,7 +19,6 @@ const QuickAccess: React.FC = () => {
 
       <div className="grid grid-cols-12 gap-4 mt-6">
         <Link
-          lng={lng as string}
           href="/app/copywriting"
           className="col-span-5 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
         >
@@ -43,7 +37,6 @@ const QuickAccess: React.FC = () => {
         </Link>
 
         <Link
-          lng={lng as string}
           href="/app/history"
           className="col-span-3 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
         >
@@ -62,7 +55,6 @@ const QuickAccess: React.FC = () => {
         </Link>
 
         <Link
-          lng={lng as string}
           href="/app/chat"
           className="col-span-4 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
         >

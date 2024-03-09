@@ -1,6 +1,5 @@
 /* eslint-disable */
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import i18next from 'i18next'
 
 import { refreshAccessToken } from '@/modules/auth/services'
 
@@ -20,7 +19,7 @@ const axiosRequestMiddleware = (config: InternalAxiosRequestConfig) => {
   config.baseURL = process.env.NEXT_PUBLIC_API_BASE_ENDPOINT
 
   if (config.headers) {
-    config.headers['x-custom-lang'] = i18next.language ?? 'de'
+    config.headers['X-CUSTOM-LANG'] = 'fa'
 
     const latestToken = config.url?.includes('/auth/user/refresh')
       ? localStorage.getItem('refreshToken')

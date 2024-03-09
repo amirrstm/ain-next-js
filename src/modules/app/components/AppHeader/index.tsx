@@ -1,12 +1,10 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import { Menu } from 'lucide-react'
 import React, { useState } from 'react'
-
-import { useTranslation } from '@/app/i18n/client'
 
 import MenuDrawer from './MenuDrawer'
 
@@ -19,8 +17,7 @@ interface Props {
 }
 
 const AppHeader: React.FC<Props> = ({ menus }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
   const [open, setOpen] = useState(false)
 
   return (

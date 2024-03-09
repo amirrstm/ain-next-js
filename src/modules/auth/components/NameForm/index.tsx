@@ -1,7 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
@@ -11,9 +11,8 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import Link from '@/components/ui/link'
+import { Link } from '@/components/ui/navigation'
 
-import { useTranslation } from '@/app/i18n/client'
 import Validations from '@/lib/Validations'
 
 const formSchema = z.object({
@@ -22,8 +21,7 @@ const formSchema = z.object({
 
 type Props = { loading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
 const NameForm: React.FC<Props> = ({ loading, onSubmit }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Auth')
+  const t = useTranslations('Auth')
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -74,7 +72,7 @@ const NameForm: React.FC<Props> = ({ loading, onSubmit }) => {
       </Form>
 
       <div className="font-light pt-6 text-sm text-center">
-        <Link lng={lng as string} href="/app" className="text-primary cursor-pointer">
+        <Link href="/app" className="text-primary cursor-pointer">
           {t('Skip')}
         </Link>
       </div>

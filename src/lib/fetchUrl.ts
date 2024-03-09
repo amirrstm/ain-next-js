@@ -1,18 +1,16 @@
 import { cookies } from 'next/headers'
 
-import i18next from 'i18next'
-
 export default async function fetchWithUrl<P>(input: RequestInfo, init?: RequestInit): Promise<P> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}${input}`, {
       ...init,
       headers: cookies().get('token')?.value
         ? {
+            'X-CUSTOM-LANG': 'fa',
             'Content-Type': 'application/json',
-            'X-CUSTOM-LANG': i18next.language ?? 'fa',
             Authorization: `Bearer ${cookies().get('token')?.value}`,
           }
-        : { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': i18next.language ?? 'fa' },
+        : { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': 'fa' },
     })
 
     const data = await response.json()

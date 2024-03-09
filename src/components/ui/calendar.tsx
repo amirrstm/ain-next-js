@@ -3,7 +3,6 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import { de, enUS } from 'date-fns/locale'
-import i18next from 'i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import * as React from 'react'
 import { DayPicker } from 'react-day-picker'
@@ -54,7 +53,6 @@ function Calendar({
       captionLayout="dropdown-buttons"
       showOutsideDays={showOutsideDays}
       className={cn('!m-0 p-3', className)}
-      locale={i18next.language === 'de' ? de : enUS}
       classNames={{
         month: 'space-y-4',
         head_row: 'flex',

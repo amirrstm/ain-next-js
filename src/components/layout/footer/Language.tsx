@@ -1,10 +1,6 @@
-import { useParams, useRouter } from 'next/navigation'
-
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
-import { useTranslation } from '@/app/i18n/client'
 
 const langs = [
   {
@@ -54,12 +50,11 @@ const langs = [
     title: 'Franch',
     value: 'fr',
     icon: (
-     
       <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 55.2 38.4">
         <g fillRule="evenodd" clipRule="evenodd">
-          <rect width={20} height={13} fill="#ED2939"/>
-          <rect width={13} height={13} fill="#fff"/>
-          <rect width={7} height={13} fill="#002395"/>
+          <rect width={20} height={13} fill="#ED2939" />
+          <rect width={13} height={13} fill="#fff" />
+          <rect width={7} height={13} fill="#002395" />
         </g>
       </svg>
     ),
@@ -68,19 +63,14 @@ const langs = [
 
 const Language: React.FC = () => {
   const router = useRouter()
-  const { lng } = useParams()
-  const { i18n, t } = useTranslation(lng as string)
-  const [lang, setLang] = useState(i18n.language)
 
   const onChange = (value: string) => {
-    setLang(value)
     router.push(`/${value}`)
-    i18n.changeLanguage(value)
   }
 
   return (
     <div>
-      <Select value={lang} onValueChange={onChange}>
+      <Select value={'fa'} onValueChange={onChange}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select Language" />
         </SelectTrigger>

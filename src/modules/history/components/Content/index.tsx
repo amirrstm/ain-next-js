@@ -1,4 +1,4 @@
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { EditorConfig } from '@editorjs/editorjs'
 import clsx from 'clsx'
@@ -9,7 +9,6 @@ import { AppCategory } from '@/interface/Category.model'
 
 import { createReactEditorJS } from '@/components/ui/text-editor'
 
-import { useTranslation } from '@/app/i18n/client'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { HistoryInput } from '../../interface'
@@ -25,8 +24,7 @@ interface Props {
 }
 
 const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Copywriting')
+  const t = useTranslations('Copywriting')
 
   const [text, setText] = useState<string>('')
   const [editorData, setEditorData] = useState<EditorConfig['data']>()

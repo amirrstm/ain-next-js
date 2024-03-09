@@ -1,5 +1,3 @@
-import i18next from 'i18next'
-
 export const enIsRequired = (value: string) => `${value} is required`
 export const faIsRequired = (value: string) => `لطفا ${value} را خالی نگذارید`
 
@@ -21,5 +19,5 @@ const fa: Translations = {
 
 const translations: Record<string, Translations> = { en, fa }
 
-const lang = i18next.language ?? 'fa'
+const lang = 'fa'
 export default translations[lang]

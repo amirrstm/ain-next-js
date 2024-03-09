@@ -1,22 +1,21 @@
-import { useParams, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import { Lock } from 'lucide-react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
-import Link from '@/components/ui/link'
+import { Link } from '@/components/ui/navigation'
 import { Progress } from '@/components/ui/progress'
 
-import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const UserProfile: React.FC = () => {
   const router = useRouter()
-  const { lng } = useParams()
+  const t = useTranslations('User')
   const { user, reset } = useUserStore()
-  const { t } = useTranslation(lng as string, 'User')
 
   const used = user?.userPlan?.used || 0
   const plan = user?.userPlan?.plan?.generation || 0
@@ -25,7 +24,7 @@ const UserProfile: React.FC = () => {
 
   const onLogout = () => {
     reset()
-    router.push(`/${lng}/login`)
+    router.push(`/login`)
     window.location.reload()
   }
 
@@ -53,7 +52,7 @@ const UserProfile: React.FC = () => {
           </div>
         </div>
 
-        <Link lng="fa" href="/pricing">
+        <Link href="/pricing">
           <Button className="w-full mt-4 gap-2">
             <Lock className="w-4 h-4" />
             {t('Upgrade')}

@@ -1,16 +1,15 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { ChevronRight } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
 
-import Link from '@/components/ui/link'
+import { Link } from '@/components/ui/navigation'
 import { useToast } from '@/components/ui/use-toast'
 
-import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
 
 import ContentEditor from '../../components/ContentEditor'
@@ -22,11 +21,10 @@ interface Props {
 }
 
 const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
-  const { lng } = useParams()
   const { toast } = useToast()
+  const t = useTranslations('Copywriting')
   const { user, setUser } = useUserStore()
   const contentRef = useRef<HTMLDivElement>(null)
-  const { t } = useTranslation(lng as string, 'Copywriting')
 
   const [content, setContent] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -64,7 +62,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
           <div className="border rounded-xl bg-white shadow-md block sticky top-8">
-            <Link lng={lng as string} href="/app/copywriting" className="p-4 border-b flex gap-2 items-center">
+            <Link href="/app/copywriting" className="p-4 border-b flex gap-2 items-center">
               <div className="border rounded-full p-1">
                 <ChevronRight />
               </div>

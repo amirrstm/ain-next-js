@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+const createNextIntlPlugin = require('next-intl/plugin')
+const withNextIntl = createNextIntlPlugin()
 
 const nextConfig = {
   swcMinify: true,
+  env: {
+    NEXT_AUTH_SECRET: process.env.NEXT_AUTH_SECRET,
+    NEXT_GOOGLE_SECRET_ID: process.env.NEXT_GOOGLE_SECRET_ID,
+    NEXT_GOOGLE_CLIENT_ID: process.env.NEXT_GOOGLE_CLIENT_ID,
+  },
   reactStrictMode: process.env.NODE_ENV === 'production',
   images: {
     loader: 'custom',
@@ -16,7 +18,7 @@ const nextConfig = {
   transpilePackages: ['lucide-react'],
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withNextIntl(nextConfig)
 
 // Injected content via Sentry wizard below
 

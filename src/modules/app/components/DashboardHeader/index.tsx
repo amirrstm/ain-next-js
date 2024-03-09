@@ -1,17 +1,14 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import { SendHorizonal } from 'lucide-react'
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 
-import { useTranslation } from '@/app/i18n/client'
-
 const DashboardHeader: React.FC = () => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
 
   return (
     <div

@@ -1,20 +1,19 @@
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
 import { IconBolt } from '@tabler/icons-react'
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
-import { convert, htmlToText } from 'html-to-text'
+import { convert } from 'html-to-text'
 import { LibraryBig } from 'lucide-react'
 import React, { useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
 
-import Link from '@/components/ui/link'
 import Loader from '@/components/ui/loader'
+import { Link } from '@/components/ui/navigation'
 import { createReactEditorJS } from '@/components/ui/text-editor'
 
-import { useTranslation } from '@/app/i18n/client'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { SUB_CATEGORY_ICONS } from '../../utils'
@@ -29,8 +28,7 @@ interface Props {
 }
 
 const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Copywriting')
+  const t = useTranslations('Copywriting')
 
   const [text, setText] = useState<string>('')
   const [rawText, setRawText] = useState<string>('')
@@ -137,11 +135,7 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
                 </p>
               </div>
 
-              <Link
-                href="/app/history"
-                lng={lng as string}
-                className="text-xs text-center text-gray-400 hover:text-primary mt-3"
-              >
+              <Link href="/app/history" className="text-xs text-center text-gray-400 hover:text-primary mt-3">
                 {t('Content.Tip')}
               </Link>
             </div>

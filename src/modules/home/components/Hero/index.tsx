@@ -1,21 +1,19 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import Link from '@/components/ui/link'
+import { Link } from '@/components/ui/navigation'
 import Rating from '@/components/ui/rating'
 
-import { useTranslation } from '@/app/i18n/client'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const HeroHeader: React.FC = () => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
 
   return (
     <div className="pt-32 md:pt-40 flex flex-col items-center justify-center">
@@ -34,7 +32,7 @@ const HeroHeader: React.FC = () => {
       </div>
 
       <div className="mt-12">
-        <Link lng={lng as string} href="/login">
+        <Link href="/login">
           <Button className="rounded-full gap-2 items-center px-6">
             {t('Home.GetStarted')}
             <ArrowLeft className="w-4 h-4" />
@@ -46,7 +44,10 @@ const HeroHeader: React.FC = () => {
         <Rating count={5} />
 
         <div className={clsx(YekanBakhNumFont.className, 'text-gray-400 mt-2 text-xs leading-snug')}>
-          <div dangerouslySetInnerHTML={{ __html: t('Home.Rating', { count: 3000 }) }} />
+          {t.rich('Home.Rating', {
+            count: 3000,
+            rating: chunks => <strong className="text-white">{chunks}</strong>,
+          })}
         </div>
       </div>
 

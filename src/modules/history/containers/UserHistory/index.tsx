@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { IconArrowLeft } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -12,7 +12,6 @@ import { History, LibraryBig } from 'lucide-react'
 import { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-import { useTranslation } from '@/app/i18n/client'
 import { SUB_CATEGORY_ICONS } from '@/modules/copywriting/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -27,8 +26,7 @@ dayjs.extend(relativeTime)
 dayjs.extend(jalaliday)
 
 const UserHistoryContainer: React.FC = () => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'History')
+  const t = useTranslations()
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
 
   const [selectedHistory, setSelectedHistory] = useState<IHistory>()
@@ -53,7 +51,7 @@ const UserHistoryContainer: React.FC = () => {
       <div className="flex items-center justify-between gap-2 md:mb-4 pt-2 pb-4 md:pb-0 border-b md:border-none">
         <div className="flex items-center gap-2">
           <History className="w-6 h-6" />
-          <span className="text-lg">{t('Layout:Menus.History')}</span>
+          <span className="text-lg">{t('Layout.Menus.History')}</span>
         </div>
 
         {isTabletOrMobile && selectedHistory && (
@@ -66,7 +64,7 @@ const UserHistoryContainer: React.FC = () => {
 
       {!isLoading && items.length === 0 && (
         <div className="bg-white h-[500px] shadow-md border rounded-xl overflow-hidden p-4">
-          <HistoryEmpty title={t('EmptyList')} />
+          <HistoryEmpty title={t('History.EmptyList')} />
         </div>
       )}
 
@@ -123,7 +121,7 @@ const UserHistoryContainer: React.FC = () => {
                   appCategory={selectedHistory.category}
                 />
               ) : (
-                <HistoryEmpty title={t('EmptyContent')} />
+                <HistoryEmpty title={t('History.EmptyContent')} />
               )}
             </div>
           </div>

@@ -1,13 +1,10 @@
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import { AnimatePresence, motion as m } from 'framer-motion'
 import { X } from 'lucide-react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
-
-import { useTranslation } from '@/app/i18n/client'
 
 import UserProfile from '../AppSideBar/UserProfile'
 
@@ -21,9 +18,6 @@ type Props = {
   }[]
 }
 const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Main')
-
   return (
     <AnimatePresence>
       {open && (
@@ -63,7 +57,6 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
               {menus.map((menu, index) => (
                 <div key={index} onClick={onClose}>
                   <DashboardMenu
-                    lng={lng as string}
                     link={menu.link}
                     icon={menu.icon}
                     title={<span className="text-sm">{menu.title}</span>}

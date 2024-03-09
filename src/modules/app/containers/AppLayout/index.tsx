@@ -1,12 +1,12 @@
 'use client'
 
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { usePathname, useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 import { History, Home, LayoutDashboard, Settings } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
-import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
 import { getUserProfile } from '@/modules/auth/services'
 
@@ -16,10 +16,10 @@ import AppSiderBar from '../../components/AppSideBar'
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
-  const { lng } = useParams()
+  const t = useTranslations('Layout')
+
   const { user, setUser } = useUserStore()
   const [loading, setLoading] = useState(false)
-  const { t } = useTranslation(lng as string, 'Layout')
 
   const menus = [
     { title: t('Menus.Home'), link: '/app', icon: <Home className="w-5 h-5" /> },
@@ -30,7 +30,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   useEffect(() => {
     if (!user) {
-      router.push(`/${lng}/login?return=${pathname}`)
+      router.push(`/login?return=${pathname}`)
     } else {
       setLoading(true)
       getUserProfile().then(res => {

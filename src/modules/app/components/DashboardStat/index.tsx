@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import { Target } from 'lucide-react'
@@ -8,14 +8,12 @@ import React from 'react'
 
 import { Progress } from '@/components/ui/progress'
 
-import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const DashboardStat: React.FC = () => {
-  const { lng } = useParams()
   const { user } = useUserStore()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
 
   if (!user) return null
 
@@ -36,7 +34,7 @@ const DashboardStat: React.FC = () => {
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
-              {used * 3.14}
+              {Math.ceil(used * 3.14).toFixed(2)}
               {used === 0 ? '' : '~'} {t('Dashboard.Stats.Hours')}
             </h2>
           </div>

@@ -1,13 +1,12 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import { Check, CheckCircle2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-import { useTranslation } from '@/app/i18n/client'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 interface Props {
@@ -15,8 +14,7 @@ interface Props {
 }
 
 const SinglePlan: React.FC<Props> = ({ isPopular }) => {
-  const { lng } = useParams()
-  const { t } = useTranslation(lng as string, 'Pricing')
+  const t = useTranslations('Pricing')
 
   return (
     <div className="col-span-12 md:col-span-6 lg:col-span-3 relative">

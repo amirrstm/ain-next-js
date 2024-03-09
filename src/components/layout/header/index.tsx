@@ -1,22 +1,20 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import { Sparkle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import Link from '@/components/ui/link'
+import { Link } from '@/components/ui/navigation'
 
-import { useTranslation } from '@/app/i18n/client'
 import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
 const Header: React.FC<Props> = ({ dark = true }) => {
-  const { lng } = useParams()
   const { user } = useUserStore()
-  const { t } = useTranslation(lng as string, 'Layout')
+  const t = useTranslations('Layout')
 
   return (
     <header className="fixed top-2 sm:top-5 left-0 w-full z-50 px-1">
@@ -41,22 +39,12 @@ const Header: React.FC<Props> = ({ dark = true }) => {
         <div className="flex-1">
           <div className="flex items-center justify-end gap-6">
             <div className="hidden sm:gap-6 sm:items-center sm:flex">
-              <Link lng={lng as string} href={'/about'}>
-                {t('Header.About')}
-              </Link>
+              <Link href={'/about'}>{t('Header.About')}</Link>
 
-              {/* <Link lng={lng as string} href={'/pricing'}>
-                {t('Header.Pricing')}
-              </Link> */}
-
-              {!user && (
-                <Link lng={lng as string} href={'/login'}>
-                  {t('Header.SignIn')}
-                </Link>
-              )}
+              {!user && <Link href={'/login'}>{t('Header.SignIn')}</Link>}
             </div>
 
-            <Link lng={lng as string} href={user ? '/app' : '/login'}>
+            <Link href={user ? '/app' : '/login'}>
               <Button className="rounded-full px-8 gap-2">
                 <Sparkle />
                 {user ? t('Header.OpenApp') : t('Header.SignUp')}

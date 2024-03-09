@@ -1,0 +1,71 @@
+import { Viewport } from 'next'
+import { NextIntlClientProvider, useMessages } from 'next-intl'
+import Script from 'next/script'
+
+import SiteLayout from '@/components/layout/SiteLayout'
+import { Toaster } from '@/components/ui/toaster'
+
+import { appLayoutViewport } from '@/constants/viewport'
+import { locales } from '@/i18n'
+import StoreProvider from '@/providers/StoreProvider'
+import { SWRProvider } from '@/providers/SWRProvider'
+import { ThemeProvider } from '@/providers/ThemProvider'
+import { PoppinsFont, YekanBakhFont } from '@/styles/fonts'
+import '@/styles/globals.css'
+import '@/styles/main.scss'
+
+export async function generateStaticParams() {
+  return locales.map(locale => ({ locale }))
+}
+
+export const runtime = 'edge'
+export const viewport: Viewport = appLayoutViewport
+
+export default function RootLayout({
+  children,
+  params: { locale },
+}: {
+  params: { locale: string }
+  children: React.ReactNode
+}) {
+  const messages = useMessages()
+
+  return (
+    <html lang={locale} suppressHydrationWarning={true} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <Script
+        id="raychat-widget-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `window.RAYCHAT_TOKEN = "21b040cb-badb-4389-9533-40c42cced7ff";
+            (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://widget-react.raychat.io/install/widget.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+            })();`,
+        }}
+      />
+
+      <body
+        suppressHydrationWarning={true}
+        className={locale === 'fa' ? YekanBakhFont.className : PoppinsFont.className}
+      >
+        <StoreProvider>
+          <SiteLayout>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+              <>
+                <SWRProvider>
+                  <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+                </SWRProvider>
+
+                <Toaster />
+              </>
+            </ThemeProvider>
+          </SiteLayout>
+        </StoreProvider>
+      </body>
+    </html>
+  )
+}

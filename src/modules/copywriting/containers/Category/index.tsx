@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import { LibraryBig, Plus } from 'lucide-react'
@@ -10,18 +10,15 @@ import { Category } from '@/interface/Category.model'
 
 import { Button } from '@/components/ui/button'
 import DashboardMenu from '@/components/ui/dashboard-menu'
-import Link from '@/components/ui/link'
-
-import { useTranslation } from '@/app/i18n/client'
+import { Link } from '@/components/ui/navigation'
 
 import CategoryLoading from '../../components/Loading'
 import useCategories from '../../hooks/useCategories'
 import { CATEGORY_ICONS, SUB_CATEGORY_ICONS } from '../../utils'
 
 const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
-  const { lng } = useParams()
+  const t = useTranslations('Copywriting')
   const { data, isLoading } = useCategories()
-  const { t } = useTranslation(lng as string, 'Copywriting')
 
   const [subMenus, setSubMenus] = useState<Category[]>([])
   const [selectedMenu, setSelectedMenu] = useState<Category>()
@@ -73,7 +70,6 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
             {data && (
               <div className="p-4 space-y-4">
                 <DashboardMenu
-                  lng={lng as string}
                   icon={CATEGORY_ICONS['copywriting']}
                   onClick={() => onSelectParent('copywriting')}
                   title={<span className="text-sm">{t('Category.AllCategories')}</span>}
@@ -82,7 +78,6 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                 {data[0].children.map((menu, index) => (
                   <DashboardMenu
                     key={index}
-                    lng={lng as string}
                     icon={CATEGORY_ICONS[menu.slug]}
                     onClick={() => onSelectParent(menu)}
                     title={<span className="text-sm">{menu.name}</span>}
@@ -118,7 +113,6 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                 {data[0].children.map((menu, index) => (
                   <DashboardMenu
                     key={index}
-                    lng={lng as string}
                     icon={CATEGORY_ICONS[menu.slug]}
                     onClick={() => onSelectParent(menu)}
                     className="flex-shrink-0 bg-gray-100"
@@ -133,7 +127,6 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                 {subMenus.map((menu, index) => (
                   <div className="col-span-12 xl:col-span-4" key={index}>
                     <Link
-                      lng={lng as string}
                       href={`/app/copywriting/${menu._id}`}
                       className={clsx(
                         'cursor-pointer group transition-all ease-in-out duration-200',

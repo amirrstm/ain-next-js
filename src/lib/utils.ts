@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from 'clsx'
-import i18next from 'i18next'
 import { Theme } from 'react-select'
 import { twMerge } from 'tailwind-merge'
 
@@ -42,10 +41,6 @@ export function findNestedObject<T>(entireObj: unknown[], keyToFind: string, val
     return nestedValue
   })
   return foundObj
-}
-
-export const intlCurrency = (price: number, iso3: string): string => {
-  return new Intl.NumberFormat(i18next.language, { style: 'currency', currency: iso3 }).format(price)
 }
 
 export const reactSelectTheme = (theme: Theme): Theme => ({

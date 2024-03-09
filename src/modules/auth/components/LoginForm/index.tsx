@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import clsx from 'clsx'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -11,8 +12,11 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import LineDivider from '@/components/ui/line-divider'
 
 import Validations from '@/lib/Validations'
+
+import GoogleIcon from './GoogleIcon'
 
 const formSchema = z.object({
   mobile: z
@@ -21,14 +25,18 @@ const formSchema = z.object({
     .length(11, { message: Validations.Login.MobileLength }),
 })
 
-type Props = { loading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
-const LoginForm: React.FC<Props> = ({ loading, onSubmit }) => {
+type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
+const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
   const t = useTranslations('Auth')
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { mobile: '' },
   })
+
+  const onGoogle = () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_BASE_ENDPOINT}/api/v1/auth/user/google`
+  }
 
   return (
     <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
@@ -68,11 +76,27 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit }) => {
             )}
           />
 
-          <Button type="submit" className="w-full" loading={loading}>
+          <Button type="submit" className="w-full" loading={loading || googleLoading}>
             {t('Submit')}
           </Button>
         </form>
       </Form>
+
+      <LineDivider>یا</LineDivider>
+
+      <div
+        onClick={onGoogle}
+        className={clsx(
+          'hover:bg-gray-50 transition-all duration-200 ease-in-out',
+          'flex cursor-pointer items-center gap-4 border rounded-lg px-1 py-2 justify-center',
+          {
+            '!opacity-40 !cursor-not-allowed': googleLoading,
+          },
+        )}
+      >
+        <GoogleIcon />
+        <span className="tracking-wider">ورود یا ثبت نام با گوگل</span>
+      </div>
     </div>
   )
 }

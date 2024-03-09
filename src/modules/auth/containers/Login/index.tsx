@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -15,16 +15,19 @@ import { persianToEnglishNumbers } from '@/lib/utils'
 import CodeForm from '../../components/CodeForm'
 import LoginForm from '../../components/LoginForm'
 import { getUserProfile, loginUser, verifyUser } from '../../services'
+import { setUserToken } from '../../utils'
 
 const LoginContainer: React.FC = () => {
   const router = useRouter()
   const { toast } = useToast()
+  const params = useSearchParams()
 
   const { user, setUser } = useUserStore()
   const [userId, setUserId] = useState('')
   const [mobile, setMobile] = useState('')
   const [isCode, setIsCode] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [googleLoading, setGoogleLoading] = useState(false)
 
   const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.LOGIN, loginUser)
   const { trigger: verifyTrigger } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
@@ -34,6 +37,27 @@ const LoginContainer: React.FC = () => {
       router.push(`/app`)
     }
   }, [])
+
+  useEffect(() => {
+    if (params) {
+      const accessToken = params.get('accessToken')
+      const refreshToken = params.get('refreshToken')
+
+      if (accessToken && refreshToken) {
+        setUserToken(accessToken as string, refreshToken as string)
+
+        setGoogleLoading(true)
+        getUserProfile().then(data => {
+          setUser(data)
+          if (data.firstName) {
+            router.push(`/app`)
+          } else {
+            router.push(`/user-name`)
+          }
+        })
+      }
+    }
+  }, [params])
 
   const onSubmit = (data: { mobile: string }) => {
     trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then(res => {
@@ -86,7 +110,7 @@ const LoginContainer: React.FC = () => {
             onResend={() => onSubmit({ mobile })}
           />
         ) : (
-          <LoginForm onSubmit={onSubmit} loading={isMutating} />
+          <LoginForm onSubmit={onSubmit} googleLoading={googleLoading} loading={isMutating} />
         )}
       </div>
     </div>

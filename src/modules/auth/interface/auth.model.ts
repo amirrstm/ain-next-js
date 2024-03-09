@@ -2,6 +2,7 @@ import { Plan } from '@/interface/Plan.model'
 
 export interface User {
   _id: string
+  email: string
   lastName: string
   updatedAt: string
   firstName: string

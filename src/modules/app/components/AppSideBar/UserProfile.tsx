@@ -33,7 +33,7 @@ const UserProfile: React.FC = () => {
       <div className="p-3">
         <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
         <p className={clsx(YekanBakhNumFont.className, 'text-xs mt-2')}>
-          {t('Mobile')}: {user?.mobileNumber}
+          {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
         </p>
 
         <Button className="w-full mt-2" variant="secondary" onClick={onLogout}>

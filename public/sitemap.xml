@@ -1,34 +1,32 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" >
+    <url>
+        <loc>https://ainevis.com/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://ainevis.com/about</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/login</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/pricing</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywiring</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/history</loc>
+        <changefreq>daily</changefreq>
+    </url>
 </urlset>
-
-<url>
-    <loc>https://ainevis.com/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-</url>
-<url>
-    <loc>https://ainevis.com/about</loc>
-    <changefreq>daily</changefreq>
-</url>
-<url>
-    <loc>https://ainevis.com/login</loc>
-    <changefreq>daily</changefreq>
-</url>
-<url>
-    <loc>https://ainevis.com/pricing</loc>
-    <changefreq>daily</changefreq>
-</url>
-<url>
-    <loc>https://ainevis.com/app</loc>
-    <changefreq>daily</changefreq>
-</url>
-<url>
-    <loc>https://ainevis.com/app/copywiring</loc>
-    <changefreq>daily</changefreq>
-</url>
-<url>
-    <loc>https://ainevis.com/app/history</loc>
-    <changefreq>daily</changefreq>
-</url>

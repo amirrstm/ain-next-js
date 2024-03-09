@@ -1,5 +1,6 @@
 import { Viewport } from 'next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
+import { unstable_setRequestLocale } from 'next-intl/server'
 import Script from 'next/script'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -31,6 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const messages = useMessages()
+  unstable_setRequestLocale(locale)
 
   return (
     <html lang={locale} suppressHydrationWarning={true} dir={locale === 'fa' ? 'rtl' : 'ltr'}>

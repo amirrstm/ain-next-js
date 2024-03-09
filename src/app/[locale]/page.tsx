@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import { PageLang } from '@/interface/General.model'
 
@@ -34,6 +34,8 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
 export const viewport = appViewport.appDefaultViewport
 
-export default function Home() {
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
+  unstable_setRequestLocale(locale)
+
   return <HomeContainer />
 }

@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
-import { IconBolt, IconBooks } from '@tabler/icons-react'
+import { IconBolt, IconBooks, IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
 import { convert } from 'html-to-text'
@@ -16,18 +16,21 @@ import { createReactEditorJS } from '@/components/ui/text-editor'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { SUB_CATEGORY_ICONS } from '../../utils'
+import Feedback from './Feedback'
 
 const edjs = edjsHTML()
 const ReactEditorJS = createReactEditorJS()
 
 interface Props {
+  id: string
   content?: string
   loading: boolean
   appCategory?: AppCategory
 }
 
-const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
+const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) => {
   const t = useTranslations('Copywriting')
+  const [copied, setCopied] = useState<boolean>(false)
 
   const [text, setText] = useState<string>('')
   const [rawText, setRawText] = useState<string>('')
@@ -86,10 +89,16 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
     })
   }
 
+  const onCopy = () => {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   if (!appCategory) return null
 
   return (
-    <div className="border rounded-xl bg-white shadow-md h-full">
+    <div className="border rounded-xl bg-white shadow-md h-full mb-16 md:mb-0">
       <div className="p-4 flex items-center justify-between border-b">
         <div className="flex gap-2">
           <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
@@ -103,30 +112,42 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
       </div>
 
       {content && (
-        <div className="px-4 py-2 border-b flex items-center justify-end">
-          <div className="flex gap-4 text-sm">
-            <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
-              <p>{t('Content.Words')}</p>
-              <p>{text.split(' ').length}</p>
+        <div className="px-4 py-2 gap-4 border-b flex items-center justify-between">
+          <p className="hidden md:block">{t('Content.Success')}:</p>
+
+          <div className="flex items-center gap-6 justify-between flex-1 md:flex-none">
+            <div className="flex gap-4 items-center text-sm">
+              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                <p>{t('Content.Words')}</p>
+                <p>{text.split(' ').length}</p>
+              </div>
+
+              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                <p>{t('Content.Characters')}</p>
+                <p>{text.length}</p>
+              </div>
             </div>
 
-            <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
-              <p>{t('Content.Characters')}</p>
-              <p>{text.length}</p>
+            <div className="flex gap-4">
+              {copied ? (
+                <IconClipboardCheck className={clsx('w-7 h-7 text-primary cursor-pointer')} />
+              ) : (
+                <IconClipboard onClick={onCopy} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+              )}
             </div>
           </div>
         </div>
       )}
 
       {!content ? (
-        <div className="py-16 flex flex-col items-center justify-center">
+        <div className="py-6 md:py-12 flex flex-col items-center justify-center">
           {loading ? (
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center text-center gap-3 p-4">
               <Loader width={100} height={100} />
               <span className="flex-1 leading-normal">{t('Content.Loading')}</span>
             </div>
           ) : (
-            <div className="p-2 text-center">
+            <div className="p-6 text-center">
               <div className="border shadow-md rounded-lg max-w-sm p-4 text-center">
                 <p className="text-gray-500 flex">
                   <IconBolt className="text-primary" />
@@ -134,19 +155,23 @@ const ContentEditor: React.FC<Props> = ({ content, appCategory, loading }) => {
                 </p>
               </div>
 
-              <Link href="/app/history" className="text-xs text-center text-gray-400 hover:text-primary mt-3">
+              <Link href="/app/history" className="text-xs text-center text-gray-400 hover:text-primary mt-3 block">
                 {t('Content.Tip')}
               </Link>
             </div>
           )}
         </div>
       ) : (
-        <div className="p-4 w-full">
-          <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12" spellCheck={false}>
-              <ReactEditorJS onReady={onReady} value={editorData} onChange={onChange} />
+        <div className="w-full">
+          <div className="p-4">
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-12" spellCheck={false}>
+                <ReactEditorJS onReady={onReady} value={editorData} onChange={onChange} />
+              </div>
             </div>
           </div>
+
+          <Feedback id={id} />
         </div>
       )}
     </div>

@@ -20,6 +20,7 @@ const ENDPOINTS = {
 
   HISTORY: {
     GET: (page: number) => `/user/history/list?page=${page}`,
+    FEEDBACK: (history: string) => `/user/history/feedback/${history}`,
   },
 }
 

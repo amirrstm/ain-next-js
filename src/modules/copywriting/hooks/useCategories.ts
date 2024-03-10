@@ -7,14 +7,14 @@ import axios from '@/lib/axios'
 import ENDPOINTS from '@/lib/Endpoints'
 
 function useCategories() {
-  const { data, isLoading, mutate } = useSWR([ENDPOINTS.CATEGORY.LIST], ([url]) => getDocuments(url))
+  const { data, isLoading, mutate } = useSWR([ENDPOINTS.CATEGORY.LIST], ([url]) => getCategories(url))
 
   return { data, mutate, isLoading }
 }
 
 export default useCategories
 
-export async function getDocuments(url = ''): Promise<Category[]> {
+export async function getCategories(url = ''): Promise<Category[]> {
   try {
     const res = await axios.get<ResponseModel<Category[]>>(url)
 

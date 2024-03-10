@@ -23,10 +23,11 @@ const PlansContainer: React.FC = () => {
         )}
       >
         <div className="pt-24 md:pt-40 flex flex-col items-center justify-center">
-          <div
-            className="text-3xl md:text-4xl text-white font-bold text-center [&_span]:text-primary"
-            dangerouslySetInnerHTML={{ __html: t('Title') }}
-          />
+          <h1 className="text-3xl md:text-4xl text-white font-bold text-center [&_span]:text-primary">
+            {t.rich('Title', {
+              span: chunks => <span>{chunks}</span>,
+            })}
+          </h1>
 
           <p className="mt-4 md:text-lg text-center font-light leading-8 text-gray-300">{t('Description')}</p>
         </div>

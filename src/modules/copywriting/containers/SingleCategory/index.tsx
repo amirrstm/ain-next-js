@@ -27,6 +27,8 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const contentRef = useRef<HTMLDivElement>(null)
 
   const [content, setContent] = useState<string>()
+  const [historyId, setHistoryId] = useState<string>()
+
   const [loading, setLoading] = useState<boolean>(false)
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
@@ -43,6 +45,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
     })
       .then(data => {
         setLoading(false)
+        setHistoryId(data._id)
         setContent(data.content)
 
         if (user) {
@@ -58,7 +61,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   if (!category.data) return null
 
   return (
-    <div className="p-4 xl:p-6">
+    <div className="p-4 xl:p-6 xl:pb-10">
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
           <div className="border rounded-xl bg-white shadow-md block sticky top-8">
@@ -80,7 +83,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
         </div>
 
         <div ref={contentRef} className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-8 2xl:col-span-9">
-          <ContentEditor loading={loading} appCategory={appCategory} content={content} />
+          <ContentEditor id={historyId as string} loading={loading} appCategory={appCategory} content={content} />
         </div>
       </div>
     </div>

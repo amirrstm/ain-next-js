@@ -17,6 +17,6 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
 export const viewport = appViewport.appDefaultViewport
 
-export default async function Dashboard() {
+export default async function History() {
   return <UserHistoryContainer />
 }

@@ -17,6 +17,6 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
 export const viewport = appViewport.appLayoutViewport
 
-export default async function App() {
+export default async function Privacy() {
   return <PrivacyContainer />
 }

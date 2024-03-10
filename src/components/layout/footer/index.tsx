@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer>
-      <section className="bg-secondary relative min-h-[300px] md:min-h-[350px]">
+      <section className="bg-secondary relative min-h-[150px] md:min-h-[200px]">
         <div className="-top-[125px] w-full absolute px-4 md:p-0">
           <div className="max-w-6xl mx-auto p-6 md:p-10 bg-white shadow-xl rounded-2xl">
             <h1 className="text-xl md:text-4xl font-bold">قدرت هوش مصنوعی در دستان شما</h1>
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center py-2">
+          {/* <div className="flex justify-center py-2">
             <div
               className="h-[100px]"
               dangerouslySetInnerHTML={{
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                   "<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=469401&Code=QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=469401&Code=QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6' alt='' style='cursor:pointer' Code='QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6'></a>",
               }}
             />
-          </div>
+          </div> */}
         </div>
       </section>
     </footer>

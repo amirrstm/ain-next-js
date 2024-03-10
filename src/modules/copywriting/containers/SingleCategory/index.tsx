@@ -54,7 +54,12 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
       })
       .catch(e => {
         setLoading(false)
-        toast({ title: t('Content.Error'), variant: 'destructive' })
+
+        if (e.status === 5215) {
+          toast({ title: `${e.error}، لطفا حساب خود را ارتقا دهید.`, variant: 'destructive' })
+        } else {
+          toast({ title: t('Content.Error'), variant: 'destructive' })
+        }
       })
   }
 
@@ -64,7 +69,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
     <div className="p-4 xl:p-6 xl:pb-10">
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
-          <div className="border rounded-xl bg-white shadow-md block sticky top-8">
+          <div className="border rounded-xl bg-white shadow-md block sticky top-8 h-full">
             <Link href="/app/copywriting" className="p-4 border-b flex gap-2 items-center">
               <div className="border rounded-full p-1">
                 <IconChevronRight />

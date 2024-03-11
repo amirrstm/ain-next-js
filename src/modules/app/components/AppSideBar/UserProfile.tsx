@@ -24,7 +24,6 @@ const UserProfile: React.FC = () => {
 
   const onLogout = () => {
     reset()
-    router.push(`/login`)
     window.location.reload()
   }
 

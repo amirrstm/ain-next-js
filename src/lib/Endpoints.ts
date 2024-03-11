@@ -14,6 +14,12 @@ const ENDPOINTS = {
     GET: (id: string) => `/public/category/get/${id}`,
   },
 
+  CHAT: {
+    GET: '/user/chat',
+    DELETE: '/user/chat/delete',
+    MESSAGE: '/user/chat/message',
+  },
+
   DASHBOARD: {
     HISTORY: '/user/history/dashboard',
   },

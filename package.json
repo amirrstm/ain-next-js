@@ -44,7 +44,6 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@sentry/nextjs": "^7.102.1",
     "@tabler/icons-react": "^2.47.0",
     "accept-language": "^3.0.18",
     "axios": "^1.6.0",

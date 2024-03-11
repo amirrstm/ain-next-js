@@ -13,22 +13,3 @@ const nextConfig = {
 }
 
 module.exports = withNextIntl(nextConfig)
-
-const { withSentryConfig } = require('@sentry/nextjs')
-
-module.exports = withSentryConfig(
-  module.exports,
-  {
-    silent: true,
-    org: 'ainevis-fh',
-    project: 'ainevis-front',
-  },
-  {
-    widenClientFileUpload: true,
-    transpileClientSDK: true,
-    tunnelRoute: '/monitoring',
-    hideSourceMaps: true,
-    disableLogger: true,
-    automaticVercelMonitors: true,
-  },
-)

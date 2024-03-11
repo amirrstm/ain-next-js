@@ -54,7 +54,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
       <div
         className={clsx(
           'ms-2 md:ms-[250px] mt-4 md:mt-5 mb-2 md:mb-5 me-2 md:me-5 flex-1 border rounded-2xl',
-          'h-full min-h-[calc(100vh-40px)] bg-white md:bg-gray-100 md:shadow-inner ',
+          'h-full min-h-[calc(100vh-40px)] bg-white md:bg-gray-100 md:shadow-inner overflow-hidden',
         )}
       >
         {children}

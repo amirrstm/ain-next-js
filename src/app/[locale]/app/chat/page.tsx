@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import { PageLang } from '@/interface/General.model'
 
 import { appViewport } from '@/constants'
-import UserHistoryContainer from '@/modules/history/containers/UserHistory'
+import ChatContainer from '@/modules/chat/containers/Chat'
 
 export async function generateMetadata({ params: { locale } }: PageLang): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Metadata' })
@@ -18,5 +18,5 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 export const viewport = appViewport.appDefaultViewport
 
 export default async function Chat() {
-  return <UserHistoryContainer />
+  return <ChatContainer />
 }

@@ -22,6 +22,7 @@ import Loader from '@/components/ui/loader'
 import { useToast } from '@/components/ui/use-toast'
 
 import ENDPOINTS from '@/lib/Endpoints'
+import useUserStore from '@/lib/store/auth'
 
 import ChatMessages from '../../components/Messages'
 import useMessages from '../../hooks/useMessages'
@@ -31,13 +32,20 @@ import { deleteChat, sendMessage } from '../../service'
 const ChatContainer: React.FC = () => {
   const { toast } = useToast()
   const t = useTranslations('Chat')
+  const { user, setUser } = useUserStore()
   const { data, isLoading } = useMessages()
+  const endRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const { trigger: send, isMutating } = useSWRMutation(ENDPOINTS.CHAT.MESSAGE, sendMessage)
 
   const [value, setValue] = useState<string>('')
-
   const [messages, setMessages] = useState<ChatMessage[]>([])
+
+  useEffect(() => {
+    if (endRef.current) {
+      endRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
 
   useEffect(() => {
     if (data) {
@@ -74,7 +82,12 @@ const ChatContainer: React.FC = () => {
         { role: 'user', content: value, _id: Math.random().toString(), time: new Date().toISOString() },
       ])
       send({ role: 'user', content: value })
-        .then(data => setMessages(data.messages))
+        .then(data => {
+          setMessages(data.messages)
+          if (user) {
+            setUser({ ...user, userPlan: { ...user.userPlan, used: user.userPlan.used + 1 } })
+          }
+        })
         .catch(e => {
           setMessages(prev => prev.slice(0, prev.length - 1))
 
@@ -91,7 +104,7 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="pb-8 md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-40px)] min-h-[200px]">
+    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-40px)] min-h-[200px]">
       <div className="md:border md:rounded-2xl bg-white h-full flex flex-col justify-between">
         <div className="p-4 w-full border-b">
           <div className="flex gap-2 items-center justify-between">
@@ -186,7 +199,7 @@ const ChatContainer: React.FC = () => {
         </div>
       </div>
 
-      <div className="text-center pt-1">
+      <div ref={endRef} className="text-center pt-1">
         <p className="text-[10px] md:text-xs text-gray-400">چت بات ممکن است اشتباه کند، نکات مهم را در نظر بگیرید.</p>
       </div>
     </div>

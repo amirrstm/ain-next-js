@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" >
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://ainevis.com/</loc>
         <changefreq>daily</changefreq>
@@ -22,11 +22,87 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://ainevis.com/app/chat</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://ainevis.com/app/copywiring</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://ainevis.com/app/history</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/setting</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/google-ads</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/youtube-title-idea</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/instagram-caption</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/tweets</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/aida-framework</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/pas-framework</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/post-blog</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/seo-keywords</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/title-generator</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/linkedin-post</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/hashtag-generator</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/story-creator</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/content-expandor</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/email</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/startup-ideas</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/festivity-letters</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://ainevis.com/app/copywriting/question-answer</loc>
         <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -11,6 +11,7 @@ const ENDPOINTS = {
 
   CATEGORY: {
     LIST: '/public/category/list',
+    REQUEST: '/user/category-request',
     GET: (id: string) => `/public/category/get/${id}`,
   },
 

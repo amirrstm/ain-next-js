@@ -2,17 +2,17 @@
 
 import { useTranslations } from 'next-intl'
 
-import { IconBooks, IconPlus } from '@tabler/icons-react'
+import { IconBooks } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
 import { Category } from '@/interface/Category.model'
 
-import { Button } from '@/components/ui/button'
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import { Link } from '@/components/ui/navigation'
 
 import CategoryLoading from '../../components/Loading'
+import RequestTemplate from '../../components/RequestTemplate'
 import useCategories from '../../hooks/useCategories'
 import { CATEGORY_ICONS, SUB_CATEGORY_ICONS } from '../../utils'
 
@@ -87,10 +87,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
             )}
 
             <div className="p-4 border-t">
-              <Button className="w-full gap-2" variant="secondary">
-                <IconPlus className="w-5 h-5" />
-                <span>{t('Category.RequestTemplate')}</span>
-              </Button>
+              <RequestTemplate />
             </div>
           </div>
         </div>

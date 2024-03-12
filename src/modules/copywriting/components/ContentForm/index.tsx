@@ -8,6 +8,7 @@ import { AppCategory } from '@/interface/Category.model'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
 interface Props {
@@ -27,7 +28,10 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
       setAppCategory(category)
 
       category.inputs.forEach(input => {
-        form.register(input.name, { required: { value: input.isRequired, message: 'لطفا این بخش را خالی نذارید' } })
+        form.register(input.name, {
+          value: '',
+          required: { value: input.isRequired, message: 'لطفا این بخش را خالی نذارید' },
+        })
       })
     }
   }, [category])
@@ -43,11 +47,21 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
             control={form.control}
             name={input.name}
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="relative">
                 <FormLabel>{input.title}</FormLabel>
                 <FormControl>
-                  <Textarea rows={input.multiline ? 4 : 1} placeholder={input.placeholder} {...field} />
+                  {!input.multiline ? (
+                    <Input maxLength={100} placeholder={input.placeholder} {...field} />
+                  ) : (
+                    <Textarea maxLength={300} rows={3} placeholder={input.placeholder} {...field} />
+                  )}
                 </FormControl>
+
+                <div className="absolute left-0">
+                  <p className="text-xs text-gray-400">
+                    {input.multiline ? 300 : 100} / {String(field.value || '').length}
+                  </p>
+                </div>
 
                 <FormMessage />
               </FormItem>

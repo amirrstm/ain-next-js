@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios'
+
 import { ResponseModel } from '@/interface/General.model'
 import { History } from '@/interface/History.model'
 
@@ -21,6 +23,19 @@ export async function putFeedback(url = '', { arg }: { arg: { text?: string; lik
     const res = await axios.put<{ message: string; data: string }>(url, { feedback: arg })
 
     return res.data.message
+  } catch (e) {
+    throw e
+  }
+}
+
+export async function requestTemplate(
+  url = '',
+  { arg }: { arg: { name: string; description?: string } },
+): Promise<any> {
+  try {
+    const res = await axios.post<AxiosResponse<any>>(url, arg)
+
+    return res.data.data
   } catch (e) {
     throw e
   }

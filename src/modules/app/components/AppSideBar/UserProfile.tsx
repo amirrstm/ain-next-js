@@ -50,7 +50,7 @@ const UserProfile: React.FC = () => {
 
       <div className="border-t p-4 bg-blue-50">
         <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
-          {t('Generations')}: {user?.userPlan?.plan?.generation} از {used}
+          {t('Generations')}: {used} از {user?.userPlan?.plan?.generation}
         </p>
 
         <div className="mt-4 bg-gray-200 rounded-full">

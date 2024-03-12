@@ -42,7 +42,7 @@ const DashboardStat: React.FC = () => {
           <div className="px-3 md:px-5 border-s border-e">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.Generations')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
-              {plan?.generation} از {used}
+              {used} از {plan?.generation}
             </h2>
           </div>
 

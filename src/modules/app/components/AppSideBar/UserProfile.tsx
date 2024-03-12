@@ -4,8 +4,18 @@ import { IconLock } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React from 'react'
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { Link } from '@/components/ui/navigation'
 import { Progress } from '@/components/ui/progress'
 
 import useUserStore from '@/lib/store/auth'
@@ -40,7 +50,7 @@ const UserProfile: React.FC = () => {
 
       <div className="border-t p-4 bg-blue-50">
         <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
-          {t('Generations')}: {user?.userPlan?.plan?.generation} / {used}
+          {t('Generations')}: {user?.userPlan?.plan?.generation} از {used}
         </p>
 
         <div className="mt-4 bg-gray-200 rounded-full">
@@ -49,12 +59,29 @@ const UserProfile: React.FC = () => {
           </div>
         </div>
 
-        <Link href="/pricing">
-          <Button className="w-full mt-4 gap-2">
-            <IconLock className="w-4 h-4" />
-            {t('Upgrade')}
-          </Button>
-        </Link>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button className="w-full mt-4 gap-2">
+              <IconLock className="w-4 h-4" />
+              {t('Upgrade')}
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>در نسخه بتا، امکان ارتقای حساب کاربری وجود ندارد.</AlertDialogTitle>
+              <AlertDialogDescription>
+                برای درخواست محتوای بیشتر، با ایمیل پشتیبانی{' '}
+                <a href="mailto:info@ainevis.com" className="text-blue-400">
+                  info@ainevis.com
+                </a>{' '}
+                در ارتباط باشید و یا از طریق پشتیبانی سایت اقدام نمایید.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>متوجه شدم </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   )

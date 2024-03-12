@@ -53,7 +53,7 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
                   {!input.multiline ? (
                     <Input maxLength={100} placeholder={input.placeholder} {...field} />
                   ) : (
-                    <Textarea maxLength={300} rows={3} placeholder={input.placeholder} {...field} />
+                    <Textarea maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
                   )}
                 </FormControl>
 

@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
 
 import { IconLock } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -13,7 +12,6 @@ import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const UserProfile: React.FC = () => {
-  const router = useRouter()
   const t = useTranslations('User')
   const { user, reset } = useUserStore()
 

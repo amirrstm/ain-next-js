@@ -7,6 +7,7 @@ import clsx from 'clsx'
 
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
+import { Link } from '@/components/ui/navigation'
 
 import Contents from '../../components/Contents'
 import HeroHeader from '../../components/Hero'
@@ -43,9 +44,12 @@ const HomeContainer: React.FC = () => {
                   boxShadow: '0px 0px 150px 2px hsl(var(--primary))',
                 }}
               />
-              <div className="bg-primary w-20 h-20 rounded-full flex items-center justify-center text-white relative z-10 cursor-pointer">
+              <Link
+                href="/app"
+                className="bg-primary w-20 h-20 rounded-full flex items-center justify-center text-white relative z-10 cursor-pointer"
+              >
                 <IconPlayerPlayFilled className="w-10 h-10" />
-              </div>
+              </Link>
             </div>
           </div>
         </div>

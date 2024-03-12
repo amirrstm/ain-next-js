@@ -127,7 +127,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                 {subMenus.map((menu, index) => (
                   <div className="col-span-12 xl:col-span-4" key={index}>
                     <Link
-                      href={`/app/copywriting/${menu._id}`}
+                      href={`/app/copywriting/${menu.slug}`}
                       className={clsx(
                         'cursor-pointer group transition-all ease-in-out duration-200',
                         'border rounded-xl bg-gray-50 shadow-sm hover:shadow-primary p-3 min-h-[100px] flex gap-4 items-center',

@@ -2,6 +2,7 @@ import EditorJS, { EditorConfig, OutputData } from '@editorjs/editorjs'
 import Embed from '@editorjs/embed'
 import Header from '@editorjs/header'
 import LinkTool from '@editorjs/link'
+import Link from '@editorjs/link'
 import List from '@editorjs/list'
 import Marker from '@editorjs/marker'
 import Paragraph from '@editorjs/paragraph'
@@ -21,9 +22,10 @@ export class ClientEditorCore implements EditorCore {
         class: Paragraph,
         inlineToolbar: true,
       },
-
+      link: LinkTool,
       header: Header,
       list: List,
+      linkTool: LinkTool,
       // quote: {
       //   class: Quote,
       //   config: {

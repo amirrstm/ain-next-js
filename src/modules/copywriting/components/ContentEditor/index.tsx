@@ -5,7 +5,7 @@ import { IconBolt, IconBooks, IconClipboard, IconClipboardCheck } from '@tabler/
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
 import { convert } from 'html-to-text'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
 
@@ -36,28 +36,57 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   const [rawText, setRawText] = useState<string>('')
   const [editorData, setEditorData] = useState<EditorConfig['data']>()
 
-  const onReady = async () => {
-    if (content) {
-      let convertedRaw = ''
-      const splitTitles = content.split('\n').filter(Boolean)
+  useEffect(() => {
+    if (content && editorData) {
+      prepareText(content)
+    } else {
+      setEditorData(undefined)
+    }
+  }, [content])
 
-      const blocks: any[] = []
-      splitTitles.forEach(title => {
+  const onReady = () => {
+    if (content && !editorData) {
+      prepareText(content)
+    }
+  }
+
+  const prepareText = (content: string) => {
+    let convertedRaw = ''
+    const linkRegex = /\[(.*?)\]/
+    const linkUrlRegex = /\((.*?)\)/
+    const splitTitles = content.split('\n').filter(Boolean)
+
+    const blocks: any[] = []
+    splitTitles.forEach(title => {
+      if (title.match(linkRegex) && title.match(linkUrlRegex)) {
         const block = {
-          type: title.includes('**') ? 'header' : 'paragraph',
+          type: 'linkTool',
           data: {
-            level: title.includes('**') ? 2 : undefined,
-            text: title.includes('**') ? title.replace(/\*\*/g, '') : title,
+            text: title.match(linkRegex)?.[1],
+            link: title.match(linkUrlRegex)?.[1],
+            meta: {
+              title: title.match(linkRegex)?.[1],
+            },
           },
         }
         convertedRaw += edjs.parseBlock(block)
         blocks.push(block)
-      })
+        return
+      }
 
-      setText(content.trim())
-      setRawText(convertedRaw)
-      setEditorData({ blocks, time: new Date().getTime() })
-    }
+      const block = {
+        type: title.includes('**') ? 'header' : 'paragraph',
+        data: {
+          level: title.includes('**') ? 2 : undefined,
+          text: title.includes('**') ? title.replace(/\*\*/g, '') : title,
+        },
+      }
+      convertedRaw += edjs.parseBlock(block)
+      blocks.push(block)
+    })
+
+    setText(content.trim())
+    setEditorData({ blocks, time: new Date().getTime() })
   }
 
   const onChange = (data: API) => {

@@ -10,6 +10,7 @@ import { AppCategory } from '@/interface/Category.model'
 
 import { createReactEditorJS } from '@/components/ui/text-editor'
 
+import { displayEquation } from '@/lib/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { HistoryInput } from '../../interface'
@@ -27,6 +28,8 @@ interface Props {
 const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
+
+  const isBlog = appCategory?.slug === 'post-blog'
 
   const [text, setText] = useState<string>('')
   const [editorData, setEditorData] = useState<EditorConfig['data']>()
@@ -53,7 +56,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
 
     const blocks: any[] = []
     splitTitles.forEach(title => {
-      if (title.match(linkRegex) && title.match(linkUrlRegex)) {
+      if (title.match(linkRegex) && title.match(linkUrlRegex) && isBlog) {
         const block = {
           type: 'linkTool',
           data: {
@@ -69,11 +72,13 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
         return
       }
 
+      console.log(title)
+
       const block = {
         type: title.includes('**') ? 'header' : 'paragraph',
         data: {
           level: title.includes('**') ? 2 : undefined,
-          text: title.includes('**') ? title.replace(/\*\*/g, '') : title,
+          text: title.includes('**') ? title.replace(/\*\*/g, '') : displayEquation(title),
         },
       }
       convertedRaw += edjs.parseBlock(block)
@@ -147,7 +152,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
           {content && (
             <div className="p-4 w-full">
               <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-12" spellCheck={false}>
+                <div className={clsx(YekanBakhNumFont.className, 'col-span-12')} spellCheck={false}>
                   <ReactEditorJS readOnly onReady={onReady} value={editorData} />
                 </div>
               </div>

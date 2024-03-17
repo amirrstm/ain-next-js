@@ -86,3 +86,80 @@ export const persianToEnglishNumbers = (input: string): string => {
 
   return output
 }
+
+export const displayEquation = (equation: string) => {
+  const powerRegex = /(\w+)\^(\d+)/g
+  const subRegex = /(.+?)_([^_^]+?)(?:\^(.+?))?/g
+  const powerNumRegex = /(\d+|\([^)]+\))\s*\^\s*(\d+)/g
+  const minusPowerRegex = /(\d+)\^\{(-?\d+)\}/g
+  const minusPowerParRegex = /(\d+)\^\((-?\d+)\)/g
+  const textRegex = /\\, \\text\{([^}]+)\}/g
+  const trigRegex = /\\?(cos|sin|tan|cot)\(([^)]+)\)/g
+  const fracRegex = /\\frac\{([^}]+)\}\{([^}]+)\}/g
+  const sqrtRegex = /\\sqrt\{([^}]+)\}/g
+  const formulaRegex = /^\\?\[.+\]$/
+
+  equation = equation.replace(formulaRegex, `<div dir="ltr">${equation}</div>`)
+  equation = equation.replace(textRegex, function (match, p1) {
+    return '<b>' + p1 + '</b>'
+  })
+  equation = equation.replace(/\\\[|\\\]|\\\(|\\\)|\\\{\\\}/g, '')
+  equation = equation.replace(/\\times/g, '×')
+  equation = equation.replace(/\\times/g, '×')
+  equation = equation.replace(/\\cdot/g, '.')
+  equation = equation.replace(/\\theta/g, 'θ')
+  equation = equation.replace(/\\mu/g, 'μ')
+  equation = equation.replace(/\\Delta/g, '∆')
+  equation = equation.replace(/\\oint/g, '&int;')
+  equation = equation.replace(/\\leq\s*([^$]+)/g, function (match, value) {
+    return '&leq; ' + value
+  })
+
+  equation = equation.replace(subRegex, function (match, base, subscript, exponent) {
+    var result = base
+    if (subscript) {
+      result += '<sub>' + subscript + '</sub>'
+    }
+    if (exponent) {
+      result += '<sup>' + exponent + '</sup>'
+    }
+    return result
+  })
+
+  equation = equation.replace(trigRegex, function (match, func, arg) {
+    return "<span style='font-family: serif;'>" + func + ' (' + arg + ') </span>'
+  })
+
+  equation = equation.replace(powerRegex, function (match, base, exponent) {
+    return base + '<sup>' + exponent + '</sup>'
+  })
+  equation = equation.replace(powerNumRegex, function (match, base, exponent) {
+    return '<span dir="ltr">' + base + '<sup>' + exponent + '</sup>' + '</span>'
+  })
+  equation = equation.replace(minusPowerRegex, function (match, base, exponent) {
+    return '<span dir="ltr">' + base + '<sup>' + exponent + '</sup>' + '</span>'
+  })
+
+  equation = equation.replace(minusPowerParRegex, function (match, base, exponent) {
+    return +base + '<sup>' + exponent + '</sup>'
+  })
+
+  equation = equation.replace(/\\?\s*\\?,\s*(.)/, '$1')
+
+  equation = equation.replace(fracRegex, function (match, numerator, denominator) {
+    return (
+      "<div style='display:inline-block;vertical-align:middle;text-align:center; margin-right:10px;margin-left:10px;'><div style='display:block;'>" +
+      numerator +
+      "</div><div style='border-top:1px solid #a0a0a0;display:block;padding-top:0.1em;margin-top:-0.1em;'>" +
+      denominator +
+      '</div></div>'
+    )
+  })
+  equation = equation.replace(sqrtRegex, function (match, value) {
+    return "&radic;<span style='border-top:1px solid black'>" + value + '</span>'
+  })
+
+  equation = equation.replace('\\,', '')
+
+  return equation
+}

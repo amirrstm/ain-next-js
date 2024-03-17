@@ -13,6 +13,7 @@ import Loader from '@/components/ui/loader'
 import { Link } from '@/components/ui/navigation'
 import { createReactEditorJS } from '@/components/ui/text-editor'
 
+import { displayEquation } from '@/lib/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { SUB_CATEGORY_ICONS } from '../../utils'
@@ -31,6 +32,7 @@ interface Props {
 const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) => {
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
+  const isBlog = appCategory?.slug === 'post-blog'
 
   const [text, setText] = useState<string>('')
   const [rawText, setRawText] = useState<string>('')
@@ -58,7 +60,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
 
     const blocks: any[] = []
     splitTitles.forEach(title => {
-      if (title.match(linkRegex) && title.match(linkUrlRegex)) {
+      if (title.match(linkRegex) && title.match(linkUrlRegex) && isBlog) {
         const block = {
           type: 'linkTool',
           data: {
@@ -75,10 +77,13 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
       }
 
       const block = {
-        type: title.includes('**') ? 'header' : 'paragraph',
+        type: title.includes('**') || title.includes('###') ? 'header' : 'paragraph',
         data: {
-          level: title.includes('**') ? 2 : undefined,
-          text: title.includes('**') ? title.replace(/\*\*/g, '') : title,
+          level: title.includes('**') ? 2 : title.includes('###') ? 3 : undefined,
+          text:
+            title.includes('**') || title.includes('###')
+              ? title.replace(title.includes('**') ? /\*\*/g : /###/g, '')
+              : displayEquation(title),
         },
       }
       convertedRaw += edjs.parseBlock(block)

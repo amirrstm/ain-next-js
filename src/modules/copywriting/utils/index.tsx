@@ -1,6 +1,7 @@
 import {
   IconAdjustmentsStar,
   IconArrowsMaximize,
+  IconBook,
   IconBooks,
   IconBrandBlogger,
   IconBrandGoogle,
@@ -9,6 +10,7 @@ import {
   IconBrandSlack,
   IconBrandX,
   IconBrandYoutube,
+  IconCalculator,
   IconConfetti,
   IconDeviceLaptop,
   IconHash,
@@ -33,6 +35,7 @@ export const CATEGORY_ICONS: Record<string, ReactNode> = {
   'social-media': <IconBrandSlack className="w-6 h-6" />,
   publication: <IconPaperclip className="w-6 h-6" />,
   other: <IconWorld className="w-6 h-6" />,
+  lesson: <IconBook className="w-6 h-6" />,
 }
 
 export const SUB_CATEGORY_ICONS: Record<string, ReactNode> = {
@@ -54,4 +57,5 @@ export const SUB_CATEGORY_ICONS: Record<string, ReactNode> = {
   'question-answer': <IconQuestionMark className="w-6 h-6" />,
   'startup-ideas': <IconAdjustmentsStar className="w-6 h-6" />,
   'festivity-letters': <IconConfetti className="w-6 h-6" />,
+  physics: <IconCalculator className="w-6 h-6" />,
 }

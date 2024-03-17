@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/lang-markdown": "^6.2.4",
+    "@codemirror/language-data": "^6.4.1",
     "@editorjs/editorjs": "^2.29.0",
     "@editorjs/embed": "^2.7.0",
     "@editorjs/header": "^2.8.1",
@@ -45,6 +47,8 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tabler/icons-react": "^2.47.0",
+    "@uiw/codemirror-theme-atomone": "^4.21.24",
+    "@uiw/react-codemirror": "^4.21.24",
     "accept-language": "^3.0.18",
     "axios": "^1.6.0",
     "class-variance-authority": "^0.7.0",

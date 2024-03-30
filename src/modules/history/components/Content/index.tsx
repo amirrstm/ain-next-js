@@ -72,13 +72,14 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
         return
       }
 
-      console.log(title)
-
       const block = {
-        type: title.includes('**') ? 'header' : 'paragraph',
+        type: title.includes('**') || title.includes('###') ? 'header' : 'paragraph',
         data: {
-          level: title.includes('**') ? 2 : undefined,
-          text: title.includes('**') ? title.replace(/\*\*/g, '') : displayEquation(title),
+          level: title.includes('**') ? 2 : title.includes('###') ? 3 : undefined,
+          text:
+            title.includes('**') || title.includes('###')
+              ? title.replace(title.includes('**') ? /\*\*/g : /###/g, '')
+              : displayEquation(title),
         },
       }
       convertedRaw += edjs.parseBlock(block)

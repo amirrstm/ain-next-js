@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import LineDivider from '@/components/ui/line-divider'
+import { Link } from '@/components/ui/navigation'
 
 import Validations from '@/lib/Validations'
 
@@ -40,7 +41,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
 
   return (
     <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
-      <div>
+      <Link href="/">
         <div className="relative h-7 sm:h-8">
           <Image
             alt="logo"
@@ -50,7 +51,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
             className="w-full h-full object-contain"
           />
         </div>
-      </div>
+      </Link>
 
       <div className="text-center mt-4">
         <h1 className="text-2xl font-semibold">{t('Title')}</h1>

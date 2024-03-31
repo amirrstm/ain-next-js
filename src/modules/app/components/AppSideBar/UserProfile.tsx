@@ -35,7 +35,8 @@ const UserProfile: React.FC = () => {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
     localStorage.removeItem('user-storage')
-    window.location.reload()
+
+    window.location.href = '/login'
   }
 
   if (!user) return null

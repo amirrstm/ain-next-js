@@ -40,6 +40,7 @@ const LoginContainer: React.FC = () => {
 
   useEffect(() => {
     if (params) {
+      const returnUrl = params.get('returnUrl')
       const accessToken = params.get('accessToken')
       const refreshToken = params.get('refreshToken')
 
@@ -50,9 +51,9 @@ const LoginContainer: React.FC = () => {
         getUserProfile().then(data => {
           setUser(data)
           if (data.firstName) {
-            router.push(`/app`)
+            router.push(returnUrl ? returnUrl : `/app`)
           } else {
-            router.push(`/user-name`)
+            router.push(returnUrl ? `/user-name?returnUrl=${returnUrl}` : `/user-name`)
           }
         })
       }
@@ -71,14 +72,16 @@ const LoginContainer: React.FC = () => {
 
   const onCodeSubmit = (data: { code: string }) => {
     setLoading(true)
+    const returnUrl = params.get('returnUrl')
+
     verifyTrigger({ code: data.code, userId })
       .then(() => {
         getUserProfile().then(data => {
           setUser(data)
           if (data.firstName) {
-            router.push(`/app`)
+            router.push(returnUrl ? returnUrl : `/app`)
           } else {
-            router.push(`/user-name`)
+            router.push(returnUrl ? `/user-name?returnUrl=${returnUrl}` : `/user-name`)
           }
         })
       })

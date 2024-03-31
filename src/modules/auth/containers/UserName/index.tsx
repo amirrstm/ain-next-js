@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -14,12 +14,19 @@ import { updateName } from '../../services'
 
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
+  const params = useSearchParams()
   const [loading, setLoading] = useState(false)
+  const [returnUrl, setReturnUrl] = useState<string>()
 
   const { setUser, user } = useUserStore()
   const { trigger } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
 
   useEffect(() => {
+    const paramReturnUrl = params.get('returnUrl')
+    if (paramReturnUrl) {
+      setReturnUrl(paramReturnUrl)
+    }
+
     if (user && user.firstName) {
       router.push(`/app`)
     }
@@ -56,7 +63,7 @@ const UserNameContainer: React.FC = () => {
       />
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
-        <NameForm onSubmit={onSubmit} loading={loading} />
+        <NameForm onSubmit={onSubmit} returnUrl={returnUrl} loading={loading} />
       </div>
     </div>
   )

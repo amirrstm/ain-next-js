@@ -19,8 +19,8 @@ const formSchema = z.object({
   name: z.string().min(1, { message: Validations.Login.Mobile }),
 })
 
-type Props = { loading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
-const NameForm: React.FC<Props> = ({ loading, onSubmit }) => {
+type Props = { loading: boolean; returnUrl?: string; onSubmit: (data: z.infer<typeof formSchema>) => void }
+const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
   const t = useTranslations('Auth')
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,7 +72,7 @@ const NameForm: React.FC<Props> = ({ loading, onSubmit }) => {
       </Form>
 
       <div className="font-light pt-6 text-sm text-center">
-        <Link href="/app" className="text-primary cursor-pointer">
+        <Link href={returnUrl ? returnUrl : '/app'} className="text-primary cursor-pointer">
           {t('Skip')}
         </Link>
       </div>

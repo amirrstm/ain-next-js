@@ -12,6 +12,7 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { CodeInput } from '@/components/ui/code-input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Link } from '@/components/ui/navigation'
 
 import Validations from '@/lib/Validations'
 import { YekanBakhNumFont } from '@/styles/fonts'
@@ -54,7 +55,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
 
   return (
     <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
-      <div>
+      <Link href="/">
         <div className="relative h-7 sm:h-8">
           <Image
             alt="logo"
@@ -64,7 +65,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
             className="w-full h-full object-contain"
           />
         </div>
-      </div>
+      </Link>
 
       <div className="text-center mt-4">
         <h1 className="text-2xl rtl:font-semibold">{t('CodeTitle')}</h1>

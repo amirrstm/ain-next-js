@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { usePathname, useRouter } from 'next/navigation'
 
 import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
@@ -21,7 +22,9 @@ interface Props {
 }
 
 const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
+  const router = useRouter()
   const { toast } = useToast()
+  const pathname = usePathname()
   const t = useTranslations('Copywriting')
   const { user, setUser } = useUserStore()
   const contentRef = useRef<HTMLDivElement>(null)
@@ -33,6 +36,11 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
   const onSubmit = (data: Record<string, unknown>) => {
+    if (!user) {
+      router.push(`/login?returnUrl=${pathname}`)
+      return
+    }
+
     if (contentRef && contentRef.current) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' })
     }

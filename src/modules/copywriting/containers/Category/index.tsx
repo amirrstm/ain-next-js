@@ -11,12 +11,15 @@ import { Category } from '@/interface/Category.model'
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import { Link } from '@/components/ui/navigation'
 
+import useUserStore from '@/lib/store/auth'
+
 import CategoryLoading from '../../components/Loading'
 import RequestTemplate from '../../components/RequestTemplate'
 import useCategories from '../../hooks/useCategories'
 import { CATEGORY_ICONS, SUB_CATEGORY_ICONS } from '../../utils'
 
 const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
+  const { user } = useUserStore()
   const t = useTranslations('Copywriting')
   const { data, isLoading } = useCategories()
 
@@ -86,9 +89,11 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
               </div>
             )}
 
-            <div className="p-4 border-t">
-              <RequestTemplate />
-            </div>
+            {user && (
+              <div className="p-4 border-t">
+                <RequestTemplate />
+              </div>
+            )}
           </div>
         </div>
 

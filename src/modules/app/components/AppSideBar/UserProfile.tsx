@@ -32,8 +32,13 @@ const UserProfile: React.FC = () => {
 
   const onLogout = () => {
     reset()
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    localStorage.removeItem('user-storage')
     window.location.reload()
   }
+
+  if (!user) return null
 
   return (
     <div className="border rounded-xl">

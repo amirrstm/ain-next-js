@@ -8,8 +8,10 @@ import ENDPOINTS from '@/lib/Endpoints'
 
 import { Chat } from '../interface'
 
-function useMessages() {
-  const { data, isLoading, mutate } = useSWR(ENDPOINTS.CHAT.GET, getMessages, { revalidateOnFocus: false })
+function useMessages(enabled?: boolean) {
+  const { data, isLoading, mutate } = useSWR(enabled ? ENDPOINTS.CHAT.GET : undefined, getMessages, {
+    revalidateOnFocus: false,
+  })
 
   return { data, mutate, isLoading }
 }

@@ -21,8 +21,6 @@ import '@/styles/main.scss'
 export async function generateStaticParams() {
   return locales.map(locale => ({ locale }))
 }
-
-export const runtime = 'edge'
 export const viewport: Viewport = appLayoutViewport
 
 export default function RootLayout({

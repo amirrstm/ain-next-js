@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { IconBolt, IconLoader, IconMessage2Bolt, IconSend2, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -30,11 +31,12 @@ import { ChatMessage } from '../../interface'
 import { deleteChat, sendMessage } from '../../service'
 
 const ChatContainer: React.FC = () => {
+  const router = useRouter()
   const { toast } = useToast()
   const t = useTranslations('Chat')
   const { user, setUser } = useUserStore()
-  const { data, isLoading } = useMessages()
   const endRef = useRef<HTMLDivElement>(null)
+  const { data, isLoading } = useMessages(!!user)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const { trigger: send, isMutating } = useSWRMutation(ENDPOINTS.CHAT.MESSAGE, sendMessage)
 
@@ -75,7 +77,10 @@ const ChatContainer: React.FC = () => {
   }
 
   const onGenerate = () => {
-    if (value) {
+    if (!user) {
+      router.push('/login?returnUrl=/app/chat')
+      return
+    } else if (value) {
       setValue('')
       setMessages(prev => [
         ...prev,

@@ -5,7 +5,7 @@ import { PageLang } from '@/interface/General.model'
 
 import { appViewport } from '@/constants'
 import { locales } from '@/i18n'
-import UserHistoryContainer from '@/modules/history/containers/UserHistory'
+import ResumeContainer from '@/modules/resume/containers/Resume'
 
 export async function generateStaticParams() {
   return locales.map(locale => ({ locale }))
@@ -15,15 +15,15 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   return {
-    title: t('History.Title'),
-    description: t('History.Description'),
+    title: t('Resume.Title'),
+    description: t('Resume.Description'),
   }
 }
 
 export const viewport = appViewport.appDefaultViewport
 
-export default async function History({ params: { locale } }: { params: { locale: string } }) {
+export default async function Resume({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale)
 
-  return <UserHistoryContainer />
+  return <ResumeContainer />
 }

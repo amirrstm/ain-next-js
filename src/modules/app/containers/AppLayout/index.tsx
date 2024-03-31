@@ -1,7 +1,6 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
 
 import { IconDashboard, IconHistory, IconHome, IconSettings } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -14,8 +13,6 @@ import AppHeader from '../../components/AppHeader'
 import AppSiderBar from '../../components/AppSideBar'
 
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
-  const pathname = usePathname()
   const t = useTranslations('Layout')
 
   const { user, setUser } = useUserStore()
@@ -29,9 +26,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
   ]
 
   useEffect(() => {
-    if (!user) {
-      router.push(`/login`)
-    } else {
+    if (user) {
       setLoading(true)
       getUserProfile().then(res => {
         setUser(res)
@@ -45,11 +40,11 @@ export default function AppLayoutContainer({ children }: { children: React.React
   return (
     <main className="block md:flex bg-gray-100 md:bg-white">
       <div className="block md:hidden">
-        <AppHeader menus={menus} />
+        <AppHeader menus={user ? menus : [menus[0]]} />
       </div>
 
       <div className="hidden md:block">
-        <AppSiderBar menus={menus} />
+        <AppSiderBar menus={user ? menus : [menus[0]]} />
       </div>
       <div
         className={clsx(

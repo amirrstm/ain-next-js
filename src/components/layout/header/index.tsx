@@ -39,9 +39,15 @@ const Header: React.FC<Props> = ({ dark = true }) => {
         <div className="flex-1">
           <div className="flex items-center justify-end gap-6">
             <div className="hidden sm:gap-6 sm:items-center sm:flex">
-              <Link href={'/about'}>{t('Header.About')}</Link>
+              <Link href={'/about'} className="text-white">
+                {t('Header.About')}
+              </Link>
 
-              {!user && <Link href={'/login'}>{t('Header.SignIn')}</Link>}
+              {!user && (
+                <Link href={'/login'} className="text-white">
+                  {t('Header.SignIn')}
+                </Link>
+              )}
             </div>
 
             <Link href={user ? '/app' : '/login'}>

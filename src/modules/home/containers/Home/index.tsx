@@ -18,7 +18,7 @@ const HomeContainer: React.FC = () => {
       <Header />
       <section
         className={clsx(
-          'bg-secondary bg-no-repeat  bg-cover bg-center',
+          'bg-secondary bg-no-repeat bg-cover bg-center',
           'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
         )}
       >

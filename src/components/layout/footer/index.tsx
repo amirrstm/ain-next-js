@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
     <footer>
       <section className="bg-secondary relative min-h-[150px] md:min-h-[200px]">
         <div className="-top-[125px] w-full absolute px-4 md:p-0">
-          <div className="max-w-6xl mx-auto p-6 md:p-10 bg-white shadow-xl rounded-2xl">
+          <div className="max-w-6xl mx-auto p-6 md:p-10 bg-background shadow-xl rounded-2xl">
             <h1 className="text-xl md:text-4xl font-bold">قدرت هوش مصنوعی در دستان شما</h1>
             <p className="mt-4 text-xs md:text-base">
               همین الان روی دکمه زیر کلیک کنید و کاملا رایگان یک حساب کاربری بسازید و شروع به تولید محتوا کنید

@@ -54,7 +54,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
   }, [seconds])
 
   return (
-    <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
+    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
       <Link href="/">
         <div className="relative h-7 sm:h-8">
           <Image
@@ -62,7 +62,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
             width={200}
             height={200}
             src="/images/logo-black.png"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </div>
       </Link>
@@ -113,7 +113,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
             )}
 
             <Button type="button" variant="link" onClick={onResend} disabled={seconds > 0 || minutes > 0}>
-              <span className="text-sm"> {t('Resend')}</span>
+              <span className="text-sm text-primary dark:text-gray-400"> {t('Resend')}</span>
             </Button>
           </div>
 
@@ -124,7 +124,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
       </Form>
 
       <div className="font-light pt-6 text-sm text-center">
-        <span className="text-primary cursor-pointer" onClick={onBack}>
+        <span className="text-primary dark:text-primary-foreground cursor-pointer" onClick={onBack}>
           {t('Fields.TwoFactorBack')}
         </span>
       </div>

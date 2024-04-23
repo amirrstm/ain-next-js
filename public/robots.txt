@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ainevis.com
+
+# Sitemaps
+Sitemap: https://ainevis.com/sitemap.xml

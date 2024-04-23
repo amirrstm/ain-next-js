@@ -42,7 +42,7 @@ const UserProfile: React.FC = () => {
   if (!user) return null
 
   return (
-    <div className="border rounded-xl">
+    <div className="border rounded-xl overflow-hidden">
       <div className="p-3">
         <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
         <p className={clsx(YekanBakhNumFont.className, 'text-xs mt-2')}>
@@ -54,12 +54,12 @@ const UserProfile: React.FC = () => {
         </Button>
       </div>
 
-      <div className="border-t p-4 bg-blue-50">
+      <div className="border-t p-4 bg-blue-50 dark:bg-card">
         <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
           {t('Generations')}: {used} از {user?.userPlan?.plan?.generation}
         </p>
 
-        <div className="mt-4 bg-gray-200 rounded-full">
+        <div className="mt-4 bg-gray-100 dark:bg-primary-foreground rounded-full">
           <div className="relative" style={{ width: `${progress}%` }}>
             <Progress value={progress} className="h-2" />
           </div>

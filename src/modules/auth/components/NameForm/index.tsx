@@ -29,7 +29,7 @@ const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
   })
 
   return (
-    <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
+    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
       <div>
         <div className="relative h-7 sm:h-8">
           <Image
@@ -37,7 +37,7 @@ const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
             width={200}
             height={200}
             src="/images/logo-black.png"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </div>
       </div>
@@ -72,7 +72,7 @@ const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
       </Form>
 
       <div className="font-light pt-6 text-sm text-center">
-        <Link href={returnUrl ? returnUrl : '/app'} className="text-primary cursor-pointer">
+        <Link href={returnUrl ? returnUrl : '/app'} className="text-primary dark:text-gray-400 cursor-pointer">
           {t('Skip')}
         </Link>
       </div>

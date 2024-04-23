@@ -50,7 +50,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
   if (loading) return null
 
   return (
-    <main className="block md:flex bg-gray-100 md:bg-white">
+    <main className="block md:flex bg-gray-100 md:bg-background">
       <div className="block md:hidden">
         <AppHeader menus={user ? menus : [menus[0]]} />
       </div>
@@ -60,8 +60,8 @@ export default function AppLayoutContainer({ children }: { children: React.React
       </div>
       <div
         className={clsx(
-          'ms-2 md:ms-[250px] mt-4 md:mt-5 mb-2 md:mb-5 me-2 md:me-5 flex-1 border rounded-2xl',
-          'h-full min-h-[calc(100vh-40px)] bg-white md:bg-gray-100 md:shadow-inner overflow-hidden',
+          'ms-2 md:ms-[250px] mt-4 md:mt-5 mb-2 md:mb-5 me-2 md:me-5 flex-1 border dark:border-muted-foreground rounded-2xl',
+          'h-full min-h-[calc(100vh-40px)] bg-white md:bg-card md:shadow-inner overflow-hidden',
         )}
       >
         {children}

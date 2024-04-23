@@ -12,21 +12,30 @@ interface Props {
 }
 
 const DashboardMenu: React.FC<Props> = ({ link, className, icon, title, onClick }) => {
-  const customClass = clsx(
-    'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md border border-white hover:border-gray-100 hover:bg-gray-50 hover:text-primary',
-    className,
-  )
-
   if (onClick)
     return (
-      <div className={customClass} onClick={onClick}>
+      <div
+        onClick={onClick}
+        className={clsx(
+          'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
+          'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-blue-200',
+          className,
+        )}
+      >
         {icon}
         {title}
       </div>
     )
 
   return (
-    <Link href={link as string} className={customClass}>
+    <Link
+      href={link as string}
+      className={clsx(
+        'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
+        'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-blue-200',
+        className,
+      )}
+    >
       {icon}
       {title}
     </Link>

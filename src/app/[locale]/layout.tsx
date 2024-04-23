@@ -6,7 +6,6 @@ import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Suspense } from 'react'
 
-import SiteLayout from '@/components/layout/SiteLayout'
 import { Toaster } from '@/components/ui/toaster'
 
 import { appLayoutViewport } from '@/constants/viewport'
@@ -58,17 +57,15 @@ export default function RootLayout({
       >
         <Suspense fallback={<div />}>
           <StoreProvider>
-            <SiteLayout>
-              <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-                <>
-                  <SWRProvider>
-                    <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-                  </SWRProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+              <>
+                <SWRProvider>
+                  <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+                </SWRProvider>
 
-                  <Toaster />
-                </>
-              </ThemeProvider>
-            </SiteLayout>
+                <Toaster />
+              </>
+            </ThemeProvider>
           </StoreProvider>
         </Suspense>
       </body>

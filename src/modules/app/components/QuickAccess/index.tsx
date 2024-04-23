@@ -20,7 +20,7 @@ const QuickAccess: React.FC = () => {
       <div className="grid grid-cols-12 gap-4 mt-6">
         <Link
           href="/app/copywriting"
-          className="col-span-5 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-5 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
@@ -38,7 +38,7 @@ const QuickAccess: React.FC = () => {
 
         <Link
           href="/app/history"
-          className="col-span-3 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-3 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
@@ -56,7 +56,7 @@ const QuickAccess: React.FC = () => {
 
         <Link
           href="/app/chat"
-          className="col-span-4 rounded-xl border bg-white group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-4 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
             <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">

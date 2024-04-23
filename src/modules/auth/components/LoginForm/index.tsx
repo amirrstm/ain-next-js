@@ -40,7 +40,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
   }
 
   return (
-    <div className="border border-gray-100 bg-white rounded-lg p-6 w-full shadow-2xl">
+    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
       <Link href="/">
         <div className="relative h-7 sm:h-8">
           <Image
@@ -48,7 +48,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
             width={200}
             height={200}
             src="/images/logo-black.png"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </div>
       </Link>

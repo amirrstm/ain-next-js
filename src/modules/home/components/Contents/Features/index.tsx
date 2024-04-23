@@ -34,20 +34,20 @@ const Features: React.FC = () => {
           {t('Features.Title')}
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold my-6 block  text-center">{t('Features.Subtitle')}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold my-6 block text-center">{t('Features.Subtitle')}</h1>
 
         <div className="flex gap-1 md:gap-4 my-2 md:my-6 transition-all duration-200 ease-in-out hover:scale-110">
           {FEATURES.map((icon, index) => (
             <div
               key={index}
-              className="w-12 h-12 bg-secondary !text-white rounded-xl flex items-center justify-center shadow-xl"
+              className="w-12 h-12 bg-foreground !text-background rounded-xl flex items-center justify-center shadow-xl"
             >
               {icon}
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-12 gap-3 border rounded-xl mt-6 md:p-2 bg-white">
+        <div className="grid grid-cols-12 gap-3 border border-muted-foreground rounded-xl mt-6 md:p-2 bg-background">
           <div className="col-span-12 md:col-span-4">
             <div className="flex flex-col gap-4 p-4">
               <p className={clsx(YekanBakhNumFont.className, 'text-3xl text-primary font-bold')}>1</p>

@@ -99,12 +99,12 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
   if (!appCategory) return null
 
   return (
-    <div className="border rounded-xl bg-white shadow-md h-full">
+    <div className="border rounded-xl bg-background shadow-md h-full">
       <ContentHeader category={appCategory} />
 
       <div className="p-6 space-y-6">
         <div className="border rounded-lg overflow-hidden">
-          <div className="px-4 py-2 border-b flex items-center justify-between bg-gray-50">
+          <div className="px-4 py-2 border-b flex items-center justify-between bg-muted">
             <p>ورودی ها</p>
           </div>
 
@@ -113,7 +113,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
               <div key={`input-${idx}`}>
                 <p className="text-xs">{item.input.title}</p>
 
-                <div className="border bg-gray-100 p-2 mt-2 rounded-md">
+                <div className="border bg-muted p-2 mt-2 rounded-md">
                   <p>{item.value}</p>
                 </div>
               </div>
@@ -123,7 +123,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
 
         <div className="border rounded-lg overflow-hidden">
           {content && (
-            <div className="px-4 py-2 border-b flex items-center justify-between bg-gray-50">
+            <div className="px-4 py-2 border-b flex items-center justify-between bg-muted">
               <p>متن تولید شده</p>
 
               <div className="flex items-center gap-6 justify-between flex-1 md:flex-none">

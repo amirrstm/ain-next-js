@@ -132,7 +132,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   if (!appCategory) return null
 
   return (
-    <div className="border rounded-xl bg-white shadow-md h-full mb-16 md:mb-0">
+    <div className="border rounded-xl bg-background shadow-md h-full mb-16 md:mb-0">
       <div className="p-4 flex items-center justify-between border-b">
         <div className="flex gap-2">
           <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">

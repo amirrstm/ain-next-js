@@ -62,7 +62,7 @@ const UserHistoryContainer: React.FC = () => {
       </div>
 
       {!isLoading && items.length === 0 && (
-        <div className="bg-white h-[500px] shadow-md border rounded-xl overflow-hidden p-4">
+        <div className="bg-background h-[500px] shadow-md border rounded-xl overflow-hidden p-4">
           <HistoryEmpty title={t('History.EmptyList')} />
         </div>
       )}
@@ -83,14 +83,14 @@ const UserHistoryContainer: React.FC = () => {
             ) : (
               <div
                 onScroll={handleScroll}
-                className="col-span-12 md:col-span-6 lg:col-span-4 bg-white h-full max-h-[calc(100vh-100px)] md:rounded-xl md:border md:shadow-md divide-y overflow-auto"
+                className="col-span-12 md:col-span-6 lg:col-span-4 bg-background h-full max-h-[calc(100vh-100px)] md:rounded-xl md:border md:shadow-md divide-y overflow-auto"
               >
                 {items?.map(item => (
                   <div
                     key={item._id}
                     onClick={() => onSelect(item)}
-                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-gray-100', {
-                      'bg-gray-100': item._id === selectedHistory?._id,
+                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-muted', {
+                      'bg-muted': item._id === selectedHistory?._id,
                     })}
                   >
                     <div className="flex items-center gap-2">
@@ -112,7 +112,7 @@ const UserHistoryContainer: React.FC = () => {
               </div>
             )}
 
-            <div className="hidden md:block md:col-span-6 lg:col-span-8 h-full border rounded-xl shadow-md bg-white overflow-hidden">
+            <div className="hidden md:block md:col-span-6 lg:col-span-8 h-full border rounded-xl shadow-md bg-background overflow-hidden">
               {selectedHistory ? (
                 <HistoryContent
                   content={selectedHistory.content}

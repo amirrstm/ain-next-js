@@ -64,7 +64,7 @@ const UserSettingsContainer: React.FC = () => {
         </div>
       </div>
 
-      <div className="border rounded-xl bg-white">
+      <div className="border rounded-xl bg-background">
         <div className="border-b p-4">
           <span className="text-lg">{t('Settings.EditProfile')}</span>
         </div>

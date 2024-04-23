@@ -2,14 +2,13 @@
 
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 
 import { IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
 import React from 'react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import LineDivider from '@/components/ui/line-divider'
-import { Link } from '@/components/ui/navigation'
+import { Link, usePathname } from '@/components/ui/navigation'
 
 import UserProfile from './UserProfile'
 
@@ -34,7 +33,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             width={200}
             height={200}
             src="/images/logo-black.png"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </Link>
 
@@ -46,7 +45,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
               icon={menu.icon}
               title={<span className="text-sm">{menu.title}</span>}
               className={{
-                'bg-gray-50 border-gray-100 text-primary': pathname === `/${menu.link}`,
+                'bg-gray-50 dark:bg-card border-gray-100 text-primary dark:text-blue-400': pathname === `${menu.link}`,
               }}
             />
           ))}
@@ -66,7 +65,8 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             }
             title={<span className="text-sm">{t('Menus.Copywriting')}</span>}
             className={{
-              'bg-gray-50 border-gray-100 text-primary': pathname.includes('/app/copywriting'),
+              'bg-gray-50 dark:bg-card border-gray-100 text-primary dark:text-blue-400':
+                pathname.includes('/app/copywriting'),
             }}
           />
 

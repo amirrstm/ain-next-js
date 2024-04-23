@@ -1,8 +1,8 @@
 'use client'
 
+import { useTheme } from 'next-themes'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
@@ -15,6 +15,7 @@ import { updateName } from '../../services'
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
   const params = useSearchParams()
+  const { resolvedTheme } = useTheme()
   const [loading, setLoading] = useState(false)
   const [returnUrl, setReturnUrl] = useState<string>()
 
@@ -22,6 +23,11 @@ const UserNameContainer: React.FC = () => {
   const { trigger } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
 
   useEffect(() => {
+    if (!user) {
+      router.push(`/login`)
+      return
+    }
+
     const paramReturnUrl = params.get('returnUrl')
     if (paramReturnUrl) {
       setReturnUrl(paramReturnUrl)
@@ -49,17 +55,23 @@ const UserNameContainer: React.FC = () => {
   return (
     <div className="relative">
       <div
-        className={clsx(
-          'absolute -bottom-10 left-0 right-0 h-1/2 bg-white bg-no-repeat bg-cover bg-top -z-10 rotate-180',
-          'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/banner.svg")]',
-        )}
+        style={{
+          backgroundImage:
+            resolvedTheme === 'light'
+              ? 'url("/images/bg-content.svg")'
+              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
+        }}
+        className="absolute -bottom-10 left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10 rotate-180"
       />
 
       <div
-        className={clsx(
-          'absolute -top-10  left-0 right-0 h-1/2 bg-white bg-no-repeat bg-cover bg-top -z-10',
-          'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/banner.svg")]',
-        )}
+        style={{
+          backgroundImage:
+            resolvedTheme === 'light'
+              ? 'url("/images/bg-content.svg")'
+              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
+        }}
+        className="absolute -top-10  left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10"
       />
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">

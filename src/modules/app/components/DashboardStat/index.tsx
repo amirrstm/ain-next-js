@@ -29,7 +29,7 @@ const DashboardStat: React.FC = () => {
         <span className="text-base md:text-xl">{t('Dashboard.Stats.Last30Days')}</span>
       </p>
 
-      <div className="border rounded-2xl p-2 md:p-6 bg-white mt-4">
+      <div className="border rounded-2xl p-2 md:p-6 bg-background mt-4">
         <div className="flex justify-center md:justify-start">
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
@@ -54,9 +54,11 @@ const DashboardStat: React.FC = () => {
 
         <div className="hidden md:block mt-8 bg-gray-200 rounded-full">
           <div className="relative" style={{ width: `${progress}%` }}>
-            <div className="absolute top-1/2 left-1/2 z-[1] -translate-y-1/2 -translate-x-1/2">
-              <span className={clsx(YekanBakhNumFont.className, 'text-xs text-white')}>{progress}%</span>
-            </div>
+            {progress > 0 && (
+              <div className="absolute top-1/2 left-1/2 z-[1] -translate-y-1/2 -translate-x-1/2">
+                <span className={clsx(YekanBakhNumFont.className, 'text-xs text-white')}>{progress}%</span>
+              </div>
+            )}
             <Progress value={100} />
           </div>
         </div>

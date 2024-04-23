@@ -282,8 +282,8 @@
   },
 
   "Resume": {
-    "Title": "رزومه ساز",
-    "Description": "رزومه خود را به راحتی و سریع تر از همیشه بسازید",
+    "Title": "رزومه ساز آنلاین",
+    "Description": "ساخت رزومه زیر ۱۵ دقیقه!",
     "InputPlaceholder": "اطلاعات خود را وارد کنید",
     "Generate": "ایجاد رزومه",
     "Loading": "در حال ایجاد رزومه، لطفا صبر کنید",
@@ -294,13 +294,51 @@
     "FeedbackSuccess": "نظر شما با موفقیت ثبت شد",
 
     "Tabs": {
-      "Personal": "اطلاعات پایه",
-      "Experience": "سوابق شغلی",
-      "Education": "تحصیلات",
-      "Skills": "مهارت‌ها",
-      "Languages": "زبان‌ها",
-      "Interests": "علایق",
-      "References": "معرفی‌نامه"
+      "Personal": {
+        "Title": "اطلاعات پایه",
+        "Description": "اطلاعات پایه شما برای ایجاد رزومه"
+      },
+      "Experience": {
+        "Title": "سوابق شغلی",
+        "Description": "سوابق شغلی شما برای ایجاد رزومه"
+      },
+      "Education": {
+        "Title": "تحصیلات",
+        "Description": "تحصیلات شما برای ایجاد رزومه"
+      },
+      "Skills": {
+        "Title": "مهارت‌ها",
+        "Description": "مهارت‌های شما برای ایجاد رزومه"
+      },
+      "Projects": {
+        "Title": "پروژه‌ها",
+        "Description": "پروژه‌های شما برای ایجاد رزومه"
+      },
+      "Languages": {
+        "Title": "زبان‌ها",
+        "Description": "زبان‌های شما برای ایجاد رزومه"
+      },
+      "Publications": {
+        "Title": "تحقیقات",
+        "Description": "منتشر شما برای ایجاد رزومه"
+      },
+      "Interests": {
+        "Title": "علایق",
+        "Description": "علایق شما برای ایجاد رزومه"
+      },
+      "Other": {
+        "Title": "سایر",
+        "Description": "اطلاعات دیگر شما برای ایجاد رزومه"
+      },
+      "References": {
+        "Title": "معرفی",
+        "Description": "معرفی‌های شما برای ایجاد رزومه"
+      }
+    },
+
+    "Basic": {
+      "Title": "اطلاعات پایه",
+      "Description": "اطلاعات هویتی و تماسی شما برای ایجاد رزومه"
     }
   }
 }

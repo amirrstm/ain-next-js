@@ -1,21 +1,27 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { IconDashboard, IconHistory, IconHome, IconSettings } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
+import { usePathname } from '@/components/ui/navigation'
+
 import useUserStore from '@/lib/store/auth'
 import { getUserProfile } from '@/modules/auth/services'
+import { removeUserToken } from '@/modules/auth/utils'
 
 import AppHeader from '../../components/AppHeader'
 import AppSiderBar from '../../components/AppSideBar'
 
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const pathname = usePathname()
   const t = useTranslations('Layout')
 
-  const { user, setUser } = useUserStore()
+  const { user, setUser, reset: resetUser } = useUserStore()
   const [loading, setLoading] = useState(false)
 
   const menus = [
@@ -28,10 +34,16 @@ export default function AppLayoutContainer({ children }: { children: React.React
   useEffect(() => {
     if (user) {
       setLoading(true)
-      getUserProfile().then(res => {
-        setUser(res)
-        setLoading(false)
-      })
+      getUserProfile()
+        .then(res => {
+          setUser(res)
+          setLoading(false)
+        })
+        .catch(() => {
+          removeUserToken()
+          resetUser()
+          router.push(`/login?returnUrl=${pathname}`)
+        })
     }
   }, [])
 

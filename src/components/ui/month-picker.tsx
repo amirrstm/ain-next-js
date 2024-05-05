@@ -153,6 +153,8 @@ export const MonthPicker = React.forwardRef<HTMLButtonElement, Props>(
   },
 )
 
+MonthPicker.displayName = 'MonthPicker'
+
 const NavigateBtn: React.FC<{ onClick: () => void; children: React.ReactNode }> = ({ onClick, children }) => (
   <div
     onClick={onClick}

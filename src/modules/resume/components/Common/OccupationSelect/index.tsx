@@ -48,4 +48,6 @@ const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
   },
 )
 
+OccupationSelect.displayName = 'OccupationSelect'
+
 export default OccupationSelect

@@ -11,7 +11,7 @@ import { ResumeContext } from '../../context'
 
 const MainSidebar: React.FC = () => {
   const t = useTranslations('Resume')
-  const { activeTab } = useContext(ResumeContext)
+  const { activeTab, setActiveTab } = useContext(ResumeContext)
 
   const tabs: Record<RESUME_ENUM_TABS, { title: string; description: string }> = {
     [RESUME_ENUM_TABS.Basic]: { title: t('Tabs.Personal.Title'), description: t('Tabs.Personal.Description') },
@@ -26,16 +26,15 @@ const MainSidebar: React.FC = () => {
     [RESUME_ENUM_TABS.Others]: { title: t('Tabs.Other.Title'), description: t('Tabs.Other.Description') },
   }
 
-  console.log(tabs)
-
   return (
-    <div className="bg-background rounded-xl border">
-      <div className="p-4 border-b">
-        <h1 className="text-primary text-lg font-semibold">{t('Title')}</h1>
+    <div className="bg-background rounded-xl border border-muted">
+      <div className="p-2 xl:p-4 border-b border-b-muted">
+        <h1 className="text-primary sm:text-lg font-semibold">{t('Title')}</h1>
         <p className="text-xs text-gray-500 mt-1">{t('Description')}</p>
       </div>
-      <div className="ps-8 pe-2 py-4">
-        <ol className="relative text-gray-500 border-s border-gray-200">
+      <div className="ps-2 xl:ps-8 pe-6 xl:pe-2 py-4 overflow-x-auto">
+        <ol className="relative text-gray-500 xl:border-s xl:border-muted flex flex-nowrap min-w-[480px] sm:flex-wrap justify-between xl:block">
+          <div className="absolute w-[calc(100%-40px)] h-[1px] bg-muted top-3 sm:top-4 right-8 block xl:hidden" />
           {Object.keys(tabs).map((tab, index) => (
             <SingleTab
               key={tab}
@@ -45,6 +44,7 @@ const MainSidebar: React.FC = () => {
               isLast={index === Object.keys(tabs).length - 1}
               description={tabs[tab as RESUME_ENUM_TABS].description}
               completed={index < Object.keys(tabs).indexOf(activeTab)}
+              onClick={() => activeTab !== tab && setActiveTab(tab as RESUME_ENUM_TABS)}
             />
           ))}
         </ol>
@@ -63,34 +63,53 @@ const SingleTab: React.FC<{
   isActive?: boolean
   completed?: boolean
   description?: string
-}> = ({ icon, title, isActive, completed, isLast, index, description }) => {
+  onClick?: () => void
+}> = ({ icon, title, isActive, completed, isLast, index, description, onClick }) => {
   return (
     <li
-      className={clsx('ms-6 flex items-center', {
-        'mb-10': !isLast,
-        'opacity-85': !isActive && !completed,
+      onClick={onClick}
+      className={clsx('xl:ms-6 flex flex-col xl:flex-row items-center cursor-pointer group relative gap-3 xl:gap-0', {
+        'xl:mb-10': !isLast,
+        'opacity-85 dark:opacity-100': !isActive && !completed,
       })}
     >
       <span
         className={clsx(
-          'absolute flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 -start-4 ring-4 ring-white',
+          'xl:absolute xl:-right-10 flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full',
+          'bg-muted -start-4 ring-4 ring-muted',
           {
             'bg-green-200 text-green-600': completed,
-            'bg-blue-200 text-blue-600': isActive,
+            'bg-primary text-purple-200': isActive,
+            'group-hover:text-purple-200': !isActive && !completed,
           },
         )}
       >
         {completed ? (
           <IconCheck className="w-4 h-4" />
         ) : index ? (
-          <p className={clsx(YekanBakhNumFont.className, 'text-lg')}>{index}</p>
+          <p className={clsx(YekanBakhNumFont.className, 'text-sm sm:text-lg')}>{index}</p>
         ) : (
           icon
         )}
       </span>
-      <div>
-        <h3 className={clsx('font-medium', { 'text-blue-600': isActive })}>{title}</h3>
-        <p className={clsx('text-xs text-gray-400', { 'text-blue-600': isActive })}>{description}</p>
+      <div className="text-center xl:text-start">
+        <h3
+          className={clsx('font-medium text-xs lg:text-base', {
+            'text-primary': isActive,
+            'text-green-500': completed,
+            'group-hover:text-primary': !isActive && !completed,
+          })}
+        >
+          {title}
+        </h3>
+        <p
+          className={clsx('hidden xl:block text-xs text-gray-400 group-hover:text-primary font-light', {
+            '!text-purple-300': isActive,
+            '!text-green-300': completed,
+          })}
+        >
+          {description}
+        </p>
       </div>
     </li>
   )

@@ -1,5 +1,5 @@
+import API from '@/lib/api'
 import axios from '@/lib/axios'
-import ENDPOINTS from '@/lib/Endpoints'
 
 import { Chat } from '../interface'
 
@@ -15,7 +15,7 @@ export async function sendMessage(url = '', { arg }: { arg: { role: string; cont
 
 export async function deleteChat(): Promise<Chat> {
   try {
-    const res = await axios.delete(ENDPOINTS.CHAT.DELETE)
+    const res = await axios.delete(API.CHAT.DELETE)
 
     return res.data
   } catch (e) {

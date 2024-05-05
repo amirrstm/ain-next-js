@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
 import NameForm from '../../components/NameForm'
@@ -20,7 +20,7 @@ const UserNameContainer: React.FC = () => {
   const [returnUrl, setReturnUrl] = useState<string>()
 
   const { setUser, user } = useUserStore()
-  const { trigger } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
+  const { trigger } = useSWRMutation(API.USER.UPDATE_NAME, updateName)
 
   useEffect(() => {
     if (!user) {

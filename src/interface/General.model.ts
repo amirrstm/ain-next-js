@@ -31,3 +31,8 @@ export interface MetaPagination {
   totalPage: number
   orderDirection: string
 }
+
+export interface SelectType {
+  label: string
+  value: string
+}

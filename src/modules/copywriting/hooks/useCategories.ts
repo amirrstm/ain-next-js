@@ -3,11 +3,11 @@ import useSWR from 'swr'
 import { Category } from '@/interface/Category.model'
 import { ResponseModel } from '@/interface/General.model'
 
+import API from '@/lib/api'
 import axios from '@/lib/axios'
-import ENDPOINTS from '@/lib/Endpoints'
 
 function useCategories() {
-  const { data, isLoading, mutate } = useSWR([ENDPOINTS.CATEGORY.LIST], ([url]) => getCategories(url))
+  const { data, isLoading, mutate } = useSWR([API.CATEGORY.LIST], ([url]) => getCategories(url))
 
   return { data, mutate, isLoading }
 }

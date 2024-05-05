@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 
 import { requestTemplate } from '../../services'
 
@@ -27,7 +27,7 @@ const RequestTemplate: React.FC = () => {
   const { toast } = useToast()
   const t = useTranslations('Copywriting')
   const [isOpen, setIsOpen] = useState(false)
-  const { trigger, isMutating } = useSWRMutation(ENDPOINTS.CATEGORY.REQUEST, requestTemplate)
+  const { trigger, isMutating } = useSWRMutation(API.CATEGORY.REQUEST, requestTemplate)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

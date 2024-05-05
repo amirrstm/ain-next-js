@@ -22,7 +22,7 @@ import {
 import Loader from '@/components/ui/loader'
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
 import ChatMessages from '../../components/Messages'
@@ -38,7 +38,7 @@ const ChatContainer: React.FC = () => {
   const endRef = useRef<HTMLDivElement>(null)
   const { data, isLoading } = useMessages(!!user)
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const { trigger: send, isMutating } = useSWRMutation(ENDPOINTS.CHAT.MESSAGE, sendMessage)
+  const { trigger: send, isMutating } = useSWRMutation(API.CHAT.MESSAGE, sendMessage)
 
   const [value, setValue] = useState<string>('')
   const [messages, setMessages] = useState<ChatMessage[]>([])

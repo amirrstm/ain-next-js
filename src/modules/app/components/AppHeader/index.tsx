@@ -24,7 +24,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center px-3 py-4 border-b bg-white">
+      <div className="flex justify-between items-center px-3 py-4 border-b bg-background">
         <div className="flex gap-2 items-center cursor-pointer" onClick={() => setOpen(true)}>
           <IconMenu2 />
           <span className="text-sm">{t('Header.Menu')}</span>
@@ -37,7 +37,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
               width={200}
               height={200}
               src="/images/logo-black.png"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
             />
           </div>
         </Link>

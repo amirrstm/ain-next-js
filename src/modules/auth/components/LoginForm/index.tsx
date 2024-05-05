@@ -15,19 +15,15 @@ import { Input } from '@/components/ui/input'
 import LineDivider from '@/components/ui/line-divider'
 import { Link } from '@/components/ui/navigation'
 
-import Validations from '@/lib/Validations'
+import { useI18nZodErrors } from '@/lib/zodValidation'
 
 import GoogleIcon from './GoogleIcon'
 
-const formSchema = z.object({
-  mobile: z
-    .string()
-    .min(1, { message: Validations.Login.Mobile })
-    .length(11, { message: Validations.Login.MobileLength }),
-})
+const formSchema = z.object({ mobile: z.string().min(1).length(11) })
 
 type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
 const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
+  useI18nZodErrors('auth')
   const t = useTranslations('Auth')
 
   const form = useForm<z.infer<typeof formSchema>>({

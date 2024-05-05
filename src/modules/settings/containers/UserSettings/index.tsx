@@ -14,22 +14,20 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
-import Validations from '@/lib/Validations'
+import { useI18nZodErrors } from '@/lib/zodValidation'
 import { updateName } from '@/modules/auth/services'
 
-const formSchema = z.object({
-  firstName: z.string().min(1, { message: Validations.Profile.FirstName }),
-  lastName: z.string().min(1, { message: Validations.Profile.LastName }),
-})
+const formSchema = z.object({ firstName: z.string().min(1), lastName: z.string().min(1) })
 
 const UserSettingsContainer: React.FC = () => {
+  useI18nZodErrors('auth')
   const { toast } = useToast()
   const t = useTranslations('User')
   const { user, setUser } = useUserStore()
   const [loading, setLoading] = useState(false)
-  const { trigger } = useSWRMutation(ENDPOINTS.USER.UPDATE_NAME, updateName)
+  const { trigger } = useSWRMutation(API.USER.UPDATE_NAME, updateName)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

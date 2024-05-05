@@ -5,8 +5,8 @@ import { AppCategory } from '@/interface/Category.model'
 import { PageLang, ResponseModel } from '@/interface/General.model'
 
 import { appViewport } from '@/constants'
-import ENDPOINTS from '@/lib/Endpoints'
-import fetchWithUrl from '@/lib/fetchUrl'
+import API from '@/lib/api'
+import fetchWithUrl from '@/lib/fetch-url'
 import SingleCategoryContainer from '@/modules/copywriting/containers/SingleCategory'
 
 export async function generateMetadata({ params: { locale } }: PageLang): Promise<Metadata> {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 export const viewport = appViewport.appDefaultViewport
 
 export default async function Copywriting({ params: { categoryId } }: { params: { categoryId: string } }) {
-  const category: ResponseModel<AppCategory> = await fetchWithUrl(ENDPOINTS.CATEGORY.GET(categoryId), {
+  const category: ResponseModel<AppCategory> = await fetchWithUrl(API.CATEGORY.GET(categoryId), {
     next: { revalidate: 3600 },
   })
 

@@ -8,7 +8,7 @@ import useSWRMutation from 'swr/mutation'
 
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 import { persianToEnglishNumbers } from '@/lib/utils'
 
@@ -30,8 +30,8 @@ const LoginContainer: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
 
-  const { trigger, isMutating } = useSWRMutation(ENDPOINTS.USER.LOGIN, loginUser)
-  const { trigger: verifyTrigger } = useSWRMutation(ENDPOINTS.USER.VERIFY, verifyUser)
+  const { trigger, isMutating } = useSWRMutation(API.USER.LOGIN, loginUser)
+  const { trigger: verifyTrigger } = useSWRMutation(API.USER.VERIFY, verifyUser)
 
   useEffect(() => {
     if (user) {

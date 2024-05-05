@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios'
 
 import { ResponseModel } from '@/interface/General.model'
 
+import API from '@/lib/api'
 import axios from '@/lib/axios'
-import ENDPOINTS from '@/lib/Endpoints'
 
 import { Login } from '../interface'
 import { User } from '../interface/auth.model'
@@ -48,7 +48,7 @@ export async function updateName(url = '', { arg }: { arg: { firstName: string; 
 
 export async function getUserProfile(): Promise<User> {
   try {
-    const res: AxiosResponse<{ data: User }> = await axios.get(ENDPOINTS.USER.GET_PROFILE)
+    const res: AxiosResponse<{ data: User }> = await axios.get(API.USER.GET_PROFILE)
     return res.data.data
   } catch {
     throw new Error()
@@ -57,7 +57,7 @@ export async function getUserProfile(): Promise<User> {
 
 export async function refreshAccessToken(): Promise<Login> {
   try {
-    const res: AxiosResponse<{ data: Login }> = await axios.post(ENDPOINTS.USER.REFRESH_TOKEN, {})
+    const res: AxiosResponse<{ data: Login }> = await axios.post(API.USER.REFRESH_TOKEN, {})
 
     setUserToken(res.data.data.accessToken, res.data.data.refreshToken)
     return res.data.data

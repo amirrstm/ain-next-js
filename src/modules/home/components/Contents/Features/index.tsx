@@ -47,7 +47,7 @@ const Features: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-12 gap-3 border border-muted-foreground rounded-xl mt-6 md:p-2 bg-background">
+        <div className="grid grid-cols-12 gap-3 border border-muted rounded-xl mt-6 md:p-2 bg-background">
           <div className="col-span-12 md:col-span-4">
             <div className="flex flex-col gap-4 p-4">
               <p className={clsx(YekanBakhNumFont.className, 'text-3xl text-primary font-bold')}>1</p>

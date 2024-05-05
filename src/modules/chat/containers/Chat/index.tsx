@@ -110,8 +110,8 @@ const ChatContainer: React.FC = () => {
 
   return (
     <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-40px)] min-h-[200px]">
-      <div className="md:border md:rounded-2xl bg-background h-full flex flex-col justify-between">
-        <div className="p-4 w-full border-b">
+      <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
+        <div className="p-4 w-full border-b border-b-muted">
           <div className="flex gap-2 items-center justify-between">
             <div className="flex flex-1 gap-2">
               <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
@@ -173,7 +173,7 @@ const ChatContainer: React.FC = () => {
           )}
         </div>
 
-        <div className="px-2 py-1 md:p-4 border-t border-b md:border-b-transparent">
+        <div className="px-2 py-1 md:p-4 border-t border-t-muted border-b md:border-b-transparent">
           <div className="flex items-center">
             <textarea
               rows={1}

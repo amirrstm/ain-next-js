@@ -87,7 +87,7 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
       ) : (
         <div
           className={clsx(
-            'flex flex-col min-w-[200px] flex-1 leading-1.5 p-4 border-gray-200 bg-gray-100 dark:bg-card rounded-e-xl rounded-es-xl',
+            'flex flex-col min-w-[200px] flex-1 leading-1.5 p-4 border-gray-200 bg-gray-100 dark:bg-neutral-800 rounded-e-xl rounded-es-xl',
             {
               'max-w-[90%] md:max-w-[80%]': systemMessage.length > 0,
               'max-w-[90%] md:max-w-[60%]': systemMessage.length === 0,
@@ -185,8 +185,6 @@ const separateCodeAndText = (text: string): BlockType[] => {
   if (lastIndex < text.length) {
     parts.push({ type: 'text', content: text.substring(lastIndex) })
   }
-
-  console.log(parts)
 
   return parts
 }

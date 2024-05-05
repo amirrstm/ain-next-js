@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* <div className="flex justify-center py-2">
+          <div className="flex justify-center py-2">
             <div
               className="h-[100px]"
               dangerouslySetInnerHTML={{
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                   "<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=469401&Code=QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=469401&Code=QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6' alt='' style='cursor:pointer' Code='QgbUDh4McXTFoUBfMLYQVpjy9sOSdJd6'></a>",
               }}
             />
-          </div> */}
+          </div>
         </div>
       </section>
     </footer>

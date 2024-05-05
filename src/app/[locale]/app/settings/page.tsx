@@ -5,7 +5,7 @@ import { PageLang } from '@/interface/General.model'
 
 import { appViewport } from '@/constants'
 import { locales } from '@/i18n'
-import UserSettingsContainer from '@/modules/settings/containers/UserSettings'
+import AppSettingsContainer from '@/modules/settings/containers/AppSettings'
 
 export async function generateStaticParams() {
   return locales.map(locale => ({ locale }))
@@ -25,5 +25,5 @@ export const viewport = appViewport.appDefaultViewport
 export default async function Settings({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale)
 
-  return <UserSettingsContainer />
+  return <AppSettingsContainer />
 }

@@ -60,7 +60,7 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
             <FormItem>
               <FormLabel>{t('resume.work.position')}</FormLabel>
               <FormControl>
-                <OccupationSelect value={field.value} onBlur={field.onBlur} onChange={field.onChange} />
+                <OccupationSelect ref={field.ref} value={field.value} onBlur={field.onBlur} onChange={field.onChange} />
               </FormControl>
 
               <FormMessage />

@@ -16,7 +16,7 @@ const Faq: React.FC = () => {
 
         <h1 className="text-3xl md:text-4xl font-bold my-6 block text-center">{t('Faq.Subtitle')}</h1>
 
-        <div className="border rounded-xl mt-8 w-full bg-background max-w-3xl mx-auto overflow-hidden">
+        <div className="border border-muted rounded-xl mt-8 w-full bg-background max-w-3xl mx-auto overflow-hidden">
           <Accordion type="single" collapsible>
             <AccordionItem value="what">
               <AccordionTrigger>

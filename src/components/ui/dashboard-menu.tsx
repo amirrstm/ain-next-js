@@ -18,7 +18,7 @@ const DashboardMenu: React.FC<Props> = ({ link, className, icon, title, onClick 
         onClick={onClick}
         className={clsx(
           'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
-          'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-blue-200',
+          'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-primary',
           className,
         )}
       >
@@ -32,7 +32,7 @@ const DashboardMenu: React.FC<Props> = ({ link, className, icon, title, onClick 
       href={link as string}
       className={clsx(
         'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
-        'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-blue-200',
+        'border border-background hover:border-muted-foreground hover:bg-card hover:text-primary dark:hover:text-primary',
         className,
       )}
     >

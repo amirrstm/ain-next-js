@@ -77,9 +77,9 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
     <div className="p-4 xl:p-6 xl:pb-10">
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
-          <div className="border rounded-xl bg-background shadow-md block sticky top-8 h-full">
-            <Link href="/app/copywriting" className="p-4 border-b flex gap-2 items-center">
-              <div className="border rounded-full p-1">
+          <div className="border border-muted rounded-xl bg-background shadow-md block sticky top-8 h-full">
+            <Link href="/app/copywriting" className="p-4 border-b border-b-muted flex gap-2 items-center">
+              <div className="border border-muted rounded-full p-1">
                 <IconChevronRight />
               </div>
               <h1 className="text-lg font-bold">{t('Category.BackToCategories')}</h1>

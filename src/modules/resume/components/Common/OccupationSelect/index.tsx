@@ -7,42 +7,45 @@ import { getOccupations } from '@/modules/resume/service'
 let controller: AbortController
 
 type Props = { value?: string; onChange: (e: string) => void; placeholder?: string; onBlur?: () => void }
-const OccupationSelect: React.FC<Props> = ({ onChange, value, placeholder = 'جستجو کنید ...', onBlur }) => {
-  const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
-    if (controller) {
-      controller.abort()
+
+const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
+  ({ value, onChange, placeholder = '', ...props }, ref) => {
+    const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
+      if (controller) {
+        controller.abort()
+      }
+
+      controller = new AbortController()
+      const signal = controller.signal
+
+      getOccupations({ search: inputValue }, signal)
+        .then(data => callback(inputValue ? (data.length > 0 ? data : [{ name: inputValue }]) : data))
+        .catch(() => {})
     }
 
-    controller = new AbortController()
-    const signal = controller.signal
+    const handleChange = (selectedOption: { name: string }) => {
+      onChange(selectedOption.name)
+    }
 
-    getOccupations({ search: inputValue }, signal)
-      .then(data => callback(inputValue ? (data.length > 0 ? data : [{ name: inputValue }]) : data))
-      .catch(() => {})
-  }
-
-  const handleChange = (selectedOption: { name: string }) => {
-    onChange(selectedOption.name)
-  }
-
-  return (
-    <AsyncSelect<any>
-      cacheOptions
-      onBlur={onBlur}
-      className="text-xs"
-      onChange={handleChange}
-      theme={reactSelectTheme}
-      placeholder={placeholder}
-      loadOptions={loadOptions}
-      getOptionLabel={op => op.name}
-      getOptionValue={op => String(op.name)}
-      loadingMessage={() => 'در حال جستجو...'}
-      value={value ? { name: value } : undefined}
-      classNames={{ placeholder: () => 'line-clamp-1', container: () => 'ain-select-container' }}
-      noOptionsMessage={() => 'عنوان مورد نظر را وارد کنید'}
-      classNamePrefix={'ain-select'}
-    />
-  )
-}
+    return (
+      <AsyncSelect<any>
+        cacheOptions
+        ref={ref as any}
+        className="text-xs"
+        onChange={handleChange}
+        theme={reactSelectTheme}
+        placeholder={placeholder}
+        loadOptions={loadOptions}
+        classNamePrefix={'ain-select'}
+        getOptionLabel={op => op.name}
+        getOptionValue={op => String(op.name)}
+        loadingMessage={() => 'در حال جستجو...'}
+        value={value ? { name: value } : undefined}
+        noOptionsMessage={() => 'عنوان مورد نظر را وارد کنید'}
+        classNames={{ placeholder: () => 'line-clamp-1', container: () => 'ain-select-container' }}
+      />
+    )
+  },
+)
 
 export default OccupationSelect

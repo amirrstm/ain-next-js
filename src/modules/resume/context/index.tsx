@@ -21,6 +21,7 @@ export default function ResumeProvider({ children }: Props): ReactElement {
   const { resumeId } = useParams()
 
   const [resume, setResume] = useState<IResume>()
+  const [initLoading, setInitLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<RESUME_ENUM_TABS>(RESUME_ENUM_TABS.Basic)
   const { data, isLoading } = useSWR(API.RESUME.GET_ONE(resumeId as string), getResume, {
     revalidateOnFocus: false,
@@ -30,12 +31,13 @@ export default function ResumeProvider({ children }: Props): ReactElement {
   useEffect(() => {
     if (data) {
       setResume(data)
+      setInitLoading(false)
     }
   }, [data])
 
   return (
     <ResumeContext.Provider value={{ resume, activeTab, setActiveTab }}>
-      {isLoading || !resume ? <Loader width={100} height={100} /> : children}
+      {initLoading || isLoading || !resume ? <Loader width={100} height={100} /> : children}
     </ResumeContext.Provider>
   )
 }

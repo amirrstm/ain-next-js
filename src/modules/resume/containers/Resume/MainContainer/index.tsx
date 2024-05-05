@@ -80,11 +80,10 @@ const ResumeMainContainer: React.FC = () => {
   const { dirtyFields } = useFormState({ control: form.control })
 
   useEffect(() => {
-    if (activeTab) {
+    if (activeTab && Object.keys(dirtyFields).length > 0) {
       if (dirtyFields.basic) {
         const finalValues = form.getValues().basic
         triggerBasic(finalValues)
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.educations) {
@@ -95,7 +94,6 @@ const ResumeMainContainer: React.FC = () => {
             highlights: (e.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
           })) as IResumeEducation[],
         })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.works) {
@@ -107,7 +105,6 @@ const ResumeMainContainer: React.FC = () => {
             highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
           })) as IResumeWork[],
         })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.projects) {
@@ -119,55 +116,46 @@ const ResumeMainContainer: React.FC = () => {
             highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
           })) as IResumeProject[],
         })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.skills) {
         const skills = form.getValues().skills
         triggerSkill({ skills })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.languages) {
         const languages = form.getValues().languages
         triggerLanguage({ languages })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.certificates) {
         const certificates = form.getValues().certificates
         triggerCertificate({ certificates })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.profiles) {
         const profiles = form.getValues().profiles
         triggerProfile({ profiles })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.publications) {
         const publications = form.getValues().publications
         triggerPublication({ publications })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.awards) {
         const awards = form.getValues().awards
         triggerAward({ awards })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.speeches) {
         const speeches = form.getValues().speeches
         triggerSpeech({ speeches })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.teachings) {
         const teachings = form.getValues().teachings
         triggerTeaching({ teachings })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.interests) {
@@ -178,13 +166,11 @@ const ResumeMainContainer: React.FC = () => {
             keywords: (w.keywords || []).filter(({ value }) => !!value).map(({ value }) => value),
           })) as IResumeInterest[],
         })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.references) {
         const references = form.getValues().references
         triggerReference({ references })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.volunteers) {
@@ -195,52 +181,54 @@ const ResumeMainContainer: React.FC = () => {
             highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
           })) as IResumeVolunteer[],
         })
-        form.reset({}, { keepValues: true })
       }
 
       if (dirtyFields.inventions) {
         const inventions = form.getValues().inventions
         triggerInvention({ inventions })
-        form.reset({}, { keepValues: true })
       }
+
+      form.reset({}, { keepValues: true })
     }
   }, [activeTab])
 
   useEffect(() => {
     if (resume && user) {
       if (resume?.basic?.firstName) {
-        form.setValue('basic.firstName', resume.basic.firstName)
-        form.setValue('basic.lastName', resume.basic.lastName)
+        form.setValue('basic.firstName', resume.basic.firstName, { shouldDirty: false })
+        form.setValue('basic.lastName', resume.basic.lastName, { shouldDirty: false })
       } else {
-        form.setValue('basic.firstName', user?.firstName)
-        form.setValue('basic.lastName', user?.lastName)
+        form.setValue('basic.firstName', user?.firstName, { shouldDirty: false })
+        form.setValue('basic.lastName', user?.lastName, { shouldDirty: false })
       }
 
       if (resume?.basic?.email === '') {
-        form.setValue('basic.email', user?.email)
+        form.setValue('basic.email', user?.email, { shouldDirty: false })
       } else {
-        form.setValue('basic.email', resume?.basic?.email)
+        form.setValue('basic.email', resume?.basic?.email, { shouldDirty: false })
       }
 
       if (!resume?.basic?.phone || resume?.basic?.phone?.text === '') {
-        form.setValue('basic.phone', { countryCode: '+98', text: user?.mobileNumber?.slice(1) })
+        form.setValue('basic.phone', { countryCode: '+98', text: user?.mobileNumber?.slice(1) }, { shouldDirty: false })
       } else {
-        form.setValue('basic.phone', resume?.basic?.phone)
+        form.setValue('basic.phone', resume?.basic?.phone, { shouldDirty: false })
       }
 
       if (resume.basic) {
-        form.setValue('basic.url', resume.basic.url)
-        form.setValue('basic.label', resume.basic.label)
-        form.setValue('basic.summary', resume.basic.summary)
-        form.setValue('basic.gender', resume.basic.gender)
-        form.setValue('basic.marriage', resume.basic.marriage)
-        form.setValue('basic.military', resume.basic.military)
-        form.setValue('basic.location', resume.basic.location)
-        form.setValue('basic.birthDate', !resume.basic.birthDate ? new Date() : new Date(resume.basic.birthDate))
+        form.setValue('basic.url', resume.basic.url, { shouldDirty: false })
+        form.setValue('basic.label', resume.basic.label, { shouldDirty: false })
+        form.setValue('basic.summary', resume.basic.summary, { shouldDirty: false })
+        form.setValue('basic.gender', resume.basic.gender, { shouldDirty: false })
+        form.setValue('basic.marriage', resume.basic.marriage, { shouldDirty: false })
+        form.setValue('basic.military', resume.basic.military, { shouldDirty: false })
+        form.setValue('basic.location', resume.basic.location, { shouldDirty: false })
+        form.setValue('basic.birthDate', !resume.basic.birthDate ? new Date() : new Date(resume.basic.birthDate), {
+          shouldDirty: false,
+        })
       }
 
       if (resume.profiles && resume.profiles.length > 0) {
-        form.setValue('profiles', resume.profiles)
+        form.setValue('profiles', resume.profiles, { shouldDirty: false })
       }
 
       if (resume.education && resume.education.length > 0) {
@@ -250,6 +238,7 @@ const ResumeMainContainer: React.FC = () => {
             ...w,
             highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
           })) as any,
+          { shouldDirty: false },
         )
       }
 
@@ -260,6 +249,7 @@ const ResumeMainContainer: React.FC = () => {
             ...w,
             highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
           })) as any,
+          { shouldDirty: false },
         )
       }
 
@@ -270,46 +260,50 @@ const ResumeMainContainer: React.FC = () => {
             ...w,
             highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
           })) as any,
+          { shouldDirty: false },
         )
       }
 
       if (resume.skills && resume.skills.length > 0) {
-        form.setValue('skills', resume.skills)
+        form.setValue('skills', resume.skills, { shouldDirty: false })
       }
 
       if (resume.languages && resume.languages.length > 0) {
-        form.setValue('languages', resume.languages)
+        form.setValue('languages', resume.languages, { shouldDirty: false })
       }
 
       if (resume.certificates && resume.certificates.length > 0) {
-        form.setValue('certificates', resume.certificates)
+        form.setValue('certificates', resume.certificates, { shouldDirty: false })
       }
 
       if (resume.publications && resume.publications.length > 0) {
-        form.setValue('publications', resume.publications)
+        form.setValue('publications', resume.publications, { shouldDirty: false })
       }
 
       if (resume.awards && resume.awards.length > 0) {
-        form.setValue('awards', resume.awards)
+        form.setValue('awards', resume.awards, { shouldDirty: false })
       }
 
       if (resume.speeches && resume.speeches.length > 0) {
-        form.setValue('speeches', resume.speeches)
+        form.setValue('speeches', resume.speeches, { shouldDirty: false })
       }
 
       if (resume.teachings && resume.teachings.length > 0) {
-        form.setValue('teachings', resume.teachings)
+        form.setValue('teachings', resume.teachings, { shouldDirty: false })
       }
 
       if (resume.interests && resume.interests.length > 0) {
         form.setValue(
           'interests',
-          resume.interests.map(w => ({ ...w, keywords: (w.keywords || []).map(h => ({ value: h, label: h })) })) as any,
+          resume.interests.map(w => ({
+            ...w,
+            keywords: (w.keywords || []).map(h => ({ value: h, label: h })),
+          })) as any,
         )
       }
 
       if (resume.references && resume.references.length > 0) {
-        form.setValue('references', resume.references)
+        form.setValue('references', resume.references, { shouldDirty: false })
       }
 
       if (resume.volunteers && resume.volunteers.length > 0) {
@@ -319,14 +313,19 @@ const ResumeMainContainer: React.FC = () => {
             ...w,
             highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
           })) as any,
+          { shouldDirty: false },
         )
       }
 
       if (resume.inventions && resume.inventions.length > 0) {
-        form.setValue('inventions', resume.inventions)
+        form.setValue('inventions', resume.inventions, { shouldDirty: false })
       }
+
+      form.reset({}, { keepValues: true })
     }
   }, [user])
+
+  if (!resume) return null
 
   return (
     <FormProvider {...form}>

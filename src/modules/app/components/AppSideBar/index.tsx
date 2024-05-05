@@ -45,7 +45,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
               icon={menu.icon}
               title={<span className="text-sm">{menu.title}</span>}
               className={{
-                'bg-gray-50 dark:bg-card border-gray-100 text-primary dark:text-blue-400': pathname === `${menu.link}`,
+                'bg-gray-50 dark:bg-card border-muted text-primary dark:text-primary': pathname === `${menu.link}`,
               }}
             />
           ))}
@@ -55,7 +55,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
           <span className="text-xs text-gray-400">{t('Dashboard.Categories')}</span>
         </LineDivider>
 
-        <div className="mb-8">
+        <div className="mb-8 space-y-2">
           <DashboardMenu
             link="/app/copywriting"
             icon={
@@ -65,7 +65,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             }
             title={<span className="text-sm">{t('Menus.Copywriting')}</span>}
             className={{
-              'bg-gray-50 dark:bg-card border-gray-100 text-primary dark:text-blue-400':
+              'bg-gray-50 dark:bg-card border-muted text-primary dark:text-primary':
                 pathname.includes('/app/copywriting'),
             }}
           />

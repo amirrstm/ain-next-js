@@ -26,8 +26,6 @@ const BasicTab: React.FC = () => {
     if (!recordingBlob) return
 
     getBlobDuration(recordingBlob).then(duration => {
-      // const audio = new Audio(URL.createObjectURL(recordingBlob))
-      // audio.play()
       const file = new File([recordingBlob], 'basic.wav', { type: 'audio/wav' })
       uploadResumeVoice(file, resumeId as string)
     })

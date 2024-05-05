@@ -132,8 +132,8 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   if (!appCategory) return null
 
   return (
-    <div className="border rounded-xl bg-background shadow-md h-full mb-16 md:mb-0">
-      <div className="p-4 flex items-center justify-between border-b">
+    <div className="border border-muted rounded-xl bg-background shadow-md h-full mb-16 md:mb-0">
+      <div className="p-4 flex items-center justify-between border-b border-b-muted">
         <div className="flex gap-2">
           <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
             {SUB_CATEGORY_ICONS[appCategory.slug] || <IconBooks className="w-6 h-6" />}
@@ -182,7 +182,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
             </div>
           ) : (
             <div className="p-6 text-center">
-              <div className="border shadow-md rounded-lg max-w-sm p-4 text-center">
+              <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
                 <p className="text-gray-500 flex">
                   <IconBolt className="text-primary" />
                   <span className="flex-1 leading-normal">{t('Content.Empty')}</span>

@@ -41,8 +41,6 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
         onSelect(value)
       }
 
-      console.log(value, actionMeta)
-
       if (actionMeta.action === 'create-option') {
         onChange?.(isMulti ? value : value?.value, actionMeta)
       } else {

@@ -6,10 +6,16 @@ import { getOccupations } from '@/modules/resume/service'
 
 let controller: AbortController
 
-type Props = { value?: string; onChange: (e: string) => void; placeholder?: string; onBlur?: () => void }
+type Props = {
+  value?: string
+  placeholder?: string
+  onBlur?: () => void
+  onChange: (e: string) => void
+  onSelect?: (e: string) => void
+}
 
 const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
-  ({ value, onChange, placeholder = '', ...props }, ref) => {
+  ({ value, onChange, placeholder = '', onSelect }, ref) => {
     const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
       if (controller) {
         controller.abort()
@@ -24,6 +30,10 @@ const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
     }
 
     const handleChange = (selectedOption: { name: string }) => {
+      if (onSelect) {
+        onSelect(selectedOption.name)
+      }
+
       onChange(selectedOption.name)
     }
 

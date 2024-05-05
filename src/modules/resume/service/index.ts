@@ -38,14 +38,26 @@ export async function getResume(url = ''): Promise<IResume> {
   }
 }
 
-export async function uploadResumeVoice(file: File, resumeId: string): Promise<void> {
+export async function uploadResumeVoice(file: File, resumeId: string): Promise<string> {
   try {
     const formData = new FormData()
     formData.append('file', file)
 
-    await axios.put(API.RESUME.UPLOAD_VOICE(resumeId), formData, {
+    const res = await axios.put(API.RESUME.UPLOAD_VOICE(resumeId), formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
+
+    return res.data.data.text
+  } catch (e) {
+    throw e
+  }
+}
+
+export async function createResumeBio(resumeId: string): Promise<string> {
+  try {
+    const res = await axios.get(API.RESUME.AI_BIO_CREATE(resumeId))
+
+    return res.data.data.text
   } catch (e) {
     throw e
   }

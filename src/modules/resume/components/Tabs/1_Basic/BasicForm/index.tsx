@@ -7,6 +7,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/comp
 import { Input } from '@/components/ui/input'
 import { ReactSelect } from '@/components/ui/react-select'
 
+import { useBasic } from '@/modules/resume/hooks/mutations'
 import { useConstants } from '@/modules/resume/hooks/useConstants'
 import { ResumeFormType } from '@/modules/resume/interface'
 
@@ -14,8 +15,15 @@ import OccupationSelect from '../../../Common/OccupationSelect'
 
 const BasicForm: React.FC = () => {
   const t = useTranslations('form')
-  const { genders, marriage, military } = useConstants()
   const form = useFormContext<ResumeFormType>()
+
+  const { trigger: triggerBasic } = useBasic()
+  const { genders, marriage, military } = useConstants()
+
+  const onSelectOccupation = (occ: string) => {
+    const basic = form.getValues('basic')
+    triggerBasic({ ...basic, label: occ })
+  }
 
   return (
     <div className="grid grid-cols-12 gap-x-3 gap-y-6">
@@ -65,6 +73,7 @@ const BasicForm: React.FC = () => {
                   value={field.value}
                   onBlur={field.onBlur}
                   onChange={field.onChange}
+                  onSelect={onSelectOccupation}
                   placeholder={t('resume.basic.labelPlaceholder')}
                 />
               </FormControl>

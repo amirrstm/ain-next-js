@@ -39,7 +39,9 @@ const API = {
     POST: '/user/resume',
     GET_ALL: '/user/resume/list',
     GET_ONE: (id: string) => `/user/resume/${id}`,
-    UPLOAD_VOICE: (id: string) => `/user/resume/${id}/voice`,
+    UPLOAD_VOICE: (id: string) => `/user/resume/${id}/bio-voice`,
+
+    AI_BIO_CREATE: (id: string) => `/user/resume/${id}/bio-ai`,
 
     BASIC: (id: string) => `/user/resume/${id}/basic`,
     EDUCATION: (id: string) => `/user/resume/${id}/education`,

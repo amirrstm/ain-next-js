@@ -8,7 +8,7 @@ import useSWRMutation from 'swr/mutation'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 
 import { putFeedback } from '../../services'
 
@@ -27,7 +27,7 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
   const [submitted, setSubmitted] = useState<boolean>(false)
   const [hasFeedbackText, setHasFeedbackText] = useState<boolean>(false)
 
-  const { trigger } = useSWRMutation(ENDPOINTS.HISTORY.FEEDBACK(id), putFeedback)
+  const { trigger } = useSWRMutation(API.HISTORY.FEEDBACK(id), putFeedback)
 
   const onLike = () => {
     setStatus('like')

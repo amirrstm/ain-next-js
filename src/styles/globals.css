@@ -2,49 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .ain-select-container .ain-select__control {
+    @apply bg-white dark:bg-card border-neutral-300 dark:border-neutral-700 hover:border-primary dark:hover:border-neutral-500 rounded-md;
+  }
+
+  .ain-select-container .ain-select__control--is-focused {
+    @apply border-neutral-500 hover:border-neutral-500 dark:border-primary dark:hover:border-primary shadow-none;
+  }
+
+  .ain-select-container .ain-select__menu {
+    @apply bg-neutral-100 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 z-[3];
+  }
+
+  .ain-select-container .ain-select__option {
+    @apply text-neutral-600 dark:text-neutral-200 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800;
+  }
+
+  .ain-select-container .ain-select__option--is-focused {
+    @apply bg-neutral-200 dark:bg-neutral-800;
+  }
+
+  .ain-select-container .ain-select__indicator-separator {
+    @apply bg-neutral-400 dark:bg-neutral-700;
+  }
+
+  .ain-select-container .ain-select__indicator {
+    @apply text-neutral-600 dark:text-neutral-600;
+  }
+
+  .ain-select-container .ain-select__placeholder {
+    @apply text-neutral-600 dark:text-neutral-600;
+  }
+
+  .ain-select-container .ain-select__input-container,
+  .ain-select-container .ain-select__single-value {
+    @apply text-neutral-600 dark:text-neutral-200;
+  }
+
+  .ain-select-container .ain-select__multi-value {
+    @apply dark:bg-neutral-600;
+  }
+
+  .ain-select-container .ain-select__multi-value__label {
+    @apply dark:text-neutral-100;
+  }
+}
+
 @layer base {
   :root {
     --background: #ffffff;
     --foreground: #09090b;
+
     --card: #f3f4f6;
     --card-foreground: #09090b;
+
     --popover: #ffffff;
     --popover-foreground: #09090b;
+
     --primary: #091aae;
     --primary-foreground: #ffffff;
+
     --secondary: #0f0f0f;
     --secondary-foreground: #fff1f2;
-    --muted: #f4f4f5;
+
+    --muted: #e7e5e5;
     --muted-foreground: #f3f4f6;
+
     --accent: #f4f4f5;
     --accent-foreground: #18181b;
+
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
+
     --border: #e4e4e7;
     --input: #e4e4e7;
     --ring: #496483;
     --radius: 0.5rem;
   }
   .dark {
-    --background: #09090b;
+    --background: #141414;
     --foreground: #ffffff;
+
     --card: #18181b;
     --card-foreground: #ffffff;
+
     --popover: #18181b;
     --popover-foreground: #ffffff;
-    --primary: #091aae;
+
+    --primary: #bb86fc;
     --primary-foreground: #ffffff;
+
     --secondary: #0f0f0f;
     --secondary-foreground: #fff1f2;
-    --muted: #1e1e22;
+
+    --muted: #424242;
     --muted-foreground: #71717a;
+
     --accent: #f4f4f5;
     --accent-foreground: #18181b;
+
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
+
     --border: #e4e4e7;
-    --input: #e4e4e7;
+    --input: #424242;
     --ring: #496483;
+    --radius: 0.5rem;
   }
 }
 

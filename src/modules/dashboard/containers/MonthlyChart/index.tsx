@@ -62,8 +62,8 @@ const MonthlyChartContainer: React.FC = () => {
         <span className="text-lg">{t('Menus.Dashboard')}</span>
       </div>
 
-      <div className="bg-background md:border md:rounded-xl md:shadow-sm">
-        <div className="p-4 md:p-6 md:px-8 border-b">
+      <div className="bg-background md:border md:rounded-xl md:border-muted md:shadow-sm">
+        <div className="p-4 md:p-6 md:px-8 border-b border-b-muted">
           <div className="flex gap-4 flex-col md:flex-row md:justify-between md:items-center">
             <div>
               <p className="font-semibold text-lg">{t('Dashboard.Stats.UsagePercentage')}</p>
@@ -82,7 +82,7 @@ const MonthlyChartContainer: React.FC = () => {
             </p>
           </div>
 
-          <div className="mt-4 md:mt-8 bg-gray-200 rounded-full">
+          <div className="mt-4 md:mt-8 bg-gray-200 dark:bg-neutral-700 rounded-full">
             <div className="relative" style={{ width: `${progress}%` }}>
               {progress > 0 && (
                 <div className="absolute top-1/2 left-1/2 z-[1] -translate-y-1/2 -translate-x-1/2">
@@ -115,7 +115,7 @@ const MonthlyChartContainer: React.FC = () => {
 
         <MonthlyAreaChart data={chartData} />
 
-        <div className="mt-4 p-4 md:p-8 border-t flex justify-between items-center text-xl">
+        <div className="mt-4 p-4 md:p-8 border-t border-t-muted flex justify-between items-center text-xl">
           <p>{t('Dashboard.Stats.Plan')}:</p>
           <h2 className={clsx(YekanBakhNumFont.className)}>{plan?.name}</h2>
         </div>

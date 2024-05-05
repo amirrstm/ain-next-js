@@ -1,0 +1,132 @@
+{
+  "zod": {
+    "errors": {
+      "invalid_type": "ورودی نامعتبر، انتظار ورودی از نوع {expected}، دریافت شده {received}",
+      "invalid_type_received_undefined": "ضروری",
+      "invalid_literal": "مقدار متناقض. مورد انتظار {expected}",
+      "unrecognized_keys": "کلید(های) نامعتبر در شیئ: {keys}",
+      "invalid_union": "ورودی نامعتبر",
+      "invalid_union_discriminator": "مقدار شناسایی‌گر نامعتبر. مورد انتظار {options}",
+      "invalid_enum_value": "مقدار شماره‌گذاری نامعتبر. مورد انتظار {options}، دریافت شده {received}",
+      "invalid_arguments": "آرگومان‌های تابع نامعتبر",
+      "invalid_return_type": "نوع بازگشتی تابع نامعتبر",
+      "invalid_date": "تاریخ نامعتبر",
+      "custom": "ورودی نامعتبر",
+      "invalid_intersection_types": "نتایج تلاقی نمی‌توانند ادغام شوند",
+      "not_multiple_of": "عدد باید ضریبی از {multipleOf} باشد",
+      "not_finite": "عدد باید متناهی باشد",
+      "invalid_string": {
+        "email": "{validation} نامعتبر",
+        "emoji": "{validation} نامعتبر",
+        "url": "{validation} نامعتبر",
+        "uuid": "{validation} نامعتبر",
+        "ulid": "{validation} نامعتبر",
+        "ip": "{validation} نامعتبر",
+        "cuid": "{validation} نامعتبر",
+        "cuid2": "{validation} نامعتبر",
+        "regex": "نامعتبر",
+        "datetime": "{validation} نامعتبر",
+        "startsWith": "ورودی نامعتبر: باید با \"{startsWith}\" شروع شود",
+        "endsWith": "ورودی نامعتبر: باید با \"{endsWith}\" پایان یابد"
+      },
+      "too_small": {
+        "array": {
+          "exact": "{path, select, missingTranslation {آرایه} other {{path}}} باید دقیقاً {minimum} عنصر داشته باشد",
+          "inclusive": "{path, select, missingTranslation {آرایه} other {{path}}} باید حداقل {minimum} عنصر داشته باشد",
+          "not_inclusive": "{path, select, missingTranslation {آرایه} other {{path}}} باید بیشتر از {minimum} عنصر داشته باشد"
+        },
+        "string": {
+          "exact": "{path, select, missingTranslation {رشته} other {{path}}} باید دقیقاً {minimum} کاراکتر داشته باشد",
+          "inclusive": "{path, select, missingTranslation {رشته} other {{path}}} باید حداقل {minimum} کاراکتر داشته باشد",
+          "not_inclusive": "{path, select, missingTranslation {رشته} other {{path}}} باید بیشتر از {minimum} کاراکتر داشته باشد"
+        },
+        "number": {
+          "exact": "{path, select, missingTranslation {عدد} other {{path}}} باید دقیقاً {minimum} باشد",
+          "inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید بیشتر یا مساوی با {minimum} باشد",
+          "not_inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید بیشتر از {minimum} باشد"
+        },
+        "bigint": {
+          "exact": "{path, select, missingTranslation {عدد} other {{path}}} باید دقیقاً {minimum} باشد",
+          "inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید بیشتر یا مساوی با {minimum} باشد",
+          "not_inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید بیشتر از {minimum} باشد"
+        },
+        "set": {
+          "exact": "ورودی نامعتبر",
+          "inclusive": "ورودی نامعتبر",
+          "not_inclusive": "ورودی نامعتبر"
+        },
+        "date": {
+          "exact": "تاریخ باید دقیقاً {minimum, date, short} باشد",
+          "inclusive": "تاریخ باید بیشتر یا مساوی با {minimum, date, short} باشد",
+          "not_inclusive": "تاریخ باید بیشتر از {minimum, date, short} باشد"
+        }
+      },
+      "too_big": {
+        "array": {
+          "exact": "{path, select, missingTranslation {آرایه} other {{path}}} باید دقیقاً {maximum} عنصر داشته باشد",
+          "inclusive": "{path, select, missingTranslation {آرایه} other {{path}}} باید حداکثر {maximum} عنصر داشته باشد",
+          "not_inclusive": "{path, select, missingTranslation {آرایه} other {{path}}} باید کمتر از {maximum} عنصر داشته باشد"
+        },
+        "string": {
+          "exact": "{path, select, missingTranslation {رشته} other {{path}}} باید دقیقاً {maximum} کاراکتر داشته باشد",
+          "inclusive": "{path, select, missingTranslation {رشته} other {{path}}} باید حداکثر {maximum} کاراکتر داشته باشد",
+          "not_inclusive": "{path, select, missingTranslation {رشته} other {{path}}} باید کمتر از {maximum} کاراکتر داشته باشد"
+        },
+        "number": {
+          "exact": "{path, select, missingTranslation {عدد} other {{path}}} باید دقیقاً {maximum} باشد",
+          "inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید کمتر یا مساوی با {maximum} باشد",
+          "not_inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید کمتر از {maximum} باشد"
+        },
+        "bigint": {
+          "exact": "{path, select, missingTranslation {عدد} other {{path}}} باید دقیقاً {maximum} باشد",
+          "inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید کمتر یا مساوی با {maximum} باشد",
+          "not_inclusive": "{path, select, missingTranslation {عدد} other {{path}}} باید کمتر از {maximum} باشد"
+        },
+        "set": {
+          "exact": "ورودی نامعتبر",
+          "inclusive": "ورودی نامعتبر",
+          "not_inclusive": "ورودی نامعتبر"
+        },
+        "date": {
+          "exact": "تاریخ باید دقیقاً {maximum, date, short} باشد",
+          "inclusive": "تاریخ باید کوچکتر یا مساوی با {maximum, date, short} باشد",
+          "not_inclusive": "تاریخ باید کوچکتر از {maximum, date, short} باشد"
+        }
+      }
+    },
+    "validations": {
+      "email": "ایمیل",
+      "emoji": "شکلک",
+      "url": "آدرس اینترنتی",
+      "uuid": "شناسه یکتا",
+      "ulid": "ULID",
+      "ip": "آی‌پی",
+      "cuid": "CUID",
+      "cuid2": "CUID2",
+      "regex": "عبارت باقاعدگی",
+      "datetime": "تاریخ و زمان"
+    },
+    "types": {
+      "function": "تابع",
+      "number": "عدد",
+      "string": "رشته",
+      "nan": "NaN",
+      "integer": "عدد صحیح",
+      "float": "اعشاری",
+      "boolean": "منطقی",
+      "date": "تاریخ",
+      "bigint": "BigInt",
+      "undefined": "تعریف نشده",
+      "symbol": "نماد",
+      "null": "تهی",
+      "array": "آرایه",
+      "object": "شیء",
+      "unknown": "ناشناخته",
+      "promise": "پیمان",
+      "void": "خالی",
+      "never": "هیچ‌وقت",
+      "map": "نقشه",
+      "set": "مجموعه"
+    }
+  }
+}

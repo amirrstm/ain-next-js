@@ -45,10 +45,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         disabled={disabled || loading}
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn('relative', buttonVariants({ variant, size, className }))}
         {...props}
       >
-        {loading ? <IconLoader className="h-5 w-5 animate-spin" /> : children}
+        <>
+          {loading && (
+            <span className="absolute inset-0 flex items-center justify-center bg-slate-900 bg-opacity-60">
+              <IconLoader className="h-5 w-5 animate-spin" />
+            </span>
+          )}
+          {children}
+        </>
       </Comp>
     )
   },

@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning={true} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <Script
+      {/* <Script
         id="raychat-widget-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -48,7 +48,7 @@ export default function RootLayout({
             d.getElementsByTagName("head")[0].appendChild(s);
             })();`,
         }}
-      />
+      /> */}
       <GoogleAnalytics gaId="G-30HPPFMJ63" />
 
       <body
@@ -57,7 +57,7 @@ export default function RootLayout({
       >
         <Suspense fallback={<div />}>
           <StoreProvider>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <>
                 <SWRProvider>
                   <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

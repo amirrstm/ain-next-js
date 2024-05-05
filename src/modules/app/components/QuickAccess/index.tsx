@@ -20,10 +20,10 @@ const QuickAccess: React.FC = () => {
       <div className="grid grid-cols-12 gap-4 mt-6">
         <Link
           href="/app/copywriting"
-          className="col-span-5 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-5 rounded-xl border border-muted bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
-            <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
+            <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
                 <IconPencil className="text-white w-5 h-5" />
               </div>
@@ -38,10 +38,10 @@ const QuickAccess: React.FC = () => {
 
         <Link
           href="/app/history"
-          className="col-span-3 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-3 rounded-xl border border-muted bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
-            <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
+            <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
                 <IconHistory className="text-white w-5 h-5" />
               </div>
@@ -56,10 +56,10 @@ const QuickAccess: React.FC = () => {
 
         <Link
           href="/app/chat"
-          className="col-span-4 rounded-xl border bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
+          className="col-span-4 rounded-xl border border-muted bg-background group hover:scale-105 transition-all duration-200 ease-in-out"
         >
           <div className="p-4">
-            <div className="border w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
+            <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
                 <IconMessage2Bolt className="text-white w-5 h-5" />
               </div>

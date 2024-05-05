@@ -13,14 +13,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Link } from '@/components/ui/navigation'
 
-import Validations from '@/lib/Validations'
+import { useI18nZodErrors } from '@/lib/zodValidation'
 
-const formSchema = z.object({
-  name: z.string().min(1, { message: Validations.Login.Mobile }),
-})
+const formSchema = z.object({ name: z.string().min(1) })
 
 type Props = { loading: boolean; returnUrl?: string; onSubmit: (data: z.infer<typeof formSchema>) => void }
 const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
+  useI18nZodErrors('auth')
   const t = useTranslations('Auth')
 
   const form = useForm<z.infer<typeof formSchema>>({

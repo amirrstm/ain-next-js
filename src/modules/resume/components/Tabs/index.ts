@@ -1,0 +1,7 @@
+export { default as BasicTab } from './1_Basic'
+export { default as EducationTab } from './2_Education'
+export { default as WorkTab } from './3_Work'
+export { default as SkillTab } from './4_Skill'
+export { default as ProjectTab } from './5_Project'
+export { default as PublicationTab } from './6_Publication'
+export { default as OtherTab } from './7_Other'

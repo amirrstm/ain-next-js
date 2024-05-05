@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconPlus, IconSend2 } from '@tabler/icons-react'
@@ -14,7 +15,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/components/ui/use-toast'
 
-import ENDPOINTS from '@/lib/Endpoints'
+import API from '@/lib/api'
 
 import { requestTemplate } from '../../services'
 
@@ -25,9 +26,10 @@ const formSchema = z.object({
 
 const RequestTemplate: React.FC = () => {
   const { toast } = useToast()
+  const { resolvedTheme } = useTheme()
   const t = useTranslations('Copywriting')
   const [isOpen, setIsOpen] = useState(false)
-  const { trigger, isMutating } = useSWRMutation(ENDPOINTS.CATEGORY.REQUEST, requestTemplate)
+  const { trigger, isMutating } = useSWRMutation(API.CATEGORY.REQUEST, requestTemplate)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,7 +47,11 @@ const RequestTemplate: React.FC = () => {
 
   return (
     <>
-      <Button className="w-full gap-2" variant="secondary" onClick={() => setIsOpen(true)}>
+      <Button
+        className="w-full gap-2"
+        onClick={() => setIsOpen(true)}
+        variant={resolvedTheme === 'dark' ? 'default' : 'secondary'}
+      >
         <IconPlus className="w-5 h-5" />
         <span>{t('Template.Title')}</span>
       </Button>

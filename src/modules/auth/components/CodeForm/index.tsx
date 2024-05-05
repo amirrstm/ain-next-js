@@ -14,10 +14,10 @@ import { CodeInput } from '@/components/ui/code-input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Link } from '@/components/ui/navigation'
 
-import Validations from '@/lib/Validations'
+import { useI18nZodErrors } from '@/lib/zodValidation'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
-const formSchema = z.object({ code: z.string().length(6, { message: Validations.Login.Code }) })
+const formSchema = z.object({ code: z.string().length(6) })
 
 type Props = {
   loading: boolean
@@ -26,6 +26,7 @@ type Props = {
   onSubmit: (data: z.infer<typeof formSchema>) => void
 }
 const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
+  useI18nZodErrors('auth')
   const t = useTranslations('Auth')
   const [minutes, setMinutes] = useState(5)
   const [seconds, setSeconds] = useState(0)

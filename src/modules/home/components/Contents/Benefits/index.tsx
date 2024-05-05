@@ -71,7 +71,7 @@ export default Benefits
 
 const SingleBox: React.FC<{ title: string; description: string; icon: ReactNode }> = ({ title, description, icon }) => {
   return (
-    <div className="flex flex-col gap-6 bg-background border border-muted-foreground rounded-xl p-4">
+    <div className="flex flex-col gap-6 bg-background border border-muted rounded-xl p-4">
       {icon}
       <div>
         <h2 className="text-lg font-semibold">{title}</h2>

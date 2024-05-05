@@ -2,13 +2,13 @@ import useSWR from 'swr'
 
 import { ResponseModel } from '@/interface/General.model'
 
+import API from '@/lib/api'
 import axios from '@/lib/axios'
-import ENDPOINTS from '@/lib/Endpoints'
 
 import { DashboardStat } from '../interface'
 
 function useDashboard(enabled?: boolean) {
-  const { data, isLoading, mutate } = useSWR(!enabled ? undefined : ENDPOINTS.DASHBOARD.HISTORY, getDashboard)
+  const { data, isLoading, mutate } = useSWR(!enabled ? undefined : API.DASHBOARD.HISTORY, getDashboard)
 
   return { data, mutate, isLoading }
 }

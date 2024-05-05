@@ -5,7 +5,7 @@ import { PageLang } from '@/interface/General.model'
 
 import { appViewport } from '@/constants'
 import { locales } from '@/i18n'
-import ResumeContainer from '@/modules/resume/containers/Resume'
+import ResumeContainer from '@/modules/resume/containers/ResumeList'
 
 export async function generateStaticParams() {
   return locales.map(locale => ({ locale }))

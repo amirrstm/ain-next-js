@@ -1,0 +1,47 @@
+{
+  "constants": {
+    "gender": {
+      "male": "مرد",
+      "female": "زن"
+    },
+
+    "marriage": {
+      "single": "مجرد",
+      "married": "متاهل"
+    },
+
+    "military": {
+      "included": "مشمول",
+      "doing": "در حال خدمت",
+      "completed": "پایان خدمت",
+      "exempt": "معاف",
+      "educationExempt": "معافیت تحصیلی",
+      "noMedicalExempt": "معافیت غیر پزشکی",
+      "medicalExempt": "معافیت پزشکی"
+    },
+
+    "education": {
+      "underDiploma": "زیر دیپلم",
+      "diploma": "دیپلم",
+      "associate": "کاردانی",
+      "bachelor": "کارشناسی",
+      "master": "کارشناسی ارشد",
+      "phd": "دکتری",
+      "postPhd": "فوق دکتری"
+    },
+
+    "languageFluencyType": {
+      "describe": "توصیفی",
+      "a1-c2": "A1-C2",
+      "graphical": "گرافیکی"
+    },
+
+    "describeFluency": {
+      "beginner": "مبتدی",
+      "preIntermediate": "آشنایی نسبی",
+      "elementary": "متوسط",
+      "intermediate": "پیشرفته",
+      "advanced": "مسلط"
+    }
+  }
+}

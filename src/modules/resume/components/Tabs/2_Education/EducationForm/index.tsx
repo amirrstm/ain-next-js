@@ -44,7 +44,7 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
           ref={node => drag(drop(node))}
           className="absolute -right-3 -top-3 w-7 h-7 bg-muted z-[2] rounded-full flex items-center justify-center cursor-move"
         >
-          <IconArrowsMove className="text-white w-4 h-4" />
+          <IconArrowsMove className="text-neutral-600 dark:text-white w-4 h-4" />
         </div>
       )}
 
@@ -199,8 +199,8 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
 
       <div className="col-span-12">
         <FormLabel>{t('resume.education.highlights')}</FormLabel>
-        <p className="text-xs text-muted-foreground mt-2">
-          <span className="text-red-300">*</span> {t('resume.education.highlightsTitle')}
+        <p className="text-xs text-neutral-400 dark:text-muted-foreground mt-2">
+          <span className="text-red-500 dark:text-red-300">*</span> {t('resume.education.highlightsTitle')}
         </p>
 
         <HighlightField

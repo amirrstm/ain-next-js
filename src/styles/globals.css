@@ -24,15 +24,15 @@
   }
 
   .ain-select-container .ain-select__indicator-separator {
-    @apply bg-neutral-400 dark:bg-neutral-700;
+    @apply dark:bg-neutral-700;
   }
 
   .ain-select-container .ain-select__indicator {
-    @apply text-neutral-600 dark:text-neutral-600;
+    @apply dark:text-neutral-600;
   }
 
   .ain-select-container .ain-select__placeholder {
-    @apply text-neutral-600 dark:text-neutral-600;
+    @apply text-neutral-300 dark:text-neutral-600;
   }
 
   .ain-select-container .ain-select__input-container,

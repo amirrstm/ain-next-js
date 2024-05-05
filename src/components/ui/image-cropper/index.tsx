@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { useEffect, useRef, useState } from 'react'
 import ReactCrop, { centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop'

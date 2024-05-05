@@ -7,7 +7,7 @@ const AddNew: React.FC<{ title: string; onClick: () => void }> = ({ title, onCli
       onClick={onClick}
       className="border border-dashed border-muted flex flex-col justify-center items-center rounded-xl cursor-pointer"
     >
-      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary -translate-y-1/2">
+      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white -translate-y-1/2">
         <IconPlus className="w-4 h-4" />
       </div>
       <span className="text-sm mb-3 -mt-3">{title}</span>

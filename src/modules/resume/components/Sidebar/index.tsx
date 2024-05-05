@@ -78,9 +78,9 @@ const SingleTab: React.FC<{
           'xl:absolute xl:-right-10 flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full',
           'bg-muted -start-4 ring-4 ring-muted',
           {
-            'bg-green-200 text-green-600': completed,
-            'bg-primary text-purple-200': isActive,
-            'group-hover:text-purple-200': !isActive && !completed,
+            'text-green-600': completed,
+            'bg-primary text-white ring-primary': isActive,
+            'group-hover:text-primary': !isActive && !completed,
           },
         )}
       >
@@ -104,8 +104,8 @@ const SingleTab: React.FC<{
         </h3>
         <p
           className={clsx('hidden xl:block text-xs text-gray-400 group-hover:text-primary font-light', {
-            '!text-purple-300': isActive,
-            '!text-green-300': completed,
+            '!text-primary': isActive,
+            '!text-green-500': completed,
           })}
         >
           {description}

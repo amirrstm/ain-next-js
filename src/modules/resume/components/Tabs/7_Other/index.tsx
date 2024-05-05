@@ -150,7 +150,7 @@ const AddButton: React.FC<{ onClick: () => void; title: string }> = ({ onClick, 
         'border border-dashed border-muted p-3 rounded-md flex items-center justify-center text-center gap-2 flex-col',
       )}
     >
-      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary ">
+      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white">
         <IconPlus className="w-4 h-4" />
       </div>
       <h3 className="text-sm">{title}</h3>

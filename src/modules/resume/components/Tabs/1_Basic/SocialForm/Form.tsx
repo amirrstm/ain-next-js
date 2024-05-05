@@ -38,7 +38,7 @@ const SingleSocialForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCar
           ref={node => drag(drop(node))}
           className="absolute -right-3 -top-3 w-7 h-7 bg-muted z-[2] rounded-full flex items-center justify-center cursor-move"
         >
-          <IconArrowsMove className="text-white w-4 h-4" />
+          <IconArrowsMove className="text-neutral-600 dark:text-white w-4 h-4" />
         </div>
       )}
 

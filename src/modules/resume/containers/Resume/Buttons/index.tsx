@@ -76,7 +76,7 @@ const Buttons: React.FC = () => {
         </Button>
       </Link>
       {activeTab !== RESUME_ENUM_TABS.Basic && (
-        <Button onClick={onBack} className="flex-1 bg-muted">
+        <Button onClick={onBack} className="flex-1 bg-neutral-500 dark:bg-muted">
           {t('Back')}
         </Button>
       )}

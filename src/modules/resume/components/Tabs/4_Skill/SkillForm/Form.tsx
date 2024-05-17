@@ -13,6 +13,8 @@ import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
+import SkillSelect from '../../../Common/SkillSelect'
+
 interface Props {
   fieldId: string
   position: number
@@ -55,8 +57,14 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('resume.skill.name')}</FormLabel>
+
               <FormControl>
-                <Input {...field} inputSize="sm" />
+                <SkillSelect
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={field.onChange}
+                  placeholder={t('resume.skill.name')}
+                />
               </FormControl>
 
               <FormMessage />

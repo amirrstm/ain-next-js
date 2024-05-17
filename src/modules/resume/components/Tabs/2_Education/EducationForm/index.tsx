@@ -16,6 +16,8 @@ import { ResumeFormType } from '@/modules/resume/interface'
 
 import HighlightField from '../../../Common/HighlightsField'
 import LocationForm from '../../../Common/LocationForm'
+import StudyFieldSelect from '../../../Common/StudyFieldSelect'
+import UniversitySelect from '../../../Common/UniversitySelect'
 
 interface Props {
   fieldId: string
@@ -79,8 +81,14 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('resume.education.area')}</FormLabel>
+
               <FormControl>
-                <Input {...field} inputSize="sm" />
+                <StudyFieldSelect
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={field.onChange}
+                  placeholder={t('resume.education.area')}
+                />
               </FormControl>
 
               <FormMessage />
@@ -97,7 +105,7 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
             <FormItem>
               <FormLabel>{t('resume.education.fieldOfStudy')}</FormLabel>
               <FormControl>
-                <Input {...field} inputSize="sm" />
+                <Input {...field} placeholder={t('resume.education.fieldOfStudy')} inputSize="sm" />
               </FormControl>
 
               <FormMessage />
@@ -113,8 +121,14 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('resume.education.institution')}</FormLabel>
+
               <FormControl>
-                <Input {...field} inputSize="sm" />
+                <UniversitySelect
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={field.onChange}
+                  placeholder={t('resume.education.institution')}
+                />
               </FormControl>
 
               <FormMessage />

@@ -12,6 +12,7 @@ import { MonthPicker } from '@/components/ui/month-picker'
 import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
 
+import CompanySelect from '../../../Common/CompanySelect'
 import HighlightField from '../../../Common/HighlightsField'
 import LocationForm from '../../../Common/LocationForm'
 import OccupationSelect from '../../../Common/OccupationSelect'
@@ -76,8 +77,14 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('resume.work.name')}</FormLabel>
+
               <FormControl>
-                <Input {...field} inputSize="sm" />
+                <CompanySelect
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={field.onChange}
+                  placeholder={t('resume.work.name')}
+                />
               </FormControl>
 
               <FormMessage />

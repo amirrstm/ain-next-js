@@ -2,7 +2,7 @@ import React from 'react'
 import AsyncSelect from 'react-select/async'
 
 import { reactSelectTheme } from '@/lib/utils'
-import { getOccupations } from '@/modules/resume/service'
+import { getUniversities } from '@/modules/resume/service'
 
 let controller: AbortController
 
@@ -14,7 +14,7 @@ type Props = {
   onSelect?: (e: string) => void
 }
 
-const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
+const UniversitySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
   ({ value, onChange, placeholder = '', onSelect }, ref) => {
     const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
       if (controller) {
@@ -24,7 +24,7 @@ const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
       controller = new AbortController()
       const signal = controller.signal
 
-      getOccupations({ search: inputValue }, signal)
+      getUniversities({ search: inputValue }, signal)
         .then(data => callback(inputValue ? (data.length > 0 ? data : [{ name: inputValue }]) : data))
         .catch(() => {})
     }
@@ -58,6 +58,6 @@ const OccupationSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
   },
 )
 
-OccupationSelect.displayName = 'OccupationSelect'
+UniversitySelect.displayName = 'UniversitySelect'
 
-export default OccupationSelect
+export default UniversitySelect

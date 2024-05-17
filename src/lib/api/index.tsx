@@ -21,13 +21,21 @@ const API = {
     MESSAGE: '/user/chat/message',
   },
 
+  IMAGE: {
+    GENERATE: '/user/user/image-prompt',
+  },
+
   DASHBOARD: {
     HISTORY: '/user/history/dashboard',
   },
 
   DATA: {
+    SKILLS: '/public/data/skills',
+    COMPANIES: '/public/data/companies',
     PROVINCES: '/public/data/provinces',
     OCCUPATIONS: '/public/data/occupations',
+    UNIVERSITIES: '/public/data/universities',
+    STUDY_FIELDS: '/public/data/study-fields',
   },
 
   HISTORY: {
@@ -38,11 +46,17 @@ const API = {
   RESUME: {
     POST: '/user/resume',
     GET_ALL: '/user/resume/list',
+    CREATE_FROM_VOICE: '/user/resume/voice',
+
+    DELETE: (id: string) => `/user/resume/${id}`,
     GET_ONE: (id: string) => `/user/resume/${id}`,
+    UPDATE_TITLE: (id: string) => `/user/resume/${id}/title`,
+    UPDATE_DOWNLOAD: (id: string) => `/user/resume/${id}/update`,
     UPLOAD_VOICE: (id: string) => `/user/resume/${id}/bio-voice`,
 
     AI_BIO_CREATE: (id: string) => `/user/resume/${id}/bio-ai`,
 
+    UPLOAD_IMAGE: (id: string) => `/user/resume/${id}/upload-image`,
     BASIC: (id: string) => `/user/resume/${id}/basic`,
     EDUCATION: (id: string) => `/user/resume/${id}/education`,
     WORK: (id: string) => `/user/resume/${id}/work`,

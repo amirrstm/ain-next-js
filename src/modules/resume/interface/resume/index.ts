@@ -15,7 +15,18 @@ import { IResumeTeaching } from './resume.teaching'
 import { IResumeVolunteer } from './resume.volunteer'
 import { IResumeWork } from './resume.work'
 
+export interface ResumeFile {
+  mime: string
+  path: string
+  size: number
+  baseUrl: string
+  filename: string
+  completedUrl: string
+  pathWithFilename: string
+}
+
 export interface IResume {
+  image: ResumeFile
   basic: IResumeBasic
   work: IResumeWork[]
   skills: IResumeSkill[]
@@ -32,4 +43,11 @@ export interface IResume {
   speeches: IResumeSpeech[]
   teachings: IResumeTeaching[]
   inventions: IResumeInvention[]
+}
+export interface IResumeResponse extends IResume {
+  _id: string
+  title: string
+  file: ResumeFile
+  createdAt: string
+  updatedAt: string
 }

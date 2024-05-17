@@ -1,25 +1,31 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { AvatarFallback } from '@radix-ui/react-avatar'
-import { IconUpload, IconUser } from '@tabler/icons-react'
-import React, { useCallback, useEffect, useState } from 'react'
+import { IconTrash, IconUpload, IconUser } from '@tabler/icons-react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { ImageCropper } from '@/components/ui/image-cropper'
 
-type Props = { image?: string }
-export const ProfileAvatar: React.FC<Props> = ({ image }) => {
+import { ResumeContext } from '@/modules/resume/context'
+import { removeResumeImage, updateResumeImage } from '@/modules/resume/service'
+
+export const ProfileAvatar: React.FC = () => {
+  const { resumeId } = useParams()
   const t = useTranslations('User')
   const [preview, setPreview] = useState<string>()
   const [actualImage, setActualImage] = useState('')
 
+  const { resume } = useContext(ResumeContext)
+
   useEffect(() => {
-    if (image) {
-      setPreview(image)
+    if (resume && resume.image) {
+      setPreview(resume.image.completedUrl)
     }
-  }, [image])
+  }, [resume])
 
   const onDrop = useCallback(async (files: File[]) => {
     const reader = new FileReader()
@@ -46,42 +52,41 @@ export const ProfileAvatar: React.FC<Props> = ({ image }) => {
   }
 
   const onSetFile = (file: File) => {
-    // uploadFile(file).then((fileData) => {
-    //   setProfileImage(userId, fileData.id).then((data) => {
-    //     message.success(data.message);
-    //     if (userId === profile.id) {
-    //       setProfile({ ...profile, avatar: fileData.root_file.path });
-    //     }
-    //   });
-    // });
+    updateResumeImage(file, resumeId as string)
   }
 
   const onRemoveImage = () => {
     setPreview(undefined)
-    // setProfileImage(userId, null).then((data) => {
-    //   message.success(data.message);
 
-    //   if (userId === profile.id) {
-    //     setProfile({ ...profile, avatar: null });
-    //   }
-    // });
+    removeResumeImage(resumeId as string)
   }
 
   return (
     <>
-      <div {...getRootProps()} className="flex flex-col items-center gap-3">
-        <input {...getInputProps()} />
-        <Avatar className="w-20 h-20 bg-card cursor-pointer">
-          <AvatarImage src={preview} />
-          <AvatarFallback className="flex items-center justify-center w-full">
-            <IconUser className="w-10 h-10" />
-          </AvatarFallback>
-        </Avatar>
+      <div className="relative">
+        <div {...getRootProps()} className="flex flex-col items-center gap-3">
+          <input {...getInputProps()} />
+          <Avatar className="w-20 h-20 bg-card cursor-pointer">
+            <AvatarImage src={preview} />
+            <AvatarFallback className="flex items-center justify-center w-full">
+              <IconUser className="w-10 h-10" />
+            </AvatarFallback>
+          </Avatar>
 
-        <Button type="button" onClick={open} size="sm" className="flex gap-2 items-center">
-          <IconUpload className="w-4 h-4" />
-          <span className="text-xs">{t('Upload')}</span>
-        </Button>
+          <Button type="button" onClick={open} size="sm" className="flex gap-2 items-center">
+            <IconUpload className="w-4 h-4" />
+            <span className="text-xs">{t('Upload')}</span>
+          </Button>
+        </div>
+
+        {preview && (
+          <div
+            onClick={onRemoveImage}
+            className="absolute -top-1 -right-1 bg-destructive w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
+          >
+            <IconTrash className="w-4 h-4" />
+          </div>
+        )}
       </div>
 
       <ImageCropper

@@ -68,10 +68,12 @@ const ResumeListContainer: React.FC = () => {
         <div className="p-4 border-b border-b-muted flex items-center justify-between">
           <p className="text-xs md:text-sm">{t('List')}</p>
 
-          <Button loading={isMutating} className="flex gap-2 items-center" onClick={onCreate}>
-            <IconOctagonPlus className="w-5 h-5" />
-            {t('Create')}
-          </Button>
+          {data && data.length > 0 && (
+            <Button loading={isMutating} className="flex gap-2 items-center" onClick={onCreate}>
+              <IconOctagonPlus className="w-5 h-5" />
+              {t('Create')}
+            </Button>
+          )}
         </div>
         <div className="p-4 min-h-[600px]">
           {isLoading ? (

@@ -1,8 +1,6 @@
 const normalizeSrc = src => (src[0] === '/' ? src.slice(1) : src)
 
-export default function cloudinaryLoader({ src, width, quality }) {
-  const params = ['f_auto', 'c_limit', 'w_' + width, 'q_' + (quality || 'auto')]
-  return `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${params.join(
-    ',',
-  )}/${normalizeSrc(src)}`
+export default function cloudflareLoader({ src, width, quality }) {
+  const params = [`w=${width}`, `q=${quality || 'auto'}`]
+  return `https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME}/${normalizeSrc(src)}/${params.join(',')}`
 }

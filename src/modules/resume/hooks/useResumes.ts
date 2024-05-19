@@ -8,12 +8,7 @@ import axios from '@/lib/axios'
 import { IResumeResponse } from '../interface/resume'
 
 function useResumes() {
-  const { data, isLoading, mutate } = useSWR(API.RESUME.GET_ALL, getResumes, {
-    revalidateOnFocus: false,
-    revalidateIfStale: false,
-  })
-
-  return { data, mutate, isLoading }
+  return useSWR(API.RESUME.GET_ALL, getResumes)
 }
 
 export default useResumes

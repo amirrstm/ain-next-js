@@ -9,6 +9,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 
+import { LOGO_URL } from '@/constants'
 import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
@@ -31,8 +32,10 @@ const Header: React.FC<Props> = ({ dark = true }) => {
             alt="logo"
             width={200}
             height={200}
-            className="w-full h-full object-contain"
-            src={dark ? '/images/main-logo.png' : '/images/logo-black.png'}
+            src={LOGO_URL}
+            className={clsx('w-full h-full object-contain', {
+              'grayscale invert contrast-[1] hue-rotate-[180deg]': dark,
+            })}
           />
         </Link>
 

@@ -83,7 +83,7 @@ const UserHistoryContainer: React.FC = () => {
             ) : (
               <div
                 onScroll={handleScroll}
-                className="col-span-12 md:col-span-6 lg:col-span-4 bg-background h-full max-h-[calc(100vh-100px)] md:rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
+                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-background h-full max-h-[calc(100vh-100px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
               >
                 {items?.map(item => (
                   <div

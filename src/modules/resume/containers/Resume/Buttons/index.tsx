@@ -9,6 +9,7 @@ import { Link } from '@/components/ui/navigation'
 
 import { RESUME_ENUM_TABS } from '@/modules/resume/constants/resume.enum'
 import { ResumeContext } from '@/modules/resume/context'
+import { updateDownload } from '@/modules/resume/service'
 
 const Buttons: React.FC = () => {
   const { resumeId } = useParams()
@@ -70,7 +71,7 @@ const Buttons: React.FC = () => {
         </Button>
       )}
       <Link href={`/resume-preview/${resumeId}`} target="_blank" className="block flex-auto xl:flex-1">
-        <Button className="w-full bg-blue-400 flex gap-1">
+        <Button className="w-full bg-blue-400 flex gap-1 hover:bg-blue-400/80">
           <IconEye className="w-5 h-5" />
           <span>{t('Preview')}</span>
         </Button>

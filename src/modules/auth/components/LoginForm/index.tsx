@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input'
 import LineDivider from '@/components/ui/line-divider'
 import { Link } from '@/components/ui/navigation'
 
+import { LOGO_URL } from '@/constants'
 import { useI18nZodErrors } from '@/lib/zodValidation'
 
 import GoogleIcon from './GoogleIcon'
@@ -43,7 +44,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
             alt="logo"
             width={200}
             height={200}
-            src="/images/logo-black.png"
+            src={LOGO_URL}
             className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </div>

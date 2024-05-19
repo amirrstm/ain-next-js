@@ -10,7 +10,7 @@ const ResumeContainer: React.FC = () => {
     <ResumeProvider>
       <div className="p-2 pb-16 2xl:p-6 xl:pb-10">
         <div className="grid grid-cols-12 gap-2 2xl:gap-3 ">
-          <div className="col-span-12 xl:col-span-3 h-fit sticky top-2 z-[10] bg-background">
+          <div className="col-span-12 xl:col-span-3 h-fit sticky top-0 md:top-2 z-[10] bg-background">
             <div className="space-y-3 ">
               <MainSidebar />
 

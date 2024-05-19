@@ -126,7 +126,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
             <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-muted dark:bg-neutral-800">
               <p>متن تولید شده</p>
 
-              <div className="flex items-center gap-6 justify-between flex-1 md:flex-none">
+              <div className="flex items-center gap-6 justify-between">
                 <div className="flex gap-4 items-center text-sm">
                   <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
                     <p>{t('Content.Words')}</p>

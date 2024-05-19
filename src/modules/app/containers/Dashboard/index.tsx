@@ -26,7 +26,7 @@ const DashboardContainer: React.FC = () => {
           href="/app/copywriting"
           className={clsx(
             'cursor-pointer group transition-all ease-in-out duration-200',
-            'border rounded-xl bg-gray-50 shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
+            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
           )}
         >
           <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
@@ -45,7 +45,7 @@ const DashboardContainer: React.FC = () => {
           href="/app/chat"
           className={clsx(
             'cursor-pointer group transition-all ease-in-out duration-200',
-            'border rounded-xl bg-gray-50 shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
+            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
           )}
         >
           <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">

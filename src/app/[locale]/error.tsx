@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
-
 import { useEffect } from 'react'
+
+import ErrorImage from '@/components/ui/error'
 
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -20,12 +20,14 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
             margin: '0 auto',
             width: '100%',
             display: 'flex',
+            height: '100vh',
             alignItems: 'center',
             flexDirection: 'column',
+            justifyContent: 'center',
           }}
         >
-          <div className="w-full md:pr-[30px]">
-            <Image src="/images/error.png" alt="404" width={500} height={500} style={{ objectFit: 'contain' }} />
+          <div className="w-[500px] h-[450px]">
+            <ErrorImage />
           </div>
 
           <h1 className="text-3xl text-center">خط‌ـــایی رخ داده اســــت، لطفاً دوباره تلاش کنید</h1>

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 import Rating from '@/components/ui/rating'
 
+import { OPEN_AI_LOGO } from '@/constants'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const HeroHeader: React.FC = () => {
@@ -56,13 +57,7 @@ const HeroHeader: React.FC = () => {
 
         <div className="flex gap-6 items-center mt-2">
           <div className="relative h-7 sm:h-6">
-            <Image
-              alt="open-ai"
-              width={100}
-              height={100}
-              src="/images/open-ai.png"
-              className="w-full h-full object-contain"
-            />
+            <Image alt="open-ai" width={100} height={100} src={OPEN_AI_LOGO} className="w-full h-full object-contain" />
           </div>
         </div>
       </div>

@@ -49,7 +49,10 @@ const LocationForm: React.FC<Props> = ({ control, name, cityClassName, countryCl
   const onSelectState = (value: { label: string }) => {
     if (value && value.label) {
       const province = data?.find(p => p.name === value.label)
-      setCities(province?.cities.map(c => ({ label: c.name, value: c.name })) || [])
+      setCities(
+        province?.cities.map(c => ({ label: c.name, value: c.name })).sort((a, b) => a.label.localeCompare(b.label)) ||
+          [],
+      )
     } else {
       setCities([])
       form.setValue(`${name}.city` as any, '')

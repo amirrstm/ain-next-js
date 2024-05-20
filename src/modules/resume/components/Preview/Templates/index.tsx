@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
-import { IconCheck } from '@tabler/icons-react'
+import { IconCheck, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -13,10 +13,11 @@ import { updateResumeTemplate } from '@/modules/resume/service'
 
 interface Props {
   template?: string
+  onClose?: () => void
   onReload: () => void
 }
 
-const PreviewTemplates: React.FC<Props> = ({ template: resumeTemplate, onReload }) => {
+const PreviewTemplates: React.FC<Props> = ({ template: resumeTemplate, onClose, onReload }) => {
   const { resumeId } = useParams()
   const t = useTranslations('Resume.Settings')
   const { isLoading, data } = useTemplates()
@@ -27,9 +28,15 @@ const PreviewTemplates: React.FC<Props> = ({ template: resumeTemplate, onReload 
 
   return (
     <div>
-      <div className="border-b border-b-muted p-4">
-        <p>{t('Template.Title')}</p>
-        <p className="text-xs text-gray-500">{t('Template.Description')}</p>
+      <div className="border-b border-b-muted p-4 flex items-center justify-between">
+        <div>
+          <p>{t('Template.Title')}</p>
+          <p className="text-xs text-gray-500">{t('Template.Description')}</p>
+        </div>
+
+        <div onClick={onClose} className="cursor-pointer text-gray-400">
+          <IconX />
+        </div>
       </div>
 
       {isLoading || !data ? (

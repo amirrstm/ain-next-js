@@ -1,37 +1,25 @@
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
+import { IconX } from '@tabler/icons-react'
 import React, { useEffect } from 'react'
 
 import { ColorPicker } from '@/components/ui/color-picker'
 import Loader from '@/components/ui/loader'
 import { ReactSelect } from '@/components/ui/react-select'
 
+import { RESUME_FONTS } from '@/modules/resume/constants/resume.default'
 import { IResumeTemplateSettings } from '@/modules/resume/interface/resume'
 import { updateResumeSettings } from '@/modules/resume/service'
 
 interface Props {
   isLoading?: boolean
   onReload: () => void
+  onClose?: () => void
   settings?: IResumeTemplateSettings
 }
 
-const fonts = [
-  {
-    label: 'ایران سنس',
-    value: 'IranSans',
-  },
-  {
-    label: 'یکان بخ',
-    value: 'YekanBakh',
-  },
-  {
-    label: 'وزیر متن',
-    value: 'Vazirmatn',
-  },
-]
-
-const PreviewSettings: React.FC<Props> = ({ onReload, settings, isLoading }) => {
+const PreviewSettings: React.FC<Props> = ({ onClose, onReload, settings, isLoading }) => {
   const { resumeId } = useParams()
   const t = useTranslations('Resume.Settings')
   const [loading, setLoading] = React.useState(false)
@@ -70,9 +58,15 @@ const PreviewSettings: React.FC<Props> = ({ onReload, settings, isLoading }) => 
 
   return (
     <div>
-      <div className="border-b border-b-muted p-4">
-        <p>{t('Options.Title')}</p>
-        <p className="text-xs text-gray-500">{t('Options.Description')}</p>
+      <div className="border-b border-b-muted p-4 flex items-center justify-between">
+        <div>
+          <p>{t('Options.Title')}</p>
+          <p className="text-xs text-gray-500">{t('Options.Description')}</p>
+        </div>
+
+        <div onClick={onClose} className="cursor-pointer text-gray-400">
+          <IconX />
+        </div>
       </div>
 
       {isLoading || !values ? (
@@ -91,11 +85,11 @@ const PreviewSettings: React.FC<Props> = ({ onReload, settings, isLoading }) => 
               <ReactSelect
                 size="sm"
                 useLabelValue
-                options={fonts}
+                options={RESUME_FONTS}
                 className="w-full"
                 onSelect={onSelectFont}
                 placeholder={t('Options.Fields.DefaultFont')}
-                value={fonts.find(f => f.value === values.defaultFont)}
+                value={RESUME_FONTS.find(f => f.value === values.defaultFont)}
               />
             </div>
           </div>

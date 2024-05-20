@@ -78,4 +78,5 @@ export interface IResumeTemplateSettings {
   skillBarColor?: string
   hideInformationIcon?: boolean
   blockMargins?: string
+  extra?: Record<string, any>
 }

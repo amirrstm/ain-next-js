@@ -90,3 +90,18 @@ export const resumeDefaultValues = {
     },
   ],
 }
+
+export const RESUME_FONTS = [
+  {
+    label: 'ایران سنس',
+    value: 'IranSans',
+  },
+  {
+    label: 'یکان بخ',
+    value: 'YekanBakh',
+  },
+  {
+    label: 'وزیر متن',
+    value: 'Vazirmatn',
+  },
+]

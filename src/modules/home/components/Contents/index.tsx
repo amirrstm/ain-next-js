@@ -24,7 +24,7 @@ const Contents: React.FC = () => {
       />
 
       <div
-        className="absolute -top-10 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-[1]"
+        className="absolute -top-10 left-0 right-0 h-1/2 bg-background  bg-no-repeat bg-contain bg-top -z-[1]"
         style={{
           backgroundImage:
             resolvedTheme === 'light'

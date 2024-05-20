@@ -13,6 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Link } from '@/components/ui/navigation'
 
+import { LOGO_URL } from '@/constants'
 import { useI18nZodErrors } from '@/lib/zodValidation'
 
 const formSchema = z.object({ name: z.string().min(1) })
@@ -35,7 +36,7 @@ const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
             alt="logo"
             width={200}
             height={200}
-            src="/images/logo-black.png"
+            src={LOGO_URL}
             className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </div>

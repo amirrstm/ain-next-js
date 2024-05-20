@@ -177,7 +177,9 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
         <div className="py-6 md:py-12 flex flex-col items-center justify-center">
           {loading ? (
             <div className="flex flex-col items-center text-center gap-3 p-4">
-              <Loader width={100} height={100} />
+              <div className="w-20 h-20">
+                <Loader />
+              </div>
               <span className="flex-1 leading-normal">{t('Content.Loading')}</span>
             </div>
           ) : (

@@ -37,7 +37,7 @@ const AppSettings: React.FC = () => {
       </div>
 
       <div className="p-4 grid grid-cols-12 gap-6">
-        <div className="col-span-6">
+        <div className="col-span-12 md:col-span-6">
           <p className="mb-2 text-gray-400">{t('Settings.Theme')}</p>
           <RadioGroup defaultValue={theme} className="flex gap-6" dir="rtl" onValueChange={onChangeTheme}>
             <div className="flex items-center gap-2">

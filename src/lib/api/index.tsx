@@ -47,12 +47,15 @@ const API = {
     POST: '/user/resume',
     GET_ALL: '/user/resume/list',
     CREATE_FROM_VOICE: '/user/resume/voice',
+    GET_TEMPLATES: '/public/template',
 
     DELETE: (id: string) => `/user/resume/${id}`,
     GET_ONE: (id: string) => `/user/resume/${id}`,
     UPDATE_TITLE: (id: string) => `/user/resume/${id}/title`,
     UPDATE_DOWNLOAD: (id: string) => `/user/resume/${id}/update`,
     UPLOAD_VOICE: (id: string) => `/user/resume/${id}/bio-voice`,
+    GET_SETTINGS: (id: string) => `/user/resume/${id}/settings`,
+    UPDATE_TEMPLATE: (id: string) => `/user/resume/${id}/template`,
 
     AI_BIO_CREATE: (id: string) => `/user/resume/${id}/bio-ai`,
 

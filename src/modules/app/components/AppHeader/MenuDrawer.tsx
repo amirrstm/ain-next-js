@@ -6,6 +6,8 @@ import { AnimatePresence, motion as m } from 'framer-motion'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
 
+import { LOGO_URL } from '@/constants'
+
 import UserProfile from '../AppSideBar/UserProfile'
 
 type Props = {
@@ -43,8 +45,8 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
                   alt="logo"
                   width={200}
                   height={200}
-                  src="/images/logo-black.png"
-                  className="w-full h-full object-contain"
+                  src={LOGO_URL}
+                  className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
                 />
               </div>
 

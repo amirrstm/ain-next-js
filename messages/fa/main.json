@@ -320,6 +320,34 @@
       "Delete": "حذف رزومه"
     },
 
+    "Settings": {
+      "Title": "تنظیمات رزومه",
+      "Download": "دانلود رزومه (PDF)",
+
+      "Template": {
+        "Title": "قالب رزومه",
+        "Description": "قالب رزومه خود را انتخاب کنید",
+        "Select": "انتخاب قالب",
+        "Selected": "قالب انتخاب شده",
+        "Change": "تغییر قالب",
+        "Success": "قالب رزومه با موفقیت تغییر یافت"
+      },
+
+      "Options": {
+        "Title": "امکانات رزومه",
+        "Description": "رنگ ها، فونت یا سایز متن را تغییر دهید",
+
+        "Fields": {
+          "JobTitleColor": "رنگ عنوان شغلی",
+          "NameColor": "رنگ نام",
+          "PlacesColor": "رنگ محل کار",
+          "SectionTitleColor": "رنگ عنوان بخش",
+          "SkillBarColor": "رنگ نوار مهارت",
+          "DefaultFont": "فونت"
+        }
+      }
+    },
+
     "Tabs": {
       "Personal": {
         "Title": "اطلاعات پایه",

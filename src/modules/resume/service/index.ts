@@ -1,7 +1,7 @@
 import API from '@/lib/api'
 import axios from '@/lib/axios'
 
-import { IResume } from '../interface/resume'
+import { IResume, IResumeTemplateSettings } from '../interface/resume'
 
 export const getOccupations = async (
   { search }: { search: string },
@@ -77,7 +77,10 @@ export const getSkills = async ({ search }: { search: string }, signal: AbortSig
 
 export async function createResume(url = ''): Promise<string> {
   try {
-    const res = await axios.post<{ data: string }>(url)
+    const res = await axios.post<{ data: string }>(url, {
+      title: 'بدون عنوان',
+      template: 'f1e6999a-b162-42f6-b9d6-9d9369e01c3d',
+    })
 
     return res.data.data
   } catch (e) {
@@ -95,21 +98,31 @@ export async function updateResumeTitle(resumeId: string, title: string): Promis
   }
 }
 
-export async function updateDownload(resumeId: string): Promise<string> {
+export async function updateResumeTemplate(resumeId: string, data: { template: string }): Promise<string> {
   try {
-    const res = await axios.post(API.RESUME.UPDATE_DOWNLOAD(resumeId), {})
+    const res = await axios.put(API.RESUME.UPDATE_TEMPLATE(resumeId), data)
 
-    return res.data.data.url
+    return res.data.data
   } catch (e) {
     throw e
   }
 }
 
-export async function getResume(url = ''): Promise<IResume> {
+export async function updateResumeSettings(resumeId: string, data: IResumeTemplateSettings): Promise<string> {
   try {
-    const res = await axios.get<{ data: IResume }>(url)
+    const res = await axios.put(API.RESUME.GET_SETTINGS(resumeId), data)
 
     return res.data.data
+  } catch (e) {
+    throw e
+  }
+}
+
+export async function updateDownload(resumeId: string): Promise<string> {
+  try {
+    const res = await axios.post(API.RESUME.UPDATE_DOWNLOAD(resumeId), {})
+
+    return res.data.data.url
   } catch (e) {
     throw e
   }

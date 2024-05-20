@@ -50,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         <>
           {loading && (
-            <span className="absolute inset-0 flex items-center justify-center bg-slate-900 bg-opacity-60 rounded-lg">
+            <span className="absolute inset-0 flex items-center justify-center bg-slate-900 bg-opacity-60 rounded-md">
               <IconLoader className="h-5 w-5 animate-spin" />
             </span>
           )}

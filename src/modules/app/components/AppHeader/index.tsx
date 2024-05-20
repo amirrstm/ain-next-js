@@ -8,6 +8,8 @@ import React, { useState } from 'react'
 
 import { Link } from '@/components/ui/navigation'
 
+import { LOGO_URL } from '@/constants'
+
 import MenuDrawer from './MenuDrawer'
 
 interface Props {
@@ -24,7 +26,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center px-3 py-4 border-b bg-background">
+      <div className="flex justify-between items-center px-3 py-4 border-b border-b-muted bg-background">
         <div className="flex gap-2 items-center cursor-pointer" onClick={() => setOpen(true)}>
           <IconMenu2 />
           <span className="text-sm">{t('Header.Menu')}</span>
@@ -36,7 +38,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
               alt="logo"
               width={200}
               height={200}
-              src="/images/logo-black.png"
+              src={LOGO_URL}
               className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
             />
           </div>

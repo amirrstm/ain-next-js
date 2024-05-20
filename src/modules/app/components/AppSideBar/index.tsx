@@ -10,6 +10,8 @@ import DashboardMenu from '@/components/ui/dashboard-menu'
 import LineDivider from '@/components/ui/line-divider'
 import { Link, usePathname } from '@/components/ui/navigation'
 
+import { LOGO_URL } from '@/constants'
+
 import UserProfile from './UserProfile'
 
 interface Props {
@@ -32,7 +34,7 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
             alt="logo"
             width={200}
             height={200}
-            src="/images/logo-black.png"
+            src={LOGO_URL}
             className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
           />
         </Link>

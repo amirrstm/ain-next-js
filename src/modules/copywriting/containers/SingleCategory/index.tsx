@@ -74,7 +74,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   if (!category.data) return null
 
   return (
-    <div className="p-4 xl:p-6 xl:pb-10">
+    <div className="p-2 xl:p-6 xl:pb-10">
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
           <div className="border border-muted rounded-xl bg-background shadow-md block sticky top-8 h-full">

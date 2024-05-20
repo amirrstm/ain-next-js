@@ -60,7 +60,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
       </div>
       <div
         className={clsx(
-          'ms-0 md:ms-[250px] mt-2 md:mt-5 mb-2 md:mb-5 me-0 md:me-5 flex-1 border dark:border-card rounded-2xl',
+          'ms-0 md:ms-[250px] mt-0 md:mt-5 mb-0 md:mb-5 me-0 md:me-5 flex-1 border dark:border-card md:rounded-2xl',
           'h-full min-h-[calc(100vh-40px)] bg-card md:bg-card md:shadow-inner',
         )}
       >

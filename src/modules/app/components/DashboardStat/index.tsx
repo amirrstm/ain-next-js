@@ -30,7 +30,7 @@ const DashboardStat: React.FC = () => {
       </p>
 
       <div className="border border-muted rounded-2xl p-2 md:p-6 bg-background mt-4">
-        <div className="flex justify-center md:justify-start">
+        <div className="flex justify-center gap-3 md:gap-0 md:justify-start">
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>

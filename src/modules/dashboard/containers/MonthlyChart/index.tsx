@@ -57,12 +57,12 @@ const MonthlyChartContainer: React.FC = () => {
 
   return (
     <div className="md:p-8 px-2 py-4">
-      <div className="flex items-center gap-2 mb-2 md:mb-4 mr-3 md:mr-0">
+      <div className="flex items-center gap-2 mb-2 md:mb-4 ">
         <IconDashboard className="w-6 h-6" />
         <span className="text-lg">{t('Menus.Dashboard')}</span>
       </div>
 
-      <div className="bg-background md:border md:rounded-xl md:border-muted md:shadow-sm">
+      <div className="bg-background border rounded-xl border-muted shadow-sm">
         <div className="p-4 md:p-6 md:px-8 border-b border-b-muted">
           <div className="flex gap-4 flex-col md:flex-row md:justify-between md:items-center">
             <div>

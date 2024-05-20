@@ -69,7 +69,7 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
           />
         ))}
 
-        <div className="p-4">
+        <div className="py-4">
           <Button type="submit" className="w-full gap-2" loading={loading}>
             <IconWand className="w-5 h-5" />
             <span>{t('Category.Generate')}</span>

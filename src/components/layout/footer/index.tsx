@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center py-2">
+          <div className="flex justify-center py-2 bg-secondary">
             <div
               className="h-[100px]"
               dangerouslySetInnerHTML={{

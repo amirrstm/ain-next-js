@@ -9,6 +9,7 @@ export interface SelectProps extends Props {
   size?: string
   isAsync?: boolean
   creatable?: boolean
+  useLabelValue?: boolean
   onSelect?: (value: any) => void
 }
 
@@ -23,6 +24,7 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
       onSelect,
       creatable,
       className,
+      useLabelValue,
       size = 'default',
       placeholder = '',
       ...props
@@ -41,10 +43,12 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
         onSelect(value)
       }
 
-      if (actionMeta.action === 'create-option') {
-        onChange?.(isMulti ? value : value?.value, actionMeta)
-      } else {
-        onChange?.(isMulti ? value : value?.value, actionMeta)
+      if (onChange) {
+        if (actionMeta.action === 'create-option') {
+          onChange(isMulti ? value : value?.value, actionMeta)
+        } else {
+          onChange(isMulti ? value : value?.value, actionMeta)
+        }
       }
     }
 
@@ -57,7 +61,7 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
       classNamePrefix: 'ain-select',
       noOptionsMessage: () => 'موردی یافت نشد',
       className: cn(sizes[size], 'ain-select-container', className),
-      value: isMulti ? value : value ? { value: value, label: value } : null,
+      value: isMulti || useLabelValue ? value : value ? { value: value, label: value } : null,
       theme: reactSelectTheme,
 
       ...props,

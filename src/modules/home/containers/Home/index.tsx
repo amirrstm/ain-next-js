@@ -9,6 +9,8 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import { Link } from '@/components/ui/navigation'
 
+import { LAYOUT_IMAGE } from '@/constants'
+
 import Contents from '../../components/Contents'
 import HeroHeader from '../../components/Hero'
 
@@ -16,12 +18,7 @@ const HomeContainer: React.FC = () => {
   return (
     <main>
       <Header />
-      <section
-        className={clsx(
-          'bg-secondary bg-no-repeat bg-cover bg-center',
-          'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
-        )}
-      >
+      <section className={clsx('bg-secondary bg-no-repeat bg-cover bg-center', 'bg-[url("/images/hero-screen.svg")]')}>
         <HeroHeader />
       </section>
 
@@ -32,7 +29,7 @@ const HomeContainer: React.FC = () => {
               alt="open-ai"
               width={1000}
               height={1000}
-              src="/images/app-layout.png"
+              src={LAYOUT_IMAGE}
               className="w-full h-full object-contain"
             />
 

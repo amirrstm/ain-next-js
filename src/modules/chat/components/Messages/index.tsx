@@ -13,6 +13,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import jalaliday from 'jalaliday'
 import React, { useEffect, useRef, useState } from 'react'
 
+import { LOGO_SMALL } from '@/constants'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { ChatMessage } from '../../interface'
@@ -74,7 +75,7 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
   return (
     <div className="flex items-start gap-2.5">
       <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-secondary flex items-center justify-center p-1">
-        <Image alt="logo" src="/images/logo-small.png" width={32} height={32} className="rounded-full object-contain" />
+        <Image alt="logo" src={LOGO_SMALL} width={32} height={32} className="rounded-full object-contain" />
       </div>
 
       {loading ? (

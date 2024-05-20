@@ -24,7 +24,7 @@ const AboutContainer: React.FC = () => {
             <p className="mt-4 text-gray-400 text-xs md:text-base">نوشته‌ای از سازنده پلتفرم </p>
           </div>
 
-          <div className="w-full max-w-3xl mx-auto mt-8 rounded-lg shadow-sm p-8 bg-white min-h-screen">
+          <div className="w-full max-w-3xl mx-auto mt-8 rounded-lg shadow-sm p-8 bg-background">
             <strong>سلام! من امیر هستم،</strong>
 
             <p className="mt-8">

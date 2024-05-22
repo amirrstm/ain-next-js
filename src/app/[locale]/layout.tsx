@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from 'next-intl/server'
 import Script from 'next/script'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
 
 import { Toaster } from '@/components/ui/toaster'
@@ -13,7 +14,7 @@ import { locales } from '@/i18n'
 import StoreProvider from '@/providers/StoreProvider'
 import { SWRProvider } from '@/providers/SWRProvider'
 import { ThemeProvider } from '@/providers/ThemProvider'
-import { PoppinsFont, YekanBakhFont } from '@/styles/fonts'
+import { YekanBakhFont } from '@/styles/fonts'
 import '@/styles/globals.css'
 import '@/styles/main.scss'
 
@@ -51,10 +52,7 @@ export default function RootLayout({
       /> */}
       <GoogleAnalytics gaId="G-30HPPFMJ63" />
 
-      <body
-        suppressHydrationWarning={true}
-        className={locale === 'fa' ? YekanBakhFont.className : PoppinsFont.className}
-      >
+      <body suppressHydrationWarning={true} className={YekanBakhFont.className}>
         <Suspense fallback={<div />}>
           <StoreProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
@@ -64,6 +62,7 @@ export default function RootLayout({
                 </SWRProvider>
 
                 <Toaster />
+                <SpeedInsights />
               </>
             </ThemeProvider>
           </StoreProvider>

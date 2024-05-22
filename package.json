@@ -51,6 +51,7 @@
     "@tabler/icons-react": "^2.47.0",
     "@uiw/codemirror-theme-atomone": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
+    "@vercel/speed-insights": "^1.0.10",
     "accept-language": "^3.0.18",
     "add": "^2.0.6",
     "axios": "^1.6.0",

@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from 'next-intl/server'
 import Script from 'next/script'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
 
@@ -62,6 +63,8 @@ export default function RootLayout({
                 </SWRProvider>
 
                 <Toaster />
+
+                <Analytics />
                 <SpeedInsights />
               </>
             </ThemeProvider>

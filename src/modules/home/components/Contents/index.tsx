@@ -3,6 +3,7 @@ import { useTheme } from 'next-themes'
 
 import clsx from 'clsx'
 
+import BeforeAfter from './BeforeAfter'
 import Benefits from './Benefits'
 import Faq from './Faq'
 import Features from './Features'
@@ -15,7 +16,7 @@ const Contents: React.FC = () => {
   return (
     <section className="relative pb-32">
       <div
-        className="absolute -bottom-10 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
+        className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
@@ -36,7 +37,7 @@ const Contents: React.FC = () => {
 
       <Resume />
 
-      <Benefits />
+      <BeforeAfter />
 
       <Features />
 

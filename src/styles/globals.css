@@ -75,6 +75,9 @@
     --destructive: 0 83% 63%;
     --destructive-foreground: 0 0% 98%;
 
+    --success: 108 43% 50%;
+    --success-foreground: 0 0% 100%;
+
     --text-white: 240 5% 3%;
 
     --border: 240 14% 90%;
@@ -107,6 +110,9 @@
 
     --destructive: 0 83% 63%;
     --destructive-foreground: 0 0% 98%;
+
+    --success: 108 43% 50%;
+    --success-foreground: 0 0% 100%;
 
     --text-white: 33 100% 85%;
 

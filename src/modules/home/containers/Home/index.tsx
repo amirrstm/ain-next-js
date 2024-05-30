@@ -18,7 +18,8 @@ const HomeContainer: React.FC = () => {
   return (
     <main>
       <Header />
-      <section className={clsx('bg-secondary bg-no-repeat bg-cover bg-center', 'bg-[url("/images/hero-screen.svg")]')}>
+
+      <section className={clsx('bg-[url("/images/hero-screen.svg")]', 'bg-secondary bg-no-repeat bg-cover bg-center')}>
         <HeroHeader />
       </section>
 

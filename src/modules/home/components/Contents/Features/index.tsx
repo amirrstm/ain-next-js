@@ -1,18 +1,27 @@
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 import {
+  IconBolt,
   IconBrandBlogger,
   IconBrandGoogle,
   IconBrandInstagram,
   IconBrandYoutube,
+  IconCash,
+  IconClick,
+  IconClock,
+  IconEaseInOutControlPoints,
   IconPencilHeart,
   IconSeo,
+  IconSparkles,
   IconTextCaption,
 } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-import { YekanBakhNumFont } from '@/styles/fonts'
+import { Button } from '@/components/ui/button'
+
+import { FEATURE_IMAGE } from '@/constants'
 
 const FEATURES = [
   <IconBrandGoogle key={'google'} className="w-6 h-6" />,
@@ -47,35 +56,101 @@ const Features: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-12 gap-3 border border-muted rounded-xl mt-6 md:p-2 bg-background">
-          <div className="col-span-12 md:col-span-4">
-            <div className="flex flex-col gap-4 p-4">
-              <p className={clsx(YekanBakhNumFont.className, 'text-3xl text-primary font-bold')}>1</p>
-              <div>
-                <h2 className="text-2xl font-bold">{t('Features.First.Title')}</h2>
-                <p className="text-sm font-light mt-2">{t('Features.First.Description')}</p>
+        <div className="grid grid-cols-12 gap-6 mt-4 md:mt-0">
+          <div className="col-span-12 md:col-span-6 md:order-1 order-2">
+            <div className="border border-foreground/15 rounded-2xl p-6 flex flex-col">
+              <div className="border border-primary bg-primary/10 w-fit px-5 p-3 rounded-full">
+                <p className="text-primary text-sm">{t('Features.Help')}</p>
+              </div>
+
+              <div className="p-4 md:py-14">
+                <ul className="list-disc leading-7 space-y-4">
+                  <li>
+                    <p>{t('Features.Description.First')}</p>
+                  </li>
+                  <li>
+                    <p>{t('Features.Description.Second')}</p>
+                  </li>
+                  <li>
+                    <p>{t('Features.Description.Third')}</p>
+                  </li>
+                  <li>
+                    <p>{t('Features.Description.Fourth')}</p>
+                  </li>
+                  <li>
+                    <p>{t('Features.Description.Fifth')}</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-primary p-4 rounded-3xl flex items-center justify-between gap-6 md:flex-row flex-col md:text-start text-center">
+                <div>
+                  <p className="text-gray-500 text-xs">{t('Features.Cta.Title')}</p>
+
+                  <p className="text-xs mt-3">{t('Features.Cta.Description')}</p>
+                </div>
+
+                <Button className="bg-white hover:bg-white/80 text-black">
+                  <p>{t('Features.TryNow')}</p>
+                </Button>
               </div>
             </div>
           </div>
 
-          <div className="col-span-12 md:col-span-4">
-            <div className="flex flex-col gap-4 p-4">
-              <p className={clsx(YekanBakhNumFont.className, 'text-3xl text-primary font-bold')}>2</p>
-              <div>
-                <h2 className="text-2xl font-bold">{t('Features.Second.Title')}</h2>
-                <p className="text-sm font-light mt-2">{t('Features.Second.Description')}</p>
-              </div>
+          <div className="col-span-12 md:col-span-6 md:order2 order-1">
+            <div className="w-full h-full rounded-2xl overflow-hidden">
+              <Image alt="logo" width={800} height={800} src={FEATURE_IMAGE} className="w-full h-full object-cover" />
             </div>
           </div>
+        </div>
 
-          <div className="col-span-12 md:col-span-4">
-            <div className="flex flex-col gap-4 p-4">
-              <p className={clsx(YekanBakhNumFont.className, 'text-3xl text-primary font-bold')}>3</p>
-              <div>
-                <h2 className="text-2xl font-bold">{t('Features.Third.Title')}</h2>
-                <p className="text-sm font-light mt-2">{t('Features.Third.Description')}</p>
-              </div>
-            </div>
+        <div className="grid grid-cols-11 gap-4 mt-6">
+          <div className="col-span-11 md:col-span-5">
+            <SingleBox
+              title={t('Benefits.UseCase.Title')}
+              description={t('Benefits.UseCase.Description')}
+              icon={<IconSparkles className="w-10 h-10 text-primary" />}
+            />
+          </div>
+
+          <div className="col-span-11 md:col-span-3">
+            <SingleBox
+              title={t('Benefits.Time.Title')}
+              description={t('Benefits.Time.Description')}
+              icon={<IconClock className="w-10 h-10 text-primary" />}
+            />
+          </div>
+
+          <div className="col-span-11 md:col-span-3">
+            <SingleBox
+              title={t('Benefits.Use.Title')}
+              description={t('Benefits.Use.Description')}
+              icon={<IconClick className="w-10 h-10 text-primary" />}
+            />
+          </div>
+
+          <div className="col-span-11 md:col-span-4">
+            <SingleBox
+              title={t('Benefits.Money.Title')}
+              description={t('Benefits.Money.Description')}
+              icon={<IconCash className="w-10 h-10 text-primary" />}
+            />
+          </div>
+
+          <div className="col-span-11 md:col-span-3">
+            <SingleBox
+              title={t('Benefits.Plagiarism.Title')}
+              description={t('Benefits.Plagiarism.Description')}
+              icon={<IconBolt className="w-10 h-10 text-primary" />}
+            />
+          </div>
+
+          <div className="col-span-11 md:col-span-4">
+            <SingleBox
+              title={t('Benefits.Workflow.Title')}
+              description={t('Benefits.Workflow.Description')}
+              icon={<IconEaseInOutControlPoints className="w-10 h-10 text-primary" />}
+            />
           </div>
         </div>
       </div>
@@ -84,3 +159,15 @@ const Features: React.FC = () => {
 }
 
 export default Features
+
+const SingleBox: React.FC<{ title: string; description: string; icon: ReactNode }> = ({ title, description, icon }) => {
+  return (
+    <div className="flex flex-col gap-6 bg-background border border-muted rounded-xl p-4">
+      {icon}
+      <div>
+        <h2 className="text-lg font-semibold">{title}</h2>
+        <p className="text-sm font-light mt-2">{description}</p>
+      </div>
+    </div>
+  )
+}

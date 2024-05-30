@@ -20,12 +20,15 @@ const config: Config = {
     },
     extend: {
       colors: {
-        black: 'hsl(var(--secondary))',
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        input: 'hsl(var(--input))',
+        border: 'hsl(var(--border))',
+        black: 'hsl(var(--background-light))',
+
+        textWhite: 'hsl(var(--text-white))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

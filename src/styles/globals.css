@@ -75,6 +75,8 @@
     --destructive: 0 83% 63%;
     --destructive-foreground: 0 0% 98%;
 
+    --text-white: 240 5% 3%;
+
     --border: 240 14% 90%;
     --input: 240 14% 90%;
     --ring: 210 28% 40%;
@@ -83,6 +85,7 @@
   .dark {
     --background: 0 0% 8%;
     --foreground: 0 0% 100%;
+    --background-light: 0 0% 13%;
 
     --card: 240 3% 11%;
     --card-foreground: 0 0% 100%;
@@ -104,6 +107,8 @@
 
     --destructive: 0 83% 63%;
     --destructive-foreground: 0 0% 98%;
+
+    --text-white: 33 100% 85%;
 
     --border: 240 14% 90%;
     --input: 0 0% 26%;

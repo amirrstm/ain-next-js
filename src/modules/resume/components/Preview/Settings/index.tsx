@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 import { ColorPicker } from '@/components/ui/color-picker'
 import Loader from '@/components/ui/loader'
 import { ReactSelect } from '@/components/ui/react-select'
+import { Slider } from '@/components/ui/slider'
 
 import { RESUME_FONTS } from '@/modules/resume/constants/resume.default'
 import { IResumeTemplateSettings } from '@/modules/resume/interface/resume'
@@ -46,6 +47,16 @@ const PreviewSettings: React.FC<Props> = ({ onClose, onReload, settings, isLoadi
     })
   }
 
+  const onChangeMargin = (value: number[]) => {
+    setValues({ ...values, blockMargins: String(value[0]) })
+
+    setLoading(true)
+    updateResumeSettings(resumeId as string, { ...values, blockMargins: String(value[0]) }).then(() => {
+      onReload()
+      setLoading(false)
+    })
+  }
+
   const saveSettings = () => {
     if (values && values !== settings) {
       setLoading(true)
@@ -77,54 +88,91 @@ const PreviewSettings: React.FC<Props> = ({ onClose, onReload, settings, isLoadi
         </div>
       ) : (
         <div className="p-4 space-y-4">
-          <div className="border border-input rounded-md flex">
-            <div className="border-e border-e-input flex items-center px-3">
-              <p className="text-sm">{t('Options.Fields.DefaultFont')}</p>
+          {values.defaultFont && (
+            <div className="border border-input rounded-md flex">
+              <div className="border-e border-e-input flex items-center px-3">
+                <p className="text-sm">{t('Options.Fields.DefaultFont')}</p>
+              </div>
+              <div className="p-2 flex items-center flex-1">
+                <ReactSelect
+                  size="sm"
+                  useLabelValue
+                  options={RESUME_FONTS}
+                  className="w-full"
+                  onSelect={onSelectFont}
+                  placeholder={t('Options.Fields.DefaultFont')}
+                  value={RESUME_FONTS.find(f => f.value === values.defaultFont)}
+                />
+              </div>
             </div>
-            <div className="p-2 flex items-center flex-1">
-              <ReactSelect
-                size="sm"
-                useLabelValue
-                options={RESUME_FONTS}
-                className="w-full"
-                onSelect={onSelectFont}
-                placeholder={t('Options.Fields.DefaultFont')}
-                value={RESUME_FONTS.find(f => f.value === values.defaultFont)}
-              />
+          )}
+
+          {values.nameColor && (
+            <ColorPicker
+              disabled={loading}
+              onBlur={saveSettings}
+              value={values.nameColor}
+              label={t('Options.Fields.NameColor')}
+              onChange={e => onChangeColor(e, 'nameColor')}
+            />
+          )}
+
+          {values.jobTitleColor && (
+            <ColorPicker
+              disabled={loading}
+              onBlur={saveSettings}
+              value={values?.jobTitleColor as string}
+              label={t('Options.Fields.JobTitleColor')}
+              onChange={e => onChangeColor(e, 'jobTitleColor')}
+            />
+          )}
+
+          {values.sectionTitleColor && (
+            <ColorPicker
+              disabled={loading}
+              onBlur={saveSettings}
+              value={values?.sectionTitleColor as string}
+              label={t('Options.Fields.SectionTitleColor')}
+              onChange={e => onChangeColor(e, 'sectionTitleColor')}
+            />
+          )}
+
+          {values.placesColor && (
+            <ColorPicker
+              disabled={loading}
+              onBlur={saveSettings}
+              value={values?.placesColor as string}
+              label={t('Options.Fields.PlacesColor')}
+              onChange={e => onChangeColor(e, 'placesColor')}
+            />
+          )}
+
+          {values.skillBarColor && (
+            <ColorPicker
+              disabled={loading}
+              onBlur={saveSettings}
+              value={values?.skillBarColor as string}
+              label={t('Options.Fields.SkillBarColor')}
+              onChange={e => onChangeColor(e, 'skillBarColor')}
+            />
+          )}
+
+          {values.blockMargins && (
+            <div className="border border-input rounded-md">
+              <div className="border-b border-b-input flex items-center py-2 px-3">
+                <p className="text-sm">{t('Options.Fields.BlockMargins')}</p>
+              </div>
+              <div className="p-5">
+                <Slider
+                  max={5}
+                  min={1}
+                  step={1}
+                  onValueChange={onChangeMargin}
+                  value={[Number(values?.blockMargins)]}
+                />
+              </div>
             </div>
-          </div>
-
-          <ColorPicker
-            disabled={loading}
-            onBlur={saveSettings}
-            value={values.nameColor}
-            label={t('Options.Fields.NameColor')}
-            onChange={e => onChangeColor(e, 'nameColor')}
-          />
-
-          <ColorPicker
-            disabled={loading}
-            onBlur={saveSettings}
-            value={values?.jobTitleColor as string}
-            label={t('Options.Fields.JobTitleColor')}
-            onChange={e => onChangeColor(e, 'jobTitleColor')}
-          />
-
-          <ColorPicker
-            disabled={loading}
-            onBlur={saveSettings}
-            value={values?.sectionTitleColor as string}
-            label={t('Options.Fields.SectionTitleColor')}
-            onChange={e => onChangeColor(e, 'sectionTitleColor')}
-          />
-
-          <ColorPicker
-            disabled={loading}
-            onBlur={saveSettings}
-            value={values?.placesColor as string}
-            label={t('Options.Fields.PlacesColor')}
-            onChange={e => onChangeColor(e, 'placesColor')}
-          />
+          )}
         </div>
       )}
     </div>

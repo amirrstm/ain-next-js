@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import Benefits from './Benefits'
 import Faq from './Faq'
 import Features from './Features'
+import Resume from './Resume'
 
 const Contents: React.FC = () => {
   const t = useTranslations('Layout.Home')
@@ -32,6 +33,8 @@ const Contents: React.FC = () => {
               : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
         }}
       />
+
+      <Resume />
 
       <Benefits />
 

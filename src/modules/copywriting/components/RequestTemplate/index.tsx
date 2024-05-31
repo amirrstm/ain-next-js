@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { IconPlus, IconSend2 } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 import * as z from 'zod'
 
@@ -13,7 +14,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { useToast } from '@/components/ui/use-toast'
 
 import API from '@/lib/api'
 
@@ -25,7 +25,6 @@ const formSchema = z.object({
 })
 
 const RequestTemplate: React.FC = () => {
-  const { toast } = useToast()
   const { resolvedTheme } = useTheme()
   const t = useTranslations('Copywriting')
   const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +40,7 @@ const RequestTemplate: React.FC = () => {
     trigger(data).then(() => {
       form.reset()
       setIsOpen(false)
-      toast({ title: t('Template.Fields.Success'), variant: 'success' })
+      toast.success(t('Template.Fields.Success'))
     })
   }
 

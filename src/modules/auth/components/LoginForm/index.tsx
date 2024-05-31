@@ -4,8 +4,10 @@ import { useTranslations } from 'next-intl'
 
 import clsx from 'clsx'
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 
-import GoogleIcon from './GoogleIcon'
+import GoogleIcon from '@/icons/google'
+
 import { Input } from './Input'
 
 type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: { mobile: string }) => void }
@@ -19,11 +21,16 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      onSubmit({ mobile: value })
+      onRequestSubmit()
     }
   }
 
   const onRequestSubmit = () => {
+    if (!value || value.length === 0) {
+      toast.error(t('Fields.Mobile'))
+      return
+    }
+
     onSubmit({ mobile: value })
   }
 
@@ -45,7 +52,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
           inputMode="numeric"
           onKeyDown={onKeyDown}
           onRequestSubmit={onRequestSubmit}
-          placeholder="برای مثال: ۰۹۱۲۳۴۵۶۷۸۹"
+          placeholder={t('MobilePlaceholder')}
           onChange={e => setValue(e.target.value)}
         />
       </div>
@@ -57,7 +64,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
         })}
       >
         <GoogleIcon />
-        <span className="text-xs">ورود یا ثبت نام با گوگل</span>
+        <span className="text-xs">{t('Google')}</span>
       </div>
     </div>
   )

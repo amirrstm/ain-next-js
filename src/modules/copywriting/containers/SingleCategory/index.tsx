@@ -5,11 +5,11 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
+import { toast } from 'sonner'
 
 import { AppCategory } from '@/interface/Category.model'
 
 import { Link } from '@/components/ui/navigation'
-import { useToast } from '@/components/ui/use-toast'
 
 import useUserStore from '@/lib/store/auth'
 
@@ -23,7 +23,6 @@ interface Props {
 
 const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const router = useRouter()
-  const { toast } = useToast()
   const pathname = usePathname()
   const t = useTranslations('Copywriting')
   const { user, setUser } = useUserStore()
@@ -64,9 +63,9 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
         setLoading(false)
 
         if (e.status === 5215) {
-          toast({ title: `${e.error}، لطفا حساب خود را ارتقا دهید.`, variant: 'destructive' })
+          toast.error(t('PlanError', { error: e.error }))
         } else {
-          toast({ title: t('Content.Error'), variant: 'destructive' })
+          toast.error(t('Content.Error'))
         }
       })
   }

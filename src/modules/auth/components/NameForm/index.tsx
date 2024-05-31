@@ -1,77 +1,56 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
+import { useState } from 'react'
+import { toast } from 'sonner'
 
-import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { Link } from '@/components/ui/navigation'
 
-import { LOGO_URL } from '@/constants'
-import { useI18nZodErrors } from '@/lib/zodValidation'
+import { Input } from './Input'
 
-const formSchema = z.object({ name: z.string().min(1) })
-
-type Props = { loading: boolean; returnUrl?: string; onSubmit: (data: z.infer<typeof formSchema>) => void }
+type Props = { loading: boolean; returnUrl?: string; onSubmit: (data: { name: string }) => void }
 const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
-  useI18nZodErrors('auth')
   const t = useTranslations('Auth')
+  const [value, setValue] = useState('')
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { name: '' },
-  })
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onRequestSubmit()
+    }
+  }
+
+  const onRequestSubmit = () => {
+    if (!value || value.length === 0) {
+      toast.error(t('Fields.NameError'))
+      return
+    }
+
+    onSubmit({ name: value })
+  }
 
   return (
-    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
-      <div>
-        <div className="relative h-7 sm:h-8">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src={LOGO_URL}
-            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
-          />
-        </div>
+    <div className="p-6 w-full">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+          {t('NameTitle')}
+        </h1>
+
+        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('Fields.Name')}</p>
       </div>
 
-      <div className="text-center mt-4">
-        <h1 className="text-2xl font-semibold">{t('NameTitle')}</h1>
+      <div className="py-4">
+        <Input
+          value={value}
+          loading={loading}
+          onKeyDown={onKeyDown}
+          onRequestSubmit={onRequestSubmit}
+          onChange={e => setValue(e.target.value)}
+          placeholder={t('Fields.NamePlaceholder')}
+        />
       </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="mb-2">{t('Fields.Name')}</p>
-                </FormLabel>
-                <FormControl>
-                  <Input autoFocus placeholder="نام شما" {...field} />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button type="submit" className="w-full" loading={loading}>
-            {t('Save')}
-          </Button>
-        </form>
-      </Form>
-
-      <div className="font-light pt-6 text-sm text-center">
+      <div className="font-light text-sm text-center">
         <Link href={returnUrl ? returnUrl : '/app'} className="text-primary dark:text-gray-400 cursor-pointer">
           {t('Skip')}
         </Link>

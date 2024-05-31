@@ -1,7 +1,7 @@
 import React from 'react'
 import VerificationInput from 'react-verification-input'
 
-type Props = { error: boolean; name: string; value: string; onChange: (e: string) => void; onBlur?: () => void }
+type Props = { error?: boolean; name: string; value: string; onChange: (e: string) => void; onBlur?: () => void }
 export const CodeInput: React.FC<Props> = ({ name, value, onChange, onBlur, error }) => {
   return (
     <div id={name} className="w-full flex-1">
@@ -14,7 +14,7 @@ export const CodeInput: React.FC<Props> = ({ name, value, onChange, onBlur, erro
         inputProps={{ inputMode: 'numeric' }}
         classNames={{
           container: 'w-full flex justify-center',
-          character: `w-10 rounded-md border-gray-300 dark:bg-transparent dark:text-gray-200 ${
+          character: `w-10 rounded-md border-gray-300 dark:border-neutral-500 dark:bg-transparent dark:text-gray-200 ${
             error && 'border-red-500'
           }`,
         }}

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { IconBolt, IconLoader, IconMessage2Bolt, IconSend2, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import {
@@ -20,7 +21,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import Loader from '@/components/ui/loader'
-import { useToast } from '@/components/ui/use-toast'
 
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
@@ -32,7 +32,7 @@ import { deleteChat, sendMessage } from '../../service'
 
 const ChatContainer: React.FC = () => {
   const router = useRouter()
-  const { toast } = useToast()
+
   const t = useTranslations('Chat')
   const { user, setUser } = useUserStore()
   const endRef = useRef<HTMLDivElement>(null)
@@ -97,7 +97,7 @@ const ChatContainer: React.FC = () => {
           setMessages(prev => prev.slice(0, prev.length - 1))
 
           if (e.status === 5215) {
-            toast({ title: `${e.error}، لطفا حساب خود را ارتقا دهید.`, variant: 'destructive' })
+            toast.error(t('PlanError', { error: e.message }))
           }
         })
     }
@@ -132,15 +132,13 @@ const ChatContainer: React.FC = () => {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>آیا از پاک کردن تاریخچه چت اطمینان دارید؟</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      این عمل برگشت پذیر نیست، و تمام تاریخچه چت شما برای همیشه پاک خواهد شد
-                    </AlertDialogDescription>
+                    <AlertDialogTitle>{t('History.Title')}</AlertDialogTitle>
+                    <AlertDialogDescription>{t('History.Description')}</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel className="ml-2">انصراف</AlertDialogCancel>
+                    <AlertDialogCancel className="ml-2">{t('History.Cancel')}</AlertDialogCancel>
                     <AlertDialogAction className="bg-red-500" onClick={onDelete}>
-                      پاک کن
+                      {t('History.Delete')}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -207,7 +205,7 @@ const ChatContainer: React.FC = () => {
       </div>
 
       <div ref={endRef} className="text-center pt-1">
-        <p className="text-[10px] md:text-xs text-gray-400">چت بات ممکن است اشتباه کند، نکات مهم را در نظر بگیرید.</p>
+        <p className="text-[10px] md:text-xs text-gray-400">{t('Info')}</p>
       </div>
     </div>
   )

@@ -3,10 +3,10 @@ import { useTranslations } from 'next-intl'
 import { IconThumbDown, IconThumbDownFilled, IconThumbUp, IconThumbUpFilled, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import { Button } from '@/components/ui/button'
-import { useToast } from '@/components/ui/use-toast'
 
 import API from '@/lib/api'
 
@@ -20,7 +20,6 @@ const messages = [
 ]
 
 const Feedback: React.FC<{ id: string }> = ({ id }) => {
-  const { toast } = useToast()
   const t = useTranslations('Copywriting')
   const [status, setStatus] = useState<string>('')
 
@@ -31,7 +30,7 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
 
   const onLike = () => {
     setStatus('like')
-    toast({ title: t('Content.FeedbackSuccess'), variant: 'success' })
+    toast.success(t('Content.FeedbackSuccess'))
     trigger({ liked: true }).then(() => setSubmitted(true))
   }
 

@@ -3,26 +3,14 @@
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import useSWRMutation from 'swr/mutation'
-import * as z from 'zod'
-
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { useToast } from '@/components/ui/use-toast'
 
-import API from '@/lib/api'
-import useUserStore from '@/lib/store/auth'
 import { useI18nZodErrors } from '@/lib/zodValidation'
-import { updateName } from '@/modules/auth/services'
-
-const formSchema = z.object({ firstName: z.string().min(1), lastName: z.string().min(1) })
 
 const AppSettings: React.FC = () => {
   useI18nZodErrors('auth')
-  const { toast } = useToast()
+
   const t = useTranslations('User')
   const { theme, setTheme } = useTheme()
 

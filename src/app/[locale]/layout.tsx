@@ -8,7 +8,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
 
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from '@/components/ui/sonner'
 
 import { appLayoutViewport } from '@/constants/viewport'
 import { locales } from '@/i18n'
@@ -62,7 +62,7 @@ export default function RootLayout({
                   <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
                 </SWRProvider>
 
-                <Toaster />
+                <Toaster richColors className={YekanBakhFont.className} />
 
                 <Analytics />
                 <SpeedInsights />

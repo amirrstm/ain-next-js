@@ -5,10 +5,10 @@ import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
-import { useToast } from '@/components/ui/use-toast'
-
+import { LOGIN_BG } from '@/constants'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 import { persianToEnglishNumbers } from '@/lib/utils'
@@ -20,7 +20,7 @@ import { setUserToken } from '../../utils'
 
 const LoginContainer: React.FC = () => {
   const router = useRouter()
-  const { toast } = useToast()
+
   const params = useSearchParams()
   const { resolvedTheme } = useTheme()
 
@@ -68,7 +68,7 @@ const LoginContainer: React.FC = () => {
       setMobile(data.mobile)
 
       setUserId(res.userId)
-      toast({ title: res.message, variant: 'success' })
+      toast.success(res.message)
     })
   }
 
@@ -97,20 +97,21 @@ const LoginContainer: React.FC = () => {
           width={1440}
           height={960}
           alt="login-bg"
-          loader={({ src }) => src}
-          src="/images/login-bg.jpg"
+          src={LOGIN_BG}
           className="w-full h-full object-contain max-w-[1440px] mx-auto animate-blur-image"
         />
       </div>
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
         {isCode ? (
-          <CodeForm
-            loading={loading}
-            onSubmit={onCodeSubmit}
-            onBack={() => setIsCode(false)}
-            onResend={() => onSubmit({ mobile })}
-          />
+          <div className="animate-slide-in-blurred-bottom delay-300 w-full">
+            <CodeForm
+              loading={loading}
+              onSubmit={onCodeSubmit}
+              onBack={() => setIsCode(false)}
+              onResend={() => onSubmit({ mobile })}
+            />
+          </div>
         ) : (
           <div className="animate-slide-in-blurred-bottom delay-300">
             <LoginForm onSubmit={onSubmit} googleLoading={googleLoading} loading={isMutating} />

@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss'
 
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette')
+
 const config: Config = {
   mode: 'jit',
   darkMode: ['class'],
@@ -81,6 +83,16 @@ const config: Config = {
           '100%': { transform: 'translateX(0%)' },
         },
 
+        'blur-image': {
+          '0%': { filter: 'blur(0)' },
+          '100%': { filter: 'blur(32px)' },
+        },
+
+        'slide-in-blurred-bottom': {
+          '0%': { transform: 'translateY(100px)', filter: 'blur(40px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', filter: 'blur(0)', opacity: '1' },
+        },
+
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -102,6 +114,9 @@ const config: Config = {
         marquee: 'marquee 100s linear infinite',
         marquee2: 'marquee2 100s linear infinite',
 
+        'blur-image': '1.67s ease 0.2s 1 normal forwards running blur-image',
+        'slide-in-blurred-bottom': 'slide-in-blurred-bottom 0.8s cubic-bezier(0.230, 1.000, 0.320, 1.000) both',
+
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-bottom': 'fade-in-bottom 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
@@ -109,6 +124,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), addVariablesForColors],
 }
 export default config
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme('colors'))
+  let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]))
+
+  addBase({
+    ':root': newVars,
+  })
+}

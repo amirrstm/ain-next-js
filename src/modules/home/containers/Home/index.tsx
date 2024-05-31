@@ -13,17 +13,18 @@ import { LAYOUT_IMAGE } from '@/constants'
 
 import Contents from '../../components/Contents'
 import HeroHeader from '../../components/Hero'
+import { MacBookScroll } from '../../components/Video'
 
 const HomeContainer: React.FC = () => {
   return (
     <main>
       <Header />
 
-      <section className={clsx('bg-[url("/images/hero-screen.svg")]', 'bg-secondary bg-no-repeat bg-cover bg-center')}>
+      {/* <section className={clsx('bg-[url("/images/hero-screen.svg")]', 'bg-secondary bg-no-repeat bg-cover bg-center')}>
         <HeroHeader />
-      </section>
+      </section> */}
 
-      <div className="bg-secondary">
+      {/* <div className="bg-secondary">
         <div className="max-w-6xl mx-auto py-8 px-6 bg-secondary">
           <div className="relative w-full sm:h-auto rounded-2xl shadow-xl overflow-hidden">
             <Image
@@ -51,6 +52,10 @@ const HomeContainer: React.FC = () => {
             </div>
           </div>
         </div>
+      </div> */}
+
+      <div dir="ltr">
+        <MacBookScroll src={LAYOUT_IMAGE} />
       </div>
 
       <Contents />

@@ -17,7 +17,7 @@ const HeroHeader: React.FC = () => {
   const t = useTranslations('Layout')
 
   return (
-    <div className="pt-32 md:pt-40 flex flex-col items-center justify-center">
+    <div className="  flex flex-col items-center justify-center">
       <div className="max-w-xl text-center">
         <h1
           className="text-white text-3xl md:text-5xl leading-relaxed"
@@ -41,7 +41,7 @@ const HeroHeader: React.FC = () => {
         </Link>
       </div>
 
-      <div className="max-w-[250px] text-center flex flex-col items-center mt-4">
+      {/* <div className="max-w-[250px] text-center flex flex-col items-center mt-4">
         <Rating count={5} />
 
         <div className={clsx(YekanBakhNumFont.className, 'text-gray-400 mt-2 text-xs leading-snug')}>
@@ -50,16 +50,16 @@ const HeroHeader: React.FC = () => {
             rating: chunks => <strong className="text-white">{chunks}</strong>,
           })}
         </div>
-      </div>
+      </div> */}
 
-      <div className="mt-8">
-        <p className="text-white text-xs text-center">{t('Home.PoweredBy')}</p>
-
-        <div className="flex gap-6 items-center mt-2">
-          <div className="relative h-7 sm:h-6">
+      <div className="mt-4 flex items-center gap-2">
+        <div className="flex gap-6 items-center">
+          <div className="relative h-7 sm:h-4">
             <Image alt="open-ai" width={100} height={100} src={OPEN_AI_LOGO} className="w-full h-full object-contain" />
           </div>
         </div>
+
+        <p className="text-white text-xs text-center mt-1">{t('Home.PoweredBy')}</p>
       </div>
     </div>
   )

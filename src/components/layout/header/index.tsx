@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 
 import { LOGO_URL } from '@/constants'
+import AppLogo from '@/icons/logo'
 import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
@@ -18,7 +19,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
   const t = useTranslations('Layout')
 
   return (
-    <header className="fixed top-2 sm:top-5 left-0 w-full z-50 px-1">
+    <header className="bg-secondary pt-4">
       <div
         className={clsx(
           'border',
@@ -27,8 +28,9 @@ const Header: React.FC<Props> = ({ dark = true }) => {
         )}
         style={{ background: dark ? 'rgba(15, 15, 15, 0.6)' : 'rgba(255, 255, 255, 0.6)' }}
       >
-        <Link href="/" className="relative w-[140px] h-7 sm:h-8 flex">
-          <Image
+        <Link href="/" className="relative w-[140px] h-7 sm:h-9 flex">
+          <AppLogo fill="#fff" />
+          {/* <Image
             alt="logo"
             width={200}
             height={200}
@@ -36,7 +38,7 @@ const Header: React.FC<Props> = ({ dark = true }) => {
             className={clsx('w-full h-full object-contain', {
               'grayscale invert contrast-[1] hue-rotate-[180deg]': dark,
             })}
-          />
+          /> */}
         </Link>
 
         <div className="flex-1">

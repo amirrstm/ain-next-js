@@ -1,6 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import React, { useEffect, useState } from 'react'
@@ -91,25 +92,16 @@ const LoginContainer: React.FC = () => {
 
   return (
     <div className="relative">
-      <div
-        style={{
-          backgroundImage:
-            resolvedTheme === 'light'
-              ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
-        }}
-        className="absolute -bottom-10 left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10 rotate-180"
-      />
-
-      <div
-        style={{
-          backgroundImage:
-            resolvedTheme === 'light'
-              ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
-        }}
-        className="absolute -top-10  left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10"
-      />
+      <div className="absolute bg-[#000002] w-screen h-screen inset-0 -z-10">
+        <Image
+          width={1440}
+          height={960}
+          alt="login-bg"
+          loader={({ src }) => src}
+          src="/images/login-bg.jpg"
+          className="w-full h-full object-contain max-w-[1440px] mx-auto animate-blur-image"
+        />
+      </div>
 
       <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
         {isCode ? (
@@ -120,7 +112,9 @@ const LoginContainer: React.FC = () => {
             onResend={() => onSubmit({ mobile })}
           />
         ) : (
-          <LoginForm onSubmit={onSubmit} googleLoading={googleLoading} loading={isMutating} />
+          <div className="animate-slide-in-blurred-bottom delay-300">
+            <LoginForm onSubmit={onSubmit} googleLoading={googleLoading} loading={isMutating} />
+          </div>
         )}
       </div>
     </div>

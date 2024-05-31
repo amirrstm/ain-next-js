@@ -8,7 +8,7 @@ import DashboardMenu from '@/components/ui/dashboard-menu'
 
 import { LOGO_URL } from '@/constants'
 
-import UserProfile from '../AppSideBar/UserProfile'
+import UserProfile from '../../AppSideBar/UserProfile'
 
 type Props = {
   open: boolean

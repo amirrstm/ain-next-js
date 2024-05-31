@@ -10,12 +10,12 @@ const AppLogo: React.FC<{ fill?: string }> = ({ fill = '#272727' }) => {
       <path
         d="M1368.07 121H1464.99C1658.83 131.591 1613.69 346.422 1464.99 340.844C1449.96 340.281 1357 327.478 1357 419"
         stroke={fill}
-        stroke-width="48"
+        strokeWidth="48"
       />
       <path
         d="M1343.93 343H1247.01C1053.17 332.409 1098.31 117.578 1247.01 123.156C1262.04 123.719 1355 136.522 1355 45"
         stroke={fill}
-        stroke-width="48"
+        strokeWidth="48"
       />
       <rect x="1421" y="190" width="52" height="89" rx="26" fill={fill} />
       <rect x="1241" y="190" width="52" height="89" rx="26" fill={fill} />

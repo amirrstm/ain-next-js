@@ -1,16 +1,16 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
 import { IconMenu2 } from '@tabler/icons-react'
 import React, { useState } from 'react'
 
 import { Link } from '@/components/ui/navigation'
 
-import { LOGO_URL } from '@/constants'
+import AppLogo from '@/icons/logo'
 
-import MenuDrawer from './MenuDrawer'
+import { MenuTabs } from './MenuTabs'
+import UserProfile from './UserProfile'
 
 interface Props {
   menus: {
@@ -25,28 +25,19 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
   const [open, setOpen] = useState(false)
 
   return (
-    <>
-      <div className="flex justify-between items-center px-3 py-4 border-b border-b-muted bg-background">
-        <div className="flex gap-2 items-center cursor-pointer" onClick={() => setOpen(true)}>
-          <IconMenu2 />
-          <span className="text-sm">{t('Header.Menu')}</span>
-        </div>
-
+    <div className="border-b border-b-input bg-card">
+      <div className="flex justify-between items-center py-3 px-6">
         <Link href="/app">
-          <div className="relative w-[120px] h-7 sm:h-8">
-            <Image
-              alt="logo"
-              width={200}
-              height={200}
-              src={LOGO_URL}
-              className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
-            />
+          <div className="relative w-[120px] h-7 sm:h-9">
+            <AppLogo fill="#fff" />
           </div>
         </Link>
+
+        <UserProfile />
       </div>
 
-      <MenuDrawer menus={menus} open={open} onClose={() => setOpen(false)} />
-    </>
+      <MenuTabs tabs={menus} />
+    </div>
   )
 }
 

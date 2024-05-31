@@ -62,7 +62,7 @@ const UserNameContainer: React.FC = () => {
           height={960}
           alt="login-bg"
           src={LOGIN_BG}
-          className="w-full h-full object-contain max-w-[1440px] mx-auto animate-blur-image"
+          className="w-full h-full md:object-contain object-cover max-w-[1440px] mx-auto animate-blur-image"
         />
       </div>
 

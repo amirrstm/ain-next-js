@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
-import { IconDashboard, IconHistory, IconHome, IconSettings } from '@tabler/icons-react'
+import { IconDashboard, IconHistory, IconHome, IconMessage2Bolt, IconPencil, IconSettings } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
@@ -25,10 +25,21 @@ export default function AppLayoutContainer({ children }: { children: React.React
   const [loading, setLoading] = useState(false)
 
   const menus = [
-    { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-6 h-6" /> },
-    { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <IconDashboard className="w-6 h-6" /> },
-    { title: t('Menus.History'), link: '/app/history', icon: <IconHistory className="w-6 h-6" /> },
-    { title: t('Menus.Settings'), link: '/app/settings', icon: <IconSettings className="w-6 h-6" /> },
+    { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-5 h-5" /> },
+    {
+      title: t('Menus.Copywriting'),
+      link: '/app/copywriting',
+      icon: <IconPencil className="w-5 h-5" />,
+    },
+
+    {
+      title: t('Menus.Chat'),
+      link: '/app/chat',
+      icon: <IconMessage2Bolt className="w-5 h-5" />,
+    },
+    { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <IconDashboard className="w-5 h-5" /> },
+    { title: t('Menus.History'), link: '/app/history', icon: <IconHistory className="w-5 h-5" /> },
+    { title: t('Menus.Settings'), link: '/app/settings', icon: <IconSettings className="w-5 h-5" /> },
   ]
 
   useEffect(() => {
@@ -50,22 +61,10 @@ export default function AppLayoutContainer({ children }: { children: React.React
   if (loading) return null
 
   return (
-    <main className="block md:flex bg-background">
-      <div className="block md:hidden">
-        <AppHeader menus={user ? menus : [menus[0]]} />
-      </div>
+    <main className="">
+      <AppHeader menus={user ? menus : [menus[0]]} />
 
-      <div className="hidden md:block">
-        <AppSiderBar menus={user ? menus : [menus[0]]} />
-      </div>
-      <div
-        className={clsx(
-          'ms-0 md:ms-[250px] mt-0 md:mt-5 mb-0 md:mb-5 me-0 md:me-5 flex-1 border dark:border-card md:rounded-2xl',
-          'h-full min-h-[calc(100vh-40px)] bg-card md:bg-card md:shadow-inner',
-        )}
-      >
-        {children}
-      </div>
+      <div className={clsx('bg-background max-w-[1248px] mx-auto')}>{children}</div>
     </main>
   )
 }

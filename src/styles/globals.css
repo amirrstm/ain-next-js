@@ -86,11 +86,11 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 8%;
+    --background: 0 0% 2%;
     --foreground: 0 0% 100%;
     --background-light: 0 0% 13%;
 
-    --card: 240 3% 11%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 100%;
 
     --popover: 240 3% 11%;
@@ -102,7 +102,7 @@
     --secondary: 0 0% 6%;
     --secondary-foreground: 227 11% 21%;
 
-    --muted: 0 0% 26%;
+    --muted: 0 0% 15%;
     --muted-foreground: 240 4% 47%;
 
     --accent: 240 3% 96%;
@@ -190,4 +190,14 @@
 
 .ce-rawtool__textarea.cdx-input {
   direction: ltr !important;
+}
+
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
 }

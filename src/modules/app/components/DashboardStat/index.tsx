@@ -29,7 +29,7 @@ const DashboardStat: React.FC = () => {
         <span className="text-base md:text-xl">{t('Dashboard.Stats.Last30Days')}</span>
       </p>
 
-      <div className="border border-muted rounded-2xl p-2 md:p-6 bg-background mt-4">
+      <div className="border border-muted rounded-2xl p-2 md:p-6 bg-card mt-4">
         <div className="flex justify-center gap-3 md:gap-0 md:justify-start">
           <div className="pe-3 md:pe-5">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.TimeSaved')}</p>
@@ -39,7 +39,7 @@ const DashboardStat: React.FC = () => {
             </h2>
           </div>
 
-          <div className="px-3 md:px-5 border-s border-e">
+          <div className="px-3 md:px-5 border-s border-e border-muted">
             <p className="text-xs text-gray-400">{t('Dashboard.Stats.Generations')}</p>
             <h2 className={clsx(YekanBakhNumFont.className, 'text-sm md:text-xl mt-1')}>
               {used} از {plan?.generation}

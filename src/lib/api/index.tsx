@@ -46,8 +46,9 @@ const API = {
   RESUME: {
     POST: '/user/resume',
     GET_ALL: '/user/resume/list',
-    CREATE_FROM_VOICE: '/user/resume/voice',
     GET_TEMPLATES: '/public/template',
+    CREATE_FROM_VOICE: '/user/resume/voice',
+    CREATE_FROM_OCCUPATION: '/user/resume/occupation',
 
     DELETE: (id: string) => `/user/resume/${id}`,
     GET_ONE: (id: string) => `/user/resume/${id}`,

@@ -7,14 +7,16 @@ interface Props {
   isRecording: boolean
   onClick: () => void
   loading?: boolean
+  className?: string
 }
 
-const RecordButton: React.FC<Props> = ({ isRecording, loading, onClick }) => {
+const RecordButton: React.FC<Props> = ({ isRecording, loading, className, onClick }) => {
   return (
     <div
       onClick={onClick}
       className={clsx(
         'w-10 h-10 border border-muted bg-muted rounded-full flex items-center justify-center cursor-pointer',
+        className,
         { 'border-primary pulse-animation': isRecording, 'pointer-events-none': loading },
       )}
     >

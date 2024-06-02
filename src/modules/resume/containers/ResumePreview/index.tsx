@@ -57,7 +57,7 @@ const ResumePreviewContainer: React.FC = () => {
     updateDownload(resumeId as string)
       .then(data => {
         setLoading(false)
-        // window.open(data)
+        window.open(data)
       })
       .catch(() => setLoading(false))
   }

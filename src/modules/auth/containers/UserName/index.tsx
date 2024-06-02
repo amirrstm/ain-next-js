@@ -58,6 +58,7 @@ const UserNameContainer: React.FC = () => {
     <div className="relative">
       <div className="absolute bg-[#000002] w-screen h-screen inset-0 -z-10">
         <Image
+          priority
           width={1440}
           height={960}
           alt="login-bg"

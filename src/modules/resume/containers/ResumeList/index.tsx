@@ -30,27 +30,6 @@ const ResumeListContainer: React.FC = () => {
 
   const { data, isLoading, mutate: refreshResumes } = useResumes()
 
-  const [voiceLoading, setVoiceLoading] = useState(false)
-  const { startRecording, stopRecording, recordingBlob, isRecording } = useAudioRecorder({
-    echoCancellation: false,
-    noiseSuppression: false,
-  })
-
-  useEffect(() => {
-    if (!recordingBlob) return
-
-    setVoiceLoading(true)
-    getBlobDuration(recordingBlob).then(duration => {
-      const file = new File([recordingBlob], 'basic.wav', { type: 'audio/wav' })
-      createResumeFromVoice(file)
-        .then(data => {
-          setVoiceLoading(false)
-          router.push(`/app/resume/${data}`)
-        })
-        .catch(() => setVoiceLoading(false))
-    })
-  }, [recordingBlob])
-
   const onCreate = () => {
     setResumeOpen(true)
   }

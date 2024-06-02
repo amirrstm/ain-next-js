@@ -55,7 +55,14 @@ const HeroHeader: React.FC = () => {
       <div className="mt-4 flex items-center gap-2">
         <div className="flex gap-6 items-center">
           <div className="relative h-7 sm:h-4">
-            <Image alt="open-ai" width={100} height={100} src={OPEN_AI_LOGO} className="w-full h-full object-contain" />
+            <Image
+              priority
+              width={100}
+              height={100}
+              alt="open-ai"
+              src={OPEN_AI_LOGO}
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
 

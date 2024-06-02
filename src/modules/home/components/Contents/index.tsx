@@ -14,7 +14,7 @@ const Contents: React.FC = () => {
   const { resolvedTheme } = useTheme()
 
   return (
-    <section className="relative pb-32">
+    <section className="relative py-10 md:py-32">
       <div
         className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
         style={{
@@ -26,7 +26,7 @@ const Contents: React.FC = () => {
       />
 
       <div
-        className="absolute -top-10 left-0 right-0 h-1/2 bg-background  bg-no-repeat bg-contain bg-top -z-[1]"
+        className="absolute -top-10 left-0 right-0 h-1/2 bg-no-repeat bg-contain bg-top -z-[2]"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
@@ -34,6 +34,8 @@ const Contents: React.FC = () => {
               : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
         }}
       />
+
+      <div className="absolute -top-5 w-full h-32 bg-gradient-to-b from-secondary to-transparent -z-[1]"></div>
 
       <Resume />
 

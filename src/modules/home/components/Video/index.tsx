@@ -23,9 +23,11 @@ import { IconWorld } from '@tabler/icons-react'
 import { IconCommand } from '@tabler/icons-react'
 import { IconCaretLeftFilled } from '@tabler/icons-react'
 import { IconCaretDownFilled } from '@tabler/icons-react'
-import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
+import useWindowDimensions from '@/hooks/useWindowDimensions'
 import IconLogoSmall from '@/icons/logo-small'
 import { cn } from '@/lib/utils'
 
@@ -33,32 +35,34 @@ import HeroHeader from '../Hero'
 
 export const MacBookScroll = ({ src }: { src?: string }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
+  const { height } = useWindowDimensions()
+  const isMobile = useMediaQuery({ maxWidth: 764 })
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-
-  useEffect(() => {
-    if (window && window.innerWidth < 768) {
-      setIsMobile(true)
-    }
-  }, [])
 
   useEffect(() => {
     console.log(scrollYProgress)
   }, [scrollYProgress])
 
-  const scaleX = useTransform(scrollYProgress, [0, 0.1], [1.2, isMobile ? 1 : 1.5])
-  const scaleY = useTransform(scrollYProgress, [0, 0.1], [0.65, isMobile ? 1 : 1.5])
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1300])
+  const scaleX = useTransform(scrollYProgress, [0, 0.2], [1.2, isMobile ? 1.3 : 1.7])
+  const scaleY = useTransform(scrollYProgress, [0, 0.2], [0.6, isMobile ? 1.3 : 1.7])
+  const translate = useTransform(scrollYProgress, [0, 0.3], [0, isMobile ? height / 1.4 : height / 1.8])
   const rotate = useTransform(scrollYProgress, [0, 0.1], [-28, 0])
 
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100])
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
+  const firstTextTransform = useTransform(scrollYProgress, [0.2, 0.32], [100, 0])
+  const firstTextOpacity = useTransform(scrollYProgress, [0.2, 0.32], [0, 1])
+
+  const secondTextTransform = useTransform(scrollYProgress, [0.32, 0.4], [-100, 0])
+  const secondTextOpacity = useTransform(scrollYProgress, [0.32, 0.4], [0, 1])
+
   return (
     <div
       ref={ref}
-      className="min-h-[220vh] flex flex-col items-center py-10 overflow-hidden bg-secondary justify-start flex-shrink-0 [perspective:800px] transform md:scale-100 scale-[0.35] sm:scale-50"
+      style={{ minHeight: isMobile ? height * 1.3 : height * 1.7 }}
+      className="flex flex-col items-center py-10 relative  bg-secondary justify-start flex-shrink-0 [perspective:800px]"
     >
       <div
         className={cn(
@@ -67,34 +71,65 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
         )}
       />
 
-      <motion.h2 style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20">
+      <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20">
         <HeroHeader />
-      </motion.h2>
+      </motion.div>
 
-      <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
+      <div className="md:scale-100 scale-50 sm:scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
+        <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
 
-      {/* Base area */}
-      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative -z-10">
-        {/* above keyboard bar */}
-        <div className="h-10 w-full relative">
-          <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+        {/* Base area */}
+        <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
+          {/* above keyboard bar */}
+          <div className="h-10 w-full relative">
+            <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+          </div>
+
+          <div className="flex relative">
+            <div className="mx-auto w-[10%] overflow-hidden  h-full">
+              <SpeakerGrid />
+            </div>
+            <div className="mx-auto w-[80%] h-full">
+              <Keypad />
+            </div>
+            <div className="mx-auto w-[10%] overflow-hidden  h-full">
+              <SpeakerGrid />
+            </div>
+          </div>
+
+          <TrackPad />
+          <div className="h-2 w-20 mx-auto inset-x-0 absolute bottom-0 bg-gradient-to-t from-[#272729] to-[#050505] rounded-tr-3xl rounded-tl-3xl" />
+          <div
+            style={{ height: height > 1000 ? height * 0.3 : height * 0.4 }}
+            className="w-full absolute bottom-0 inset-x-0 bg-gradient-to-t dark:from-secondary from-white via-white dark:via-secondary to-transparent z-50"
+          ></div>
+
+          <motion.div
+            className="absolute bottom-0 md:bottom-10 z-[51] flex flex-col items-center justify-center text-center w-full"
+            style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
+          >
+            <h2 className="text-4xl md:text-3xl font-bold">کمترین کلمات را استفاده کن</h2>
+            <p className="text-xl md:text-xs text-neutral-500 leading-loose mt-4">
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم
+              متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="absolute  z-[100] flex flex-col items-center justify-center text-center w-full"
+            style={{
+              top: isMobile ? height + 100 : height * 0.95,
+              opacity: secondTextOpacity,
+              translateY: secondTextTransform,
+            }}
+          >
+            <h2 className="text-4xl md:text-3xl font-bold">بیشترین بهره‌وری را داشته باش</h2>
+            <p className="text-xl md:text-xs text-neutral-500 leading-loose mt-4">
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم
+              متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+            </p>
+          </motion.div>
         </div>
-
-        <div className="flex relative">
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
-            <SpeakerGrid />
-          </div>
-          <div className="mx-auto w-[80%] h-full">
-            <Keypad />
-          </div>
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
-            <SpeakerGrid />
-          </div>
-        </div>
-
-        <TrackPad />
-        <div className="h-2 w-20 mx-auto inset-x-0 absolute bottom-0 bg-gradient-to-t from-[#272729] to-[#050505] rounded-tr-3xl rounded-tl-3xl" />
-        <div className="h-72 w-full absolute bottom-0 inset-x-0 bg-gradient-to-t dark:from-secondary from-white via-white dark:via-secondary to-transparent z-50"></div>
       </div>
     </div>
   )
@@ -107,14 +142,12 @@ export const Lid = ({
   translate,
   src,
 }: {
+  src?: string
   scaleX: MotionValue<number>
   scaleY: MotionValue<number>
   rotate: MotionValue<number>
   translate: MotionValue<number>
-  src?: string
 }) => {
-  console.log(translate)
-
   return (
     <div className="relative [perspective:800px]">
       <div
@@ -134,6 +167,7 @@ export const Lid = ({
           </span>
         </div>
       </div>
+
       <motion.div
         style={{
           scaleX: scaleX,

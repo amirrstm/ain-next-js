@@ -62,7 +62,7 @@ const MonthlyChartContainer: React.FC = () => {
         <span className="text-lg">{t('Menus.Dashboard')}</span>
       </div>
 
-      <div className="bg-background border rounded-xl border-muted shadow-sm">
+      <div className="bg-card border rounded-xl border-muted shadow-sm">
         <div className="p-4 md:p-6 md:px-8 border-b border-b-muted">
           <div className="flex gap-4 flex-col md:flex-row md:justify-between md:items-center">
             <div>

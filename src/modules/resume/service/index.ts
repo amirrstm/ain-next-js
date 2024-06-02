@@ -75,12 +75,9 @@ export const getSkills = async ({ search }: { search: string }, signal: AbortSig
   }
 }
 
-export async function createResume(url = ''): Promise<string> {
+export async function createResume(url = '', { arg }: { arg: { title: string; template?: string } }): Promise<string> {
   try {
-    const res = await axios.post<{ data: string }>(url, {
-      title: 'بدون عنوان',
-      template: 'f1e6999a-b162-42f6-b9d6-9d9369e01c3d',
-    })
+    const res = await axios.post<{ data: string }>(url, arg)
 
     return res.data.data
   } catch (e) {

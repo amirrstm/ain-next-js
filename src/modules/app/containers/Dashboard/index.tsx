@@ -1,6 +1,6 @@
 'use client'
 
-import { IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
+import { IconFileCv, IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -22,6 +22,25 @@ const DashboardContainer: React.FC = () => {
       </div>
 
       <div className="block md:hidden mt-6 space-y-6">
+        <Link
+          href="/app/resume"
+          className={clsx(
+            'cursor-pointer group transition-all ease-in-out duration-200',
+            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
+          )}
+        >
+          <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
+            <IconFileCv className="w-6 h-6 text-white" />
+          </span>
+
+          <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
+            <h3 className="font-semibold">رزومه ساز</h3>
+            <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
+              در کمتر از ۱۵ دقیقه رزومه خودرا با کمک هوش‌مصنوعی و صدای خودتان بسازید!
+            </p>
+          </div>
+        </Link>
+
         <Link
           href="/app/copywriting"
           className={clsx(

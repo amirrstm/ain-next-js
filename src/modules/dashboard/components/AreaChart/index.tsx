@@ -54,8 +54,8 @@ const MonthlyAreaChart: React.FC<Props> = ({ data }) => {
             type="monotone"
             fill="#b5b3d1"
             strokeWidth={2}
-            stroke="#091aae"
-            dot={isTabletOrMobile ? undefined : { stroke: '#091aae', r: 3 }}
+            stroke="hsl(var(--primary))"
+            dot={isTabletOrMobile ? undefined : { stroke: 'hsl(var(--primary))', r: 3 }}
           />
         </AreaChart>
       </ResponsiveContainer>

@@ -19,7 +19,7 @@ const AppSettings: React.FC = () => {
   }
 
   return (
-    <div className="border border-muted rounded-xl bg-background">
+    <div className="border border-muted rounded-xl bg-card">
       <div className="border-b border-b-muted p-4">
         <span className="text-lg">{t('Settings.AppSettings')}</span>
       </div>

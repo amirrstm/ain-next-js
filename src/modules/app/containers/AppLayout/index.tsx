@@ -3,7 +3,15 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
-import { IconDashboard, IconHistory, IconHome, IconMessage2Bolt, IconPencil, IconSettings } from '@tabler/icons-react'
+import {
+  IconDashboard,
+  IconFileCv,
+  IconHistory,
+  IconHome,
+  IconMessage2Bolt,
+  IconPencil,
+  IconSettings,
+} from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
@@ -14,7 +22,6 @@ import { getUserProfile } from '@/modules/auth/services'
 import { removeUserToken } from '@/modules/auth/utils'
 
 import AppHeader from '../../components/AppHeader'
-import AppSiderBar from '../../components/AppSideBar'
 
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -31,7 +38,11 @@ export default function AppLayoutContainer({ children }: { children: React.React
       link: '/app/copywriting',
       icon: <IconPencil className="w-5 h-5" />,
     },
-
+    {
+      title: t('Menus.Resume'),
+      link: '/app/resume',
+      icon: <IconFileCv className="w-5 h-5" />,
+    },
     {
       title: t('Menus.Chat'),
       link: '/app/chat',

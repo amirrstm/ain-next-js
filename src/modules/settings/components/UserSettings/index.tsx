@@ -44,6 +44,7 @@ const UserSettings: React.FC = () => {
     setLoading(true)
     trigger(data)
       .then(() => {
+        setLoading(false)
         if (user) {
           setUser({ ...user, firstName: data.firstName, lastName: data.lastName })
           toast.success(t('Settings.Success'))
@@ -53,7 +54,7 @@ const UserSettings: React.FC = () => {
   }
 
   return (
-    <div className="border border-muted rounded-xl bg-background">
+    <div className="border border-muted rounded-xl bg-card">
       <div className="border-b border-b-muted p-4">
         <span className="text-lg">{t('Settings.EditProfile')}</span>
       </div>

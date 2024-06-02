@@ -31,7 +31,7 @@ const HistoryEmpty: React.FC<{ title: string }> = ({ title }) => {
         className={clsx('absolute -top-10  left-0 right-0 h-1/2 bg-background bg-no-repeat bg-cover bg-top')}
       />
 
-      <div className="border shadow-md rounded-lg max-w-sm p-4 text-center z-[1]">
+      <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center z-[1]">
         <p className="text-gray-500 flex">
           <IconHistory className="text-primary" />
           <span className="flex-1 leading-relaxed">{title}</span>

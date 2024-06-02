@@ -109,7 +109,7 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-40px)] min-h-[200px]">
+    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-125px)] min-h-[200px]">
       <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
         <div className="p-4 w-full border-b border-b-muted">
           <div className="flex gap-2 items-center justify-between">
@@ -159,8 +159,8 @@ const ChatContainer: React.FC = () => {
                 </div>
               ) : (
                 <div className="p-6 text-center flex justify-center">
-                  <div className="border shadow-md rounded-lg max-w-sm p-4 text-center">
-                    <p className="text-gray-500 flex">
+                  <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
+                    <p className="text-neutral-500 flex">
                       <IconBolt className="text-primary" />
                       <span className="flex-1 leading-normal">{t('Empty')}</span>
                     </p>
@@ -184,7 +184,7 @@ const ChatContainer: React.FC = () => {
               disabled={isLoading}
               onKeyDown={onKeyDown}
               placeholder={t('InputPlaceholder')}
-              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs md:text-base"
+              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs bg-transparent md:text-base placeholder:text-neutral-600"
             />
 
             <div
@@ -205,7 +205,7 @@ const ChatContainer: React.FC = () => {
       </div>
 
       <div ref={endRef} className="text-center pt-1">
-        <p className="text-[10px] md:text-xs text-gray-400">{t('Info')}</p>
+        <p className="text-[10px] md:text-xs text-neutral-600">{t('Info')}</p>
       </div>
     </div>
   )

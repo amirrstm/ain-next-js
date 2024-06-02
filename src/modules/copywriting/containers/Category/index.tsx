@@ -65,7 +65,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
     <div className={!inner ? 'p-2 xl:p-6' : ''}>
       <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
         <div className="hidden md:block col-span-6 lg:col-span-5 xl:col-span-3 2xl:col-span-3">
-          <div className="border border-muted rounded-xl bg-background shadow-md block sticky top-8">
+          <div className="border border-muted rounded-xl bg-card shadow-md block sticky top-8">
             <div className="p-4 border-b border-b-muted">
               <h1 className="text-xl font-bold">{t('Category.Title')}</h1>
             </div>
@@ -98,7 +98,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
         </div>
 
         <div className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-9 2xl:col-span-9 h-full">
-          <div className="border border-muted rounded-xl bg-background shadow-md h-full">
+          <div className="border border-muted rounded-xl bg-card shadow-md h-full">
             <div className="p-4 flex items-center justify-between border-b border-b-muted">
               <div className="flex gap-2 items-center">
                 <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">

@@ -17,6 +17,8 @@ export const MenuTabs = ({ tabs: propTabs }: { tabs: Tab[] }) => {
   const pathname = usePathname()
   const [hoverTab, setHoverTab] = useState<number>(-1)
 
+  const isSamePage = (link: string) => (link === '/app' ? pathname === link : pathname.includes(link))
+
   return (
     <>
       <div
@@ -33,8 +35,8 @@ export const MenuTabs = ({ tabs: propTabs }: { tabs: Tab[] }) => {
             onMouseEnter={() => setHoverTab(idx)}
             style={{ transformStyle: 'preserve-3d' }}
             className={cn('relative px-4 py-2 rounded-md text-sm flex items-center gap-2', {
-              'text-neutral-500': pathname !== tab.link,
-              'text-primary': pathname === tab.link,
+              'text-neutral-500': !isSamePage(tab.link),
+              'text-primary': isSamePage(tab.link),
             })}
           >
             {hoverTab === idx && (
@@ -45,7 +47,7 @@ export const MenuTabs = ({ tabs: propTabs }: { tabs: Tab[] }) => {
               />
             )}
 
-            {pathname === tab.link && (
+            {isSamePage(tab.link) && (
               <motion.div
                 layoutId="clickedLine"
                 transition={{ type: 'spring', bounce: 0.3, duration: 0.6 }}

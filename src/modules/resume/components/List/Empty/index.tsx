@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 import Icon from './Icon'
 
-const ResumeEmpty: React.FC<{ onCreate: () => void; loading: boolean }> = ({ loading, onCreate }) => {
+const ResumeEmpty: React.FC<{ onCreate: () => void }> = ({ onCreate }) => {
   const t = useTranslations('Resume')
 
   return (
@@ -14,9 +14,9 @@ const ResumeEmpty: React.FC<{ onCreate: () => void; loading: boolean }> = ({ loa
       <div className="w-[500px] h-full">
         <Icon />
       </div>
-      <Button loading={loading} className="flex gap-2 items-center" onClick={onCreate}>
+      <Button className="flex gap-2 items-center" onClick={onCreate}>
         <IconOctagonPlus className="w-5 h-5" />
-        {t('Create')}
+        {t('Create.Title')}
       </Button>
       <span className="flex-1 leading-relaxed text-gray-500">{t('Empty')}</span>
     </div>

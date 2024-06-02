@@ -69,7 +69,7 @@ const UserHistoryContainer: React.FC = () => {
 
       {isLoading ||
         (items.length > 0 && (
-          <div className="grid grid-cols-12 md:gap-8 h-full min-h-[calc(100vh-100px)]">
+          <div className="grid grid-cols-12 md:gap-8 h-full min-h-[calc(100vh-200px)]">
             {isLoading ? (
               <HistoryLoading />
             ) : isTabletOrMobile && selectedHistory ? (
@@ -83,14 +83,14 @@ const UserHistoryContainer: React.FC = () => {
             ) : (
               <div
                 onScroll={handleScroll}
-                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-background h-full max-h-[calc(100vh-100px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
+                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-card h-full max-h-[calc(100vh-200px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
               >
                 {items?.map(item => (
                   <div
                     key={item._id}
                     onClick={() => onSelect(item)}
-                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-muted dark:hover:bg-neutral-800', {
-                      'bg-muted dark:bg-neutral-800': item._id === selectedHistory?._id,
+                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-black dark:hover:bg-neutral-800', {
+                      'bg-black dark:bg-neutral-800': item._id === selectedHistory?._id,
                     })}
                   >
                     <div className="flex items-center gap-2">

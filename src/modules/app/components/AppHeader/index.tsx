@@ -1,10 +1,5 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-
-import { IconMenu2 } from '@tabler/icons-react'
-import React, { useState } from 'react'
-
 import { Link } from '@/components/ui/navigation'
 
 import AppLogo from '@/icons/logo'
@@ -21,14 +16,11 @@ interface Props {
 }
 
 const AppHeader: React.FC<Props> = ({ menus }) => {
-  const t = useTranslations('Layout')
-  const [open, setOpen] = useState(false)
-
   return (
-    <div className="border-b border-b-input bg-card">
-      <div className="flex justify-between items-center py-3 px-6">
+    <header className="border-b border-b-input bg-card">
+      <div className="flex justify-between items-center py-1 md:py-3 px-3 md:px-6">
         <Link href="/app">
-          <div className="relative w-[120px] h-7 sm:h-9">
+          <div className="relative w-[100px] md:w-[120px] h-6 sm:h-9">
             <AppLogo fill="#fff" />
           </div>
         </Link>
@@ -37,7 +29,7 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
       </div>
 
       <MenuTabs tabs={menus} />
-    </div>
+    </header>
   )
 }
 

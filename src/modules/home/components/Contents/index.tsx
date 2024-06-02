@@ -1,20 +1,15 @@
-import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
-import clsx from 'clsx'
-
 import BeforeAfter from './BeforeAfter'
-import Benefits from './Benefits'
 import Faq from './Faq'
 import Features from './Features'
 import Resume from './Resume'
 
 const Contents: React.FC = () => {
-  const t = useTranslations('Layout.Home')
   const { resolvedTheme } = useTheme()
 
   return (
-    <section className="relative py-10 md:py-32">
+    <section className="relative py-10 md:py-12">
       <div
         className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
         style={{
@@ -26,7 +21,7 @@ const Contents: React.FC = () => {
       />
 
       <div
-        className="absolute -top-10 left-0 right-0 h-1/2 bg-no-repeat bg-contain bg-top -z-[2]"
+        className="absolute -top-10 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-[2]"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
@@ -35,7 +30,7 @@ const Contents: React.FC = () => {
         }}
       />
 
-      <div className="absolute -top-5 w-full h-32 bg-gradient-to-b from-secondary to-transparent -z-[1]"></div>
+      <div className="absolute -top-5 w-full h-32 bg-gradient-to-b from-secondary to-transparent -z-[1]" />
 
       <Resume />
 

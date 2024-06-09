@@ -31,7 +31,7 @@ const Resume: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-12 md:py-20 px-2 md:px-6">
       <div className="flex flex-col items-center">
-        <div className="py-2 w-24 rounded-full bg-primary text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
+        <div className="py-2 w-24 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
           {t('Resume.Title')}
         </div>
 
@@ -48,7 +48,7 @@ const Resume: React.FC = () => {
                     <MicIcon />
                   </div>
 
-                  <p className="text-sm text-muted">{t('Resume.Voice.Topic')}</p>
+                  <p className="text-sm text-accent/60">{t('Resume.Voice.Topic')}</p>
                 </div>
 
                 <div className="pt-8">
@@ -94,7 +94,7 @@ const Resume: React.FC = () => {
                           <IconTick />
                         </div>
 
-                        <p className="text-xs text-muted mb-1">{t('Resume.ATS.Topic')}</p>
+                        <p className="text-xs text-accent/60 mb-1">{t('Resume.ATS.Topic')}</p>
                       </div>
                     </div>
 
@@ -126,7 +126,7 @@ const Resume: React.FC = () => {
                           <IconArrowUp />
                         </div>
 
-                        <p className="text-xs text-muted mb-1">{t('Resume.Structure.Topic')}</p>
+                        <p className="text-xs text-accent/60 mb-1">{t('Resume.Structure.Topic')}</p>
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
@@ -179,9 +179,13 @@ const Resume: React.FC = () => {
                 <div className="absolute bottom-2 left-2 opacity-70">
                   <IconWand />
                 </div>
-                <h2 className={clsx('font-bold text-xl')}>{t('Resume.Principle.Title')}</h2>
+                <h2 className={clsx('font-bold text-xl text-white dark:text-foreground')}>
+                  {t('Resume.Principle.Title')}
+                </h2>
 
-                <p className="text-xs mt-4 leading-relaxed">{t('Resume.Principle.Description')}</p>
+                <p className="text-xs mt-4 leading-relaxed text-white dark:text-foreground">
+                  {t('Resume.Principle.Description')}
+                </p>
               </div>
             </div>
 
@@ -211,7 +215,7 @@ const Resume: React.FC = () => {
                           <IconArrowUp />
                         </div>
 
-                        <p className="text-xs text-muted mb-1">{t('Resume.Structure.Topic')}</p>
+                        <p className="text-xs text-accent/60 mb-1">{t('Resume.Structure.Topic')}</p>
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
@@ -252,7 +256,7 @@ const Resume: React.FC = () => {
                         <IconFlag />
                       </div>
 
-                      <p className="text-xs text-muted mb-1">{t('Resume.Satisfy.Topic')}</p>
+                      <p className="text-xs text-accent/60 mb-1">{t('Resume.Satisfy.Topic')}</p>
                     </div>
 
                     <h2 className={clsx('font-medium leading-relaxed', textGradient)}>

@@ -89,7 +89,7 @@ const PreviewSettings: React.FC<Props> = ({ onClose, onReload, settings, isLoadi
       ) : (
         <div className="p-4 space-y-4">
           {values.defaultFont && (
-            <div className="border border-input rounded-md flex">
+            <div className="border border-input rounded-md flex bg-white dark:bg-transparent">
               <div className="border-e border-e-input flex items-center px-3">
                 <p className="text-sm">{t('Options.Fields.DefaultFont')}</p>
               </div>
@@ -158,7 +158,7 @@ const PreviewSettings: React.FC<Props> = ({ onClose, onReload, settings, isLoadi
           )}
 
           {values.blockMargins && (
-            <div className="border border-input rounded-md">
+            <div className="border border-input rounded-md bg-white dark:bg-transparent">
               <div className="border-b border-b-input flex items-center py-2 px-3">
                 <p className="text-sm">{t('Options.Fields.BlockMargins')}</p>
               </div>

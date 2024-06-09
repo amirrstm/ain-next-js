@@ -46,7 +46,7 @@ const UserProfile = () => {
     <div>
       <Popover>
         <PopoverTrigger>
-          <div className="w-12 h-12 bg-background rounded-full flex items-center justify-center">
+          <div className="w-12 h-12 bg-foreground dark:bg-background rounded-full flex items-center justify-center">
             <IconUser className="w-6 h-6 text-white" />
           </div>
         </PopoverTrigger>

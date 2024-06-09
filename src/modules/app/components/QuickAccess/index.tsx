@@ -13,6 +13,27 @@ import { cn } from '@/lib/utils'
 const QuickAccess: React.FC = () => {
   const t = useTranslations('Layout')
 
+  const menus = [
+    {
+      title: t('Dashboard.Access.Copywriting.Title'),
+      link: '/app/copywriting',
+      icon: <IconPencil className="text-white w-5 h-5" />,
+      description: t('Dashboard.Access.Copywriting.Description'),
+    },
+    {
+      title: t('Dashboard.Access.Resume.Title'),
+      link: '/app/resume',
+      icon: <IconFileCv className="text-white w-5 h-5" />,
+      description: t('Dashboard.Access.Resume.Description'),
+    },
+    {
+      title: t('Dashboard.Access.Chat.Title'),
+      link: '/app/chat',
+      icon: <IconMessage2Bolt className="text-white w-5 h-5" />,
+      description: t('Dashboard.Access.Chat.Description'),
+    },
+  ]
+
   return (
     <div className="mt-4 md:mt-10">
       <p className="flex items-center gap-2">
@@ -21,60 +42,26 @@ const QuickAccess: React.FC = () => {
       </p>
 
       <div className="grid grid-cols-12 gap-4 mt-6">
-        <div className="col-span-4 group">
-          <HoverBorderGradient href="/app/copywriting">
-            <div className="p-4">
-              <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                  <IconPencil className="text-white w-5 h-5" />
+        {menus.map((menu, index) => (
+          <div key={index} className="col-span-4 group">
+            <HoverBorderGradient href={menu.link}>
+              <div className="p-4">
+                <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary group-hover:border-2 transition-all duration-200 ease-in-out">
+                  <div className="w-10 h-10 bg-foreground dark:bg-secondary rounded-lg flex items-center justify-center">
+                    {menu.icon}
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <p className="text-lg font-semibold">{menu.title}</p>
+                  <p className="text-xs text-neutral-600 dark:text-neutral-500 mt-1 leading-relaxed">
+                    {menu.description}
+                  </p>
                 </div>
               </div>
-
-              <div className="mt-4">
-                <p className="text-lg font-semibold">{t('Menus.Copywriting')}</p>
-                <p className="text-xs text-neutral-600 mt-1">
-                  با استفاده از الگوهای نوشتاری، متن های خلاقانه تولید کنید
-                </p>
-              </div>
-            </div>
-          </HoverBorderGradient>
-        </div>
-
-        <div className="col-span-5 group">
-          <HoverBorderGradient href="/app/resume">
-            <div className="p-4">
-              <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                  <IconFileCv className="text-white w-5 h-5" />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="text-lg font-semibold">{t('Menus.Resume')}</p>
-                <p className="text-xs text-neutral-600 mt-1">
-                  در کمتر از ۱۵ دقیقه رزومه خودرا با کمک هوش‌مصنوعی و صدای خودتان بسازید!
-                </p>
-              </div>
-            </div>
-          </HoverBorderGradient>
-        </div>
-
-        <div className="col-span-3 group">
-          <HoverBorderGradient href="/app/chat">
-            <div className="p-4">
-              <div className="border border-muted w-12 h-12 rounded-lg flex justify-center items-center group-hover:border-primary transition-all duration-200 ease-in-out">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                  <IconMessage2Bolt className="text-white w-5 h-5" />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="text-lg font-semibold">{t('Menus.Chat')}</p>
-                <p className="text-xs text-neutral-600 mt-1">هر سوالی دارید از هوش مصنوعی بپرسید</p>
-              </div>
-            </div>
-          </HoverBorderGradient>
-        </div>
+            </HoverBorderGradient>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -139,10 +126,10 @@ export function HoverBorderGradient({
       )}
       {...props}
     >
-      <div className={cn('w-auto text-white z-10 bg-black px-4 py-2 rounded-xl', className)}>{children}</div>
+      <div className={cn('w-auto z-10 bg-card px-4 py-2 rounded-xl', className)}>{children}</div>
 
       <motion.div
-        className={cn('flex-none inset-0 overflow-hidden absolute z-0 ')}
+        className={cn('flex-none inset-0 overflow-hidden rounded-xl absolute z-0 ')}
         style={{
           width: '100%',
           filter: 'blur(2px)',

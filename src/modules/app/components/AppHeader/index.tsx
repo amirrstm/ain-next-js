@@ -21,11 +21,13 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
       <div className="flex justify-between items-center py-1 md:py-3 px-3 md:px-6">
         <Link href="/app">
           <div className="relative w-[100px] md:w-[120px] h-6 sm:h-9">
-            <AppLogo fill="#fff" />
+            <AppLogo fill="hsl(var(--foreground))" />
           </div>
         </Link>
 
-        <UserProfile />
+        <div className="flex">
+          <UserProfile />
+        </div>
       </div>
 
       <MenuTabs tabs={menus} />

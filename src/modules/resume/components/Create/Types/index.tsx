@@ -76,7 +76,7 @@ export const Card = ({ className, children }: { className?: string; children: Re
   return (
     <div
       className={cn(
-        'rounded-2xl h-full w-full p-2 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20',
+        'rounded-2xl h-full w-full p-2 overflow-hidden bg-neutral-50 shadow-md dark:bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20',
         className,
       )}
     >
@@ -89,7 +89,11 @@ export const Card = ({ className, children }: { className?: string; children: Re
 
 export const CardTitle = ({ className, children }: { className?: string; children: React.ReactNode }) => {
   return (
-    <h4 className={cn('text-zinc-100 font-bold tracking-wide md:text-lg mt-4 text-center', className)}>{children}</h4>
+    <h4
+      className={cn('text-zinc-700 dark:text-zinc-100 font-bold tracking-wide md:text-lg mt-4 text-center', className)}
+    >
+      {children}
+    </h4>
   )
 }
 export const CardDescription = ({ className, children }: { className?: string; children: React.ReactNode }) => {

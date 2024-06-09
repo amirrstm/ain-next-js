@@ -27,7 +27,7 @@ const MainSidebar: React.FC = () => {
   }
 
   return (
-    <div className="bg-background rounded-xl border border-muted">
+    <div className="bg-card rounded-xl border border-muted">
       <div className="p-2 xl:p-4 border-b border-b-muted">
         <h1 className="text-primary sm:text-lg font-semibold">{t('Title')}</h1>
         <p className="text-xs text-gray-500 mt-1">{t('Description')}</p>
@@ -75,10 +75,10 @@ const SingleTab: React.FC<{
     >
       <span
         className={clsx(
-          'xl:absolute xl:-right-10 flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full',
+          'xl:absolute xl:-right-10 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full',
           'bg-muted -start-4 ring-4 ring-muted',
           {
-            'text-green-600': completed,
+            'bg-green-500 text-white ring-green-500': completed,
             'bg-primary text-white ring-primary': isActive,
             'group-hover:text-primary': !isActive && !completed,
           },

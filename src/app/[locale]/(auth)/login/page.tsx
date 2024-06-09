@@ -24,5 +24,9 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 export default async function Login({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale)
 
-  return <LoginContainer />
+  return (
+    <div className="dark">
+      <LoginContainer />
+    </div>
+  )
 }

@@ -30,7 +30,7 @@ const Contents: React.FC = () => {
         }}
       />
 
-      <div className="absolute -top-5 w-full h-32 bg-gradient-to-b from-secondary to-transparent -z-[1]" />
+      <div className="absolute -top-5 w-full h-64 dark:h-32 bg-gradient-to-b from-white dark:from-secondary to-transparent -z-[1]" />
 
       <Resume />
 

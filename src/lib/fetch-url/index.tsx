@@ -25,6 +25,25 @@ export default async function fetchWithUrl<P>(input: RequestInfo, init?: Request
   }
 }
 
+export async function fetchWithoutCookie<P>(input: RequestInfo, init?: RequestInit): Promise<P> {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}${input}`, {
+      ...init,
+      headers: { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': 'fa' },
+    })
+
+    const data = await response.json()
+
+    if (response.ok) {
+      return data
+    }
+
+    throw new FetchError({ message: response.statusText, response, data })
+  } catch (error: any) {
+    throw new Error(error.message)
+  }
+}
+
 export class FetchError extends Error {
   response: Response
   data: {

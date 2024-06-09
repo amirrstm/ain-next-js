@@ -125,11 +125,11 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
                 opacity: { duration: 0.2 },
               }}
             >
-              <div className="absolute -top-3 bg-neutral-500 px-6 py-0.5 rounded-md left-1/2 -translate-x-1/2 z-[2]">
+              <div className="absolute -top-3 bg-neutral-200 dark:bg-neutral-500 px-6 py-0.5 rounded-md left-1/2 -translate-x-1/2 z-[2]">
                 <p className="text-sm">{getName(currentIndex)}</p>
               </div>
 
-              <div className="w-full h-full relative border-4 border-neutral-500 rounded-xl overflow-hidden">
+              <div className="w-full h-full relative border-4 border-neutral-200 dark:border-neutral-500 rounded-xl overflow-hidden">
                 <Image width={320} height={450} alt={getName(currentIndex)} src={getImage(currentIndex)} />
 
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2">

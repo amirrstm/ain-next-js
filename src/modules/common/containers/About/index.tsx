@@ -1,3 +1,7 @@
+'use client'
+
+import { useTheme } from 'next-themes'
+
 import clsx from 'clsx'
 import React from 'react'
 
@@ -5,26 +9,34 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 
 const AboutContainer: React.FC = () => {
+  const { resolvedTheme } = useTheme()
+
   return (
     <div>
       <Header />
-      <section
-        className={clsx(
-          'bg-secondary bg-no-repeat bg-contain bg-top',
-          'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
-        )}
-      >
-        <div className="py-32 pb-[200px] flex flex-col items-center justify-center">
+
+      <section className="relative">
+        <div
+          className="absolute top-0 left-0 right-0 h-1/2 bg-background bg-no-repeat opacity-50 bg-contain bg-top -z-[2]"
+          style={{
+            backgroundImage:
+              resolvedTheme === 'light'
+                ? 'url("/images/bg-content.svg")'
+                : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
+          }}
+        />
+
+        <div className="py-12 pb-[200px] flex flex-col items-center justify-center">
           <div className="py-1 w-20 rounded-full bg-primary text-white flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
             داستان ما
           </div>
 
           <div className="max-w-xl text-center mt-6">
-            <h1 className="text-white text-3xl md:text-5xl leading-relaxed">داستان پشت آی نــویــس</h1>
+            <h1 className="text-3xl md:text-5xl leading-relaxed font-bold">داستان پشت آی نــویــس</h1>
             <p className="mt-4 text-gray-400 text-xs md:text-base">نوشته‌ای از سازنده پلتفرم </p>
           </div>
 
-          <div className="w-full max-w-3xl mx-auto mt-8 rounded-lg shadow-sm p-8 bg-background">
+          <div className="w-full max-w-3xl mx-auto mt-8 rounded-lg shadow-md p-8 bg-card">
             <strong>سلام! من امیر هستم،</strong>
 
             <p className="mt-8">

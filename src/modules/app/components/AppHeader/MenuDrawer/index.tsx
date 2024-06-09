@@ -68,7 +68,7 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
             </div>
 
             <div className="px-5">
-              <UserProfile />
+              <UserProfile isOpen={false} />
             </div>
           </m.div>
         </m.aside>

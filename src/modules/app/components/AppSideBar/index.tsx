@@ -1,20 +1,20 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-
-import { IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
+import { IconMenu } from '@tabler/icons-react'
+import clsx from 'clsx'
 import React from 'react'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
-import LineDivider from '@/components/ui/line-divider'
 import { Link, usePathname } from '@/components/ui/navigation'
 
-import { LOGO_URL } from '@/constants'
+import AppLogo from '@/icons/logo'
+import IconLogoSmall from '@/icons/logo-small'
 
 import UserProfile from './UserProfile'
 
 interface Props {
+  isOpen: boolean
+  setOpen: (open: boolean) => void
   menus: {
     title: string
     link: string
@@ -22,22 +22,38 @@ interface Props {
   }[]
 }
 
-const AppSiderBar: React.FC<Props> = ({ menus }) => {
+const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
   const pathname = usePathname()
-  const t = useTranslations('Layout')
+
+  const isSamePage = (link: string) => (link === '/app' ? pathname === link : pathname.includes(link))
 
   return (
-    <div className="p-5 fixed right-0 top-0 bottom-0 max-w-[250px] w-full h-full overflow-y-auto flex flex-col justify-between">
+    <div
+      className={clsx(
+        'p-5 fixed right-0 top-0 bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between',
+        'transition-all duration-200 ease-in-out',
+        {
+          'max-w-[95px]': !isOpen,
+          'max-w-[250px]': isOpen,
+        },
+      )}
+    >
       <div>
-        <Link href="/app" className="flex relative h-7 sm:h-8">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src={LOGO_URL}
-            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
-          />
-        </Link>
+        {isOpen ? (
+          <div className="flex items-center justify-between">
+            <Link href="/app" className="flex">
+              <div className={clsx('relative w-[100px] md:w-[120px] h-6 sm:h-9')}>
+                <AppLogo fill="hsl(var(--foreground))" />
+              </div>
+            </Link>
+
+            <IconMenu className="w-5 h-5 cursor-pointer" onClick={() => setOpen(false)} />
+          </div>
+        ) : (
+          <div onClick={() => setOpen(true)} className={clsx('relative flex w-full justify-center cursor-pointer')}>
+            <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--background))" />
+          </div>
+        )}
 
         <div className="mt-8 space-y-4">
           {menus.map((menu, index) => (
@@ -45,46 +61,17 @@ const AppSiderBar: React.FC<Props> = ({ menus }) => {
               key={index}
               link={menu.link}
               icon={menu.icon}
-              title={<span className="text-sm">{menu.title}</span>}
+              title={isOpen ? <span className="text-[15px]">{menu.title}</span> : undefined}
               className={{
-                'bg-gray-50 dark:bg-card border-muted text-primary dark:text-primary': pathname === `${menu.link}`,
+                'bg-neutral-50 dark:bg-card !border-muted text-primary font-medium': isSamePage(menu.link),
+                'font-light': !isSamePage(menu.link),
               }}
             />
           ))}
         </div>
-
-        <LineDivider direction="right">
-          <span className="text-xs text-gray-400">{t('Dashboard.Categories')}</span>
-        </LineDivider>
-
-        <div className="mb-8 space-y-2">
-          <DashboardMenu
-            link="/app/copywriting"
-            icon={
-              <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
-                <IconPencil className="w-4 h-4 text-white" />
-              </div>
-            }
-            title={<span className="text-sm">{t('Menus.Copywriting')}</span>}
-            className={{
-              'bg-gray-50 dark:bg-card border-muted text-primary dark:text-primary':
-                pathname.includes('/app/copywriting'),
-            }}
-          />
-
-          <DashboardMenu
-            link="/app/chat"
-            icon={
-              <div className="h-8 w-8 bg-secondary rounded-md flex items-center justify-center">
-                <IconMessage2Bolt className="w-4 h-4 text-white" />
-              </div>
-            }
-            title={<span className="text-sm">{t('Menus.Chat')}</span>}
-          />
-        </div>
       </div>
 
-      <UserProfile />
+      <UserProfile isOpen={isOpen} />
     </div>
   )
 }

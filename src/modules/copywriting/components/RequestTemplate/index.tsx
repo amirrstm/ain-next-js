@@ -59,14 +59,15 @@ const RequestTemplate: React.FC = () => {
         <DialogContent dir="rtl">
           <DialogHeader>
             <DialogTitle asChild>
-              <h1 className="text-xl"> {t('Template.Title')}</h1>
+              <>
+                <h1 className="text-xl"> {t('Template.Title')}</h1>
+                <div className="border-b text-xs pb-2">
+                  <p>{t('Template.Subtitle')}</p>
+                </div>
+              </>
             </DialogTitle>
             <DialogDescription asChild>
               <div className="w-full px-2 overflow-y-auto">
-                <div className="border-b pb-4 pt-1">
-                  <p>{t('Template.Subtitle')}</p>
-                </div>
-
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-12 gap-6 mt-4">

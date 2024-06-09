@@ -43,7 +43,7 @@ const DatePicker = React.forwardRef<HTMLButtonElement, Props>(({ value, onChange
             YekanBakhNumFont.className,
             !date && 'text-muted-foreground',
             'w-full justify-start select-none h-8',
-            'dark:bg-card dark:text-white dark:placeholder-text-[#d9d9d9] dark:ring-offset-card dark:border-input',
+            'bg-card dark:text-white dark:placeholder-text-[#d9d9d9] dark:ring-offset-card dark:border-input',
           )}
         >
           <IconCalendar className="me-2 h-4 w-4" />

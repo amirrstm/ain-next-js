@@ -213,9 +213,13 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
 
       <div className="col-span-12">
         <FormLabel>{t('resume.education.highlights')}</FormLabel>
-        <p className="text-xs text-neutral-400 dark:text-muted-foreground mt-2">
-          <span className="text-red-500 dark:text-red-300">*</span> {t('resume.education.highlightsTitle')}
-        </p>
+        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
+          {t.rich('resume.education.highlightsTitle', {
+            first: chunks => <p>{chunks}</p>,
+            second: chunks => <p>{chunks}</p>,
+            high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
+          })}
+        </div>
 
         <HighlightField
           control={form.control}

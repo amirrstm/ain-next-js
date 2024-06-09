@@ -45,9 +45,9 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
 
       if (onChange) {
         if (actionMeta.action === 'create-option') {
-          onChange(isMulti ? value : value?.value, actionMeta)
+          onChange(isMulti || useLabelValue ? value : value?.value, actionMeta)
         } else {
-          onChange(isMulti ? value : value?.value, actionMeta)
+          onChange(isMulti || useLabelValue ? value : value?.value, actionMeta)
         }
       }
     }

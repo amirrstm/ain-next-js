@@ -22,6 +22,7 @@ import { getUserProfile } from '@/modules/auth/services'
 import { removeUserToken } from '@/modules/auth/utils'
 
 import AppHeader from '../../components/AppHeader'
+import AppSiderBar from '../../components/AppSideBar'
 
 export default function AppLayoutContainer({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -30,6 +31,15 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   const { user, setUser, reset: resetUser } = useUserStore()
   const [loading, setLoading] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(true)
+
+  useEffect(() => {
+    if (pathname.includes('/app/copywriting/') || pathname.includes('/app/resume/')) {
+      setIsMenuOpen(false)
+    } else {
+      setIsMenuOpen(true)
+    }
+  }, [pathname])
 
   const menus = [
     { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-5 h-5" /> },
@@ -62,8 +72,8 @@ export default function AppLayoutContainer({ children }: { children: React.React
           setLoading(false)
         })
         .catch(() => {
-          removeUserToken()
           resetUser()
+          removeUserToken()
           router.push(`/login?returnUrl=${pathname}`)
         })
     }
@@ -72,10 +82,25 @@ export default function AppLayoutContainer({ children }: { children: React.React
   if (loading) return null
 
   return (
-    <main className="">
-      <AppHeader menus={user ? menus : [menus[0]]} />
+    <main className="dark:bg-popover bg-white">
+      <div className="hidden md:block">
+        <AppSiderBar menus={menus} isOpen={isMenuOpen} setOpen={setIsMenuOpen} />
+      </div>
 
-      <div className={clsx('bg-background max-w-[1248px] mx-auto')}>{children}</div>
+      <div className="block md:hidden">
+        <AppHeader menus={user ? menus : [menus[0]]} />
+      </div>
+
+      <div
+        className={clsx('md:py-3 md:pe-3 transition-all duration-200 ease-in-out', {
+          'md:ps-[100px]': !isMenuOpen,
+          'md:ps-[250px]': isMenuOpen,
+        })}
+      >
+        <div className={clsx('bg-popover dark:bg-background rounded-xl shadow-inner min-h-[calc(100vh-24px)]')}>
+          {children}
+        </div>
+      </div>
     </main>
   )
 }

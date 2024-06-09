@@ -64,7 +64,7 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
         })}
       >
         <GoogleIcon />
-        <span className="text-xs">{t('Google')}</span>
+        <span className="text-xs text-white">{t('Google')}</span>
       </div>
     </div>
   )

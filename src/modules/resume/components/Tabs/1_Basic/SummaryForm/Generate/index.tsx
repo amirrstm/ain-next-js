@@ -14,11 +14,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { ResumeFormType } from '@/modules/resume/interface'
 import { createResumeBio } from '@/modules/resume/service'
 
-type Props = {
-  isRecording: boolean
-}
-
-function GenerateBio({ isRecording }: Props) {
+function GenerateBio() {
   const { resumeId } = useParams()
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
@@ -60,7 +56,7 @@ function GenerateBio({ isRecording }: Props) {
           size="sm"
           loading={loading}
           onClick={onGenerate}
-          className={clsx('text-xs flex gap-1 rounded-full p-2 px-4', { 'pulse-animation': !isRecording && !loading })}
+          className={clsx('text-xs flex gap-1 rounded-full p-2 px-4', { 'pulse-animation': !loading })}
         >
           <IconWand className="w-5 h-5" />
           {formBio ? t('resume.ai.improve') : t('resume.ai.write')}

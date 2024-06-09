@@ -8,7 +8,7 @@ const Benefits: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-6 relative z-[1]">
-      <div className="py-1 w-14 rounded-full bg-primary text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
+      <div className="py-1 w-14 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
         {t('Benefits.Title')}
       </div>
 

@@ -12,21 +12,20 @@ import API from '@/lib/api'
 
 import { putFeedback } from '../../services'
 
-const messages = [
-  { text: 'از این لحن خوشم نیامد' },
-  { text: 'متن چیزی که می‌خواستم را تولید نکرد' },
-  { text: 'متن از دستوراتی که دادم پیروی نکرد' },
-  { text: 'سیستم کند عمل کرد' },
-]
-
 const Feedback: React.FC<{ id: string }> = ({ id }) => {
   const t = useTranslations('Copywriting')
   const [status, setStatus] = useState<string>('')
 
   const [submitted, setSubmitted] = useState<boolean>(false)
   const [hasFeedbackText, setHasFeedbackText] = useState<boolean>(false)
-
   const { trigger } = useSWRMutation(API.HISTORY.FEEDBACK(id), putFeedback)
+
+  const messages = [
+    { text: t('Content.FeedbackMessages.First') },
+    { text: t('Content.FeedbackMessages.Second') },
+    { text: t('Content.FeedbackMessages.Third') },
+    { text: t('Content.FeedbackMessages.Fourth') },
+  ]
 
   const onLike = () => {
     setStatus('like')
@@ -62,7 +61,7 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
             >
               <IconX className="w-4 h-4" />
             </div>
-            <p className="hidden md:block text-gray-600">مارا بیشتر در جریان بگذارید: </p>
+            <p className="hidden md:block text-gray-600">{t('Content.Feedback')}</p>
           </div>
 
           <div className="flex flex-1 overflow-x-auto gap-1">

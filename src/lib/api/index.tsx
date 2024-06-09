@@ -11,8 +11,13 @@ const API = {
 
   CATEGORY: {
     LIST: '/public/category/list',
+    LIST_PAIN: '/public/category/plain-list',
     REQUEST: '/user/category-request',
     GET: (id: string) => `/public/category/get/${id}`,
+  },
+
+  TONE: {
+    LIST: '/public/data/tones',
   },
 
   CHAT: {

@@ -25,7 +25,7 @@ const EducationTab: React.FC = () => {
   } = useFieldArray({ control: form.control, name: 'educations' })
 
   return (
-    <div className="bg-background rounded-lg border border-muted">
+    <div className="bg-card rounded-lg border border-muted">
       <div className="p-3 sm:p-4 border-b border-b-muted">
         <h2 className="text-md sm:text-lg font-semibold">{t('Title')}</h2>
         <p className="text-xs sm:text-sm text-gray-400">{t('Description')}</p>

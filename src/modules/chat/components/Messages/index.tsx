@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 import { javascript } from '@codemirror/lang-javascript'
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
@@ -13,7 +13,6 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import jalaliday from 'jalaliday'
 import React, { useEffect, useRef, useState } from 'react'
 
-import { LOGO_SMALL } from '@/constants'
 import IconLogoSmall from '@/icons/logo-small'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -61,6 +60,7 @@ const ChatMessages: React.FC<Props> = ({ messages, loading }) => {
 export default ChatMessages
 
 const System: React.FC<{ message?: string; time?: string; loading?: boolean }> = ({ message, time, loading }) => {
+  const t = useTranslations('Chat')
   const [systemMessage, setSystemMessage] = useState<BlockType[]>([])
 
   useEffect(() => {
@@ -76,20 +76,17 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
   return (
     <div className="flex items-start gap-2.5">
       <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-black flex items-center justify-center p-1">
-        <IconLogoSmall fill="#fff" bg="hsl(var(--background-light))" />
+        <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--background))" />
       </div>
 
       {loading ? (
         <div className="flex items-center mt-1 md:mt-2 mr-2">
-          <p className="text-gray-500 text-xs md:text-base">در حال نوشتن متن</p>
-          <div className="pr-8">
-            <div className="loader" />
-          </div>
+          <p className="text-gray-500 text-xs md:text-base">{t('Writing')}</p>
         </div>
       ) : (
         <div
           className={clsx(
-            'flex flex-col min-w-[200px] flex-1 leading-1.5 p-4 border-gray-200 bg-gray-100 dark:bg-neutral-800 rounded-e-xl rounded-es-xl',
+            'flex flex-col min-w-[200px] flex-1 leading-1.5 p-4 border-gray-200 bg-neutral-200 dark:bg-neutral-800 rounded-e-xl rounded-es-xl',
             {
               'max-w-[90%] md:max-w-[80%]': systemMessage.length > 0,
               'max-w-[90%] md:max-w-[60%]': systemMessage.length === 0,
@@ -97,7 +94,7 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
           )}
         >
           <div className="flex items-center space-x-2 space-x-reverse justify-between">
-            <span className="text-xs font-semibold text-gray-900 dark:text-white">آی نویس</span>
+            <span className="text-xs font-semibold text-gray-900 dark:text-white">{t('Us')}</span>
             {time && (
               <span
                 className={clsx(YekanBakhNumFont.className, 'text-xs font-normal text-gray-500 dark:text-gray-400')}
@@ -150,14 +147,16 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
 }
 
 const User: React.FC<{ message: string; time?: string }> = ({ message, time }) => {
+  const t = useTranslations('Chat')
+
   return (
     <div className="flex items-start gap-2.5">
       <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-black flex items-center justify-center">
-        <IconUser className="w-4 h-4 md:w-6 md:h-6 text-white" />
+        <IconUser className="w-4 h-4 md:w-6 md:h-6 dark:text-white" />
       </div>
       <div className="flex flex-col min-w-[200px] flex-1 max-w-[90%] md:max-w-[60%] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-neutral-700">
         <div className="flex items-center space-x-2 space-x-reverse justify-between">
-          <span className="text-xs font-semibold text-gray-900 dark:text-white">کاربر</span>
+          <span className="text-xs font-semibold text-gray-900 dark:text-white">{t('User')}</span>
           {time && (
             <span className={clsx(YekanBakhNumFont.className, 'text-xs font-normal text-gray-500 dark:text-gray-400')}>
               {dayjs(time).fromNow()}

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
 import {
@@ -32,8 +33,10 @@ import IconLogoSmall from '@/icons/logo-small'
 import { cn } from '@/lib/utils'
 
 import HeroHeader from '../Hero'
+import { Boxes } from './Boxes'
 
 export const MacBookScroll = ({ src }: { src?: string }) => {
+  const t = useTranslations('Layout')
   const ref = useRef<HTMLDivElement>(null)
   const { height } = useWindowDimensions()
   const isMobile = useMediaQuery({ maxWidth: 764 })
@@ -41,6 +44,8 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
 
   const rotate = useTransform(scrollYProgress, [0, 0.1], [-28, 0])
   const translate = useTransform(scrollYProgress, [0, 0.3], [0, isMobile ? height / 1.4 : height / 1.85])
+
+  const boxOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
   const scaleX = useTransform(scrollYProgress, [0, 0.2], [1.2, isMobile ? 1.3 : height > 1100 ? 1.7 : 1.3])
   const scaleY = useTransform(scrollYProgress, [0, 0.2], [0.6, isMobile ? 1.3 : height > 1100 ? 1.7 : 1.3])
@@ -51,21 +56,18 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
   const firstTextOpacity = useTransform(scrollYProgress, [0.2, 0.35], [0, 1])
   const firstTextTransform = useTransform(scrollYProgress, [0.2, 0.35], [100, height > 1100 ? 200 : 0])
 
-  const secondTextOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1])
-  const secondTextTransform = useTransform(scrollYProgress, [0.3, 0.5], [-100, 0])
+  const secondTextOpacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1])
+  const secondTextTransform = useTransform(scrollYProgress, [0.4, 0.5], [-100, 0])
 
   return (
     <div
       ref={ref}
       style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 1.8 }}
-      className="flex flex-col items-center py-10 relative  bg-secondary justify-start flex-shrink-0 [perspective:800px]"
+      className="flex flex-col items-center py-10 relative bg-background justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
     >
-      <div
-        className={cn(
-          'bg-[url("/images/hero-screen.svg")] w-screen h-screen',
-          'bg-secondary bg-no-repeat bg-cover bg-center absolute inset-0 -z-[10]',
-        )}
-      />
+      <motion.div style={{ opacity: boxOpacity }}>
+        <Boxes />
+      </motion.div>
 
       <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20">
         <HeroHeader />
@@ -94,20 +96,19 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
           </div>
 
           <TrackPad />
-          <div className="h-2 w-20 mx-auto inset-x-0 absolute bottom-0 bg-gradient-to-t from-[#272729] to-[#050505] rounded-tr-3xl rounded-tl-3xl" />
+
           <div
             style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
-            className="w-full absolute bottom-0 inset-x-0 bg-gradient-to-t dark:from-secondary from-white via-white dark:via-secondary to-transparent z-50"
+            className="w-full absolute dark:bottom-0 -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
           ></div>
 
           <motion.div
             className="absolute bottom-0 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
             style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
           >
-            <h2 className="text-4xl md:text-3xl font-bold">کمترین کلمات را استفاده کن</h2>
-            <p className="text-xl md:text-xs text-neutral-500 leading-loose mt-4">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم
-              متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+            <h2 className="text-4xl md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
+            <p dir="rtl" className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
+              {t('Home.Subtitles.First.Description')}
             </p>
           </motion.div>
 
@@ -119,10 +120,9 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
               translateY: secondTextTransform,
             }}
           >
-            <h2 className="text-4xl md:text-3xl font-bold">بیشترین بهره‌وری را داشته باش</h2>
-            <p className="text-xl md:text-xs text-neutral-500 leading-loose mt-4">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم
-              متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+            <h2 className="text-4xl md:text-3xl font-bold">{t('Home.Subtitles.Second.Title')}</h2>
+            <p dir="rtl" className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
+              {t('Home.Subtitles.Second.Description')}
             </p>
           </motion.div>
         </div>

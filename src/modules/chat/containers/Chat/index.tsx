@@ -109,12 +109,12 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-125px)] min-h-[200px]">
+    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-24px)] min-h-[200px]">
       <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
         <div className="p-4 w-full border-b border-b-muted">
           <div className="flex gap-2 items-center justify-between">
             <div className="flex flex-1 gap-2">
-              <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
+              <div className="bg-foreground w-8 h-8 rounded-md text-background flex justify-center items-center">
                 <IconMessage2Bolt />
               </div>
               <div className="flex-1">
@@ -184,12 +184,12 @@ const ChatContainer: React.FC = () => {
               disabled={isLoading}
               onKeyDown={onKeyDown}
               placeholder={t('InputPlaceholder')}
-              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs bg-transparent md:text-base placeholder:text-neutral-600"
+              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs bg-transparent md:text-base placeholder:dark:text-neutral-600"
             />
 
             <div
               onClick={onGenerate}
-              className={clsx('w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-secondary rounded-full', {
+              className={clsx('w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-primary rounded-full', {
                 'cursor-pointer': !isMutating,
                 'pointer-events-none': isMutating || isLoading || !value,
               })}

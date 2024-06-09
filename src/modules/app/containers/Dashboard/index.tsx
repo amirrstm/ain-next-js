@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { IconFileCv, IconMessage2Bolt, IconPencil } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React from 'react'
@@ -11,6 +13,8 @@ import DashboardStat from '../../components/DashboardStat'
 import QuickAccess from '../../components/QuickAccess'
 
 const DashboardContainer: React.FC = () => {
+  const t = useTranslations('Layout')
+
   return (
     <div className="p-2 md:p-6">
       <DashboardHeader />
@@ -34,9 +38,9 @@ const DashboardContainer: React.FC = () => {
           </span>
 
           <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">رزومه ساز</h3>
+            <h3 className="font-semibold">{t('Dashboard.Access.Resume.Title')}</h3>
             <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              در کمتر از ۱۵ دقیقه رزومه خودرا با کمک هوش‌مصنوعی و صدای خودتان بسازید!
+              {t('Dashboard.Access.Resume.Description')}
             </p>
           </div>
         </Link>
@@ -53,9 +57,9 @@ const DashboardContainer: React.FC = () => {
           </span>
 
           <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">تولید محتوا</h3>
+            <h3 className="font-semibold">{t('Dashboard.Access.Copywriting.Title')}</h3>
             <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              متن های شگفت انگیز و جذاب، با استفاده از دسته‌بندی های متنوع بسازید.
+              {t('Dashboard.Access.Copywriting.Description')}
             </p>
           </div>
         </Link>
@@ -72,9 +76,9 @@ const DashboardContainer: React.FC = () => {
           </span>
 
           <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">گفت و گو با هوش مصنوعی</h3>
+            <h3 className="font-semibold">{t('Dashboard.Access.Chat.Title')}</h3>
             <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              هر سوالی دارید از هوش مصنوعی آی نویس بپرسید و به گفت‌و‌گو بپردازید.
+              {t('Dashboard.Access.Chat.Description')}
             </p>
           </div>
         </Link>

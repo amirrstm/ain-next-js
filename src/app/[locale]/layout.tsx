@@ -41,7 +41,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true} className={YekanBakhFont.className}>
         <Suspense fallback={<div />}>
           <StoreProvider>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <>
                 <SWRProvider>
                   <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

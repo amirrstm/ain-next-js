@@ -84,7 +84,7 @@ export const ProfileAvatar: React.FC = () => {
             onClick={onRemoveImage}
             className="absolute -top-1 -right-1 bg-destructive w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
           >
-            <IconTrash className="w-4 h-4" />
+            <IconTrash className="w-4 h-4 text-white" />
           </div>
         )}
       </div>

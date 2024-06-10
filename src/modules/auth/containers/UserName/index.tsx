@@ -1,11 +1,14 @@
 'use client'
 
-import { useTheme } from 'next-themes'
-import { useRouter, useSearchParams } from 'next/navigation'
+import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 
 import React, { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
+import { useRouter } from '@/components/ui/navigation'
+
+import { LOGIN_BG } from '@/constants'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
@@ -15,7 +18,7 @@ import { updateName } from '../../services'
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
   const params = useSearchParams()
-  const { resolvedTheme } = useTheme()
+
   const [loading, setLoading] = useState(false)
   const [returnUrl, setReturnUrl] = useState<string>()
 
@@ -54,28 +57,21 @@ const UserNameContainer: React.FC = () => {
 
   return (
     <div className="relative">
-      <div
-        style={{
-          backgroundImage:
-            resolvedTheme === 'light'
-              ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
-        }}
-        className="absolute -bottom-10 left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10 rotate-180"
-      />
+      <div className="absolute bg-[#000002] w-screen h-screen inset-0 -z-10">
+        <Image
+          priority
+          width={1440}
+          height={960}
+          alt="login-bg"
+          src={LOGIN_BG}
+          className="w-full h-full md:object-contain object-cover max-w-[1440px] mx-auto animate-blur-image"
+        />
+      </div>
 
-      <div
-        style={{
-          backgroundImage:
-            resolvedTheme === 'light'
-              ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
-        }}
-        className="absolute -top-10  left-0 right-0 h-1/2 bg-no-repeat bg-cover bg-top -z-10"
-      />
-
-      <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
-        <NameForm onSubmit={onSubmit} returnUrl={returnUrl} loading={loading} />
+      <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[350px] mx-auto">
+        <div className="animate-slide-in-blurred-bottom delay-300 w-full">
+          <NameForm onSubmit={onSubmit} returnUrl={returnUrl} loading={loading} />
+        </div>
       </div>
     </div>
   )

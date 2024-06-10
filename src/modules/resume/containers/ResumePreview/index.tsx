@@ -57,7 +57,7 @@ const ResumePreviewContainer: React.FC = () => {
     updateDownload(resumeId as string)
       .then(data => {
         setLoading(false)
-        // window.open(data)
+        window.open(data)
       })
       .catch(() => setLoading(false))
   }
@@ -69,7 +69,7 @@ const ResumePreviewContainer: React.FC = () => {
 
   return (
     <div className="h-screen overflow-hidden ">
-      <div className="fixed top-0 right-0 left-0 bg-card p-3 md:p-4 z-10 flex items-center justify-between border-b border-b-muted">
+      <div className="fixed top-0 right-0 left-0 bg-black/60 dark:bg-card p-3 md:p-4 z-10 flex items-center justify-between border-b border-b-muted">
         <h1 className="text-base md:text-xl">{t('Settings.Title')}</h1>
 
         <div className="flex gap-3">
@@ -109,7 +109,7 @@ const ResumePreviewContainer: React.FC = () => {
         ref={templatesRef}
         className={clsx(
           'transition-all duration-300 ease-in-out z-10',
-          'fixed top-[62px] md:top-[73px] bg-card w-[320px] h-[calc(100vh-62px)] md:h-[calc(100vh-73px)]',
+          'fixed top-[62px] md:top-[73px] bg-black/60 dark:bg-card w-[320px] h-[calc(100vh-62px)] md:h-[calc(100vh-73px)]',
           {
             'right-0': openTemplates,
             '-right-[320px]': !openTemplates,
@@ -127,7 +127,7 @@ const ResumePreviewContainer: React.FC = () => {
         ref={settingsRef}
         className={clsx(
           'transition-all duration-300 ease-in-out z-10',
-          'fixed top-[62px] md:top-[73px] bg-card w-[320px] h-[calc(100vh-62px)] md:h-[calc(100vh-73px)]',
+          'fixed top-[62px] md:top-[73px] bg-black/60 dark:bg-card w-[320px] h-[calc(100vh-62px)] md:h-[calc(100vh-73px)]',
           {
             'left-0': openSettings,
             '-left-[320px]': !openSettings,

@@ -22,7 +22,7 @@ const MobileInput = React.forwardRef<HTMLInputElement, MobileInputProps>(
     const country = COUNTRY_CODES.find(country => country.dial_code === codeValue)
 
     return (
-      <div className="flex rounded-md border border-input overflow-hidden">
+      <div className="flex flex-row-reverse rtl:flex-row rounded-md border border-input overflow-hidden">
         <input
           dir="ltr"
           ref={ref}

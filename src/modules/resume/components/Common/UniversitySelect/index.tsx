@@ -1,4 +1,6 @@
-import React from 'react'
+import { useTranslations } from 'next-intl'
+
+import React, { useRef } from 'react'
 import AsyncSelect from 'react-select/async'
 
 import { reactSelectTheme } from '@/lib/utils'
@@ -16,6 +18,9 @@ type Props = {
 
 const UniversitySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
   ({ value, onChange, placeholder = '', onSelect }, ref) => {
+    const t = useTranslations('Common')
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null)
+
     const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
       if (controller) {
         controller.abort()
@@ -37,6 +42,16 @@ const UniversitySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
       onChange(selectedOption.name)
     }
 
+    const delayedLoadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current)
+      }
+
+      debounceTimeout.current = setTimeout(() => {
+        loadOptions(inputValue, callback)
+      }, 1000)
+    }
+
     return (
       <AsyncSelect<any>
         cacheOptions
@@ -45,13 +60,13 @@ const UniversitySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
         onChange={handleChange}
         theme={reactSelectTheme}
         placeholder={placeholder}
-        loadOptions={loadOptions}
         classNamePrefix={'ain-select'}
         getOptionLabel={op => op.name}
+        loadOptions={delayedLoadOptions}
         getOptionValue={op => String(op.name)}
-        loadingMessage={() => 'در حال جستجو...'}
         value={value ? { name: value } : undefined}
-        noOptionsMessage={() => 'عنوان مورد نظر را وارد کنید'}
+        loadingMessage={() => t('Select.Searching')}
+        noOptionsMessage={() => t('Select.EnterTitle')}
         classNames={{ placeholder: () => 'line-clamp-1', container: () => 'ain-select-container' }}
       />
     )

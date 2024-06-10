@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
 import { IconBolt, IconBooks, IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
@@ -30,12 +31,11 @@ interface Props {
 }
 
 const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) => {
+  const { locale } = useParams()
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
-  const isBlog = appCategory?.slug === 'post-blog'
 
   const [text, setText] = useState<string>('')
-  const [rawText, setRawText] = useState<string>('')
   const [editorData, setEditorData] = useState<EditorConfig['data']>()
 
   useEffect(() => {
@@ -53,45 +53,10 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   }
 
   const prepareText = (content: string) => {
-    let convertedRaw = ''
-    const linkRegex = /\[(.*?)\]/
-    const linkUrlRegex = /\((.*?)\)/
-    const splitTitles = content.split('\n').filter(Boolean)
-
-    const blocks: any[] = []
-    splitTitles.forEach(title => {
-      if (title.match(linkRegex) && title.match(linkUrlRegex) && isBlog) {
-        const block = {
-          type: 'linkTool',
-          data: {
-            text: title.match(linkRegex)?.[1],
-            link: title.match(linkUrlRegex)?.[1],
-            meta: {
-              title: title.match(linkRegex)?.[1],
-            },
-          },
-        }
-        convertedRaw += edjs.parseBlock(block)
-        blocks.push(block)
-        return
-      }
-
-      const block = {
-        type: title.includes('**') || title.includes('###') ? 'header' : 'paragraph',
-        data: {
-          level: title.includes('**') ? 2 : title.includes('###') ? 3 : undefined,
-          text:
-            title.includes('**') || title.includes('###')
-              ? title.replace(title.includes('**') ? /\*\*/g : /###/g, '')
-              : displayEquation(title),
-        },
-      }
-      convertedRaw += edjs.parseBlock(block)
-      blocks.push(block)
-    })
+    const blocks: any = JSON.parse(content)
 
     setText(content.trim())
-    setEditorData({ blocks, time: new Date().getTime() })
+    setEditorData({ blocks: blocks.blocks, time: new Date().getTime() })
   }
 
   const onChange = (data: API) => {
@@ -118,7 +83,6 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
         ],
       })
 
-      setRawText(raw)
       setText(normalText)
     })
   }
@@ -132,10 +96,10 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   if (!appCategory) return null
 
   return (
-    <div className="border border-muted rounded-xl bg-background shadow-md h-full mb-16 md:mb-0">
+    <div className="border border-muted rounded-xl bg-card shadow-md h-full mb-16 md:mb-0">
       <div className="p-4 flex items-center justify-between border-b border-b-muted">
         <div className="flex gap-2">
-          <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
+          <div className="bg-foreground w-8 h-8 rounded-md text-background flex justify-center items-center">
             {SUB_CATEGORY_ICONS[appCategory.slug] || <IconBooks className="w-6 h-6" />}
           </div>
           <div className="flex-1">
@@ -151,12 +115,12 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
 
           <div className="flex items-center gap-6 justify-between flex-1 md:flex-none">
             <div className="flex gap-4 items-center text-sm">
-              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+              <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                 <p>{t('Content.Words')}</p>
                 <p>{text.split(' ').length}</p>
               </div>
 
-              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+              <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                 <p>{t('Content.Characters')}</p>
                 <p>{text.length}</p>
               </div>
@@ -174,7 +138,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
       )}
 
       {!content ? (
-        <div className="py-6 md:py-12 flex flex-col items-center justify-center">
+        <div className="py-6 md:py-0 flex flex-col items-center justify-center h-[calc(100%-100px)]">
           {loading ? (
             <div className="flex flex-col items-center text-center gap-3 p-4">
               <div className="w-20 h-20">
@@ -183,7 +147,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
               <span className="flex-1 leading-normal">{t('Content.Loading')}</span>
             </div>
           ) : (
-            <div className="p-6 text-center">
+            <div className="p-2 text-center">
               <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
                 <p className="text-gray-500 flex">
                   <IconBolt className="text-primary" />
@@ -202,7 +166,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
           <div className="p-4">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-12" spellCheck={false}>
-                <ReactEditorJS onReady={onReady} value={editorData} onChange={onChange} />
+                <ReactEditorJS locale={locale as string} onReady={onReady} value={editorData} onChange={onChange} />
               </div>
             </div>
           </div>

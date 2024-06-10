@@ -1,9 +1,15 @@
+export interface Tone {
+  _id: string
+  name: string
+}
+
 export interface Category {
   _id: string
   name: string
   slug: string
   description: string
   children: Category[]
+  meta?: Record<string, any>
 }
 
 export interface AppInput {

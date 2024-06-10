@@ -1,0 +1,47 @@
+{
+  "constants": {
+    "gender": {
+      "male": "Male",
+      "female": "Female"
+    },
+
+    "marriage": {
+      "single": "Single",
+      "married": "Married"
+    },
+
+    "military": {
+      "included": "Included",
+      "doing": "In Service",
+      "completed": "Service Completed",
+      "exempt": "Exempt",
+      "educationExempt": "Education Exemption",
+      "noMedicalExempt": "Non-Medical Exemption",
+      "medicalExempt": "Medical Exemption"
+    },
+
+    "education": {
+      "underDiploma": "Under Diploma",
+      "diploma": "Diploma",
+      "associate": "Associate",
+      "bachelor": "Bachelor's",
+      "master": "Master's",
+      "phd": "PhD",
+      "postPhd": "Post-PhD"
+    },
+
+    "languageFluencyType": {
+      "describe": "Descriptive",
+      "a1-c2": "A1-C2",
+      "graphical": "Graphical"
+    },
+
+    "describeFluency": {
+      "beginner": "Beginner",
+      "preIntermediate": "Pre-Intermediate",
+      "elementary": "Elementary",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
+  }
+}

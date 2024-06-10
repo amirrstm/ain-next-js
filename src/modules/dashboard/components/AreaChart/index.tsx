@@ -1,8 +1,9 @@
+import { useParams } from 'next/navigation'
+
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fa'
 import jalaliday from 'jalaliday'
-import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
@@ -10,7 +11,6 @@ import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { DashboardStat } from '../../interface'
 
-dayjs.locale('fa')
 dayjs.extend(jalaliday)
 
 interface Props {
@@ -18,11 +18,16 @@ interface Props {
 }
 
 const MonthlyAreaChart: React.FC<Props> = ({ data }) => {
+  const { locale } = useParams()
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
 
   return (
     <div className="w-full h-[250px] md:h-[350px] pt-4 pr-4 md:pr-8 md:pt-8 md:pb-3">
-      <ResponsiveContainer width="100%" height="100%" className={clsx(YekanBakhNumFont.className, 'text-xs w-full')}>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs w-full')}
+      >
         <AreaChart
           data={data}
           width={1200}
@@ -44,7 +49,12 @@ const MonthlyAreaChart: React.FC<Props> = ({ data }) => {
             height={isTabletOrMobile ? 40 : 50}
             tickMargin={isTabletOrMobile ? 15 : 15}
             tickCount={isTabletOrMobile ? undefined : 8}
-            tickFormatter={value => dayjs(value).calendar('jalali').format('D-MMMM')}
+            tickFormatter={value =>
+              dayjs(value)
+                .locale(locale as string)
+                .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                .format('D-MMMM')
+            }
           />
           <Tooltip
             content={({ active, payload, label }) => <CustomTooltip active={active} payload={payload} label={label} />}
@@ -54,8 +64,8 @@ const MonthlyAreaChart: React.FC<Props> = ({ data }) => {
             type="monotone"
             fill="#b5b3d1"
             strokeWidth={2}
-            stroke="#091aae"
-            dot={isTabletOrMobile ? undefined : { stroke: '#091aae', r: 3 }}
+            stroke="hsl(var(--primary))"
+            dot={isTabletOrMobile ? undefined : { stroke: 'hsl(var(--primary))', r: 3 }}
           />
         </AreaChart>
       </ResponsiveContainer>

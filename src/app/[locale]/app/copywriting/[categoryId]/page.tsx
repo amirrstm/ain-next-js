@@ -20,8 +20,13 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
 export const viewport = appViewport.appDefaultViewport
 
-export default async function Copywriting({ params: { categoryId } }: { params: { categoryId: string } }) {
+export default async function Copywriting({
+  params: { categoryId, locale },
+}: {
+  params: { categoryId: string; locale: string }
+}) {
   const category: ResponseModel<AppCategory> = await fetchWithUrl(API.CATEGORY.GET(categoryId), {
+    locale,
     next: { revalidate: 3600 },
   })
 

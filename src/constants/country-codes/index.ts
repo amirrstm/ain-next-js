@@ -1447,8 +1447,9 @@ export const COUNTRY_CODES = [
   },
 ]
 
-export const COUNTRY_LABELED = COUNTRY_CODES.map(country => ({
-  ...country,
-  label: country.persian_name,
-  value: country.persian_name,
-}))
+export const COUNTRY_LABELED = (locale: string) =>
+  COUNTRY_CODES.map(country => ({
+    ...country,
+    label: locale === 'fa' ? country.persian_name : country.name,
+    value: locale === 'fa' ? country.persian_name : country.name,
+  }))

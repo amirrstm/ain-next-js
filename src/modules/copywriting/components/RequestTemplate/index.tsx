@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { IconPlus, IconSend2 } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 import * as z from 'zod'
 
@@ -13,7 +14,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { useToast } from '@/components/ui/use-toast'
 
 import API from '@/lib/api'
 
@@ -25,7 +25,6 @@ const formSchema = z.object({
 })
 
 const RequestTemplate: React.FC = () => {
-  const { toast } = useToast()
   const { resolvedTheme } = useTheme()
   const t = useTranslations('Copywriting')
   const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +40,7 @@ const RequestTemplate: React.FC = () => {
     trigger(data).then(() => {
       form.reset()
       setIsOpen(false)
-      toast({ title: t('Template.Fields.Success'), variant: 'success' })
+      toast.success(t('Template.Fields.Success'))
     })
   }
 
@@ -57,17 +56,18 @@ const RequestTemplate: React.FC = () => {
       </Button>
 
       <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
-        <DialogContent dir="rtl">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle asChild>
-              <h1 className="text-xl"> {t('Template.Title')}</h1>
+              <>
+                <h1 className="text-xl"> {t('Template.Title')}</h1>
+                <div className="border-b text-xs pb-2">
+                  <p>{t('Template.Subtitle')}</p>
+                </div>
+              </>
             </DialogTitle>
             <DialogDescription asChild>
               <div className="w-full px-2 overflow-y-auto">
-                <div className="border-b pb-4 pt-1">
-                  <p>{t('Template.Subtitle')}</p>
-                </div>
-
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-12 gap-6 mt-4">

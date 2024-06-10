@@ -44,9 +44,9 @@ const DialogContent = React.forwardRef<
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-[calc(100%-30px)] top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <DialogPrimitive.Close className="absolute start-[calc(100%-30px)] top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
           <IconX className="h-4 w-4" />
-          <span className="sr-only">بستن</span>
+          <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogOverlay>
@@ -55,7 +55,7 @@ const DialogContent = React.forwardRef<
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('flex flex-col space-y-1.5 sm:text-right', className)} {...props} />
+  <div className={cn('flex flex-col space-y-1.5 sm:text-start', className)} {...props} />
 )
 DialogHeader.displayName = 'DialogHeader'
 
@@ -80,7 +80,7 @@ const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />
+  <DialogPrimitive.Description ref={ref} className={cn('text-sm dark:text-muted-foreground', className)} {...props} />
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 

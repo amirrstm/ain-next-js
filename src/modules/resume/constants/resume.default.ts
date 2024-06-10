@@ -9,7 +9,7 @@ export const resumeDefaultValues = {
     military: '',
     firstName: '',
     phone: { countryCode: '+98', text: '' },
-    location: { country: 'ایران', state: '', address: '' },
+    location: { country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '', state: '', address: '' },
   },
   educations: [
     {
@@ -22,7 +22,7 @@ export const resumeDefaultValues = {
       score: '',
       stillStudying: false,
       highlights: [{ value: '' }],
-      location: { city: '', state: '', country: 'ایران' },
+      location: { city: '', state: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '' },
     },
   ],
   works: [
@@ -35,7 +35,7 @@ export const resumeDefaultValues = {
       summary: '',
       stillWorking: false,
       highlights: [{ value: '' }],
-      location: { city: '', state: '', country: 'ایران' },
+      location: { city: '', state: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '' },
     },
   ],
   skills: [

@@ -146,7 +146,7 @@ const AddButton: React.FC<{ onClick: () => void; title: string }> = ({ onClick, 
     <div
       onClick={onClick}
       className={clsx(
-        'hover:border-primary cursor-pointer',
+        'hover:border-primary cursor-pointer bg-card',
         'border border-dashed border-muted p-3 rounded-md flex items-center justify-center text-center gap-2 flex-col',
       )}
     >

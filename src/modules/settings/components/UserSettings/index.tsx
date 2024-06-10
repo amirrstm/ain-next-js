@@ -5,13 +5,13 @@ import { useTranslations } from 'next-intl'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 import * as z from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useToast } from '@/components/ui/use-toast'
 
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
@@ -22,7 +22,7 @@ const formSchema = z.object({ firstName: z.string().min(1), lastName: z.string()
 
 const UserSettings: React.FC = () => {
   useI18nZodErrors('auth')
-  const { toast } = useToast()
+
   const t = useTranslations('User')
   const { user, setUser } = useUserStore()
   const [loading, setLoading] = useState(false)
@@ -44,16 +44,17 @@ const UserSettings: React.FC = () => {
     setLoading(true)
     trigger(data)
       .then(() => {
+        setLoading(false)
         if (user) {
           setUser({ ...user, firstName: data.firstName, lastName: data.lastName })
-          toast({ title: t('Settings.Success'), variant: 'success' })
+          toast.success(t('Settings.Success'))
         }
       })
       .catch(() => setLoading(false))
   }
 
   return (
-    <div className="border border-muted rounded-xl bg-background">
+    <div className="border border-muted rounded-xl bg-card">
       <div className="border-b border-b-muted p-4">
         <span className="text-lg">{t('Settings.EditProfile')}</span>
       </div>

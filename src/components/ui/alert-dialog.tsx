@@ -47,7 +47,7 @@ const AlertDialogContent = React.forwardRef<
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
 const AlertDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div dir="rtl" className={cn('flex flex-col space-y-2 text-center sm:text-right', className)} {...props} />
+  <div className={cn('flex flex-col space-y-2 text-center sm:text-start', className)} {...props} />
 )
 AlertDialogHeader.displayName = 'AlertDialogHeader'
 
@@ -68,7 +68,11 @@ const AlertDialogDescription = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Description ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />
+  <AlertDialogPrimitive.Description
+    ref={ref}
+    className={cn('text-sm text-neutral-400 dark:text-muted-foreground', className)}
+    {...props}
+  />
 ))
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName
 

@@ -1,65 +1,51 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
 
 import { IconArrowLeft } from '@tabler/icons-react'
-import clsx from 'clsx'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
-import Rating from '@/components/ui/rating'
 
 import { OPEN_AI_LOGO } from '@/constants'
-import { YekanBakhNumFont } from '@/styles/fonts'
 
 const HeroHeader: React.FC = () => {
+  const { resolvedTheme } = useTheme()
   const t = useTranslations('Layout')
 
   return (
-    <div className="pt-32 md:pt-40 flex flex-col items-center justify-center">
+    <div className=" flex flex-col items-center justify-center bg-background/55 dark:bg-background/20">
       <div className="max-w-xl text-center">
-        <h1
-          className="text-white text-3xl md:text-5xl leading-relaxed"
-          style={{
-            background: 'radial-gradient(ellipse farthest-corner at bottom center, #000000 -10%, #FFFFFF 40%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          {t('Title')}
-        </h1>
-        <p className="mt-4 text-gray-300 text-xs md:text-base">{t('Subtitle')}</p>
+        <h1 className="text-3xl md:text-5xl leading-loose rtl:leading-[1.5] font-bold">{t('Title')}</h1>
+        <p className="mt-4 text-xs md:text-base text-neutral-500 dark:text-gray-300">{t('Subtitle')}</p>
       </div>
 
       <div className="mt-12">
         <Link href="/login">
           <Button className="rounded-full gap-2 items-center px-6">
             {t('Home.GetStarted')}
-            <IconArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0" />
           </Button>
         </Link>
       </div>
 
-      <div className="max-w-[250px] text-center flex flex-col items-center mt-4">
-        <Rating count={5} />
-
-        <div className={clsx(YekanBakhNumFont.className, 'text-gray-400 mt-2 text-xs leading-snug')}>
-          {t.rich('Home.Rating', {
-            count: 3000,
-            rating: chunks => <strong className="text-white">{chunks}</strong>,
-          })}
-        </div>
-      </div>
-
-      <div className="mt-8">
-        <p className="text-white text-xs text-center">{t('Home.PoweredBy')}</p>
-
-        <div className="flex gap-6 items-center mt-2">
-          <div className="relative h-7 sm:h-6">
-            <Image alt="open-ai" width={100} height={100} src={OPEN_AI_LOGO} className="w-full h-full object-contain" />
+      <div className="mt-4 flex items-center flex-row-reverse rtl:flex-row gap-2">
+        <div className="flex gap-6 items-center">
+          <div className="relative h-7 sm:h-4">
+            <Image
+              priority
+              width={100}
+              height={100}
+              alt="open-ai"
+              src={OPEN_AI_LOGO}
+              className={`w-full h-full object-contain ${resolvedTheme === 'light' ? 'grayscale invert contrast-[1] hue-rotate-[180deg]' : ''}`}
+            />
           </div>
         </div>
+
+        <p className="text-xs text-center rtl:mt-1">{t('Home.PoweredBy')}</p>
       </div>
     </div>
   )

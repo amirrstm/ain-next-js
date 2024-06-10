@@ -1,0 +1,716 @@
+{
+  "Metadata": {
+    "Home": {
+      "Title": "AINevis, Intelligent Content Creation",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process.",
+      "Keywords": "content creation, artificial intelligence, smart assistant, intelligent content creation, smart content, smart content for social media, smart content for blogs, smart content for websites, smart content for email marketing, search engine optimization (SEO)"
+    },
+
+    "Copywriting": {
+      "Title": "AINevis, Intelligent Content Creation",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+    "UseCase": {
+      "Title": "AINevis, Various Uses",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+    "App": {
+      "Title": "AINevis, User Panel",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+    "Chat": {
+      "Title": "AINevis, Chat with AI",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+    "History": {
+      "Title": "AINevis, History",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+    "Resume": {
+      "Title": "AINevis, Resume Builder",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "Settings": {
+      "Title": "AINevis, Settings",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "Dashboard": {
+      "Title": "AINevis, User Dashboard",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "Pricing": {
+      "Title": "AINevis, Pricing",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "About": {
+      "Title": "AINevis, About US",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "Privacy": {
+      "Title": "AINevis, Privacy",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "Login": {
+      "Title": "AINevis, Login",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    },
+
+    "ResumePreview": {
+      "Title": "AINevis, Resume Preview",
+      "Description": "AINevis is a dynamic AI assistant that enables intelligent content creation for users. With AINevis, users can easily write engaging blog posts, create amazing stories, and generate diverse content for social media. This AI assistant helps users create more effective, higher-quality, attractive, and unique content based on smart content categories. Using AINevis, content creation becomes a simple and effective process."
+    }
+  },
+
+  "Common": {
+    "Select": {
+      "NoOption": "No option found",
+      "Create": "Create",
+      "Searching": "Searching...",
+      "EnterTitle": "Enter a title"
+    }
+  },
+
+  "Auth": {
+    "Hello": "Hello",
+    "Title": "Login to AINevis",
+    "Subtitle": "Enter your mobile number to log in or sign up, or log in with Google.",
+    "Submit": "Login",
+    "Save": "Save",
+    "Skip": "Later",
+    "CodeTitle": "Activation Code",
+    "CodeSubtitle": "Enter the code sent to your mobile number",
+    "Google": "Login or Sign Up with Google",
+    "MobilePlaceholder": "For example: 09123456789",
+    "NameTitle": "User Information",
+    "Fields": {
+      "Mobile": "Please enter your mobile number",
+      "Code": "Please enter the code sent to your mobile",
+      "TwoFactorBack": "Back to login page",
+      "Name": "Enter your name if you wish",
+      "NamePlaceholder": "What is your name?",
+      "NameError": "Please enter your name"
+    },
+    "Time": "Remaining time",
+    "Resend": "Resend code",
+    "DidNotReceive": "Didn't receive the code?"
+  },
+
+  "Copywriting": {
+    "Inputs": "Inputs",
+    "Generated": "Generated text",
+    "PlanError": "{error}, please upgrade your account.",
+
+    "Category": {
+      "Title": "Categories",
+      "RequestTemplate": "Request new template",
+      "BackToCategories": "Back to categories",
+      "Generate": "Generate text",
+      "GenerateCost": "One token will be consumed",
+      "AllCategories": "All categories",
+      "ToneOfVoice": "Tone of voice",
+      "Creativity": {
+        "Title": "Creativity",
+        "Optimal": "Optimal",
+        "Max": "Maximum (Creative)",
+        "Min": "Minimum",
+        "Medium": "Medium",
+        "None": "Simple (Near reality)",
+        "High": "High",
+        "Low": "Low"
+      },
+      "Variants": {
+        "Title": "Number of texts",
+        "One": "One text",
+        "Two": "Two texts",
+        "Three": "Three texts"
+      }
+    },
+
+    "Content": {
+      "Words": "Words",
+      "Characters": "Characters",
+      "RequiredError": "Please fill out this field",
+      "Empty": "Answer the questions asked to see the text generated by AI here.",
+      "Tip": "Tip: You can also see the history of your questions here",
+      "Loading": "Fetching data, your text will be ready soon",
+      "Error": "There was an issue connecting to the server, please try again in a few minutes",
+      "Success": "Your text has been generated and is displayed below",
+      "Feedback": "Share your feedback with us",
+      "FeedbackSuccess": "Your feedback has been successfully submitted",
+
+      "FeedbackMessages": {
+        "First": "I didn't like this tone",
+        "Second": "The text did not produce what I wanted",
+        "Third": "The text did not follow my instructions",
+        "Fourth": "The system was slow"
+      }
+    },
+
+    "Template": {
+      "Title": "Request new template",
+      "Subtitle": "Request any category you have in mind that is not on the list!",
+      "Fields": {
+        "Name": "Category name",
+        "Description": "Description",
+        "NamePlaceholder": "Enter the desired category name",
+        "DescriptionPlaceholder": "Write a brief description of the category...",
+        "Submit": "Submit request",
+        "Success": "Thank you for sharing your opinion with us :)"
+      }
+    }
+  },
+
+  "Chat": {
+    "Title": "Chat with AI",
+    "Description": "Ask AINevis any question you have or start a conversation",
+    "InputPlaceholder": "Write any question you have here...",
+    "Loading": "Fetching data, please wait",
+    "Empty": "To start a conversation, write in the box below and AINevis will respond",
+    "Info": "The chat bot may make mistakes, keep important points in mind.",
+    "PlanError": "{error}, please upgrade your account.",
+
+    "Writing": "Writing...",
+    "User": "You",
+    "Us": "AINevis",
+
+    "History": {
+      "Title": "Are you sure you want to delete the chat history?",
+      "Description": "This action is irreversible, and all your chat history will be permanently deleted",
+      "Cancel": "Cancel",
+      "Delete": "Delete"
+    }
+  },
+
+  "History": {
+    "EmptyContent": "Select a history from the left menu to display its information for you",
+    "EmptyList": "No history found, start from the content creation section to see the questions you ask displayed here"
+  },
+
+  "Pricing": {
+    "Title": "Experience the power of <span>AI</span> right now",
+    "Description": "Choose the subscription that suits your needs",
+    "Order": "Order now",
+    "Popular": "Most popular choice"
+  },
+
+  "User": {
+    "User": "AINevis User",
+    "Mobile": "Mobile",
+    "Email": "Email",
+    "Of": "of",
+    "Logout": "Logout",
+    "Generations": "Generated content",
+    "DarkMode": "Dark mode",
+    "LightMode": "Light mode",
+
+    "Upgrade": "Upgrade account",
+    "Upload": "Upload photo",
+    "SaveUpload": "Save image",
+    "CropImage": "Crop your photo to the appropriate size",
+
+    "UpgradeAlert": {
+      "Action": "Got it",
+      "Title": "Account upgrade is not available in the beta version.",
+      "Description": "To request more content, contact support at <upgrade>info@ainevis.com</upgrade> or through the website support."
+    },
+
+    "Settings": {
+      "Title": "Settings",
+      "FirstName": "First name",
+      "LastName": "Last name",
+      "Mobile": "Mobile",
+      "Email": "Email",
+      "Save": "Save information",
+      "Cancel": "Cancel",
+      "EditProfile": "Edit profile",
+      "Success": "Changes saved successfully",
+      "AppSettings": "General settings",
+      "Theme": "Select theme",
+      "DarkMode": "Dark mode",
+      "LightMode": "Light mode",
+      "SystemMode": "System mode",
+      "Language": "Language"
+    }
+  },
+
+  "Layout": {
+    "Of": "of",
+    "Title": "AINevis, AI-Powered Copywriting Tool",
+    "Subtitle": "Intelligent Assistant for Writing Engaging and Specialized Content",
+    "Header": {
+      "About": "About Us",
+      "Pricing": "Pricing",
+      "SignIn": "Sign In",
+      "UseCases": "Use Cases",
+      "SignUp": "Sign Up for Free",
+      "Menu": "User Menu",
+      "OpenApp": "Open Dashboard"
+    },
+
+    "Footer": {
+      "Title": "AI Power in Your Hands",
+      "Description": "Click the button below right now to create an account for free and start generating content",
+      "Menus": {
+        "Privacy": "Privacy Policy",
+        "Terms": "Terms of Service"
+      }
+    },
+
+    "Home": {
+      "GetStarted": "Get Started for Free Now",
+      "PoweredBy": "Powered By",
+      "Rating": "Over <rating>{count}</rating> users have used our services in AINevis",
+
+      "Subtitles": {
+        "First": {
+          "Title": "Specialized Content for All Your Needs",
+          "Description": "With AINevis, you can easily generate content tailored to the captions of social media posts, resume content, Google ads, brainstorming, SEO keywords, and more than 15 other popular categories."
+        },
+        "Second": {
+          "Title": "Practical and Popular Categories",
+          "Description": "AINevis service categories help you easily produce content tailored to the required standards and maximize effectiveness."
+        }
+      },
+
+      "Benefits": {
+        "Title": "Benefits",
+        "Subtitle": "Higher Returns in Less Time",
+
+        "UseCase": {
+          "Title": "Infinite Ready-Made Templates",
+          "Description": "AINevis is not just for content creators or writers, but for everyone who values their time."
+        },
+
+        "Time": {
+          "Title": "Time Savings",
+          "Description": "Easily generate the best type of text with just a few clicks"
+        },
+
+        "Use": {
+          "Title": "Easy to Use",
+          "Description": "No complexity, no need for specialized knowledge, just artificial intelligence"
+        },
+
+        "Money": {
+          "Title": "Cost Savings",
+          "Description": "No need to spend money on each Copywriting tool, all available in one place for you"
+        },
+
+        "Plagiarism": {
+          "Title": "Non-Repetitive Content",
+          "Description": "Content generated by AINevis is completely unique and non-repetitive"
+        },
+
+        "Workflow": {
+          "Title": "User Experience",
+          "Description": "A unique and simple user experience for content production, create your content without losing focus"
+        }
+      },
+
+      "Features": {
+        "Title": "Features",
+        "Subtitle": "One Platform, All the Tools You Need for Content Production",
+        "TryNow": "Try Now",
+        "Help": "What You Need to Know About Using AINevis",
+
+        "Description": {
+          "First": "You can sign up for AINevis in one step by entering your email or phone number and use free Copywriting services.",
+          "Second": "Easy and quick access to categories, Copywriting history, resumes, and more.",
+          "Third": "By selecting your desired category, shorten the Copywriting path several times and save time.",
+          "Fourth": "Enter your descriptions without any restrictions.",
+          "Fifth": "Enjoy the performance and effectiveness of the generated content."
+        },
+
+        "Cta": {
+          "Title": "Ready to Use?",
+          "Description": "All AINevis services are available for you for free. Just sign up in one step"
+        }
+      },
+
+      "Resume": {
+        "Title": "Resume Builder",
+        "Description": "Easy and Proper Resume Writing",
+        "Button": "Try Now",
+
+        "Voice": {
+          "Topic": "Time Savings with Better Results",
+          "Title": "Voice to Text Conversion Feature",
+          "Description": "Just turn on your microphone.<br /> Provide the necessary details to AINevis in seconds.<br /> Be amazed at the result!"
+        },
+
+        "Structure": {
+          "Topic": "Standard Resume Structure",
+          "Title": "{percent} Probability of Interview Invitation and Hiring"
+        },
+
+        "Suggest": {
+          "Title": "Provide Effective Suggestions to Improve Your Resume Using AINevis Smart Writing Feature",
+          "Description": "You can ask AINevis for suggestions to improve your resume tailored to your profession and expertise, and then edit the suggested content as needed."
+        },
+
+        "Project": {
+          "Title": "Projects and Achievements",
+          "Description": "Ability to add and describe projects and achievements by naming the achievement or project description"
+        },
+
+        "Principle": {
+          "Title": "Principled and Impactful",
+          "Description": "With the ability to analyze data and provide intelligent suggestions, AINevis creates a professional, principled, and effective resume that introduces you in the best possible way."
+        },
+
+        "Template": {
+          "Title": "Standard Templates",
+          "Description": "After completing the required information, your resume will be displayed in several standard and attractive templates."
+        },
+
+        "Introduce": {
+          "Title": "Your Impactful Introduction",
+          "Description": "Analyze and review your descriptions to extract the best information and use it in your resume."
+        },
+
+        "ATS": {
+          "Topic": "Compatible with ATS Standards",
+          "Description": "Accuracy in the use of essential keywords"
+        },
+
+        "Writing": {
+          "Title": "Writing Job Histories, Education, Skills, and Abilities with Audio Descriptions",
+          "Description": "By using the 'Audio Description' feature, you can significantly reduce the time it takes to write your resume content. Just provide details of your job histories, education, skills, etc., in a few seconds and enjoy the result."
+        },
+
+        "Satisfy": {
+          "Topic": "Century-Old Solution in One Day",
+          "Title": "{number} Job Seekers Satisfied with AINevis",
+          "Description": "Satisfaction of job seekers and human resource managers"
+        }
+      },
+
+      "BeforeAfter": {
+        "Title": "Advantages",
+        "Subtitle": "Higher Returns in Less Time",
+        "LinkedInPost": "LinkedIn Post",
+        "GoogleAds": "Google Ads",
+        "SeoKeyword": "SEO Keyword",
+        "Handwritten": "Handwritten Text",
+        "AIWritten": "AI-Generated Text",
+
+        "After": {
+          "Short": "Short and Informative Text",
+          "Attractive": "Use of Engaging Phrases",
+          "Principal": "Has a Proper Writing Structure"
+        },
+
+        "Before": {
+          "Short": "Long Text",
+          "Attractive": "Unattractive",
+          "Principal": "Lacks Proper Structure"
+        }
+      },
+
+      "Faq": {
+        "Title": "Frequently Asked Questions",
+        "Subtitle": "Have Questions? Find the Answers Here"
+      }
+    },
+
+    "Menus": {
+      "Home": "Home",
+      "Dashboard": "Dashboard",
+      "History": "History",
+      "Settings": "Settings",
+
+      "Resume": "Resume Builder",
+      "Copywriting": "Copywriting",
+      "Chat": "AI Chat",
+      "Image": "Image Generation"
+    },
+
+    "Dashboard": {
+      "Welcome": "Welcome, My Friend",
+      "CreateNew": "What can we do for you?",
+      "Categories": "Categories",
+
+      "Messages": {
+        "First": "Create text for social networks",
+        "Second": "Generate content for blogs",
+        "Third": "Generate content for websites",
+        "Forth": "Generate content for email marketing"
+      },
+
+      "Stats": {
+        "Last30Days": "Last 30 Days Statistics",
+        "TimeSaved": "Time Saved",
+        "Generations": "Content Generated",
+        "Plan": "Selected Plan",
+        "Hours": "Hours",
+        "UsagePercentage": "Monthly Usage Rate",
+        "Quota": "Content Generated from {from} to {to}",
+        "GenerationReset": "Copywriting statistics are reset on {date} every month",
+        "Usage30Days": "Usage in Last 30 Days"
+      },
+
+      "Access": {
+        "QuickAccess": "Quick Access",
+        "Copywriting": {
+          "Title": "Copywriting",
+          "Description": "Create amazing and engaging texts with a variety of categories that captivate your audience. Produce diverse content that is always new and readable with creativity and variety in writing."
+        },
+
+        "Resume": {
+          "Title": "Resume Builder",
+          "Description": "Create a professional resume with the help of artificial intelligence and your own voice! Just record your voice and leave the rest to our AI system to showcase your skills in the best possible way."
+        },
+
+        "Chat": {
+          "Title": "AI Chat",
+          "Description": "Ask any questions to the AI of AINevis and engage in conversation; this advanced system is always ready to answer all your questions and assist you in any field. Just ask your question and get the answer."
+        }
+      }
+    }
+  },
+
+  "Resume": {
+    "Title": "Online Resume Builder",
+    "Description": "Create a resume in under 15 minutes!",
+    "InputPlaceholder": "Enter your information",
+    "Generate": "Generate Resume",
+    "List": "List of resumes created by you",
+    "Loading": "Creating resume, please wait",
+    "GetLoading": "Fetching resume data, please wait",
+    "Empty": "No resumes created yet, you can create up to 4 new resumes for yourself",
+    "Success": "Your resume is ready, you can download it now",
+    "Download": "Download Resume",
+    "Feedback": "Leave your feedback with us",
+    "FeedbackSuccess": "Your feedback has been successfully submitted",
+    "Save": "Save and Continue",
+    "Preview": "Preview",
+    "Back": "Back",
+
+    "Delete": {
+      "Cancel": "Cancel",
+      "Confirm": "Delete",
+      "Title": "Are you sure you want to delete this resume?",
+      "Description": "This action is irreversible and all your resume data will be permanently deleted"
+    },
+
+    "Create": {
+      "Title": "Create a New Resume",
+      "Success": "Your resume has been successfully created",
+      "TitleForCustom": "Custom Resume {name}",
+
+      "Template": {
+        "Title": "Resume Template",
+        "Description": "Choose your resume template",
+        "Select": "Select this template",
+        "Back": "Back to template selection"
+      },
+      "Type": {
+        "Description": "Choose one of the options below",
+        "CustomTitle": "Create Custom Resume",
+        "CustomDescription": "Create your resume according to your taste",
+        "AITitle": "Create Resume with AI",
+        "AIDescription": "Automatically create your resume with artificial intelligence",
+        "VoiceTitle": "Create Resume with Voice Recording",
+        "VoiceDescription": "Talk about yourself, we'll create the resume"
+      },
+
+      "AI": {
+        "Title": "Create Resume with AI",
+        "Description": "Automatically create your resume with artificial intelligence",
+        "Fields": {
+          "Submit": "Start Creating Resume",
+          "Placeholder": "Relevant Job Title",
+          "Title": "First search for your job title below or enter a new one",
+          "Description": "For better results, enter descriptions about yourself below",
+          "DescriptionPlaceholder": "For example: Computer Engineering graduate from Tehran University, with 3 years of work experience in various companies, fluent in English, etc. My skills include programming, web design, project management, etc. Working as a full-stack developer at X software development company"
+        }
+      },
+
+      "Voice": {
+        "Title": "Create Resume with Voice Recording",
+        "Submit": "Start Creating Resume",
+        "Description": "You talk about yourself, we'll create the resume",
+
+        "Subtitle": "Click the button below and start speaking, click again after finishing. You have 30 seconds to record.",
+        "Attention": "Note that you have 30 seconds to record your voice",
+        "Guide": "Guide: Read the text below to get closer to reality"
+      }
+    },
+
+    "Fields": {
+      "NoTitle": "Untitled",
+      "CreatedAt": "Created At",
+      "UpdatedAt": "Updated At",
+      "Edit": "Edit Resume",
+      "Copy": "Copy Resume",
+      "Download": "Download (PDF)",
+      "Delete": "Delete Resume"
+    },
+
+    "Settings": {
+      "Title": "Resume Settings",
+      "Download": "Download Resume (PDF)",
+
+      "Template": {
+        "Title": "Resume Template",
+        "Description": "Choose your resume template",
+        "Select": "Select Template",
+        "Selected": "Selected Template",
+        "Change": "Change Template",
+        "Success": "Resume template changed successfully"
+      },
+
+      "Options": {
+        "Title": "Resume Options",
+        "Description": "Change colors, font, or text size",
+
+        "Fields": {
+          "JobTitleColor": "Job Title Color",
+          "NameColor": "Name Color",
+          "PlacesColor": "Workplace Color",
+          "SectionTitleColor": "Section Title Color",
+          "SkillBarColor": "Skill Bar Color",
+          "DefaultFont": "Font",
+          "BlockMargins": "Block Margins"
+        }
+      }
+    },
+
+    "Tabs": {
+      "Personal": {
+        "Title": "Basic Information",
+        "Description": "Your basic information for creating a resume"
+      },
+      "Experience": {
+        "Title": "Work Experience",
+        "Description": "Your work experience for creating a resume"
+      },
+      "Education": {
+        "Title": "Education",
+        "Description": "Your education for creating a resume"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Description": "Your skills for creating a resume"
+      },
+      "Projects": {
+        "Title": "Projects",
+        "Description": "Your projects for creating a resume"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "Description": "Your languages for creating a resume"
+      },
+      "Publications": {
+        "Title": "Publications",
+        "Description": "Your publications for creating a resume"
+      },
+      "Interests": {
+        "Title": "Interests",
+        "Description": "Your interests for creating a resume"
+      },
+      "Other": {
+        "Title": "Other",
+        "Description": "Your other information for creating a resume"
+      },
+      "References": {
+        "Title": "References",
+        "Description": "Your references for creating a resume"
+      }
+    },
+
+    "Basic": {
+      "Title": "Basic Information",
+      "SocialTitle": "Social Networks",
+      "SocialAddNew": "Add a new social network",
+      "Description": "Your identity and contact information for creating a resume",
+
+      "ContactTitle": "Contact Information",
+      "ContactDescription": "Companies interested in collaborating with you can contact you through this information",
+
+      "SummaryTitle": "Resume Summary or About Me",
+      "SummaryDescription": "The summary section of a resume is the opening section that creates a clear visual of you and your skills in the reader's mind."
+    },
+
+    "Education": {
+      "Title": "Education",
+      "Description": "Always start writing your educational background in the resume from your highest degree.",
+      "AddNew": "Add New Educational Experience"
+    },
+
+    "Work": {
+      "Title": "Work Experience",
+      "Description": "Follow the reverse chronological order to write work experiences and start writing from the last job you had or have.",
+      "AddNew": "Add New Work Experience"
+    },
+
+    "Skill": {
+      "Title": "Skills",
+      "Description": "Write down the skills you possess, descriptions help the reader understand",
+      "AddNew": "Add New Skill"
+    },
+
+    "Language": {
+      "Title": "Languages",
+      "Description": "Write down the languages you are proficient in",
+      "AddNew": "Add New Language"
+    },
+
+    "Project": {
+      "Title": "Projects",
+      "Description": "Follow the reverse chronological order to write projects and start writing from the last project you had or have.",
+      "AddNew": "Add New Project"
+    },
+
+    "Certificate": {
+      "Title": "Courses and Certificates",
+      "AddNew": "Add New Certificate"
+    },
+
+    "Publication": {
+      "Title": "Research and Publications",
+      "AddNew": "Add New Publication"
+    },
+
+    "Interest": {
+      "Title": "Interests",
+      "AddNew": "Add New Interest"
+    },
+
+    "Reference": {
+      "Title": "References",
+      "AddNew": "Add New Reference"
+    },
+
+    "Volunteer": {
+      "Title": "Volunteer Work",
+      "AddNew": "Add New Volunteer Work"
+    },
+
+    "Teaching": {
+      "Title": "Teaching Experience",
+      "AddNew": "Add New Teaching Experience"
+    },
+
+    "Award": {
+      "Title": "Awards and Honors",
+      "AddNew": "Add New Award"
+    },
+
+    "Invention": {
+      "Title": "Inventions",
+      "AddNew": "Add New Invention"
+    },
+
+    "Speech": {
+      "Title": "Presentations and Speeches",
+      "AddNew": "Add New Speech"
+    }
+  }
+}

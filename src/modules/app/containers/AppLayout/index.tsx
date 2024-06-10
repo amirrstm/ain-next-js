@@ -1,14 +1,19 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
 
-import { IconDashboard, IconHistory, IconHome, IconSettings } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
-import { usePathname } from '@/components/ui/navigation'
+import { usePathname, useRouter } from '@/components/ui/navigation'
 
+import IconChat from '@/icons/menus/chat'
+import IconCopywriting from '@/icons/menus/copywriting'
+import IconDashboard from '@/icons/menus/dashboard'
+import IconHistory from '@/icons/menus/history'
+import IconHome from '@/icons/menus/home'
+import IconResume from '@/icons/menus/resume'
+import IconSettings from '@/icons/menus/settings'
 import useUserStore from '@/lib/store/auth'
 import { getUserProfile } from '@/modules/auth/services'
 import { removeUserToken } from '@/modules/auth/utils'
@@ -23,12 +28,80 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   const { user, setUser, reset: resetUser } = useUserStore()
   const [loading, setLoading] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(true)
+
+  useEffect(() => {
+    if (pathname.includes('/app/copywriting/') || pathname.includes('/app/resume/')) {
+      setIsMenuOpen(false)
+    } else {
+      setIsMenuOpen(true)
+    }
+  }, [pathname])
 
   const menus = [
-    { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-6 h-6" /> },
-    { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <IconDashboard className="w-6 h-6" /> },
-    { title: t('Menus.History'), link: '/app/history', icon: <IconHistory className="w-6 h-6" /> },
-    { title: t('Menus.Settings'), link: '/app/settings', icon: <IconSettings className="w-6 h-6" /> },
+    {
+      title: t('Menus.Home'),
+      link: '/app',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconHome />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Copywriting'),
+      link: '/app/copywriting',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconCopywriting />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Resume'),
+      link: '/app/resume',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconResume />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Chat'),
+      link: '/app/chat',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconChat />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Dashboard'),
+      link: '/app/dashboard',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconDashboard />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.History'),
+      link: '/app/history',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconHistory />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Settings'),
+      link: '/app/settings',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconSettings />
+        </div>
+      ),
+    },
   ]
 
   useEffect(() => {
@@ -40,8 +113,8 @@ export default function AppLayoutContainer({ children }: { children: React.React
           setLoading(false)
         })
         .catch(() => {
-          removeUserToken()
           resetUser()
+          removeUserToken()
           router.push(`/login?returnUrl=${pathname}`)
         })
     }
@@ -50,21 +123,24 @@ export default function AppLayoutContainer({ children }: { children: React.React
   if (loading) return null
 
   return (
-    <main className="block md:flex bg-background">
+    <main className="dark:bg-popover bg-white">
+      <div className="hidden md:block">
+        <AppSiderBar menus={menus} isOpen={isMenuOpen} setOpen={setIsMenuOpen} />
+      </div>
+
       <div className="block md:hidden">
         <AppHeader menus={user ? menus : [menus[0]]} />
       </div>
 
-      <div className="hidden md:block">
-        <AppSiderBar menus={user ? menus : [menus[0]]} />
-      </div>
       <div
-        className={clsx(
-          'ms-0 md:ms-[250px] mt-0 md:mt-5 mb-0 md:mb-5 me-0 md:me-5 flex-1 border dark:border-card md:rounded-2xl',
-          'h-full min-h-[calc(100vh-40px)] bg-card md:bg-card md:shadow-inner',
-        )}
+        className={clsx('md:py-3 md:pe-3 transition-all duration-200 ease-in-out', {
+          'md:ps-[100px]': !isMenuOpen,
+          'md:ps-[250px]': isMenuOpen,
+        })}
       >
-        {children}
+        <div className={clsx('bg-popover dark:bg-background rounded-xl shadow-inner min-h-[calc(100vh-24px)]')}>
+          {children}
+        </div>
       </div>
     </main>
   )

@@ -8,7 +8,7 @@ import DashboardMenu from '@/components/ui/dashboard-menu'
 
 import { LOGO_URL } from '@/constants'
 
-import UserProfile from '../AppSideBar/UserProfile'
+import UserProfile from '../../AppSideBar/UserProfile'
 
 type Props = {
   open: boolean
@@ -68,7 +68,7 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
             </div>
 
             <div className="px-5">
-              <UserProfile />
+              <UserProfile isOpen={false} />
             </div>
           </m.div>
         </m.aside>

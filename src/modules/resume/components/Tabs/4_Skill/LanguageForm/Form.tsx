@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconArrowsMove, IconX } from '@tabler/icons-react'
 import React from 'react'
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const SingleLanguageForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard, remove }) => {
+  const { locale } = useParams()
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
   const { languages, fluencyTypes, numberLevels, stringLevels, describeLevels } = useConstants()
@@ -104,7 +106,7 @@ const SingleLanguageForm: React.FC<Props> = ({ position, fieldId, hasMove, moveC
                   {...field}
                   size="sm"
                   options={levelOptions[fluencyType.key as keyof typeof levelOptions]}
-                  className={fluencyType.key === 'graphical' ? YekanBakhNumFont.className : ''}
+                  className={fluencyType.key === 'graphical' && locale === 'fa' ? YekanBakhNumFont.className : ''}
                 />
               </FormControl>
 

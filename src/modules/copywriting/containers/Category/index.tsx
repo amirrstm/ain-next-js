@@ -62,10 +62,10 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
   if (isLoading) return <CategoryLoading />
 
   return (
-    <div className={!inner ? 'p-2 xl:p-6' : ''}>
-      <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
+    <div className={!inner ? 'p-2 xl:p-4' : ''}>
+      <div className="grid grid-cols-12 gap-4">
         <div className="hidden md:block col-span-6 lg:col-span-5 xl:col-span-3 2xl:col-span-3">
-          <div className="border border-muted rounded-xl bg-background shadow-md block sticky top-8">
+          <div className="border border-muted rounded-xl bg-card shadow-md block sticky top-8">
             <div className="p-4 border-b border-b-muted">
               <h1 className="text-xl font-bold">{t('Category.Title')}</h1>
             </div>
@@ -73,6 +73,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
             {data && (
               <div className="p-4 space-y-4">
                 <DashboardMenu
+                  active={selectedMenu?.slug === 'copywriting'}
                   icon={CATEGORY_ICONS['copywriting']}
                   onClick={() => onSelectParent('copywriting')}
                   title={<span className="text-sm">{t('Category.AllCategories')}</span>}
@@ -83,6 +84,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                     key={index}
                     icon={CATEGORY_ICONS[menu.slug]}
                     onClick={() => onSelectParent(menu)}
+                    active={selectedMenu?.slug === menu.slug}
                     title={<span className="text-sm">{menu.name}</span>}
                   />
                 ))}
@@ -98,10 +100,10 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
         </div>
 
         <div className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-9 2xl:col-span-9 h-full">
-          <div className="border border-muted rounded-xl bg-background shadow-md h-full">
+          <div className="border border-muted rounded-xl bg-card shadow-md h-full">
             <div className="p-4 flex items-center justify-between border-b border-b-muted">
               <div className="flex gap-2 items-center">
-                <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
+                <div className="bg-foreground w-8 h-8 rounded-md text-background flex justify-center items-center">
                   {selectedMenu && CATEGORY_ICONS[selectedMenu.slug]}
                 </div>
                 <h2 className="md:text-xl font-bold">
@@ -132,7 +134,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                       href={`/app/copywriting/${menu.slug}`}
                       className={clsx(
                         'cursor-pointer group transition-all ease-in-out duration-200',
-                        'border border-muted rounded-xl bg-muted dark:bg-neutral-800/80 dark:backdrop-blur-xl shadow-sm hover:shadow-primary p-3 min-h-[100px] flex gap-4 items-center',
+                        'border border-muted rounded-xl bg-neutral-100 dark:bg-neutral-800/80 dark:backdrop-blur-xl shadow-sm hover:shadow-primary p-3 min-h-[100px] flex gap-4 items-center',
                       )}
                     >
                       <span className="group-hover:text-primary">

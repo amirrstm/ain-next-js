@@ -8,7 +8,7 @@ const Info = ({}: Props) => {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <div className="w-10 h-10 bg-neutral-700 rounded-full flex items-center justify-center cursor-pointer">
+        <div className="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 rounded-full flex items-center justify-center cursor-pointer">
           <IconInfoOctagon />
         </div>
       </HoverCardTrigger>

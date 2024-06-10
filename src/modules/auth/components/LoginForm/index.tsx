@@ -1,99 +1,70 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
-import { zodResolver } from '@hookform/resolvers/zod'
 import clsx from 'clsx'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
+import React, { useState } from 'react'
+import { toast } from 'sonner'
 
-import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import LineDivider from '@/components/ui/line-divider'
-import { Link } from '@/components/ui/navigation'
+import GoogleIcon from '@/icons/google'
 
-import { LOGO_URL } from '@/constants'
-import { useI18nZodErrors } from '@/lib/zodValidation'
+import { Input } from './Input'
 
-import GoogleIcon from './GoogleIcon'
-
-const formSchema = z.object({ mobile: z.string().min(1).length(11) })
-
-type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: z.infer<typeof formSchema>) => void }
+type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: { mobile: string }) => void }
 const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
-  useI18nZodErrors('auth')
   const t = useTranslations('Auth')
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { mobile: '' },
-  })
+  const [value, setValue] = useState('')
 
   const onGoogle = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_ENDPOINT}/api/v1/auth/user/google`
   }
 
-  return (
-    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
-      <Link href="/">
-        <div className="relative h-7 sm:h-8">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src={LOGO_URL}
-            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
-          />
-        </div>
-      </Link>
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onRequestSubmit()
+    }
+  }
 
-      <div className="text-center mt-4">
-        <h1 className="text-2xl font-semibold">{t('Title')}</h1>
+  const onRequestSubmit = () => {
+    if (!value || value.length === 0) {
+      toast.error(t('Fields.Mobile'))
+      return
+    }
+
+    onSubmit({ mobile: value })
+  }
+
+  return (
+    <div className=" p-6 w-full">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+          {t('Title')}
+        </h1>
+
+        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('Subtitle')}</p>
       </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
-          <FormField
-            control={form.control}
-            name="mobile"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="pb-5 block">{t('Hello')}!</p>
-                  <p>{t('Fields.Mobile')}</p>
-                </FormLabel>
-                <FormControl>
-                  <Input autoFocus inputMode="numeric" dir="ltr" placeholder="09911234567" {...field} />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button type="submit" className="w-full" loading={loading || googleLoading}>
-            {t('Submit')}
-          </Button>
-        </form>
-      </Form>
-
-      <LineDivider>یا</LineDivider>
+      <div className="pt-6">
+        <Input
+          dir="ltr"
+          value={value}
+          loading={loading}
+          inputMode="numeric"
+          onKeyDown={onKeyDown}
+          onRequestSubmit={onRequestSubmit}
+          placeholder={t('MobilePlaceholder')}
+          onChange={e => setValue(e.target.value)}
+        />
+      </div>
 
       <div
         onClick={onGoogle}
-        className={clsx(
-          'hover:bg-gray-50 transition-all duration-200 ease-in-out',
-          'flex cursor-pointer items-center gap-4 border rounded-lg px-1 py-2 justify-center',
-          {
-            '!opacity-40 !cursor-not-allowed': googleLoading,
-          },
-        )}
+        className={clsx('flex cursor-pointer items-center gap-2 px-1 py-4 justify-center', {
+          '!opacity-40 !cursor-not-allowed': googleLoading,
+        })}
       >
         <GoogleIcon />
-        <span className="tracking-wider">ورود یا ثبت نام با گوگل</span>
+        <span className="text-xs text-white">{t('Google')}</span>
       </div>
     </div>
   )

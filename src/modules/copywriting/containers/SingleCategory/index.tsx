@@ -1,15 +1,15 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
+import { toast } from 'sonner'
 
 import { AppCategory } from '@/interface/Category.model'
 
-import { Link } from '@/components/ui/navigation'
-import { useToast } from '@/components/ui/use-toast'
+import { Link, useRouter } from '@/components/ui/navigation'
 
 import useUserStore from '@/lib/store/auth'
 
@@ -23,7 +23,6 @@ interface Props {
 
 const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const router = useRouter()
-  const { toast } = useToast()
   const pathname = usePathname()
   const t = useTranslations('Copywriting')
   const { user, setUser } = useUserStore()
@@ -35,7 +34,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
-  const onSubmit = (data: Record<string, unknown>) => {
+  const onSubmit = (data: Record<string, any>) => {
     if (!user) {
       router.push(`/login?returnUrl=${pathname}`)
       return
@@ -45,14 +44,20 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
       contentRef.current.scrollIntoView({ behavior: 'smooth' })
     }
 
+    const { temperature, variant, tone, ...inputs } = data
+
     setLoading(true)
     setContent(undefined)
     getPromptResponse({
-      inputs: data,
+      inputs,
       category: category.data._id,
+      tone: String(tone._id),
+      variant: Number(variant._id),
+      temperature: Number(temperature._id),
     })
       .then(data => {
         setLoading(false)
+
         setHistoryId(data._id)
         setContent(data.content)
 
@@ -64,9 +69,9 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
         setLoading(false)
 
         if (e.status === 5215) {
-          toast({ title: `${e.error}، لطفا حساب خود را ارتقا دهید.`, variant: 'destructive' })
+          toast.error(t('PlanError', { error: e.error }))
         } else {
-          toast({ title: t('Content.Error'), variant: 'destructive' })
+          toast.error(t('Content.Error'))
         }
       })
   }
@@ -74,28 +79,30 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   if (!category.data) return null
 
   return (
-    <div className="p-2 xl:p-6 xl:pb-10">
-      <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
-        <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 2xl:col-span-3">
-          <div className="border border-muted rounded-xl bg-background shadow-md block sticky top-8 h-full">
+    <div className="p-2 xl:p-6">
+      <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6 min-h-[calc(100vh-40px)] xl:min-h-[calc(100vh-72px)]">
+        <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4">
+          <div className="border border-muted rounded-xl bg-card shadow-md h-full flex flex-col">
             <Link href="/app/copywriting" className="p-4 border-b border-b-muted flex gap-2 items-center">
-              <div className="border border-muted rounded-full p-1">
+              <div className="border border-muted rounded-full p-1 rotate-180 rtl:rotate-0">
                 <IconChevronRight />
               </div>
               <h1 className="text-lg font-bold">{t('Category.BackToCategories')}</h1>
             </Link>
 
-            <ContentForm
-              loading={loading}
-              onSubmit={onSubmit}
-              category={category.data}
-              appCategory={appCategory}
-              setAppCategory={setAppCategory}
-            />
+            <div className="flex-1">
+              <ContentForm
+                loading={loading}
+                onSubmit={onSubmit}
+                category={category.data}
+                appCategory={appCategory}
+                setAppCategory={setAppCategory}
+              />
+            </div>
           </div>
         </div>
 
-        <div ref={contentRef} className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-8 2xl:col-span-9">
+        <div ref={contentRef} className="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-8">
           <ContentEditor id={historyId as string} loading={loading} appCategory={appCategory} content={content} />
         </div>
       </div>

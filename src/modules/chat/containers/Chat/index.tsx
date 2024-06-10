@@ -3,9 +3,10 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
-import { IconBolt, IconLoader, IconMessage2Bolt, IconSend2, IconTrash } from '@tabler/icons-react'
+import { IconLoader, IconSend2, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import {
@@ -20,8 +21,8 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import Loader from '@/components/ui/loader'
-import { useToast } from '@/components/ui/use-toast'
 
+import IconChat from '@/icons/menus/chat'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
@@ -32,7 +33,7 @@ import { deleteChat, sendMessage } from '../../service'
 
 const ChatContainer: React.FC = () => {
   const router = useRouter()
-  const { toast } = useToast()
+
   const t = useTranslations('Chat')
   const { user, setUser } = useUserStore()
   const endRef = useRef<HTMLDivElement>(null)
@@ -97,7 +98,7 @@ const ChatContainer: React.FC = () => {
           setMessages(prev => prev.slice(0, prev.length - 1))
 
           if (e.status === 5215) {
-            toast({ title: `${e.error}، لطفا حساب خود را ارتقا دهید.`, variant: 'destructive' })
+            toast.error(t('PlanError', { error: e.message }))
           }
         })
     }
@@ -109,13 +110,13 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-40px)] min-h-[200px]">
+    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-24px)] min-h-[200px]">
       <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
         <div className="p-4 w-full border-b border-b-muted">
           <div className="flex gap-2 items-center justify-between">
-            <div className="flex flex-1 gap-2">
-              <div className="bg-secondary w-8 h-8 rounded-md text-white flex justify-center items-center">
-                <IconMessage2Bolt />
+            <div className="flex flex-1 items-center gap-2">
+              <div className="w-12 h-12">
+                <IconChat />
               </div>
               <div className="flex-1">
                 <h1 className="md:text-xl font-bold">{t('Title')}</h1>
@@ -132,15 +133,13 @@ const ChatContainer: React.FC = () => {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>آیا از پاک کردن تاریخچه چت اطمینان دارید؟</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      این عمل برگشت پذیر نیست، و تمام تاریخچه چت شما برای همیشه پاک خواهد شد
-                    </AlertDialogDescription>
+                    <AlertDialogTitle>{t('History.Title')}</AlertDialogTitle>
+                    <AlertDialogDescription>{t('History.Description')}</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel className="ml-2">انصراف</AlertDialogCancel>
+                    <AlertDialogCancel className="ml-2">{t('History.Cancel')}</AlertDialogCancel>
                     <AlertDialogAction className="bg-red-500" onClick={onDelete}>
-                      پاک کن
+                      {t('History.Delete')}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -161,9 +160,8 @@ const ChatContainer: React.FC = () => {
                 </div>
               ) : (
                 <div className="p-6 text-center flex justify-center">
-                  <div className="border shadow-md rounded-lg max-w-sm p-4 text-center">
-                    <p className="text-gray-500 flex">
-                      <IconBolt className="text-primary" />
+                  <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
+                    <p className="text-neutral-500 flex">
                       <span className="flex-1 leading-normal">{t('Empty')}</span>
                     </p>
                   </div>
@@ -186,12 +184,12 @@ const ChatContainer: React.FC = () => {
               disabled={isLoading}
               onKeyDown={onKeyDown}
               placeholder={t('InputPlaceholder')}
-              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs md:text-base"
+              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs bg-transparent md:text-base placeholder:dark:text-neutral-600"
             />
 
             <div
               onClick={onGenerate}
-              className={clsx('w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-secondary rounded-full', {
+              className={clsx('w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-primary rounded-full', {
                 'cursor-pointer': !isMutating,
                 'pointer-events-none': isMutating || isLoading || !value,
               })}
@@ -199,7 +197,7 @@ const ChatContainer: React.FC = () => {
               {isMutating ? (
                 <IconLoader className="h-5 w-5 animate-spin text-white" />
               ) : (
-                <IconSend2 className="w-6 h-6 rotate-180 text-white" />
+                <IconSend2 className="w-6 h-6 rtl:rotate-180 text-white" />
               )}
             </div>
           </div>
@@ -207,7 +205,7 @@ const ChatContainer: React.FC = () => {
       </div>
 
       <div ref={endRef} className="text-center pt-1">
-        <p className="text-[10px] md:text-xs text-gray-400">چت بات ممکن است اشتباه کند، نکات مهم را در نظر بگیرید.</p>
+        <p className="text-[10px] md:text-xs text-neutral-600">{t('Info')}</p>
       </div>
     </div>
   )

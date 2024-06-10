@@ -1,4 +1,6 @@
 /* eslint-disable */
+import { useTranslations } from 'next-intl'
+
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { useEffect, useRef, useState } from 'react'
 import ReactCrop, { centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop'
@@ -40,6 +42,7 @@ export const ImageCropper: React.FC<Props> = ({
   onComplete,
   onResetImage,
 }) => {
+  const t = useTranslations('User')
   const imgRef = useRef<HTMLImageElement>(null)
   const previewCanvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -101,7 +104,7 @@ export const ImageCropper: React.FC<Props> = ({
 
   return (
     <Dialog open={isVisible} onOpenChange={handleCloseModal}>
-      <DialogContent dir="rtl">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription asChild>
@@ -128,7 +131,7 @@ export const ImageCropper: React.FC<Props> = ({
 
           <DialogFooter>
             <Button type="submit" onClick={handleComplete}>
-              ذخیره تغییرات
+              {t('SaveUpload')}
             </Button>
           </DialogFooter>
         </DialogHeader>

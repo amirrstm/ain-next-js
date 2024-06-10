@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 import * as React from 'react'
 import Select, { ActionMeta, OnChangeValue, Props } from 'react-select'
 import AsyncSelect from 'react-select/async'
@@ -31,6 +33,7 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
     },
     ref,
   ) => {
+    const t = useTranslations('')
     const MainSelect = isAsync ? AsyncSelect : creatable ? CreatableSelect : Select
 
     const sizes: Record<string, string> = {
@@ -45,9 +48,9 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
 
       if (onChange) {
         if (actionMeta.action === 'create-option') {
-          onChange(isMulti ? value : value?.value, actionMeta)
+          onChange(isMulti || useLabelValue ? value : value?.value, actionMeta)
         } else {
-          onChange(isMulti ? value : value?.value, actionMeta)
+          onChange(isMulti || useLabelValue ? value : value?.value, actionMeta)
         }
       }
     }
@@ -59,7 +62,7 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
       menuPlacement: 'auto',
       onChange: handleChange,
       classNamePrefix: 'ain-select',
-      noOptionsMessage: () => 'موردی یافت نشد',
+      noOptionsMessage: () => t('Common.Select.NoOption'),
       className: cn(sizes[size], 'ain-select-container', className),
       value: isMulti || useLabelValue ? value : value ? { value: value, label: value } : null,
       theme: reactSelectTheme,
@@ -68,7 +71,13 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
     }
 
     if (creatable) {
-      return <MainSelect ref={ref} formatCreateLabel={inputValue => `ایجاد: ${inputValue}`} {...innerProps} />
+      return (
+        <MainSelect
+          ref={ref}
+          formatCreateLabel={inputValue => `${t('Common.Select.Create')}: ${inputValue}`}
+          {...innerProps}
+        />
+      )
     }
 
     return <MainSelect ref={ref} {...innerProps} />

@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconArrowsMove, IconX } from '@tabler/icons-react'
 import React from 'react'
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard, remove }) => {
+  const { locale } = useParams()
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
@@ -84,7 +86,7 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
                 <ReactSelect
                   {...field}
                   size="sm"
-                  className={YekanBakhNumFont.className}
+                  className={locale === 'fa' ? YekanBakhNumFont.className : ''}
                   options={[
                     { label: 1, value: 1 },
                     { label: 2, value: 2 },

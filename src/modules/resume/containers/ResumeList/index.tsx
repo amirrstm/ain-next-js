@@ -1,85 +1,59 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
 
 import { IconClipboardText, IconOctagonPlus } from '@tabler/icons-react'
-import React, { useEffect, useState } from 'react'
-import { useAudioRecorder } from 'react-audio-voice-recorder'
-import useSWRMutation from 'swr/mutation'
+import React, { useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import { Button } from '@/components/ui/button'
 
-import API from '@/lib/api'
-import { getBlobDuration } from '@/lib/utils'
+import IconResume from '@/icons/menus/resume'
 
-import RecordButton from '../../components/Common/RecordButton'
+import CreateResume from '../../components/Create'
 import ResumeEmpty from '../../components/List/Empty'
 import SingleResume from '../../components/List/SingleResume'
 import ResumeSkelton from '../../components/List/SingleResume/Skelton'
 import useResumes from '../../hooks/useResumes'
-import { createResume, createResumeFromVoice } from '../../service'
 
 const ResumeListContainer: React.FC = () => {
-  const router = useRouter()
   const t = useTranslations('Resume')
+  const isMobile = useMediaQuery({ maxWidth: 764 })
+  const [resumeOpen, setResumeOpen] = useState(false)
 
   const { data, isLoading, mutate: refreshResumes } = useResumes()
-  const { trigger, isMutating } = useSWRMutation(API.RESUME.POST, createResume)
-
-  const [voiceLoading, setVoiceLoading] = useState(false)
-  const { startRecording, stopRecording, recordingBlob, isRecording } = useAudioRecorder({
-    echoCancellation: false,
-    noiseSuppression: false,
-  })
-
-  useEffect(() => {
-    if (!recordingBlob) return
-
-    setVoiceLoading(true)
-    getBlobDuration(recordingBlob).then(duration => {
-      const file = new File([recordingBlob], 'basic.wav', { type: 'audio/wav' })
-      createResumeFromVoice(file)
-        .then(data => {
-          setVoiceLoading(false)
-          router.push(`/app/resume/${data}`)
-        })
-        .catch(() => setVoiceLoading(false))
-    })
-  }, [recordingBlob])
 
   const onCreate = () => {
-    trigger().then(data => {
-      router.push(`/app/resume/${data}`)
-    })
+    setResumeOpen(true)
   }
 
   return (
-    <div className="md:p-6 px-0 py-4">
-      <div className="flex items-center gap-2 mb-2 md:mb-4 mr-0 md:mr-0">
-        <IconClipboardText className="w-8 h-8" />
-        <div>
-          <p className="text-lg">{t('Title')}</p>
-          <p className="text-xs text-gray-500 mt-1">{t('Description')}</p>
-        </div>
-      </div>
-
-      <div className="bg-background md:border md:rounded-xl md:border-muted md:shadow-sm">
-        <div className="p-4 border-b border-b-muted flex items-center justify-between">
-          <p className="text-xs md:text-sm">{t('List')}</p>
+    <>
+      <div className="md:p-6 px-0 py-4">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <div className="w-12 h-12">
+              <IconResume />
+            </div>
+            <div>
+              <p className="md:text-lg">{t('Title')}</p>
+              <p className="text-xs text-gray-500 mt-1">{t('Description')}</p>
+            </div>
+          </div>
 
           {data && data.length > 0 && (
-            <Button loading={isMutating} className="flex gap-2 items-center" onClick={onCreate}>
+            <Button size={isMobile ? 'sm' : 'default'} className="flex gap-2 items-center" onClick={onCreate}>
               <IconOctagonPlus className="w-5 h-5" />
-              {t('Create')}
+              {t('Create.Title')}
             </Button>
           )}
         </div>
-        <div className="p-4 min-h-[600px]">
+
+        <div className="py-8">
           {isLoading ? (
             <ResumeSkelton />
           ) : !data || data.length === 0 ? (
-            <ResumeEmpty loading={isMutating} onCreate={onCreate} />
+            <ResumeEmpty onCreate={onCreate} />
           ) : (
             <div className="grid grid-cols-12 gap-4">
               {data.map(resume => (
@@ -90,8 +64,24 @@ const ResumeListContainer: React.FC = () => {
             </div>
           )}
         </div>
+
+        {/* <div className="bg-background md:border md:rounded-xl md:border-muted md:shadow-sm">
+          <div className="p-4 border-b border-b-muted flex items-center justify-between">
+            <p className="text-xs md:text-sm">{t('List')}</p>
+
+            {data && data.length > 0 && (
+              <Button size={isMobile ? 'sm' : 'default'} className="flex gap-2 items-center" onClick={onCreate}>
+                <IconOctagonPlus className="w-5 h-5" />
+                {t('Create.Title')}
+              </Button>
+            )}
+          </div>
+          <div className="p-4 min-h-[600px]"></div>
+        </div> */}
       </div>
-    </div>
+
+      <CreateResume open={resumeOpen} onClose={() => setResumeOpen(false)} />
+    </>
   )
 }
 

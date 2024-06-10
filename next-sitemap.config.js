@@ -1,9 +1,33 @@
 /** @type {import('next-sitemap').IConfig} */
+
+async function fetchCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/public/category/plain-list`)
+  const categories = await res.json()
+
+  const copywriting = categories.data.map(category => ({
+    priority: 0.9,
+    changefreq: 'daily',
+    lastmod: new Date().toISOString(),
+    loc: `/app/copywriting/${category.slug}`,
+  }))
+
+  // const useCases = categories.data.map(category => ({
+  //   priority: 0.9,
+  //   changefreq: 'daily',
+  //   lastmod: new Date().toISOString(),
+  //   loc: `/use-cases/${category.slug}`,
+  // }))
+
+  return [...copywriting]
+}
+
 module.exports = {
   generateRobotsTxt: true,
   exclude: ['/user-name', '/fa', '/fa/*'],
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ainevis.com',
   additionalPaths: async config => {
+    const categories = await fetchCategories()
+
     const result = [
       {
         loc: '/',
@@ -67,108 +91,8 @@ module.exports = {
         loc: '/about',
         lastmod: new Date().toISOString(),
       },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/google-ads',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/youtube-title-idea',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/instagram-caption',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/tweets',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/aida-framework',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/pas-framework',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/post-blog',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/seo-keywords',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/title-generator',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/linkedin-post',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/hashtag-generator',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/story-creator',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/content-expandor',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/email',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/startup-ideas',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/festivity-letters',
-        lastmod: new Date().toISOString(),
-      },
-      {
-        priority: 0.7,
-        changefreq: 'daily',
-        loc: '/app/copywriting/question-answer',
-        lastmod: new Date().toISOString(),
-      },
+
+      ...categories,
     ]
 
     return result

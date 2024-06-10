@@ -1,8 +1,8 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
-import { IconDashboard } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fa'
@@ -11,6 +11,7 @@ import React, { useEffect } from 'react'
 
 import { Progress } from '@/components/ui/progress'
 
+import IconDashboard from '@/icons/menus/dashboard'
 import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -18,10 +19,10 @@ import MonthlyAreaChart from '../../components/AreaChart'
 import useDashboard from '../../hooks/useDashboard'
 import { DashboardStat } from '../../interface'
 
-dayjs.locale('fa')
 dayjs.extend(jalaliday)
 
 const MonthlyChartContainer: React.FC = () => {
+  const { locale } = useParams()
   const { user } = useUserStore()
   const t = useTranslations('Layout')
   const { data } = useDashboard(!!user)
@@ -58,26 +59,39 @@ const MonthlyChartContainer: React.FC = () => {
   return (
     <div className="md:p-8 px-2 py-4">
       <div className="flex items-center gap-2 mb-2 md:mb-4 ">
-        <IconDashboard className="w-6 h-6" />
+        <div className="w-7 h-7">
+          <IconDashboard />
+        </div>
         <span className="text-lg">{t('Menus.Dashboard')}</span>
       </div>
 
-      <div className="bg-background border rounded-xl border-muted shadow-sm">
+      <div className="bg-card border rounded-xl border-muted shadow-sm">
         <div className="p-4 md:p-6 md:px-8 border-b border-b-muted">
           <div className="flex gap-4 flex-col md:flex-row md:justify-between md:items-center">
             <div>
               <p className="font-semibold text-lg">{t('Dashboard.Stats.UsagePercentage')}</p>
-              <p className={clsx(YekanBakhNumFont.className, 'text-sm text-gray-400 mt-1')}>
+              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-sm text-gray-400 mt-1')}>
                 {t('Dashboard.Stats.Quota', {
-                  to: dayjs().calendar('jalali').format('DD MMMM YYYY'),
-                  from: dayjs(user.userPlan?.createdAt).calendar('jalali').subtract(1, 'day').format('DD MMMM YYYY'),
+                  to: dayjs()
+                    .locale(locale as string)
+                    .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                    .format('DD MMMM YYYY'),
+                  from: dayjs(user.userPlan?.createdAt)
+                    .locale(locale as string)
+                    .subtract(1, 'day')
+                    .format('DD MMMM YYYY'),
                 })}
               </p>
             </div>
 
-            <p className={clsx(YekanBakhNumFont.className, 'text-sm md:text-base')}>
+            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-sm md:text-base')}>
               {t('Dashboard.Stats.GenerationReset', {
-                date: `${dayjs(user.userPlan?.createdAt).calendar('jalali').date() - 1} ام`,
+                date: `${
+                  dayjs(user.userPlan?.createdAt)
+                    .locale(locale as string)
+                    .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                    .date() - 1
+                }${locale === 'fa' ? 'ام' : 'th'}`,
               })}
             </p>
           </div>
@@ -86,7 +100,9 @@ const MonthlyChartContainer: React.FC = () => {
             <div className="relative" style={{ width: `${progress}%` }}>
               {progress > 0 && (
                 <div className="absolute top-1/2 left-1/2 z-[1] -translate-y-1/2 -translate-x-1/2">
-                  <span className={clsx(YekanBakhNumFont.className, 'text-xs text-white')}>{progress}%</span>
+                  <span className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-white')}>
+                    {progress}%
+                  </span>
                 </div>
               )}
               <Progress value={100} />
@@ -97,17 +113,22 @@ const MonthlyChartContainer: React.FC = () => {
         <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center w-full p-4 md:p-8">
           <div>
             <p className="font-semibold text-lg">{t('Dashboard.Stats.Usage30Days')}</p>
-            <p className={clsx(YekanBakhNumFont.className, 'text-sm text-gray-400 mt-1')}>
+            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-sm text-gray-400 mt-1')}>
               {t('Dashboard.Stats.Quota', {
-                to: dayjs().calendar('jalali').format('DD MMMM YY'),
-                from: dayjs().calendar('jalali').subtract(1, 'month').format('DD MMMM YY'),
+                to: dayjs()
+                  .locale(locale as string)
+                  .format('DD MMMM YY'),
+                from: dayjs()
+                  .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                  .subtract(1, 'month')
+                  .format('DD MMMM YY'),
               })}
             </p>
           </div>
 
           <div className="flex items-center text-lg">
             <p>{t('Dashboard.Stats.Generations')}:&nbsp;</p>
-            <h2 className={clsx(YekanBakhNumFont.className)}>
+            <h2 className={clsx(locale === 'fa' && YekanBakhNumFont.className)}>
               {plan?.generation} / {used}
             </h2>
           </div>
@@ -117,7 +138,7 @@ const MonthlyChartContainer: React.FC = () => {
 
         <div className="mt-4 p-4 md:p-8 border-t border-t-muted flex justify-between items-center text-xl">
           <p>{t('Dashboard.Stats.Plan')}:</p>
-          <h2 className={clsx(YekanBakhNumFont.className)}>{plan?.name}</h2>
+          <h2 className={clsx(locale === 'fa' && YekanBakhNumFont.className)}>{plan?.name}</h2>
         </div>
       </div>
     </div>

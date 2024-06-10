@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { EditorConfig } from '@editorjs/editorjs'
 import { IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
@@ -26,10 +27,9 @@ interface Props {
 }
 
 const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
+  const { locale } = useParams()
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
-
-  const isBlog = appCategory?.slug === 'post-blog'
 
   const [text, setText] = useState<string>('')
   const [editorData, setEditorData] = useState<EditorConfig['data']>()
@@ -49,45 +49,10 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
   }
 
   const prepareText = (content: string) => {
-    let convertedRaw = ''
-    const linkRegex = /\[(.*?)\]/
-    const linkUrlRegex = /\((.*?)\)/
-    const splitTitles = content.split('\n').filter(Boolean)
-
-    const blocks: any[] = []
-    splitTitles.forEach(title => {
-      if (title.match(linkRegex) && title.match(linkUrlRegex) && isBlog) {
-        const block = {
-          type: 'linkTool',
-          data: {
-            text: title.match(linkRegex)?.[1],
-            link: title.match(linkUrlRegex)?.[1],
-            meta: {
-              title: title.match(linkRegex)?.[1],
-            },
-          },
-        }
-        convertedRaw += edjs.parseBlock(block)
-        blocks.push(block)
-        return
-      }
-
-      const block = {
-        type: title.includes('**') || title.includes('###') ? 'header' : 'paragraph',
-        data: {
-          level: title.includes('**') ? 2 : title.includes('###') ? 3 : undefined,
-          text:
-            title.includes('**') || title.includes('###')
-              ? title.replace(title.includes('**') ? /\*\*/g : /###/g, '')
-              : displayEquation(title),
-        },
-      }
-      convertedRaw += edjs.parseBlock(block)
-      blocks.push(block)
-    })
+    const blocks: any = JSON.parse(content)
 
     setText(content.trim())
-    setEditorData({ blocks, time: new Date().getTime() })
+    setEditorData({ blocks: blocks.blocks, time: new Date().getTime() })
   }
 
   const onCopy = () => {
@@ -104,8 +69,8 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
 
       <div className="p-6 space-y-6">
         <div className="border border-muted rounded-lg overflow-hidden">
-          <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-muted dark:bg-neutral-800">
-            <p>ورودی ها</p>
+          <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-neutral-200 dark:bg-neutral-800">
+            <p>{t('Inputs')}</p>
           </div>
 
           <div className="p-4 space-y-4">
@@ -113,7 +78,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
               <div key={`input-${idx}`}>
                 <p className="text-xs">{item.input.title}</p>
 
-                <div className="border border-muted bg-muted dark:bg-neutral-800 p-2 mt-2 rounded-md">
+                <div className="border border-muted bg-neutral-200 dark:bg-neutral-800 p-2 mt-2 rounded-md">
                   <p>{item.value}</p>
                 </div>
               </div>
@@ -123,17 +88,17 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
 
         <div className="border border-muted rounded-lg overflow-hidden">
           {content && (
-            <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-muted dark:bg-neutral-800">
-              <p>متن تولید شده</p>
+            <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-neutral-200 dark:bg-neutral-800">
+              <p>{t('Generated')}</p>
 
               <div className="flex items-center gap-6 justify-between">
                 <div className="flex gap-4 items-center text-sm">
-                  <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                  <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                     <p>{t('Content.Words')}</p>
                     <p>{text.split(' ').length}</p>
                   </div>
 
-                  <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                  <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                     <p>{t('Content.Characters')}</p>
                     <p>{text.length}</p>
                   </div>
@@ -153,7 +118,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
           {content && (
             <div className="p-4 w-full">
               <div className="grid grid-cols-12 gap-4">
-                <div className={clsx(YekanBakhNumFont.className, 'col-span-12')} spellCheck={false}>
+                <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'col-span-12')} spellCheck={false}>
                   <ReactEditorJS readOnly onReady={onReady} value={editorData} />
                 </div>
               </div>

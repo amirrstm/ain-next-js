@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconCheck, IconCircleCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const SinglePlan: React.FC<Props> = ({ isPopular }) => {
+  const { locale } = useParams()
   const t = useTranslations('Pricing')
 
   return (
@@ -36,7 +38,7 @@ const SinglePlan: React.FC<Props> = ({ isPopular }) => {
         </div>
 
         <div className="text-center mt-4">
-          <h2 className={clsx(YekanBakhNumFont.className, 'text-3xl font-bold text-white')}>
+          <h2 className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-3xl font-bold text-white')}>
             249 <small className="text-gray-200 text-xs">هزارتومان</small>
           </h2>
         </div>

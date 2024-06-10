@@ -1,8 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
-import { IconArrowLeft, IconBooks, IconHistory } from '@tabler/icons-react'
+import { IconArrowLeft, IconBooks } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fa'
@@ -11,6 +12,7 @@ import jalaliday from 'jalaliday'
 import { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
+import IconHistory from '@/icons/menus/history'
 import { SUB_CATEGORY_ICONS } from '@/modules/copywriting/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -20,12 +22,12 @@ import HistoryLoading from '../../components/Loading'
 import useHistory from '../../hooks/useHistory'
 import { IHistory } from '../../interface'
 
-dayjs.locale('fa')
 dayjs.extend(relativeTime)
 dayjs.extend(jalaliday)
 
 const UserHistoryContainer: React.FC = () => {
   const t = useTranslations()
+  const { locale } = useParams()
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
 
   const [selectedHistory, setSelectedHistory] = useState<IHistory>()
@@ -49,20 +51,22 @@ const UserHistoryContainer: React.FC = () => {
     <div className="p-2 md:py-3 md:px-8">
       <div className="flex items-center justify-between gap-2 md:mb-4 pt-2 pb-4 md:pb-0 border-b border-b-muted md:border-none">
         <div className="flex items-center gap-2">
-          <IconHistory className="w-6 h-6" />
+          <div className="w-7 h-7">
+            <IconHistory />
+          </div>
           <span className="text-lg">{t('Layout.Menus.History')}</span>
         </div>
 
         {isTabletOrMobile && selectedHistory && (
           <div className="flex gap-1 items-center text-blue-500 text-sm" onClick={() => setSelectedHistory(undefined)}>
-            <span>بازگشت</span>
+            <span>{t('Back')}</span>
             <IconArrowLeft className="w-4 h-4" />
           </div>
         )}
       </div>
 
       {!isLoading && items.length === 0 && (
-        <div className="bg-background h-[500px] shadow-md border border-muted rounded-xl overflow-hidden p-4">
+        <div className="bg-background  shadow-md border border-muted rounded-xl overflow-hidden">
           <HistoryEmpty title={t('History.EmptyList')} />
         </div>
       )}
@@ -83,18 +87,18 @@ const UserHistoryContainer: React.FC = () => {
             ) : (
               <div
                 onScroll={handleScroll}
-                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-background h-full max-h-[calc(100vh-100px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
+                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-card h-full max-h-[calc(100vh-100px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
               >
                 {items?.map(item => (
                   <div
                     key={item._id}
                     onClick={() => onSelect(item)}
-                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-muted dark:hover:bg-neutral-800', {
-                      'bg-muted dark:bg-neutral-800': item._id === selectedHistory?._id,
+                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-neutral-100 dark:hover:bg-neutral-800', {
+                      'bg-neutral-100 dark:bg-neutral-800': item._id === selectedHistory?._id,
                     })}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-secondary !text-white rounded-md flex items-center justify-center">
+                      <div className="w-8 h-8 bg-foreground text-background rounded-md flex items-center justify-center">
                         {SUB_CATEGORY_ICONS[item.category.slug] || <IconBooks className="w-6 h-6" />}
                       </div>
                       <h3 className="font-semibold">{item.category.name}</h3>
@@ -104,7 +108,7 @@ const UserHistoryContainer: React.FC = () => {
                       <p className="text-sm line-clamp-3 mt-3 text-gray-600">{item.inputValues[0].value}</p>
                     )}
 
-                    <p className={clsx(YekanBakhNumFont.className, 'text-xs text-gray-400 mt-3')}>
+                    <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-gray-400 mt-3')}>
                       {dayjs(item.createdAt).fromNow()}
                     </p>
                   </div>
@@ -112,7 +116,7 @@ const UserHistoryContainer: React.FC = () => {
               </div>
             )}
 
-            <div className="hidden md:block md:col-span-6 lg:col-span-8 h-full border border-muted rounded-xl shadow-md bg-background overflow-hidden">
+            <div className="hidden relative md:block md:col-span-6 lg:col-span-8 h-full border border-muted rounded-xl shadow-md bg-background overflow-hidden">
               {selectedHistory ? (
                 <HistoryContent
                   content={selectedHistory.content}

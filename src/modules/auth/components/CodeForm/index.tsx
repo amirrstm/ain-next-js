@@ -1,38 +1,30 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { IconProgress } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 
-import { Button } from '@/components/ui/button'
 import { CodeInput } from '@/components/ui/code-input'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Link } from '@/components/ui/navigation'
 
-import { LOGO_URL } from '@/constants'
 import { useI18nZodErrors } from '@/lib/zodValidation'
 import { YekanBakhNumFont } from '@/styles/fonts'
-
-const formSchema = z.object({ code: z.string().length(6) })
 
 type Props = {
   loading: boolean
   onBack: () => void
   onResend: () => void
-  onSubmit: (data: z.infer<typeof formSchema>) => void
+  onSubmit: (data: { code: string }) => void
 }
 const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
   useI18nZodErrors('auth')
+  const { locale } = useParams()
   const t = useTranslations('Auth')
+  const [value, setValue] = useState('')
   const [minutes, setMinutes] = useState(5)
   const [seconds, setSeconds] = useState(0)
-
-  const form = useForm<z.infer<typeof formSchema>>({ resolver: zodResolver(formSchema), defaultValues: { code: '' } })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,77 +47,54 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
     }
   }, [seconds])
 
-  return (
-    <div className="border border-muted-foreground bg-background rounded-lg p-6 w-full shadow-2xl">
-      <Link href="/">
-        <div className="relative h-7 sm:h-8">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src={LOGO_URL}
-            className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
-          />
-        </div>
-      </Link>
+  const onCodeChange = (e: string) => {
+    setValue(e)
 
-      <div className="text-center mt-4">
-        <h1 className="text-2xl rtl:font-semibold">{t('CodeTitle')}</h1>
+    if (e.length === 6) {
+      onSubmit({ code: e })
+    }
+  }
+
+  return (
+    <div className="p-6 w-full">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+          {t('CodeTitle')}
+        </h1>
+
+        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('CodeSubtitle')}</p>
       </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8">
-          <FormField
-            control={form.control}
-            name="code"
-            render={({
-              field,
-              formState: {
-                errors: { code: codeError },
-              },
-            }) => (
-              <FormItem>
-                <FormLabel>{t('Fields.Code')}</FormLabel>
-                <div className="flex justify-center pt-2">
-                  <FormControl>
-                    <div dir="ltr" className={clsx(YekanBakhNumFont.className, 'w-full')}>
-                      <CodeInput
-                        name="code"
-                        error={!!codeError}
-                        value={field.value}
-                        onBlur={field.onBlur}
-                        onChange={field.onChange}
-                      />
-                    </div>
-                  </FormControl>
-                </div>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="flex justify-between items-center text-sm my-5">
-            {seconds > 0 || minutes > 0 ? (
-              <p className={YekanBakhNumFont.className}>
-                {t('Time')}: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-              </p>
-            ) : (
-              <p>{t('DidNotReceive')}</p>
-            )}
-
-            <Button type="button" variant="link" onClick={onResend} disabled={seconds > 0 || minutes > 0}>
-              <span className="text-sm text-primary dark:text-gray-400"> {t('Resend')}</span>
-            </Button>
+      <div dir="ltr" className="relative pt-4">
+        {loading && (
+          <div className="absolute w-full top-4 bottom-0 right-0 left-0 bg-secondary/80 z-10 flex items-center justify-center">
+            <IconProgress className="animate-spin w-6 h-6 text-neutral-400" />
           </div>
+        )}
 
-          <Button type="submit" className="w-full" loading={loading}>
-            {t('Submit')}
-          </Button>
-        </form>
-      </Form>
+        <CodeInput value={value} onChange={onCodeChange} name="code" />
+      </div>
 
-      <div className="font-light pt-6 text-sm text-center">
+      <div className="flex justify-between items-center text-xs py-6">
+        {seconds > 0 || minutes > 0 ? (
+          <p className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
+            {t('Time')}: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+          </p>
+        ) : (
+          <p>{t('DidNotReceive')}</p>
+        )}
+
+        <span
+          onClick={onResend}
+          className={clsx('text-xs text-primary cursor-pointer', {
+            '!text-white opacity-35 !cursor-not-allowed': seconds > 0 || minutes > 0,
+          })}
+        >
+          {t('Resend')}
+        </span>
+      </div>
+
+      <div className="font-light text-xs text-center">
         <span className="text-primary dark:text-primary-foreground cursor-pointer" onClick={onBack}>
           {t('Fields.TwoFactorBack')}
         </span>

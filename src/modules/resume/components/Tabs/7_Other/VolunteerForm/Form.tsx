@@ -138,9 +138,13 @@ const SingleVolunteerForm: React.FC<Props> = ({ position, fieldId, hasMove, move
 
       <div className="col-span-12">
         <FormLabel>{t('resume.volunteer.highlights')}</FormLabel>
-        <p className="text-xs text-muted-foreground mt-2">
-          <span className="text-red-300">*</span> {t('resume.work.highlightsTitle')}
-        </p>
+        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
+          {t.rich('resume.work.highlightsTitle', {
+            first: chunks => <p>{chunks}</p>,
+            second: chunks => <p>{chunks}</p>,
+            high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
+          })}
+        </div>
 
         <HighlightField
           control={form.control}

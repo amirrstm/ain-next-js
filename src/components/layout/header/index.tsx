@@ -1,67 +1,58 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
 
+import ThemeMode from '@/components/theme'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 
-import { LOGO_URL } from '@/constants'
+import { AppLogo, AppLogoEn } from '@/icons/logos'
 import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
-const Header: React.FC<Props> = ({ dark = true }) => {
+const Header: React.FC<Props> = () => {
+  const { locale } = useParams()
   const { user } = useUserStore()
   const t = useTranslations('Layout')
 
   return (
-    <header className="fixed top-2 sm:top-5 left-0 w-full z-50 px-1">
-      <div
-        className={clsx(
-          'border',
-          dark ? 'border-gray-800 text-background' : 'border-gray-200',
-          'flex justify-between backdrop-blur-2xl max-w-3xl mx-auto items-center rounded-full py-3 px-6',
-        )}
-        style={{ background: dark ? 'rgba(15, 15, 15, 0.6)' : 'rgba(255, 255, 255, 0.6)' }}
-      >
-        <Link href="/" className="relative w-[140px] h-7 sm:h-8 flex">
-          <Image
-            alt="logo"
-            width={200}
-            height={200}
-            src={LOGO_URL}
-            className={clsx('w-full h-full object-contain', {
-              'grayscale invert contrast-[1] hue-rotate-[180deg]': dark,
-            })}
-          />
-        </Link>
-
-        <div className="flex-1">
-          <div className="flex items-center justify-end gap-6">
-            <div className="hidden sm:gap-6 sm:items-center sm:flex">
-              <Link href={'/about'} className="text-white">
-                {t('Header.About')}
-              </Link>
-
-              {!user && (
-                <Link href={'/login'} className="text-white">
-                  {t('Header.SignIn')}
-                </Link>
-              )}
-            </div>
-
-            <Link href={user ? '/app' : '/login'}>
-              <Button className="rounded-full px-8 gap-2">
-                <IconSparkles />
-                {user ? t('Header.OpenApp') : t('Header.SignUp')}
-              </Button>
-            </Link>
-          </div>
+    <header className="bg-background/40 dark:bg-background/30 px-8 h-20 flex items-center relative border-b z-10">
+      <nav className={clsx('flex justify-between items-center w-full')}>
+        <div className="flex items-center gap-3">
+          <Link href="/" className="relative w-[140px] h-7 sm:h-10 flex pb-1">
+            {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
+          </Link>
         </div>
-      </div>
+
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex gap-12">
+          <Link href={'/use-cases'} className="">
+            {t('Header.UseCases')}
+          </Link>
+
+          <Link href={'/pricing'} className="">
+            {t('Header.Pricing')}
+          </Link>
+
+          <Link href={'/about'} className="">
+            {t('Header.About')}
+          </Link>
+        </div>
+
+        <div className="flex gap-3 items-center">
+          <ThemeMode />
+
+          <Link href={user ? '/app' : '/login'}>
+            <Button className="rounded-full px-6 gap-2">
+              <IconSparkles />
+              {user ? t('Header.OpenApp') : t('Header.SignUp')}
+            </Button>
+          </Link>
+        </div>
+      </nav>
     </header>
   )
 }

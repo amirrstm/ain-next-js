@@ -158,7 +158,7 @@ const After: React.FC<{ description: string }> = ({ description }) => {
   return (
     <div>
       <div className="py-5 flex items-center justify-center gap-2">
-        <div className="w-6 h-6">
+        <div className="flex w-8 h-8">
           <IconLogoSmall bg="hsl(var(--background))" />
         </div>
         <p className="text-center text-lg">{t('BeforeAfter.AIWritten')}</p>

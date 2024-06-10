@@ -13,7 +13,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   const [isComingSoon, setIsComingSoon] = React.useState(false)
 
   React.useEffect(() => {
-    setIsComingSoon(window.location.pathname === 'https://ainevis.com')
+    setIsComingSoon(window.location.pathname.includes('https://ainevis.com'))
 
     if (locale) {
       localStorage.setItem('lang', locale as string)

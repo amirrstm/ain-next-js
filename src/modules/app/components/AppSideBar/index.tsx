@@ -58,7 +58,9 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
           </div>
         ) : (
           <div onClick={() => setOpen(true)} className={clsx('relative flex w-full justify-center cursor-pointer')}>
-            <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--background))" />
+            <div className="w-10 h-10">
+              <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--background))" />
+            </div>
           </div>
         )}
 

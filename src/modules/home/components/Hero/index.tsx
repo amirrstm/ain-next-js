@@ -31,7 +31,7 @@ const HeroHeader: React.FC = () => {
         </Link>
       </div>
 
-      <div className="mt-4 flex items-center flex-row-reverse rtl:flex-row gap-2">
+      <div className="mt-4 flex items-center flex-row-reverse gap-2">
         <div className="flex gap-6 items-center">
           <div className="relative h-7 sm:h-4">
             <Image

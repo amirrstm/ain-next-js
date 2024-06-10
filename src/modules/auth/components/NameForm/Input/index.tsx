@@ -59,12 +59,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         <div
           onClick={onRequestSubmit}
-          className="absolute w-7 h-7 rounded-full cursor-pointer flex items-center justify-center border border-neutral-400 top-1/2 -translate-y-1/2 left-2"
+          className="absolute w-7 h-7 rounded-full cursor-pointer flex items-center justify-center border border-neutral-400 top-1/2 -translate-y-1/2 end-2"
         >
           {loading ? (
             <IconProgress className="animate-spin w-4 h-4" />
           ) : (
-            <IconArrowLeft className="w-4 h-4 text-neutral-400" />
+            <IconArrowLeft className="w-4 h-4 text-neutral-400 rotate-180 rtl:rotate-0" />
           )}
         </div>
       </motion.div>

@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { EditorConfig } from '@editorjs/editorjs'
 import { IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
+  const { locale } = useParams()
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
 
@@ -68,7 +70,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
       <div className="p-6 space-y-6">
         <div className="border border-muted rounded-lg overflow-hidden">
           <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-neutral-200 dark:bg-neutral-800">
-            <p>ورودی ها</p>
+            <p>{t('Inputs')}</p>
           </div>
 
           <div className="p-4 space-y-4">
@@ -87,16 +89,16 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
         <div className="border border-muted rounded-lg overflow-hidden">
           {content && (
             <div className="px-4 py-2 border-b border-b-muted flex items-center justify-between bg-neutral-200 dark:bg-neutral-800">
-              <p>متن تولید شده</p>
+              <p>{t('Generated')}</p>
 
               <div className="flex items-center gap-6 justify-between">
                 <div className="flex gap-4 items-center text-sm">
-                  <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                  <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                     <p>{t('Content.Words')}</p>
                     <p>{text.split(' ').length}</p>
                   </div>
 
-                  <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+                  <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                     <p>{t('Content.Characters')}</p>
                     <p>{text.length}</p>
                   </div>
@@ -116,7 +118,7 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
           {content && (
             <div className="p-4 w-full">
               <div className="grid grid-cols-12 gap-4">
-                <div className={clsx(YekanBakhNumFont.className, 'col-span-12')} spellCheck={false}>
+                <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'col-span-12')} spellCheck={false}>
                   <ReactEditorJS readOnly onReady={onReady} value={editorData} />
                 </div>
               </div>

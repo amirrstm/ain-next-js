@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import clsx from 'clsx'
 import React, { ReactNode } from 'react'
@@ -25,13 +26,14 @@ import IconWand from '@/icons/resume/wand'
 const textGradient = 'from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent'
 
 const Resume: React.FC = () => {
+  const { locale } = useParams()
   const t = useTranslations('Layout.Home')
   const isMobile = useMediaQuery({ maxWidth: 1280 })
 
   return (
     <div className="max-w-6xl mx-auto py-12 md:py-20 px-2 md:px-6">
       <div className="flex flex-col items-center">
-        <div className="py-2 w-24 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
+        <div className="py-2 w-32 rtl:w-24 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
           {t('Resume.Title')}
         </div>
 
@@ -99,8 +101,10 @@ const Resume: React.FC = () => {
                     </div>
 
                     <div className="w-[200px] top-6 left-1/2 -translate-x-1/2 absolute">
-                      <div className="absolute left-1/2 text-center -translate-x-1/2 max-w-[90px] bottom-14">
-                        <p className={clsx('font-medium text-2xl leading-relaxed', textGradient)}>{'۱۵۰%+'}</p>
+                      <div className="absolute left-1/2 text-center -translate-x-1/2 max-w-[90px] bottom-10 rtl:bottom-14">
+                        <p className={clsx('font-medium text-2xl leading-relaxed', textGradient)}>
+                          {locale === 'fa' ? '۱۵۰%+' : '150%'}
+                        </p>
                         <p className={clsx('font-medium text-xs leading-relaxed', textGradient)}>
                           {t('Resume.ATS.Description')}
                         </p>
@@ -130,7 +134,7 @@ const Resume: React.FC = () => {
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
-                        {t('Resume.Structure.Title', { percent: '۳۰۰%+' })}
+                        {t('Resume.Structure.Title', { percent: locale === 'fa' ? '۳۰۰%+' : '300%' })}
                       </h2>
                     </div>
 
@@ -219,7 +223,7 @@ const Resume: React.FC = () => {
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
-                        {t('Resume.Structure.Title', { percent: '۳۰۰%+' })}
+                        {t('Resume.Structure.Title', { percent: locale === 'fa' ? '۳۰۰%+' : '300%' })}
                       </h2>
                     </div>
 
@@ -260,7 +264,7 @@ const Resume: React.FC = () => {
                     </div>
 
                     <h2 className={clsx('font-medium leading-relaxed', textGradient)}>
-                      {t('Resume.Satisfy.Title', { number: '۱۵۰' })}
+                      {t('Resume.Satisfy.Title', { number: locale === 'fa' ? '۱۵۰' : '150' })}
                     </h2>
                   </div>
 

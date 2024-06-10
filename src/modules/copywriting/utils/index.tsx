@@ -10,7 +10,9 @@ import {
   IconBrandSlack,
   IconBrandX,
   IconBrandYoutube,
+  IconBulb,
   IconCalculator,
+  IconCertificate,
   IconConfetti,
   IconDeviceLaptop,
   IconHash,
@@ -29,13 +31,12 @@ import {
 import { ReactNode } from 'react'
 
 export const CATEGORY_ICONS: Record<string, ReactNode> = {
+  creative: <IconBulb className="w-6 h-6" />,
   copywriting: <IconBooks className="w-6 h-6" />,
   'branding-ads': <IconSpeakerphone className="w-6 h-6" />,
   'website-copy': <IconDeviceLaptop className="w-6 h-6" />,
   'social-media': <IconBrandSlack className="w-6 h-6" />,
-  publication: <IconPaperclip className="w-6 h-6" />,
-  other: <IconWorld className="w-6 h-6" />,
-  lesson: <IconBook className="w-6 h-6" />,
+  'business-shortcuts': <IconCertificate className="w-6 h-6" />,
 }
 
 export const SUB_CATEGORY_ICONS: Record<string, ReactNode> = {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 
 import { IconSend2 } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -8,6 +9,7 @@ import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 
 const DashboardHeader: React.FC = () => {
+  const { resolvedTheme } = useTheme()
   const t = useTranslations('Layout')
 
   return (
@@ -15,6 +17,7 @@ const DashboardHeader: React.FC = () => {
       className={clsx(
         'bg-secondary bg-no-repeat bg-cover bg-center rounded-2xl py-6 md:py-16 px-3 md:px-6',
         'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
+        resolvedTheme === 'light' && 'grayscale invert contrast-[0.9] hue-rotate-[180deg]',
       )}
     >
       <div className="flex flex-col items-center justify-center">
@@ -45,7 +48,7 @@ const DashboardHeader: React.FC = () => {
           </div>
 
           <div className="w-9 h-9 flex items-center justify-center bg-[#ffffff22] rounded-md">
-            <IconSend2 className="w-5 h-5 rotate-180 text-white" />
+            <IconSend2 className="w-5 h-5 rotate-0 text-white rtl:rotate-180" />
           </div>
         </div>
       </div>

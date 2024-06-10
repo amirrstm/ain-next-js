@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 import React, { useRef } from 'react'
 import AsyncSelect from 'react-select/async'
 
@@ -16,6 +18,7 @@ type Props = {
 
 const StudyFieldSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
   ({ value, onChange, placeholder = '', onSelect }, ref) => {
+    const t = useTranslations('Common')
     const debounceTimeout = useRef<NodeJS.Timeout | null>(null)
 
     const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
@@ -61,9 +64,9 @@ const StudyFieldSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
         getOptionLabel={op => op.name}
         loadOptions={delayedLoadOptions}
         getOptionValue={op => String(op.name)}
-        loadingMessage={() => 'در حال جستجو...'}
         value={value ? { name: value } : undefined}
-        noOptionsMessage={() => 'عنوان مورد نظر را وارد کنید'}
+        loadingMessage={() => t('Select.Searching')}
+        noOptionsMessage={() => t('Select.EnterTitle')}
         classNames={{ placeholder: () => 'line-clamp-1', container: () => 'ain-select-container' }}
       />
     )

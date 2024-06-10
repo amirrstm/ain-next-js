@@ -1,3 +1,5 @@
+import { useParams } from 'next/navigation'
+
 import EditorJS, { EditorConfig, OutputData } from '@editorjs/editorjs'
 import Embed from '@editorjs/embed'
 import Header from '@editorjs/header'
@@ -16,7 +18,7 @@ import { EditorCore } from '../core'
 export class ClientEditorCore implements EditorCore {
   private _editorJS: EditorJS
 
-  constructor({ tools, ...config }: EditorConfig) {
+  constructor({ tools, locale, ...config }: EditorConfig & { locale?: string }) {
     const extendTools = {
       paragraph: {
         class: Paragraph,
@@ -51,113 +53,116 @@ export class ClientEditorCore implements EditorCore {
     this._editorJS = new EditorJS({
       tools: extendTools,
 
-      i18n: {
-        direction: 'rtl',
+      i18n:
+        locale !== 'fa'
+          ? undefined
+          : {
+              direction: 'rtl',
 
-        messages: {
-          blockTunes: {
-            search: {
-              Search: 'فیلتر',
-              Filter: 'فیلتر',
-            },
-            delete: {
-              Delete: 'حذف',
-              'Click to delete': 'برای حذف کلیک کنید',
-            },
-            moveUp: {
-              'Move up': 'انتقال به بالا',
-            },
-            moveDown: {
-              'Move down': 'انتقال به پایین',
-            },
-          },
+              messages: {
+                blockTunes: {
+                  search: {
+                    Search: 'فیلتر',
+                    Filter: 'فیلتر',
+                  },
+                  delete: {
+                    Delete: 'حذف',
+                    'Click to delete': 'برای حذف کلیک کنید',
+                  },
+                  moveUp: {
+                    'Move up': 'انتقال به بالا',
+                  },
+                  moveDown: {
+                    'Move down': 'انتقال به پایین',
+                  },
+                },
 
-          ui: {
-            blockTunes: {
-              toggler: {
-                'Click to tune': ' تنظیمات بیشتر',
-                'or drag to move': 'یا بکشید',
+                ui: {
+                  blockTunes: {
+                    toggler: {
+                      'Click to tune': ' تنظیمات بیشتر',
+                      'or drag to move': 'یا بکشید',
+                    },
+                  },
+
+                  inlineToolbar: {
+                    converter: {
+                      'Convert to': 'تبدیل به',
+                    },
+                  },
+
+                  toolbar: {
+                    toolbox: {
+                      Add: 'اضافه کردن',
+                    },
+                  },
+
+                  popover: {
+                    Filter: 'جستجو',
+                  },
+                },
+                toolNames: {
+                  Text: 'متن',
+                  Heading: 'عنوان',
+                  List: 'لیست',
+                  Link: 'لینک',
+                  Bold: 'ضخیم',
+                  Italic: 'کج',
+                  Marker: 'مارکر',
+                  Quote: 'نقل قول',
+                  Line: 'خط',
+                  Table: 'جدول',
+                  'Raw HTML': 'کد HTML',
+                  Warning: 'هشدار',
+                },
+
+                tools: {
+                  warning: {
+                    Title: 'هشدار',
+                    Message: 'این یک پیام هشدار است',
+                  },
+
+                  Link: 'لینک',
+
+                  table: {
+                    Heading: 'عنوان',
+                    'With headings': 'با سربرگ',
+                    'Without headings': 'بدون سربرگ',
+                    'Add row above': 'اضافه کردن ردیف بالا',
+                    'Add row below': 'اضافه کردن ردیف پایین',
+                    'Delete row': 'حذف ردیف',
+                    'Add column to left': 'اضافه کردن ستون چپ',
+                    'Add column to right': 'اضافه کردن ستون راست',
+                    'Delete column': 'حذف ستون',
+                  },
+
+                  stub: {
+                    'The block can not be displayed correctly.': 'این بلوک به درستی نمایش داده نمی‌شود.',
+                  },
+
+                  quote: {
+                    'Align Left': 'چپ چین',
+                    'Align right': 'راست چین',
+                    'Align Center': 'وسط چین',
+                    quotePlaceholder: 'نقل قول خود را اینجا وارد کنید',
+                  },
+
+                  header: {
+                    'Heading 1': 'عنوان ۱',
+                    'Heading 2': 'عنوان ۲',
+                    'Heading 3': 'عنوان ۳',
+                    'Heading 4': 'عنوان ۴',
+                    'Heading 5': 'عنوان ۵',
+                    'Heading 6': 'عنوان ۶',
+                  },
+
+                  list: {
+                    Ordered: 'لیست مرتب',
+                    Unordered: 'لیست خطی',
+                  },
+                },
               },
             },
-
-            inlineToolbar: {
-              converter: {
-                'Convert to': 'تبدیل به',
-              },
-            },
-
-            toolbar: {
-              toolbox: {
-                Add: 'اضافه کردن',
-              },
-            },
-
-            popover: {
-              Filter: 'جستجو',
-            },
-          },
-          toolNames: {
-            Text: 'متن',
-            Heading: 'عنوان',
-            List: 'لیست',
-            Link: 'لینک',
-            Bold: 'ضخیم',
-            Italic: 'کج',
-            Marker: 'مارکر',
-            Quote: 'نقل قول',
-            Line: 'خط',
-            Table: 'جدول',
-            'Raw HTML': 'کد HTML',
-            Warning: 'هشدار',
-          },
-
-          tools: {
-            warning: {
-              Title: 'هشدار',
-              Message: 'این یک پیام هشدار است',
-            },
-
-            Link: 'لینک',
-
-            table: {
-              Heading: 'عنوان',
-              'With headings': 'با سربرگ',
-              'Without headings': 'بدون سربرگ',
-              'Add row above': 'اضافه کردن ردیف بالا',
-              'Add row below': 'اضافه کردن ردیف پایین',
-              'Delete row': 'حذف ردیف',
-              'Add column to left': 'اضافه کردن ستون چپ',
-              'Add column to right': 'اضافه کردن ستون راست',
-              'Delete column': 'حذف ستون',
-            },
-
-            stub: {
-              'The block can not be displayed correctly.': 'این بلوک به درستی نمایش داده نمی‌شود.',
-            },
-
-            quote: {
-              'Align Left': 'چپ چین',
-              'Align right': 'راست چین',
-              'Align Center': 'وسط چین',
-              quotePlaceholder: 'نقل قول خود را اینجا وارد کنید',
-            },
-
-            header: {
-              'Heading 1': 'عنوان ۱',
-              'Heading 2': 'عنوان ۲',
-              'Heading 3': 'عنوان ۳',
-              'Heading 4': 'عنوان ۴',
-              'Heading 5': 'عنوان ۵',
-              'Heading 6': 'عنوان ۶',
-            },
-
-            list: {
-              Ordered: 'لیست مرتب',
-              Unordered: 'لیست خطی',
-            },
-          },
-        },
-      },
       ...config,
     })
   }

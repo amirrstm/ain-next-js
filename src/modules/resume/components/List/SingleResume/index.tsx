@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconCopy, IconDownload, IconEdit, IconMaximize, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -26,15 +27,15 @@ import { IResumeResponse } from '@/modules/resume/interface/resume'
 import { deleteResume, updateDownload, updateResumeTitle } from '@/modules/resume/service'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
+dayjs.extend(jalaliday)
+
 interface Props {
   resume: IResumeResponse
   onRefresh: () => void
 }
 
-dayjs.locale('fa')
-dayjs.extend(jalaliday)
-
 const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
+  const { locale } = useParams()
   const t = useTranslations('Resume')
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -93,8 +94,8 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
         <iframe
           referrerPolicy="no-referrer"
           className="w-[210mm] h-[360mm]"
-          style={{ transform: 'scale(0.24)', transformOrigin: '100% 0' }}
           src={`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/public/resume/${resume._id}`}
+          style={{ transform: 'scale(0.24)', transformOrigin: locale === 'fa' ? '100% 0' : '0 0' }}
         />
 
         <div
@@ -135,16 +136,22 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
           <p className="text-sm text-gray-400">
             <span>{t('Fields.CreatedAt')}</span>
             <span>:&nbsp;</span>
-            <span className={YekanBakhNumFont.className}>
-              {dayjs(resume.createdAt).calendar('jalali').format('DD MMMM، HH:mm')}
+            <span className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
+              {dayjs(resume.createdAt)
+                .locale(locale as string)
+                .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                .format(locale === 'fa' ? 'DD MMMM، HH:mm' : 'DD MMMM, HH:mm')}
             </span>
           </p>
 
           <p className="text-sm text-gray-400">
             <span>{t('Fields.UpdatedAt')}</span>
             <span>:&nbsp;</span>
-            <span className={YekanBakhNumFont.className}>
-              {dayjs(resume.updatedAt).calendar('jalali').format('DD MMMM، HH:mm')}
+            <span className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
+              {dayjs(resume.updatedAt)
+                .locale(locale as string)
+                .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                .format(locale === 'fa' ? 'DD MMMM، HH:mm' : 'DD MMMM, HH:mm')}
             </span>
           </p>
         </div>
@@ -152,14 +159,14 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
         <div className="gap-3 pt-3 grid grid-cols-12 w-full">
           <div className="col-span-6">
             <Link href={`/app/resume/${resume._id}`}>
-              <Button size="sm" variant="secondary" className="flex gap-1 items-center w-full">
+              <Button size="sm" variant="secondary" className="flex gap-2 justify-start items-center w-full">
                 <IconEdit className="w-4 h-4" />
                 {t('Fields.Edit')}
               </Button>
             </Link>
           </div>
           <div className="col-span-6">
-            <Button size="sm" disabled variant="secondary" className="flex gap-1 items-center w-full">
+            <Button size="sm" disabled variant="secondary" className="flex gap-2 justify-start items-center w-full">
               <IconCopy className="w-4 h-4" />
               {t('Fields.Copy')}
             </Button>
@@ -170,7 +177,7 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
               variant="secondary"
               onClick={onDownload}
               loading={downloadLoading}
-              className="flex gap-1 items-center w-full"
+              className="flex gap-2 justify-start items-center w-full"
             >
               <IconDownload className="w-4 h-4" />
               {t('Fields.Download')}
@@ -197,7 +204,7 @@ const AlertRemove: React.FC<{ loading: boolean; onDelete: () => void }> = ({ loa
           size="sm"
           loading={loading}
           variant="outline"
-          className="flex gap-1 items-center w-full text-destructive border-destructive"
+          className="flex gap-2 justify-start items-center w-full text-destructive border-destructive"
         >
           <IconTrash className="w-4 h-4" />
           {t('Fields.Delete')}
@@ -205,15 +212,13 @@ const AlertRemove: React.FC<{ loading: boolean; onDelete: () => void }> = ({ loa
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>آیا از پاک کردن رزومه اطمینان دارید؟</AlertDialogTitle>
-          <AlertDialogDescription>
-            این عمل برگشت پذیر نیست، و تمام فایل ها و عکس های رزومه شما برای همیشه پاک خواهد شد
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t('Delete.Title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('Delete.Description')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="ml-2">انصراف</AlertDialogCancel>
+          <AlertDialogCancel className="ml-2">{t('Delete.Cancel')}</AlertDialogCancel>
           <AlertDialogAction className="bg-destructive hover:bg-destructive/80" onClick={onDelete}>
-            پاک کن
+            {t('Delete.Confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

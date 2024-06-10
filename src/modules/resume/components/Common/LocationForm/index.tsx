@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import clsx, { ClassValue } from 'clsx'
 import React from 'react'
@@ -22,12 +23,15 @@ interface Props {
 }
 
 const LocationForm: React.FC<Props> = ({ control, name, cityClassName, countryClassName, stateClassName }) => {
+  const { locale } = useParams()
   const t = useTranslations('form')
   const { data, isLoading } = useProvinces()
   const form = useFormContext<ResumeFormType>()
 
   const [cities, setCities] = React.useState<any[]>([])
-  const [isIran, setIsIran] = React.useState(form.getValues(`${name}.country` as any) === 'ایران')
+  const [isIran, setIsIran] = React.useState(
+    form.getValues(`${name}.country` as any) === 'ایران' || form.getValues(`${name}.country` as any) === 'Iran',
+  )
 
   const onSearchCountry = (option: any, searchText: string) => {
     if (!searchText) return true
@@ -72,9 +76,9 @@ const LocationForm: React.FC<Props> = ({ control, name, cityClassName, countryCl
                 <ReactSelect
                   size="sm"
                   isLoading={isLoading}
-                  options={COUNTRY_LABELED}
                   onSelect={onSelectCountry}
                   filterOption={onSearchCountry}
+                  options={COUNTRY_LABELED(locale as string)}
                   {...field}
                 />
               </FormControl>

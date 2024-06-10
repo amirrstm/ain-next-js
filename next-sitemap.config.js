@@ -11,14 +11,14 @@ async function fetchCategories() {
     loc: `/app/copywriting/${category.slug}`,
   }))
 
-  const useCases = categories.data.map(category => ({
-    priority: 0.9,
-    changefreq: 'daily',
-    lastmod: new Date().toISOString(),
-    loc: `/use-cases/${category.slug}`,
-  }))
+  // const useCases = categories.data.map(category => ({
+  //   priority: 0.9,
+  //   changefreq: 'daily',
+  //   lastmod: new Date().toISOString(),
+  //   loc: `/use-cases/${category.slug}`,
+  // }))
 
-  return [...copywriting, ...useCases]
+  return [...copywriting]
 }
 
 module.exports = {

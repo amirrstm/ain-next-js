@@ -6,7 +6,7 @@ import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-mot
 import React, { useRef, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-import IconLogoSmall from '@/icons/logo-small'
+import IconLogoSmall from '@/icons/logos/logo-small'
 
 const BeforeAfter: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null)

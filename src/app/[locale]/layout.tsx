@@ -1,6 +1,7 @@
 import { Viewport } from 'next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { Manrope } from 'next/font/google'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
@@ -14,7 +15,7 @@ import { locales } from '@/i18n'
 import StoreProvider from '@/providers/StoreProvider'
 import { SWRProvider } from '@/providers/SWRProvider'
 import { ThemeProvider } from '@/providers/ThemProvider'
-import { YekanBakhFont } from '@/styles/fonts'
+import { ManropeFont, YekanBakhFont } from '@/styles/fonts'
 import '@/styles/globals.css'
 import '@/styles/main.scss'
 
@@ -38,7 +39,10 @@ export default function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <GoogleAnalytics gaId="G-30HPPFMJ63" />
 
-      <body suppressHydrationWarning={true} className={YekanBakhFont.className}>
+      <body
+        suppressHydrationWarning={true}
+        className={locale === 'fa' ? YekanBakhFont.className : ManropeFont.className}
+      >
         <Suspense fallback={<div />}>
           <StoreProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

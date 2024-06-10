@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
+import { useParams } from 'next/navigation'
 
 import { IconLock, IconLogout, IconMoon, IconSettings, IconSun, IconUser } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -27,6 +28,7 @@ interface Props {
 }
 
 const UserProfile: React.FC<Props> = ({ isOpen }) => {
+  const { locale } = useParams()
   const t = useTranslations('User')
   const { user, reset } = useUserStore()
   const { resolvedTheme, setTheme } = useTheme()
@@ -50,7 +52,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="flex items-center text-right gap-3">
+        <div className="flex items-center text-start gap-3">
           <div className="w-12 h-12 bg-primary dark:bg-background rounded-full flex items-center justify-center">
             <IconUser className="w-6 h-6 text-white" />
           </div>
@@ -58,7 +60,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
           {isOpen && (
             <div>
               <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
-              <p className={clsx(YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-1')}>
+              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-1')}>
                 {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
               </p>
             </div>
@@ -69,7 +71,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
         <div className="w-[250px]">
           <div className="p-3">
             <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
-            <p className={clsx(YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
+            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
               {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
             </p>
           </div>
@@ -93,7 +95,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
           </div>
 
           <div className="border-t border-t-muted pt-6 p-3">
-            <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
+            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs')}>
               {t('Generations')}: {used} {t('Of')} {user?.userPlan?.plan?.generation}
             </p>
 

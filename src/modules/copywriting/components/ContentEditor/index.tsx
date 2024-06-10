@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
 import { IconBolt, IconBooks, IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
@@ -30,6 +31,7 @@ interface Props {
 }
 
 const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) => {
+  const { locale } = useParams()
   const t = useTranslations('Copywriting')
   const [copied, setCopied] = useState<boolean>(false)
 
@@ -113,12 +115,12 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
 
           <div className="flex items-center gap-6 justify-between flex-1 md:flex-none">
             <div className="flex gap-4 items-center text-sm">
-              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+              <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                 <p>{t('Content.Words')}</p>
                 <p>{text.split(' ').length}</p>
               </div>
 
-              <div className={clsx(YekanBakhNumFont.className, 'text-gray-400')}>
+              <div className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-gray-400')}>
                 <p>{t('Content.Characters')}</p>
                 <p>{text.length}</p>
               </div>
@@ -164,7 +166,7 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
           <div className="p-4">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-12" spellCheck={false}>
-                <ReactEditorJS onReady={onReady} value={editorData} onChange={onChange} />
+                <ReactEditorJS locale={locale as string} onReady={onReady} value={editorData} onChange={onChange} />
               </div>
             </div>
           </div>

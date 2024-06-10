@@ -7,6 +7,7 @@ import { EditorCoreFactory } from './factory'
 export interface Props extends Omit<EditorConfig, 'data'> {
   factory: EditorCoreFactory
 
+  locale?: string
   holder?: string
   children?: React.ReactElement
   value?: EditorConfig['data']

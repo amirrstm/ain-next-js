@@ -102,7 +102,7 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
                     )}
                   </FormControl>
 
-                  <div className="absolute left-0">
+                  <div className="absolute end-0">
                     <p className="text-xs text-gray-400">
                       {input.multiline ? 300 : 100} / {String(field.value || '').length}
                     </p>

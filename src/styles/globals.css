@@ -194,34 +194,34 @@
   direction: ltr !important;
 }
 
-.codex-editor ::selection {
+.dark .codex-editor ::selection {
   background-color: hsl(var(--primary));
 }
 
-.ce-block--selected .ce-block__content {
+.dark .ce-block--selected .ce-block__content {
   background-color: hsl(var(--primary));
 }
 
-.ce-inline-toolbar {
+.dark .ce-inline-toolbar {
   border-color: hsl(var(--border));
   background: hsl(var(--background-light));
 }
 
-.ce-inline-toolbar__dropdown:hover,
-.ce-inline-toolbar__buttons button:hover {
+.dark .ce-inline-toolbar__dropdown:hover,
+.dark .ce-inline-toolbar__buttons button:hover {
   background: hsl(var(--popover) / 80);
 }
 
-.ce-conversion-toolbar {
+.dark .ce-conversion-toolbar {
   border-color: hsl(var(--border));
   background: hsl(var(--background-light));
 }
 
-.ce-conversion-tool:hover {
+.dark .ce-conversion-tool:hover {
   background: hsl(var(--popover) / 80);
 }
 
-.ce-conversion-toolbar__tools {
+.dark .ce-conversion-toolbar__tools {
   background: hsl(var(--background-light));
 }
 
@@ -229,13 +229,13 @@
   color: #222;
 }
 
-.ce-toolbar__plus,
-.ce-toolbar__settings-btn {
+.dark .ce-toolbar__plus,
+.dark .ce-toolbar__settings-btn {
   color: hsl(var(--text-white));
 }
 
-.ce-toolbar__plus:hover,
-.ce-toolbar__settings-btn:hover {
+.dark .ce-toolbar__plus:hover,
+.dark .ce-toolbar__settings-btn:hover {
   background: hsl(var(--popover));
 }
 

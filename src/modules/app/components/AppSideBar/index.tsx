@@ -1,5 +1,7 @@
 'use client'
 
+import { useParams } from 'next/navigation'
+
 import { IconMenu } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React from 'react'
@@ -7,8 +9,8 @@ import React from 'react'
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import { Link, usePathname } from '@/components/ui/navigation'
 
-import AppLogo from '@/icons/logo'
-import IconLogoSmall from '@/icons/logo-small'
+import { AppLogo, AppLogoEn } from '@/icons/logos'
+import IconLogoSmall from '@/icons/logos/logo-small'
 
 import UserProfile from './UserProfile'
 
@@ -23,6 +25,7 @@ interface Props {
 }
 
 const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
+  const { locale } = useParams()
   const pathname = usePathname()
 
   const isSamePage = (link: string) => (link === '/app' ? pathname === link : pathname.includes(link))
@@ -30,10 +33,10 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
   return (
     <div
       className={clsx(
-        'p-5 fixed right-0 top-0 bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between',
+        'p-5 fixed left-0 top-0 bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between rtl:right-0',
         'transition-all duration-200 ease-in-out',
         {
-          'max-w-[95px]': !isOpen,
+          'max-w-[100px]': !isOpen,
           'max-w-[250px]': isOpen,
         },
       )}
@@ -43,7 +46,11 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
           <div className="flex items-center justify-between">
             <Link href="/app" className="flex">
               <div className={clsx('relative w-[100px] md:w-[120px] h-6 sm:h-9')}>
-                <AppLogo fill="hsl(var(--foreground))" />
+                {locale === 'fa' ? (
+                  <AppLogo fill="hsl(var(--foreground))" />
+                ) : (
+                  <AppLogoEn fill="hsl(var(--foreground))" />
+                )}
               </div>
             </Link>
 

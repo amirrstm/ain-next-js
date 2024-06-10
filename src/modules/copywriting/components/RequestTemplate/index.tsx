@@ -56,7 +56,7 @@ const RequestTemplate: React.FC = () => {
       </Button>
 
       <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
-        <DialogContent dir="rtl">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle asChild>
               <>

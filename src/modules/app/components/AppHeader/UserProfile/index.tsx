@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconLock, IconLogout, IconSettings, IconUser } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -23,6 +24,7 @@ import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 const UserProfile = () => {
+  const { locale } = useParams()
   const t = useTranslations('User')
   const { user, reset } = useUserStore()
 
@@ -54,7 +56,7 @@ const UserProfile = () => {
           <div className="w-[250px]">
             <div className="p-3">
               <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
-              <p className={clsx(YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
+              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
                 {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
               </p>
             </div>
@@ -78,8 +80,8 @@ const UserProfile = () => {
             </div>
 
             <div className="border-t border-t-muted pt-6 p-3">
-              <p className={clsx(YekanBakhNumFont.className, 'text-xs')}>
-                {t('Generations')}: {used} از {user?.userPlan?.plan?.generation}
+              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs')}>
+                {t('Generations')}: {used} {t('Of')} {user?.userPlan?.plan?.generation}
               </p>
 
               <div className="mt-4 bg-gray-100 dark:bg-neutral-700 rounded-full">

@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -65,6 +66,8 @@ const SingleTab: React.FC<{
   description?: string
   onClick?: () => void
 }> = ({ icon, title, isActive, completed, isLast, index, description, onClick }) => {
+  const { locale } = useParams()
+
   return (
     <li
       onClick={onClick}
@@ -75,10 +78,10 @@ const SingleTab: React.FC<{
     >
       <span
         className={clsx(
-          'xl:absolute xl:-right-10 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full',
+          'xl:absolute xl:-start-10 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full',
           'bg-muted -start-4 ring-4 ring-muted',
           {
-            'bg-green-500 text-white ring-green-500': completed,
+            '!bg-green-500 !text-white !ring-green-500': completed,
             'bg-primary text-white ring-primary': isActive,
             'group-hover:text-primary': !isActive && !completed,
           },
@@ -87,7 +90,7 @@ const SingleTab: React.FC<{
         {completed ? (
           <IconCheck className="w-4 h-4" />
         ) : index ? (
-          <p className={clsx(YekanBakhNumFont.className, 'text-sm sm:text-lg')}>{index}</p>
+          <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-sm sm:text-lg')}>{index}</p>
         ) : (
           icon
         )}

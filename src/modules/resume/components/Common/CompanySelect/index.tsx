@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 import React from 'react'
 import AsyncSelect from 'react-select/async'
 
@@ -16,6 +18,7 @@ type Props = {
 
 const CompanySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Props>(
   ({ value, onChange, placeholder = '', onSelect }, ref) => {
+    const t = useTranslations('Common')
     const loadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
       if (controller) {
         controller.abort()
@@ -49,9 +52,9 @@ const CompanySelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, Pro
         classNamePrefix={'ain-select'}
         getOptionLabel={op => op.name}
         getOptionValue={op => String(op.name)}
-        loadingMessage={() => 'در حال جستجو...'}
         value={value ? { name: value } : undefined}
-        noOptionsMessage={() => 'عنوان مورد نظر را وارد کنید'}
+        loadingMessage={() => t('Select.Searching')}
+        noOptionsMessage={() => t('Select.EnterTitle')}
         classNames={{ placeholder: () => 'line-clamp-1', container: () => 'ain-select-container' }}
       />
     )

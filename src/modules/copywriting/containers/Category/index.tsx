@@ -62,8 +62,8 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
   if (isLoading) return <CategoryLoading />
 
   return (
-    <div className={!inner ? 'p-2 xl:p-6' : ''}>
-      <div className="grid grid-cols-12 gap-4 lg:gap-5 xl:gap-6">
+    <div className={!inner ? 'p-2 xl:p-4' : ''}>
+      <div className="grid grid-cols-12 gap-4">
         <div className="hidden md:block col-span-6 lg:col-span-5 xl:col-span-3 2xl:col-span-3">
           <div className="border border-muted rounded-xl bg-card shadow-md block sticky top-8">
             <div className="p-4 border-b border-b-muted">

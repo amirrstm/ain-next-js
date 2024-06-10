@@ -1,12 +1,13 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
+
+import { useRouter } from '@/components/ui/navigation'
 
 import { LOGIN_BG } from '@/constants'
 import API from '@/lib/api'
@@ -22,7 +23,6 @@ const LoginContainer: React.FC = () => {
   const router = useRouter()
 
   const params = useSearchParams()
-  const { resolvedTheme } = useTheme()
 
   const { user, setUser } = useUserStore()
   const [userId, setUserId] = useState('')

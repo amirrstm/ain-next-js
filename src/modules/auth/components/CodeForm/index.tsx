@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconProgress } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -19,6 +20,7 @@ type Props = {
 }
 const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
   useI18nZodErrors('auth')
+  const { locale } = useParams()
   const t = useTranslations('Auth')
   const [value, setValue] = useState('')
   const [minutes, setMinutes] = useState(5)
@@ -75,7 +77,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
 
       <div className="flex justify-between items-center text-xs py-6">
         {seconds > 0 || minutes > 0 ? (
-          <p className={YekanBakhNumFont.className}>
+          <p className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
             {t('Time')}: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
           </p>
         ) : (

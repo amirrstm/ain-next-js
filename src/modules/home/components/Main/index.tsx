@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import {
   IconBrightnessDown,
@@ -29,13 +30,14 @@ import React, { useRef } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import useWindowDimensions from '@/hooks/useWindowDimensions'
-import IconLogoSmall from '@/icons/logo-small'
+import IconLogoSmall from '@/icons/logos/logo-small'
 import { cn } from '@/lib/utils'
 
 import HeroHeader from '../Hero'
 import { Boxes } from './Boxes'
 
-export const MacBookScroll = ({ src }: { src?: string }) => {
+export const MainScreen = ({ src }: { src?: string }) => {
+  const { locale } = useParams()
   const t = useTranslations('Layout')
   const ref = useRef<HTMLDivElement>(null)
   const { height } = useWindowDimensions()
@@ -62,6 +64,7 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
   return (
     <div
       ref={ref}
+      dir="lrt"
       style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 1.8 }}
       className="flex flex-col items-center py-10 relative bg-background justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
     >
@@ -106,8 +109,8 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
             className="absolute bottom-0 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
             style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
           >
-            <h2 className="text-4xl md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
-            <p dir="rtl" className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
+            <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
+            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
               {t('Home.Subtitles.First.Description')}
             </p>
           </motion.div>
@@ -120,8 +123,8 @@ export const MacBookScroll = ({ src }: { src?: string }) => {
               translateY: secondTextTransform,
             }}
           >
-            <h2 className="text-4xl md:text-3xl font-bold">{t('Home.Subtitles.Second.Title')}</h2>
-            <p dir="rtl" className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
+            <h2 className="text-4xl md:text-2xl rtl:md:text-3x font-bold">{t('Home.Subtitles.Second.Title')}</h2>
+            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
               {t('Home.Subtitles.Second.Description')}
             </p>
           </motion.div>
@@ -158,9 +161,9 @@ export const Lid = ({
           style={{ boxShadow: '0px 2px 0px 2px var(--neutral-900) inset' }}
           className="absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
         >
-          <span className="text-white">
+          <div className="w-10 h-10">
             <IconLogoSmall />
-          </span>
+          </div>
         </div>
       </div>
 

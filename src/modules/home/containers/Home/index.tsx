@@ -6,16 +6,14 @@ import Header from '@/components/layout/header'
 import { LAYOUT_IMAGE } from '@/constants'
 
 import Contents from '../../components/Contents'
-import { MacBookScroll } from '../../components/Video'
+import { MainScreen } from '../../components/Main'
 
 const HomeContainer: React.FC = () => {
   return (
     <main>
       <Header />
 
-      <div dir="ltr">
-        <MacBookScroll src={LAYOUT_IMAGE} />
-      </div>
+      <MainScreen src={LAYOUT_IMAGE} />
 
       <Contents />
 

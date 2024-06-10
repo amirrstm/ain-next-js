@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { javascript } from '@codemirror/lang-javascript'
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
@@ -13,14 +14,13 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import jalaliday from 'jalaliday'
 import React, { useEffect, useRef, useState } from 'react'
 
-import IconLogoSmall from '@/icons/logo-small'
+import IconLogoSmall from '@/icons/logos/logo-small'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { ChatMessage } from '../../interface'
 
-dayjs.locale('fa')
-dayjs.extend(relativeTime)
 dayjs.extend(jalaliday)
+dayjs.extend(relativeTime)
 
 type BlockType = { type: string; language?: string; content: string }
 
@@ -30,6 +30,7 @@ interface Props {
 }
 
 const ChatMessages: React.FC<Props> = ({ messages, loading }) => {
+  const { locale } = useParams()
   const endRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -60,6 +61,7 @@ const ChatMessages: React.FC<Props> = ({ messages, loading }) => {
 export default ChatMessages
 
 const System: React.FC<{ message?: string; time?: string; loading?: boolean }> = ({ message, time, loading }) => {
+  const { locale } = useParams()
   const t = useTranslations('Chat')
   const [systemMessage, setSystemMessage] = useState<BlockType[]>([])
 
@@ -97,9 +99,14 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
             <span className="text-xs font-semibold text-gray-900 dark:text-white">{t('Us')}</span>
             {time && (
               <span
-                className={clsx(YekanBakhNumFont.className, 'text-xs font-normal text-gray-500 dark:text-gray-400')}
+                className={clsx(
+                  locale === 'fa' && YekanBakhNumFont.className,
+                  'text-xs font-normal text-gray-500 dark:text-gray-400',
+                )}
               >
-                {dayjs(time).fromNow()}
+                {dayjs(time)
+                  .locale(locale as string)
+                  .fromNow()}
               </span>
             )}
           </div>
@@ -147,6 +154,7 @@ const System: React.FC<{ message?: string; time?: string; loading?: boolean }> =
 }
 
 const User: React.FC<{ message: string; time?: string }> = ({ message, time }) => {
+  const { locale } = useParams()
   const t = useTranslations('Chat')
 
   return (
@@ -158,8 +166,15 @@ const User: React.FC<{ message: string; time?: string }> = ({ message, time }) =
         <div className="flex items-center space-x-2 space-x-reverse justify-between">
           <span className="text-xs font-semibold text-gray-900 dark:text-white">{t('User')}</span>
           {time && (
-            <span className={clsx(YekanBakhNumFont.className, 'text-xs font-normal text-gray-500 dark:text-gray-400')}>
-              {dayjs(time).fromNow()}
+            <span
+              className={clsx(
+                locale === 'fa' && YekanBakhNumFont.className,
+                'text-xs font-normal text-gray-500 dark:text-gray-400',
+              )}
+            >
+              {dayjs(time)
+                .locale(locale as string)
+                .fromNow()}
             </span>
           )}
         </div>

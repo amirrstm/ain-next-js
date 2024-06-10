@@ -1,4 +1,10 @@
+import { Manrope } from 'next/font/google'
 import localFont from 'next/font/local'
+
+export const ManropeFont = Manrope({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
+})
 
 export const YekanBakhFont = localFont({
   src: [
@@ -68,4 +74,5 @@ export const YekanBakhNumFont = localFont({
       path: '../../../public/fonts/YekanBakhNum/YekanBakhFaNum-ExtraBlack.woff2',
     },
   ],
+  variable: '--font-rtl-num',
 })

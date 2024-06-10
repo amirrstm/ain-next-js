@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 
 import { AppCategory } from '@/interface/Category.model'
 
-import { Link } from '@/components/ui/navigation'
+import { Link, useRouter } from '@/components/ui/navigation'
 
 import useUserStore from '@/lib/store/auth'
 
@@ -84,7 +84,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
         <div className="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4">
           <div className="border border-muted rounded-xl bg-card shadow-md h-full flex flex-col">
             <Link href="/app/copywriting" className="p-4 border-b border-b-muted flex gap-2 items-center">
-              <div className="border border-muted rounded-full p-1">
+              <div className="border border-muted rounded-full p-1 rotate-180 rtl:rotate-0">
                 <IconChevronRight />
               </div>
               <h1 className="text-lg font-bold">{t('Category.BackToCategories')}</h1>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
 import React, { createContext, ReactElement, useEffect, useState } from 'react'
@@ -16,6 +17,7 @@ export const ResumeContext = createContext<IResumeContext>({} as IResumeContext)
 type Props = { children: React.ReactNode }
 export default function ResumeProvider({ children }: Props): ReactElement {
   const { resumeId } = useParams()
+  const t = useTranslations('Resume')
   const { data, isLoading } = useResume(resumeId as string)
 
   const [resume, setResume] = useState<IResume>()
@@ -37,7 +39,7 @@ export default function ResumeProvider({ children }: Props): ReactElement {
         </div>
 
         <div className="text-center">
-          <p>در حال دریافت اطلاعات رزومه، لطفا کمی صبر کنید ...</p>
+          <p>{t('GetLoading')}</p>
         </div>
       </div>
     )

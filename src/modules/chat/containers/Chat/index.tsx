@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
-import { IconBolt, IconLoader, IconMessage2Bolt, IconSend2, IconTrash } from '@tabler/icons-react'
+import { IconLoader, IconSend2, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import Loader from '@/components/ui/loader'
 
+import IconChat from '@/icons/menus/chat'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
@@ -113,9 +114,9 @@ const ChatContainer: React.FC = () => {
       <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
         <div className="p-4 w-full border-b border-b-muted">
           <div className="flex gap-2 items-center justify-between">
-            <div className="flex flex-1 gap-2">
-              <div className="bg-foreground w-8 h-8 rounded-md text-background flex justify-center items-center">
-                <IconMessage2Bolt />
+            <div className="flex flex-1 items-center gap-2">
+              <div className="w-12 h-12">
+                <IconChat />
               </div>
               <div className="flex-1">
                 <h1 className="md:text-xl font-bold">{t('Title')}</h1>
@@ -161,7 +162,6 @@ const ChatContainer: React.FC = () => {
                 <div className="p-6 text-center flex justify-center">
                   <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
                     <p className="text-neutral-500 flex">
-                      <IconBolt className="text-primary" />
                       <span className="flex-1 leading-normal">{t('Empty')}</span>
                     </p>
                   </div>
@@ -197,7 +197,7 @@ const ChatContainer: React.FC = () => {
               {isMutating ? (
                 <IconLoader className="h-5 w-5 animate-spin text-white" />
               ) : (
-                <IconSend2 className="w-6 h-6 rotate-180 text-white" />
+                <IconSend2 className="w-6 h-6 rtl:rotate-180 text-white" />
               )}
             </div>
           </div>

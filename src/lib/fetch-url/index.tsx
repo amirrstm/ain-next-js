@@ -1,16 +1,19 @@
 import { cookies } from 'next/headers'
 
-export default async function fetchWithUrl<P>(input: RequestInfo, init?: RequestInit): Promise<P> {
+export default async function fetchWithUrl<P>(
+  input: RequestInfo,
+  init?: RequestInit & { locale?: string },
+): Promise<P> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}${input}`, {
       ...init,
       headers: cookies().get('token')?.value
         ? {
-            'X-CUSTOM-LANG': 'fa',
+            'X-CUSTOM-LANG': init?.locale ?? 'fa',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${cookies().get('token')?.value}`,
           }
-        : { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': 'fa' },
+        : { 'Content-Type': 'application/json', 'X-CUSTOM-LANG': init?.locale ?? 'fa' },
     })
 
     const data = await response.json()

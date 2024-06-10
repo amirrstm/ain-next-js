@@ -1,22 +1,19 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
 
-import {
-  IconDashboard,
-  IconFileCv,
-  IconHistory,
-  IconHome,
-  IconMessage2Bolt,
-  IconPencil,
-  IconSettings,
-} from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
-import { usePathname } from '@/components/ui/navigation'
+import { usePathname, useRouter } from '@/components/ui/navigation'
 
+import IconChat from '@/icons/menus/chat'
+import IconCopywriting from '@/icons/menus/copywriting'
+import IconDashboard from '@/icons/menus/dashboard'
+import IconHistory from '@/icons/menus/history'
+import IconHome from '@/icons/menus/home'
+import IconResume from '@/icons/menus/resume'
+import IconSettings from '@/icons/menus/settings'
 import useUserStore from '@/lib/store/auth'
 import { getUserProfile } from '@/modules/auth/services'
 import { removeUserToken } from '@/modules/auth/utils'
@@ -42,25 +39,69 @@ export default function AppLayoutContainer({ children }: { children: React.React
   }, [pathname])
 
   const menus = [
-    { title: t('Menus.Home'), link: '/app', icon: <IconHome className="w-5 h-5" /> },
+    {
+      title: t('Menus.Home'),
+      link: '/app',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconHome />
+        </div>
+      ),
+    },
     {
       title: t('Menus.Copywriting'),
       link: '/app/copywriting',
-      icon: <IconPencil className="w-5 h-5" />,
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconCopywriting />
+        </div>
+      ),
     },
     {
       title: t('Menus.Resume'),
       link: '/app/resume',
-      icon: <IconFileCv className="w-5 h-5" />,
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconResume />
+        </div>
+      ),
     },
     {
       title: t('Menus.Chat'),
       link: '/app/chat',
-      icon: <IconMessage2Bolt className="w-5 h-5" />,
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconChat />
+        </div>
+      ),
     },
-    { title: t('Menus.Dashboard'), link: '/app/dashboard', icon: <IconDashboard className="w-5 h-5" /> },
-    { title: t('Menus.History'), link: '/app/history', icon: <IconHistory className="w-5 h-5" /> },
-    { title: t('Menus.Settings'), link: '/app/settings', icon: <IconSettings className="w-5 h-5" /> },
+    {
+      title: t('Menus.Dashboard'),
+      link: '/app/dashboard',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconDashboard />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.History'),
+      link: '/app/history',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconHistory />
+        </div>
+      ),
+    },
+    {
+      title: t('Menus.Settings'),
+      link: '/app/settings',
+      icon: (
+        <div className="flex w-6 h-6">
+          <IconSettings />
+        </div>
+      ),
+    },
   ]
 
   useEffect(() => {

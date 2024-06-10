@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -9,11 +10,12 @@ import ThemeMode from '@/components/theme'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 
-import AppLogo from '@/icons/logo'
+import { AppLogo, AppLogoEn } from '@/icons/logos'
 import useUserStore from '@/lib/store/auth'
 
 type Props = { dark?: boolean }
 const Header: React.FC<Props> = () => {
+  const { locale } = useParams()
   const { user } = useUserStore()
   const t = useTranslations('Layout')
 
@@ -22,11 +24,11 @@ const Header: React.FC<Props> = () => {
       <nav className={clsx('flex justify-between items-center w-full')}>
         <div className="flex items-center gap-3">
           <Link href="/" className="relative w-[140px] h-7 sm:h-10 flex pb-1">
-            <AppLogo fill="hsl(var(--foreground))" />
+            {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
           </Link>
         </div>
 
-        {/* <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex gap-12">
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex gap-12">
           <Link href={'/use-cases'} className="">
             {t('Header.UseCases')}
           </Link>
@@ -38,7 +40,7 @@ const Header: React.FC<Props> = () => {
           <Link href={'/about'} className="">
             {t('Header.About')}
           </Link>
-        </div> */}
+        </div>
 
         <div className="flex gap-3 items-center">
           <ThemeMode />

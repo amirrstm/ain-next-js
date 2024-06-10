@@ -22,7 +22,7 @@ const axiosRequestMiddleware = (config: InternalAxiosRequestConfig) => {
   config.baseURL = process.env.NEXT_PUBLIC_API_BASE_ENDPOINT
 
   if (config.headers) {
-    config.headers['X-CUSTOM-LANG'] = 'fa'
+    config.headers['X-CUSTOM-LANG'] = localStorage.getItem('lang') ?? 'fa'
 
     const latestToken = config.url?.includes('/auth/user/refresh')
       ? localStorage.getItem('refreshToken')

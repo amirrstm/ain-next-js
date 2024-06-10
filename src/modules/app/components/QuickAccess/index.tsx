@@ -8,6 +8,9 @@ import React, { useEffect, useState } from 'react'
 
 import { Link } from '@/components/ui/navigation'
 
+import IconChat from '@/icons/menus/chat'
+import IconCopywriting from '@/icons/menus/copywriting'
+import IconResume from '@/icons/menus/resume'
 import { cn } from '@/lib/utils'
 
 const QuickAccess: React.FC = () => {
@@ -15,22 +18,34 @@ const QuickAccess: React.FC = () => {
 
   const menus = [
     {
-      title: t('Dashboard.Access.Copywriting.Title'),
       link: '/app/copywriting',
-      icon: <IconPencil className="text-white w-5 h-5" />,
+      title: t('Dashboard.Access.Copywriting.Title'),
       description: t('Dashboard.Access.Copywriting.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconCopywriting />
+        </div>
+      ),
     },
     {
-      title: t('Dashboard.Access.Resume.Title'),
       link: '/app/resume',
-      icon: <IconFileCv className="text-white w-5 h-5" />,
+      title: t('Dashboard.Access.Resume.Title'),
       description: t('Dashboard.Access.Resume.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconResume />
+        </div>
+      ),
     },
     {
-      title: t('Dashboard.Access.Chat.Title'),
       link: '/app/chat',
-      icon: <IconMessage2Bolt className="text-white w-5 h-5" />,
+      title: t('Dashboard.Access.Chat.Title'),
       description: t('Dashboard.Access.Chat.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconChat />
+        </div>
+      ),
     },
   ]
 

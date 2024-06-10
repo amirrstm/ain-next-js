@@ -1,0 +1,177 @@
+{
+  "form": {
+    "auth": {
+      "mobile": "Mobile",
+      "code": "Verification Code",
+      "name": "Name",
+      "firstName": "First Name",
+      "lastName": "Last Name"
+    },
+
+    "resume": {
+      "submit": "Submit Information",
+
+      "ai": {
+        "write": "Write with AI",
+        "improve": "Improve with AI",
+
+        "generation": {
+          "title": "Choose the best option that represents your skills",
+          "loading": "Based on your job field, we are preparing some options for you to choose from..."
+        },
+
+        "voice": "Speak for me to write",
+        "talking": "Recording voice..."
+      },
+
+      "location": {
+        "city": "City",
+        "state": "State",
+        "country": "Country",
+        "address": "Address"
+      },
+
+      "basic": {
+        "labelPlaceholder": "Example: Mobile App Developer or ...",
+        "summaryPlaceholder": "For example: Experienced web developer with a strong background in developing applications for diverse clients; Over 5 years of relevant industry experience including programming, debugging, and framework creation. Proficient and committed to software engineering principles and Clean Code in app design and development",
+
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "label": "Job Title",
+        "gender": "Gender",
+        "marriage": "Marital Status",
+        "military": "Military Status",
+        "birth": "Date of Birth",
+        "email": "Email",
+        "mobile": "Mobile",
+        "url": "Website",
+        "summary": "Resume Summary",
+
+        "social": {
+          "network": "Social Network",
+          "username": "Related ID"
+        }
+      },
+
+      "education": {
+        "institution": "Institution",
+        "area": "Field of Study",
+        "studyType": "Degree",
+        "fieldOfStudy": "Major or Specialization",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "score": "GPA",
+        "stillStudying": "Still Studying",
+        "highlights": "Highlights",
+
+        "highlightsTitle": "<first><high>* </high>In this section, you can list your achievements very briefly and separately.</first><second><high>* </high>Also, use the Enter key for separation.</second>",
+        "highlightsPlaceholder": "Example: Design and implementation of content management systems"
+      },
+
+      "work": {
+        "name": "Company Name",
+        "position": "Job Position",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "stillWorking": "Currently working here",
+        "summary": "Description",
+        "highlights": "Responsibilities / Achievements",
+
+        "summaryPlaceholder": "Example: Software development and data-driven design company",
+        "highlightsTitle": "<first><high>* </high>In this section, you can list your achievements very briefly and separately.</first><second><high>* </high>Also, use the Enter key for separation.</second>",
+        "highlightsPlaceholder": "Example: Design and implementation of content management systems"
+      },
+
+      "skill": {
+        "name": "Skill Name",
+        "level": "Level",
+        "hasLevel": "Show Level",
+        "description": "Description"
+      },
+
+      "language": {
+        "language": "Language Name",
+        "level": "Level",
+        "hasLevel": "Show Level",
+        "fluency": "Fluency",
+        "fluencyType": "Fluency Level Display Type"
+      },
+
+      "certificate": {
+        "name": "Title",
+        "issuer": "Institution",
+        "date": "Date",
+        "url": "Related Link"
+      },
+
+      "project": {
+        "name": "Project Title",
+        "url": "Related Link",
+        "organization": "Client / Requester",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "description": "Description",
+        "highlights": "Responsibilities / Achievements",
+
+        "highlightsTitle": "<first><high>* </high>In this section, you can list your achievements very briefly and separately.</first><second><high>* </high>Also, use the Enter key for separation.</second>",
+        "highlightsPlaceholder": "Example: Design and implementation of content management systems"
+      },
+
+      "publication": {
+        "name": "Title",
+        "publisher": "Publisher",
+        "releaseDate": "Release Date",
+        "url": "Related Link",
+        "summary": "Description"
+      },
+
+      "award": {
+        "title": "Title",
+        "date": "Date",
+        "awarder": "Institution",
+        "summary": "Description"
+      },
+
+      "invention": {
+        "name": "Title",
+        "date": "Date",
+        "summary": "Description",
+        "url": "Related Link"
+      },
+
+      "reference": {
+        "name": "Name",
+        "reference": "Job Title and Referring Organization"
+      },
+
+      "speech": {
+        "name": "Title",
+        "date": "Date",
+        "url": "Related Link",
+        "summary": "Description"
+      },
+
+      "teaching": {
+        "date": "Date",
+        "title": "Title",
+        "summary": "Description",
+        "institution": "Institution"
+      },
+
+      "volunteer": {
+        "organization": "Organization",
+        "position": "Position",
+        "url": "Related Link",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "summary": "Description",
+        "highlights": "Responsibilities / Achievements"
+      },
+
+      "interest": {
+        "name": "Title",
+        "keywords": "Keywords"
+      }
+    }
+  }
+}

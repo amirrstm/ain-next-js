@@ -171,14 +171,14 @@
   left: -55px;
 }
 
-.cdx-search-field__icon {
-  margin-right: 0;
-  margin-left: 10px;
+[style*='rtl'] .cdx-search-field__icon {
+  margin-inline-start: 0;
+  margin-inline-end: 10px;
 }
 
 .ce-popover-item__icon {
-  margin-right: 0;
-  margin-left: 10px;
+  margin-inline-start: 0;
+  margin-inline-end: 10px;
 }
 
 .tc-popover__item {
@@ -186,12 +186,16 @@
 }
 
 .tc-popover__item-icon {
-  margin-right: 0;
-  margin-left: 8px;
+  margin-inline-start: 0;
+  margin-inline-end: 8px;
 }
 
 .ce-rawtool__textarea.cdx-input {
   direction: ltr !important;
+}
+
+.link-tool__content--rendered {
+  background: hsl(var(--background-light)) !important;
 }
 
 .dark .codex-editor ::selection {

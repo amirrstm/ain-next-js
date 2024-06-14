@@ -53,8 +53,8 @@ export default function RootLayout({
 
                 <Toaster richColors className={YekanBakhFont.className} />
 
-                <Analytics />
-                <SpeedInsights />
+                {/* <Analytics />
+                <SpeedInsights /> */}
               </>
             </ThemeProvider>
           </StoreProvider>

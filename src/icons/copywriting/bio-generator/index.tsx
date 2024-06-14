@@ -2,7 +2,7 @@ import React from 'react'
 
 const IconBioGenerator: React.FC = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
       <g>
         <path
           fill="currentColor"

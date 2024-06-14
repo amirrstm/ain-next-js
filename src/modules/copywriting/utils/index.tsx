@@ -68,124 +68,124 @@ export const SUB_CATEGORY_ICONS: Record<string, ReactNode> = {
     </div>
   ),
   'caption-generator': (
-    <div className="w-12 h-12 flex items-center">
+    <div className="w-12 h-12 translate-y-2 scale-x-[1.1] scale-y-[1.1]">
       <IconCaptionGenerator />
     </div>
   ),
   'sms-generator': (
-    <div className="w-12 h-12 flex items-center">
+    <div className="w-12 h-12 translate-y-2 scale-x-[1.2] scale-y-[1.2]">
       <IconSmsGenerator />
     </div>
   ),
   'bio-generator': (
-    <div className="w-12 h-12 flex">
+    <div className="w-12 h-12 translate-y-2 scale-x-[1.2] scale-y-[1.2]">
       <IconBioGenerator />
     </div>
   ),
   'video-description-generator': (
-    <div className="w-12 h-12 flex items-end scale-x-[1.3] scale-y-[1.3]">
+    <div className="w-12 h-12 translate-y-2 scale-x-[1.3] scale-y-[1.3]">
       <IconVideoDescriptionGenerator />
     </div>
   ),
   'video-idea-generator': (
-    <div className="w-12 h-12 flex scale-x-150 scale-y-150">
+    <div className="w-12 h-12 translate-y-1 scale-x-[1.5] scale-y-[1.5]">
       <IconVideoIdeaGenerator />
     </div>
   ),
   'aida-framework': (
-    <div className="w-12 h-12 flex scale-x-125 scale-y-125">
+    <div className="w-12 h-12 translate-y-5 scale-x-[1.2] scale-y-[1.2]">
       <IconAidaFramework />
     </div>
   ),
   'pas-framework': (
-    <div className="w-12 h-12 flex scale-x-110 scale-y-110">
+    <div className="w-12 h-12 translate-y-5 scale-x-[1.1] scale-y-[1.1]">
       <IconPasFramework />
     </div>
   ),
   'product-description': (
-    <div className="w-12 h-12 flex items-start ">
+    <div className="w-12 h-12">
       <IconProductDescription />
     </div>
   ),
   'bullet-point-generator': (
-    <div className="w-12 h-12 flex items-start ">
+    <div className="w-12 h-12">
       <IconBulletPointGenerator />
     </div>
   ),
   'startup-ideas': (
-    <div className="w-12 h-12 flex items-start ">
+    <div className="w-12 h-12">
       <IconStartupIdeas />
     </div>
   ),
   'cover-letters': (
-    <div className="w-12 h-12 flex items-start scale-x-110 scale-y-110">
+    <div className="w-12 h-12">
       <IconCoverLetters />
     </div>
   ),
   'email-generator': (
-    <div className="w-12 h-12 flex items-start scale-x-110 scale-y-110">
+    <div className="w-12 h-12">
       <IconEmailGenerator />
     </div>
   ),
   'interview-questions': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconInterviewQuestions />
     </div>
   ),
 
   'job-description': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconJobDescription />
     </div>
   ),
 
   'blog-outline': (
-    <div className="w-12 h-12 flex items-start scale-x-110 scale-y-110">
+    <div className="w-12 h-12 scale-x-110 scale-y-110">
       <IconBlogOutline />
     </div>
   ),
   'landing-page': (
-    <div className="w-12 h-12 flex items-start scale-x-125 scale-y-125">
+    <div className="w-12 h-12 scale-x-125 scale-y-125">
       <IconLandingPage />
     </div>
   ),
   'post-blog': (
-    <div className="w-12 h-12 flex items-start scale-x-125 scale-y-125">
+    <div className="w-12 h-12 scale-x-125 scale-y-125">
       <IconPostBlog />
     </div>
   ),
   'meta-description': (
-    <div className="w-12 h-12 flex items-start ">
+    <div className="w-12 h-12 ">
       <IconMetaDescription />
     </div>
   ),
   'seo-keywords': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconSeoKeywords />
     </div>
   ),
   'meta-title': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconMetaTitle />
     </div>
   ),
   'newsletter-generator': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconNewsLetterGenerator />
     </div>
   ),
   'story-creator': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconStoryCreator />
     </div>
   ),
   'poem-writing': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconPoemWriting />
     </div>
   ),
   'song-generator': (
-    <div className="w-12 h-12 flex items-start">
+    <div className="w-12 h-12">
       <IconSongGenerator />
     </div>
   ),

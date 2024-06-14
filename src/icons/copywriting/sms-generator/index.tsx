@@ -7,6 +7,8 @@ const IconSmsGenerator: React.FC = () => {
       version="1.1"
       x="0px"
       y="0px"
+      width="100%"
+      height="100%"
       viewBox="-3.2 -6.4 70.4 86.4"
       xmlSpace="preserve"
     >

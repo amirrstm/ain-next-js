@@ -2,7 +2,16 @@ import React from 'react'
 
 const IconCaptionGenerator: React.FC = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 504 470" xmlSpace="preserve">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+      version="1.1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 504 470"
+      xmlSpace="preserve"
+    >
       <g>
         <path
           fill="currentColor"

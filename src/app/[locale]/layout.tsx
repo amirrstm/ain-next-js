@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning={true} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <GoogleAnalytics gaId="G-30HPPFMJ63" />
+      {/* <GoogleAnalytics gaId="G-30HPPFMJ63" /> */}
 
       <body
         suppressHydrationWarning={true}

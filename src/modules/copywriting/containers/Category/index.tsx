@@ -65,7 +65,7 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
     <div className={!inner ? 'p-2 xl:p-4' : ''}>
       <div className="grid grid-cols-12 gap-4">
         <div className="hidden md:block col-span-6 lg:col-span-5 xl:col-span-3 2xl:col-span-3">
-          <div className="border border-muted rounded-xl bg-card shadow-md block sticky top-8">
+          <div className="border border-muted rounded-xl bg-card shadow-md block sticky top-4">
             <div className="p-4 border-b border-b-muted">
               <h1 className="text-xl font-bold">{t('Category.Title')}</h1>
             </div>
@@ -134,16 +134,18 @@ const CategoryContainer: React.FC<{ inner?: boolean }> = ({ inner }) => {
                       href={`/app/copywriting/${menu.slug}`}
                       className={clsx(
                         'cursor-pointer group transition-all ease-in-out duration-200',
-                        'border border-muted rounded-xl bg-neutral-100 dark:bg-neutral-800/80 dark:backdrop-blur-xl shadow-sm hover:shadow-primary p-3 min-h-[100px] flex gap-4 items-center',
+                        'border border-muted rounded-xl bg-neutral-100 dark:bg-neutral-800/80 dark:backdrop-blur-xl shadow-sm hover:shadow-primary p-3 min-h-[100px] flex flex-col gap-4 items-center',
                       )}
                     >
                       <span className="group-hover:text-primary">
-                        {SUB_CATEGORY_ICONS[menu.slug] || <IconBooks className="w-6 h-6" />}
+                        {SUB_CATEGORY_ICONS[menu.slug] || <IconBooks className="w-12 h-12" />}
                       </span>
 
-                      <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
+                      <div className="flex flex-1 flex-col items-center text-center transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
                         <h3 className="font-semibold">{menu.name}</h3>
-                        <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">{menu.description}</p>
+                        <p className="text-xs text-gray-500 pt-1 leading-5 min-h-[40px] flex items-center">
+                          <span className="line-clamp-2">{menu.description}</span>
+                        </p>
                       </div>
                     </Link>
                   </div>

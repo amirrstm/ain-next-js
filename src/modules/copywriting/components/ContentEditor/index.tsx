@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
 import { API, EditorConfig } from '@editorjs/editorjs'
-import { IconBolt, IconBooks, IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
+import { IconBolt, IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
 import { convert } from 'html-to-text'
@@ -14,10 +14,8 @@ import Loader from '@/components/ui/loader'
 import { Link } from '@/components/ui/navigation'
 import { createReactEditorJS } from '@/components/ui/text-editor'
 
-import { displayEquation } from '@/lib/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
-import { SUB_CATEGORY_ICONS } from '../../utils'
 import Feedback from './Feedback'
 
 const edjs = edjsHTML()
@@ -99,9 +97,6 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
     <div className="border border-muted rounded-xl bg-card shadow-md h-full mb-16 md:mb-0">
       <div className="p-4 flex items-center justify-between border-b border-b-muted">
         <div className="flex gap-2">
-          <div className="bg-foreground w-8 h-8 rounded-md text-background flex justify-center items-center">
-            {SUB_CATEGORY_ICONS[appCategory.slug] || <IconBooks className="w-6 h-6" />}
-          </div>
           <div className="flex-1">
             <h2 className="text-lg font-bold">{appCategory.name}</h2>
             <p className="text-xs text-gray-600 mt-2">{appCategory.description}</p>
@@ -162,9 +157,9 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
           )}
         </div>
       ) : (
-        <div className="w-full">
+        <div className="w-full h-full">
           <div className="p-4">
-            <div className="grid grid-cols-12 gap-4">
+            <div className="grid grid-cols-12 gap-4 md:min-h-[calc(100vh-310px)]">
               <div className="col-span-12" spellCheck={false}>
                 <ReactEditorJS locale={locale as string} onReady={onReady} value={editorData} onChange={onChange} />
               </div>

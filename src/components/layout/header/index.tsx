@@ -28,7 +28,7 @@ const Header: React.FC<Props> = () => {
           </Link>
         </div>
 
-        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex gap-12">
+        {/* <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex gap-12">
           <Link href={'/use-cases'} className="">
             {t('Header.UseCases')}
           </Link>
@@ -40,7 +40,7 @@ const Header: React.FC<Props> = () => {
           <Link href={'/about'} className="">
             {t('Header.About')}
           </Link>
-        </div>
+        </div> */}
 
         <div className="flex gap-3 items-center">
           <ThemeMode />

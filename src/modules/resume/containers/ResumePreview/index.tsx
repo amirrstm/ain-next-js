@@ -143,12 +143,12 @@ const ResumePreviewContainer: React.FC = () => {
       </div>
 
       <div className="flex justify-center p-6 pt-24 w-full">
-        <div className="sm:bg-white rounded-2xl overflow-hidden md:scale-[0.7] 2xl:scale-100 md:origin-top">
+        <div className="sm:bg-white overflow-hidden md:scale-[0.7] 2xl:scale-100 md:origin-top rounded-2xl">
           <iframe
             key={reloadKey}
             referrerPolicy="no-referrer"
             src={`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/public/resume/${resumeId}`}
-            className="w-[210mm] h-[450mm] md:h-[250mm] scale-[0.48] sm:scale-75 md:scale-100 origin-top-right"
+            className="w-[210mm] h-[450mm] md:h-[275mm] scale-[0.48] sm:scale-75 md:scale-100 origin-top-right"
           />
         </div>
       </div>

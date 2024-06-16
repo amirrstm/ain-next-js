@@ -83,14 +83,14 @@ const Features: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="bg-primary p-4 rounded-3xl flex items-center justify-between gap-6 md:flex-row flex-col md:text-start text-center">
+              <div className="bg-primary p-4 rounded-3xl flex items-center justify-between gap-2 md:gap-6 md:flex-row flex-col md:text-start text-center">
                 <div>
                   <p className="text-neutral-300 text-xs">{t('Features.Cta.Title')}</p>
 
                   <p className="text-xs mt-3 text-white dark:text-foreground">{t('Features.Cta.Description')}</p>
                 </div>
 
-                <Button className="bg-white hover:bg-white/80 text-foreground dark:text-black">
+                <Button className="bg-white hover:bg-white/80 text-foreground dark:text-black w-full md:w-auto">
                   <p>{t('Features.TryNow')}</p>
                 </Button>
               </div>

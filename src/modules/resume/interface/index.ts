@@ -9,6 +9,7 @@ export interface IResumeContext {
   setActiveTab: (tab: RESUME_ENUM_TABS) => void
 
   resume?: IResume
+  mutate: () => void
 }
 
 export type ResumeFormType = z.infer<typeof resumeSchema>

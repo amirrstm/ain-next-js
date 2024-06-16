@@ -19,7 +19,7 @@ export const ProfileAvatar: React.FC = () => {
   const [preview, setPreview] = useState<string>()
   const [actualImage, setActualImage] = useState('')
 
-  const { resume } = useContext(ResumeContext)
+  const { resume, mutate } = useContext(ResumeContext)
 
   useEffect(() => {
     if (resume && resume.image) {
@@ -52,7 +52,9 @@ export const ProfileAvatar: React.FC = () => {
   }
 
   const onSetFile = (file: File) => {
-    updateResumeImage(file, resumeId as string)
+    updateResumeImage(file, resumeId as string).then(() => {
+      mutate()
+    })
   }
 
   const onRemoveImage = () => {

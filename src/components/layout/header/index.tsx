@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 
 import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { useMediaQuery } from 'react-responsive'
 
 import ThemeMode from '@/components/theme'
 import { Button } from '@/components/ui/button'
@@ -18,12 +19,13 @@ const Header: React.FC<Props> = () => {
   const { locale } = useParams()
   const { user } = useUserStore()
   const t = useTranslations('Layout')
+  const isMobile = useMediaQuery({ maxWidth: 764 })
 
   return (
-    <header className="bg-background/40 dark:bg-background/30 px-8 h-20 flex items-center relative border-b z-10">
-      <nav className={clsx('flex justify-between items-center w-full')}>
+    <header className="bg-background/40 dark:bg-background/30 px-4 md:px-8 h-20 flex items-center relative border-b z-10">
+      <nav className={clsx('flex justify-between items-center w-full gap-1')}>
         <div className="flex items-center gap-3">
-          <Link href="/" className="relative w-[140px] h-7 sm:h-10 flex pb-1">
+          <Link href="/" className="relative w-[100px] md:w-[140px] h-7 sm:h-10 flex pb-1">
             {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
           </Link>
         </div>
@@ -46,7 +48,7 @@ const Header: React.FC<Props> = () => {
           <ThemeMode />
 
           <Link href={user ? '/app' : '/login'}>
-            <Button className="rounded-full px-6 gap-2">
+            <Button size={isMobile ? 'sm' : 'default'} className="rounded-full px-6 gap-2">
               <IconSparkles />
               {user ? t('Header.OpenApp') : t('Header.SignUp')}
             </Button>

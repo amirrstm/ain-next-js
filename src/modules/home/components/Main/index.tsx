@@ -64,19 +64,19 @@ export const MainScreen = ({ src }: { src?: string }) => {
   return (
     <div
       ref={ref}
-      dir="lrt"
-      style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 1.8 }}
+      dir="ltr"
+      style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
       className="flex flex-col items-center py-10 relative bg-background justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
     >
       <motion.div style={{ opacity: boxOpacity }}>
         <Boxes />
       </motion.div>
 
-      <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20">
+      <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-2 md:mb-20">
         <HeroHeader />
       </motion.div>
 
-      <div className="md:scale-100 scale-50 sm:scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
+      <div className="md:scale-100 scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
         <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
 
         {/* Base area */}
@@ -106,7 +106,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
           ></div>
 
           <motion.div
-            className="absolute bottom-0 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
+            className="absolute bottom-8 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
             style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
           >
             <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
@@ -151,7 +151,7 @@ export const Lid = ({
     <div className="relative [perspective:800px]">
       <div
         style={{
-          transform: 'perspective(800px) rotateX(-25deg) translateZ(0px)',
+          transform: 'perspective(900px) rotateX(-25deg) translateZ(0px)',
           transformOrigin: 'bottom',
           transformStyle: 'preserve-3d',
         }}
@@ -173,10 +173,10 @@ export const Lid = ({
           scaleY: scaleY,
           rotateX: rotate,
           translateY: translate,
-          transformStyle: 'preserve-3d',
           transformOrigin: 'top',
+          transformStyle: 'preserve-3d',
         }}
-        className="h-[19.5rem] w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2"
+        className="h-[19.5rem] w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2 overflow-hidden"
       >
         <div className="absolute inset-0 bg-[#272729] rounded-lg" />
         <Image

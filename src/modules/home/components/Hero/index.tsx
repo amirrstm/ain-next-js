@@ -18,7 +18,7 @@ const HeroHeader: React.FC = () => {
   return (
     <div className=" flex flex-col items-center justify-center bg-background/55 dark:bg-background/20">
       <div className="max-w-xl text-center">
-        <h1 className="text-3xl md:text-5xl leading-loose rtl:leading-[1.5] font-bold">{t('Title')}</h1>
+        <h1 className="text-3xl md:text-5xl leading-relaxed rtl:leading-[1.5] font-bold">{t('Title')}</h1>
         <p className="mt-4 text-xs md:text-base text-neutral-500 dark:text-gray-300">{t('Subtitle')}</p>
       </div>
 
@@ -31,7 +31,7 @@ const HeroHeader: React.FC = () => {
         </Link>
       </div>
 
-      <div className="mt-4 flex items-center flex-row-reverse gap-2">
+      <div className="mt-4 flex items-center flex-row-reverse rtl:flex-row gap-2">
         <div className="flex gap-6 items-center">
           <div className="relative h-7 sm:h-4">
             <Image

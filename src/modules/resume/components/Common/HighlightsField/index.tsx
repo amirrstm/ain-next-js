@@ -37,7 +37,7 @@ const HighlightField: React.FC<Props> = ({ name, control, placeholder }) => {
                     {fields.length > 1 && (
                       <IconX
                         onClick={() => remove(index)}
-                        className="absolute left-1 top-1/2 -translate-y-1/2 w-4 h-4 hover:text-red-500 cursor-pointer z-[2]"
+                        className="absolute end-2 rtl:end-1 top-1/2 -translate-y-1/2 w-4 h-4 hover:text-red-500 cursor-pointer z-[2]"
                       />
                     )}
                   </div>

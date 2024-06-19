@@ -15,10 +15,20 @@
         "write": "Write with AI",
         "improve": "Improve with AI",
 
+        "noWorkTitle": "Please enter your job title first",
+
         "generation": {
           "title": "Choose the best option that represents your skills",
           "loading": "Based on your job field, we are preparing some options for you to choose from...",
           "loadingText": "Please wait a moment while we prepare the best options for you."
+        },
+
+        "highlight": {
+          "noWorkTitle": "Please enter your job title first",
+          "noEducationTitle": "Please enter your educational level first",
+          "noProjectTitle": "Please enter your project title first",
+
+          "useHighlight": "Use these highlights"
         },
 
         "voice": "Speak for me to write",

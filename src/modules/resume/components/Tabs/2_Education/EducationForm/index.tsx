@@ -34,6 +34,8 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
   const form = useFormContext<ResumeFormType>()
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
 
+  const area = useWatch({ control: form.control, name: `educations.${position}.area` })
+  const studyType = useWatch({ control: form.control, name: `educations.${position}.studyType` })
   const stillStudying = useWatch({ control: form.control, name: `educations.${position}.stillStudying` })
 
   return (
@@ -214,7 +216,7 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
 
       <div className="col-span-12">
         <div className="flex items-center justify-between">
-          <div>
+          <div className="flex-1">
             <FormLabel>{t('resume.education.highlights')}</FormLabel>
             <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
               {t.rich('resume.education.highlightsTitle', {
@@ -226,7 +228,11 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
             </div>
           </div>
 
-          <AIGenerate />
+          <AIGenerate
+            type="education"
+            position={position}
+            title={studyType && area ? `${studyType}-${area}` : undefined}
+          />
         </div>
 
         <HighlightField

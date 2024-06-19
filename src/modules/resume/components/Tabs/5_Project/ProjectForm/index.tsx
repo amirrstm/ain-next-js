@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import { IconArrowsMove, IconX } from '@tabler/icons-react'
 import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
 
+import AIGenerate from '../../../Common/AIGenerate'
 import HighlightField from '../../../Common/HighlightsField'
 
 interface Props {
@@ -26,6 +27,7 @@ const SingleProjectFrom: React.FC<Props> = ({ position, fieldId, hasMove, moveCa
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
 
+  const projectName = useWatch({ control: form.control, name: `works.${position}.name` })
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
 
   return (
@@ -153,14 +155,20 @@ const SingleProjectFrom: React.FC<Props> = ({ position, fieldId, hasMove, moveCa
       </div>
 
       <div className="col-span-12">
-        <FormLabel>{t('resume.project.highlights')}</FormLabel>
-        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
-          {t.rich('resume.project.highlightsTitle', {
-            first: chunks => <p>{chunks}</p>,
-            second: chunks => <p>{chunks}</p>,
-            enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
-            high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
-          })}
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <FormLabel>{t('resume.project.highlights')}</FormLabel>
+            <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
+              {t.rich('resume.project.highlightsTitle', {
+                first: chunks => <p>{chunks}</p>,
+                second: chunks => <p>{chunks}</p>,
+                enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
+                high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
+              })}
+            </div>
+          </div>
+
+          <AIGenerate type="project" title={projectName} position={position} />
         </div>
 
         <HighlightField

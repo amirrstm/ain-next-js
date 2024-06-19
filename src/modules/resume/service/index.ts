@@ -184,6 +184,16 @@ export async function createResumeBio(resumeId: string): Promise<string> {
   }
 }
 
+export async function createResumeHighligh(resumeId: string, title: string, type: string): Promise<string> {
+  try {
+    const res = await axios.put(API.RESUME.AI_HIGHLIGHT_CREATE(resumeId), { title, type })
+
+    return res.data.data.text
+  } catch (e) {
+    throw e
+  }
+}
+
 export async function updateResumeImage(file: File, resumeId: string): Promise<string> {
   try {
     const formData = new FormData()

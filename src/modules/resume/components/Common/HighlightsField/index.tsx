@@ -32,7 +32,13 @@ const HighlightField: React.FC<Props> = ({ name, control, placeholder }) => {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input {...field} inputSize="sm" placeholder={placeholder} onKeyDown={e => onKeyDown(e, index)} />
+                    <Input
+                      {...field}
+                      inputSize="sm"
+                      placeholder={placeholder}
+                      className="pe-8"
+                      onKeyDown={e => onKeyDown(e, index)}
+                    />
 
                     {fields.length > 1 && (
                       <IconX

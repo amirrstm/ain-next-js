@@ -4,16 +4,24 @@ import { useParams } from 'next/navigation'
 import { IconWand } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
+import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import Loader from '@/components/ui/loader'
 
 import { ResumeFormType } from '@/modules/resume/interface'
-import { createResumeBio } from '@/modules/resume/service'
+import { createResumeHighligh } from '@/modules/resume/service'
 
-function AIGenerate() {
+interface Props {
+  type?: string
+  title?: string
+  position?: number
+  fieldName?: string
+}
+
+function AIGenerate({ title, type, position, fieldName = 'highlights' }: Props) {
   const { resumeId } = useParams()
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
@@ -21,35 +29,43 @@ function AIGenerate() {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const [createdTexts, setCreatedTexts] = useState<{ id: string; text: string }[]>([])
+  const [createdTexts, setCreatedTexts] = useState<{ value: string }[]>([])
 
   const onGenerate = () => {
-    if (createdTexts.length) return
+    if (createdTexts.length || !type) return
 
-    setOpen(true)
+    if (!title) {
+      const messages = {
+        work: t('resume.ai.highlight.noWorkTitle'),
+        education: t('resume.ai.highlight.noEducationTitle'),
+        project: t('resume.ai.highlight.noProjectTitle'),
+      }
 
-    setCreatedTexts(
-      ['ارائه و پرزنت مقاله درباره هوش مصنوعی', 'ارائه و پرزنت مقاله درباره هوش مصنوعی'].map(
-        (text: string, index: number) => ({ id: String(index), text }),
-      ),
-    )
+      toast.error(messages[type as keyof typeof messages] as string)
+      return
+    }
 
-    // setLoading(true)
-    // createResumeBio(resumeId as string).then(data => {
-    //   setLoading(false)
-    //   const text: any = JSON.parse(data)
+    if (type) {
+      setOpen(true)
+      setLoading(true)
+      createResumeHighligh(resumeId as string, title, type).then(data => {
+        setLoading(false)
+        const text: any = JSON.parse(data)
 
-    //   setCreatedTexts((text.about_me || []).map((text: string, index: number) => ({ id: String(index), text })))
-    // })
+        setCreatedTexts((text.highlights || []).map((value: string) => ({ value })))
+      })
+    }
   }
 
-  const onSelectOption = (value: string) => {
-    const selected = createdTexts.find(text => text.id === value)
+  const onSelectOption = () => {
+    const formName = type === 'work' ? 'works' : type === 'project' ? 'projects' : 'educations'
 
-    if (selected) {
+    if (fieldName && createdTexts.length && typeof position === 'number') {
+      const prevValues = form.getValues(`${formName}.${position}.${fieldName}` as any)
+
       setOpen(false)
       setCreatedTexts([])
-      form.setValue('basic.summary', selected.text)
+      form.setValue(`${formName}.${position}.${fieldName}` as any, [...(prevValues as any), ...createdTexts])
     }
   }
 
@@ -59,10 +75,9 @@ function AIGenerate() {
         size="sm"
         type="button"
         onClick={onGenerate}
-        className={clsx('text-xs flex gap-1 rounded-full w-11 h-11 p-0', { 'pulse-animation': !loading })}
+        className={clsx('text-xs flex gap-1 rounded-full w-8 h-8 sm:w-11 sm:h-11 p-0', { 'pulse-animation': !loading })}
       >
-        <IconWand className="w-6 h-6" />
-        {/* {formBio ? t('resume.ai.improve') : t('resume.ai.write')} */}
+        <IconWand className="w-4 h-4 sm:w-6 sm:h-6" />
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
@@ -81,19 +96,18 @@ function AIGenerate() {
               </div>
             ) : (
               <div className="space-y-3 py-3">
-                {createdTexts.map((text, index) => (
+                {createdTexts.map(({ value }, index) => (
                   <div
-                    key={text.id}
-                    onClick={() => onSelectOption(text.id)}
-                    className={clsx(
-                      'p-3 bg-popover border rounded-md cursor-pointer',
-                      'transition-all duration-200 ease-in-out',
-                      'hover:bg-primary/20 hover:text-primary',
-                    )}
+                    key={`highlight-${index}`}
+                    className={clsx('p-3 bg-popover border rounded-md cursor-pointer', 'bg-primary/20 text-primary')}
                   >
-                    <p className="text-xs leading-6">{text.text}</p>
+                    <p className="text-sm leading-6">{value}</p>
                   </div>
                 ))}
+
+                <div className="pt-3" onClick={onSelectOption}>
+                  <Button className="w-full">{t('resume.ai.highlight.useHighlight')}</Button>
+                </div>
               </div>
             )}
           </div>

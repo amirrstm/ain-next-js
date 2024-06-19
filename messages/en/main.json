@@ -539,7 +539,12 @@
 
         "Subtitle": "Click the button below and start speaking, click again after finishing. You have 30 seconds to record.",
         "Attention": "Note that you have 30 seconds to record your voice",
-        "Guide": "Guide: Read the text below to get closer to reality"
+        "Guide": "Guide: Read the text below to get closer to reality",
+
+        "Text": {
+          "First": "I hold a degree in [Your Field] with [Number] years of work experience. My expertise includes [Some of Your Expertise]. I have worked at [Company Name] as a [Job Title], where I was able to [Accomplishments in the Position]. I am proficient in [Languages You Speak] and can [Tasks You Can Perform].",
+          "Second": "Then, you can talk about your projects, achievements, research, or even your hobbies."
+        }
       }
     },
 

@@ -2,6 +2,8 @@
 
 import { useParams } from 'next/navigation'
 
+import { IconMenu2 } from '@tabler/icons-react'
+
 import { Link } from '@/components/ui/navigation'
 
 import { AppLogo, AppLogoEn } from '@/icons/logos'
@@ -10,14 +12,10 @@ import { MenuTabs } from './MenuTabs'
 import UserProfile from './UserProfile'
 
 interface Props {
-  menus: {
-    title: string
-    link: string
-    icon: React.ReactNode
-  }[]
+  setOpen: (open: boolean) => void
 }
 
-const AppHeader: React.FC<Props> = ({ menus }) => {
+const AppHeader: React.FC<Props> = ({ setOpen }) => {
   const { locale } = useParams()
 
   return (
@@ -29,12 +27,14 @@ const AppHeader: React.FC<Props> = ({ menus }) => {
           </div>
         </Link>
 
-        <div className="flex">
+        <div className="flex gap-3 items-center">
           <UserProfile />
+
+          <div onClick={() => setOpen(false)} className="cursor-pointer">
+            <IconMenu2 />
+          </div>
         </div>
       </div>
-
-      <MenuTabs tabs={menus} />
     </header>
   )
 }

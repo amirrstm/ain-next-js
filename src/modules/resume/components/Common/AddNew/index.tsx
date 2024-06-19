@@ -5,12 +5,11 @@ const AddNew: React.FC<{ title: string; onClick: () => void }> = ({ title, onCli
   return (
     <div
       onClick={onClick}
-      className="border border-dashed border-muted flex flex-col justify-center items-center rounded-xl cursor-pointer"
+      className="bg-primary py-2 gap-2 flex justify-center items-center rounded-xl cursor-pointer transition-all duration-200 ease-in-out hover:bg-primary/80"
     >
-      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white -translate-y-1/2">
-        <IconPlus className="w-4 h-4" />
-      </div>
-      <span className="text-sm mb-3 -mt-3">{title}</span>
+      <IconPlus className="w-5 h-5" />
+
+      <span className="text-sm ">{title}</span>
     </div>
   )
 }

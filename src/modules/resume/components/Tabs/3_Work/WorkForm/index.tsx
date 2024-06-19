@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { MonthPicker } from '@/components/ui/month-picker'
+import { Textarea } from '@/components/ui/textarea'
 
 import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
@@ -27,9 +28,20 @@ interface Props {
 
 const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard, remove }) => {
   const t = useTranslations('form')
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null)
+
   const form = useFormContext<ResumeFormType>()
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
+
+  const value = useWatch({ control: form.control, name: `works.${position}.summary` })
   const stillWorking = useWatch({ control: form.control, name: `works.${position}.stillWorking` })
+
+  React.useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    }
+  }, [value])
 
   return (
     <div
@@ -109,7 +121,13 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
             <FormItem>
               <FormLabel>{t('resume.work.summary')}</FormLabel>
               <FormControl>
-                <Input {...field} inputSize="sm" placeholder={t('resume.work.summaryPlaceholder')} />
+                <Textarea
+                  {...field}
+                  rows={1}
+                  size="sm"
+                  ref={textareaRef}
+                  placeholder={t('resume.work.summaryPlaceholder')}
+                />
               </FormControl>
 
               <FormMessage />
@@ -173,6 +191,7 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
           {t.rich('resume.work.highlightsTitle', {
             first: chunks => <p>{chunks}</p>,
             second: chunks => <p>{chunks}</p>,
+            enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
             high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
           })}
         </div>

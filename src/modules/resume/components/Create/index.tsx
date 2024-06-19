@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl'
 
-import { IconProgress } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useState } from 'react'
 import { toast } from 'sonner'
@@ -151,20 +150,8 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
 
           {activeTab === 'voice' && <VoiceCreate onSubmit={onCreateVoice} />}
 
-          {activeTab === 'type' && (
-            <div>
-              <ResumeTypes items={RESUME_TYPES} onSelect={onSelectType} />
+          {activeTab === 'type' && <ResumeTypes items={RESUME_TYPES} onSelect={onSelectType} />}
 
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={() => setActiveTab('templates')}
-                  className="text-neutral-400 hover:text-neutral-500 font-medium"
-                >
-                  {t('Create.Template.Back')}
-                </button>
-              </div>
-            </div>
-          )}
           {activeTab === 'templates' && <ResumeTemplates onSelect={onSelectTemplate} />}
         </div>
       </DialogContent>

@@ -66,7 +66,7 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
 
   return (
     <div className="flex items-center justify-center space-x-4 py-8">
-      <div className="relative w-[600px] h-[80vh] md:h-[450px] overflow-hidden flex items-center justify-center">
+      <div className="relative w-[600px] h-[80vh] md:h-[500px] overflow-hidden flex items-center justify-center">
         <div
           onClick={handleNext}
           className="absolute w-1/3 cursor-pointer flex items-center justify-center z-[2] right-0 h-full bg-gradient-to-r from-background to-background/60"
@@ -109,7 +109,10 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="relative w-[200px] md:w-[300px] h-full flex items-center justify-center z-10">
+        <div
+          onClick={() => onSelect(data[currentIndex]._id)}
+          className="relative w-[200px] md:w-[300px] h-full flex items-center justify-center z-10 cursor-pointer"
+        >
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={currentIndex}
@@ -131,12 +134,12 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
 
               <div className="w-full h-full relative border-4 border-neutral-200 dark:border-neutral-500 rounded-xl overflow-hidden">
                 <Image width={320} height={450} alt={getName(currentIndex)} src={getImage(currentIndex)} />
+              </div>
 
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
-                  <Button size="sm" onClick={() => onSelect(data[currentIndex]._id)}>
-                    {t('Select')}
-                  </Button>
-                </div>
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
+                <Button size="sm" onClick={() => onSelect(data[currentIndex]._id)}>
+                  {t('Select')}
+                </Button>
               </div>
             </motion.div>
           </AnimatePresence>

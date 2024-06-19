@@ -25,7 +25,7 @@ const ResumeContainer: React.FC = () => {
           </div>
         </div>
 
-        <div className="fixed block bottom-0 right-0 left-0 xl:hidden px-2 py-4 bg-card shadow-xl">
+        <div className="fixed block bottom-0 right-0 left-0 xl:hidden px-2 py-4 bg-card shadow-xl z-[10]">
           <Buttons />
         </div>
       </div>

@@ -158,6 +158,7 @@ const SingleProjectFrom: React.FC<Props> = ({ position, fieldId, hasMove, moveCa
           {t.rich('resume.project.highlightsTitle', {
             first: chunks => <p>{chunks}</p>,
             second: chunks => <p>{chunks}</p>,
+            enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
             high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
           })}
         </div>

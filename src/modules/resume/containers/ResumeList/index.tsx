@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-import { IconClipboardText, IconOctagonPlus } from '@tabler/icons-react'
+import { IconOctagonPlus } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
@@ -64,20 +64,6 @@ const ResumeListContainer: React.FC = () => {
             </div>
           )}
         </div>
-
-        {/* <div className="bg-background md:border md:rounded-xl md:border-muted md:shadow-sm">
-          <div className="p-4 border-b border-b-muted flex items-center justify-between">
-            <p className="text-xs md:text-sm">{t('List')}</p>
-
-            {data && data.length > 0 && (
-              <Button size={isMobile ? 'sm' : 'default'} className="flex gap-2 items-center" onClick={onCreate}>
-                <IconOctagonPlus className="w-5 h-5" />
-                {t('Create.Title')}
-              </Button>
-            )}
-          </div>
-          <div className="p-4 min-h-[600px]"></div>
-        </div> */}
       </div>
 
       <CreateResume open={resumeOpen} onClose={() => setResumeOpen(false)} />

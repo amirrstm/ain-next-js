@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
@@ -40,6 +41,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
   const { locale } = useParams()
   const t = useTranslations('Layout')
   const ref = useRef<HTMLDivElement>(null)
+  const { resolvedTheme } = useTheme()
   const { height } = useWindowDimensions()
   const isMobile = useMediaQuery({ maxWidth: 764 })
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -62,75 +64,89 @@ export const MainScreen = ({ src }: { src?: string }) => {
   const secondTextTransform = useTransform(scrollYProgress, [0.4, 0.5], [-100, 0])
 
   return (
-    <div
-      ref={ref}
-      dir="ltr"
-      style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
-      className="flex flex-col items-center py-10 relative bg-background justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
-    >
+    <>
       <motion.div style={{ opacity: boxOpacity }}>
-        <Boxes />
+        <div
+          className={cn(
+            'bg-[url("/images/hero-screen.svg")] w-screen h-screen fixed top-0 right-0 left-0',
+            'bg-background bg-no-repeat bg-cover bg-center z-[-10]',
+            resolvedTheme === 'light' && 'grayscale invert contrast-[1] hue-rotate-[180deg]',
+          )}
+        />
       </motion.div>
 
-      <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-2 md:mb-20">
-        <HeroHeader />
-      </motion.div>
+      <div
+        ref={ref}
+        dir="ltr"
+        style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
+        className="flex flex-col items-center py-10 relative  justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
+      >
+        <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-2 md:mb-20">
+          <HeroHeader />
+        </motion.div>
 
-      <div className="md:scale-100 scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
-        <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
+        <div className="md:scale-100 scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
+          <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
 
-        {/* Base area */}
-        <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
-          {/* above keyboard bar */}
-          <div className="h-10 w-full relative">
-            <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+          {/* Base area */}
+          <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
+            {/* above keyboard bar */}
+            <div className="h-10 w-full relative">
+              <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+            </div>
+
+            <div className="flex relative">
+              <div className="mx-auto w-[10%] overflow-hidden  h-full">
+                <SpeakerGrid />
+              </div>
+              <div className="mx-auto w-[80%] h-full">
+                <Keypad />
+              </div>
+              <div className="mx-auto w-[10%] overflow-hidden  h-full">
+                <SpeakerGrid />
+              </div>
+            </div>
+
+            <TrackPad />
+
+            <div
+              style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
+              className="w-full absolute dark:bottom-0 rounded-3xl -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
+            ></div>
+
+            <motion.div
+              className="absolute bottom-8 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
+              style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
+            >
+              <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
+              <p
+                dir={locale === 'fa' ? 'rtl' : 'ltr'}
+                className="text-xl md:text-sm text-neutral-500 leading-loose mt-4"
+              >
+                {t('Home.Subtitles.First.Description')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="absolute z-[51] flex flex-col items-center justify-center text-center w-full"
+              style={{
+                top: isMobile ? height + 100 : height * 0.88,
+                opacity: secondTextOpacity,
+                translateY: secondTextTransform,
+              }}
+            >
+              <h2 className="text-4xl md:text-2xl rtl:md:text-3x font-bold">{t('Home.Subtitles.Second.Title')}</h2>
+              <p
+                dir={locale === 'fa' ? 'rtl' : 'ltr'}
+                className="text-xl md:text-sm text-neutral-500 leading-loose mt-4"
+              >
+                {t('Home.Subtitles.Second.Description')}
+              </p>
+            </motion.div>
           </div>
-
-          <div className="flex relative">
-            <div className="mx-auto w-[10%] overflow-hidden  h-full">
-              <SpeakerGrid />
-            </div>
-            <div className="mx-auto w-[80%] h-full">
-              <Keypad />
-            </div>
-            <div className="mx-auto w-[10%] overflow-hidden  h-full">
-              <SpeakerGrid />
-            </div>
-          </div>
-
-          <TrackPad />
-
-          <div
-            style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
-            className="w-full absolute dark:bottom-0 -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
-          ></div>
-
-          <motion.div
-            className="absolute bottom-8 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
-            style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
-          >
-            <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
-            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
-              {t('Home.Subtitles.First.Description')}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="absolute z-[51] flex flex-col items-center justify-center text-center w-full"
-            style={{
-              top: isMobile ? height + 100 : height * 0.88,
-              opacity: secondTextOpacity,
-              translateY: secondTextTransform,
-            }}
-          >
-            <h2 className="text-4xl md:text-2xl rtl:md:text-3x font-bold">{t('Home.Subtitles.Second.Title')}</h2>
-            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
-              {t('Home.Subtitles.Second.Description')}
-            </p>
-          </motion.div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

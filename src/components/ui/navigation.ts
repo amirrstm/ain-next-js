@@ -1,4 +1,5 @@
 import { createSharedPathnamesNavigation } from 'next-intl/navigation'
 
-const locales = ['fa'] as const
+import { locales } from '../../i18n'
+
 export const { Link, useRouter, usePathname, redirect } = createSharedPathnamesNavigation({ locales })

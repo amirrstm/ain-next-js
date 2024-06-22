@@ -36,10 +36,10 @@ const StudyFieldSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
 
     const handleChange = (selectedOption: { name: string }) => {
       if (onSelect) {
-        onSelect(selectedOption.name)
+        onSelect(selectedOption ? selectedOption.name : '')
       }
 
-      onChange(selectedOption.name)
+      onChange(selectedOption ? selectedOption.name : '')
     }
 
     const delayedLoadOptions = (inputValue: string, callback: (options: { name: string }[]) => void) => {
@@ -55,6 +55,7 @@ const StudyFieldSelect = React.forwardRef<React.ElementRef<typeof AsyncSelect>, 
     return (
       <AsyncSelect<any>
         cacheOptions
+        isClearable
         ref={ref as any}
         className="text-xs"
         onChange={handleChange}

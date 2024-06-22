@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl'
 
-import { IconProgress } from '@tabler/icons-react'
 import clsx from 'clsx'
 import React, { useState } from 'react'
 import { toast } from 'sonner'
@@ -33,6 +32,8 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
 
   const [loading, setLoading] = useState(false)
   const { trigger, isMutating } = useSWRMutation(API.RESUME.POST, createResume)
+  const { trigger: triggerVoice } = useSWRMutation(API.RESUME.CREATE_FROM_VOICE, createResumeFromVoice)
+  const { trigger: triggerOccupation } = useSWRMutation(API.RESUME.CREATE_FROM_OCCUPATION, createResumeFromOccupation)
 
   const RESUME_TYPES = [
     {
@@ -94,7 +95,7 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
   const onCreateAI = (occupation: string, description?: string) => {
     if (templateId) {
       setLoading(true)
-      createResumeFromOccupation(templateId, occupation, description)
+      triggerOccupation({ occupation, template: templateId, description })
         .then(data => {
           setLoading(false)
           closeResume()
@@ -107,16 +108,18 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
   }
 
   const onCreateVoice = (file: File) => {
-    setLoading(true)
-    createResumeFromVoice(file, templateId as string)
-      .then(data => {
-        setLoading(false)
+    if (templateId) {
+      setLoading(true)
+      triggerVoice({ file, template: templateId })
+        .then(data => {
+          setLoading(false)
 
-        closeResume()
-        toast.success(t('Create.Success'))
-        router.push(`/app/resume/${data}`)
-      })
-      .catch(() => setLoading(false))
+          closeResume()
+          toast.success(t('Create.Success'))
+          router.push(`/app/resume/${data}`)
+        })
+        .catch(() => setLoading(false))
+    }
   }
 
   const closeResume = () => {
@@ -151,20 +154,8 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
 
           {activeTab === 'voice' && <VoiceCreate onSubmit={onCreateVoice} />}
 
-          {activeTab === 'type' && (
-            <div>
-              <ResumeTypes items={RESUME_TYPES} onSelect={onSelectType} />
+          {activeTab === 'type' && <ResumeTypes items={RESUME_TYPES} onSelect={onSelectType} />}
 
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={() => setActiveTab('templates')}
-                  className="text-neutral-400 hover:text-neutral-500 font-medium"
-                >
-                  {t('Create.Template.Back')}
-                </button>
-              </div>
-            </div>
-          )}
           {activeTab === 'templates' && <ResumeTemplates onSelect={onSelectTemplate} />}
         </div>
       </DialogContent>

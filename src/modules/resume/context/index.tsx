@@ -18,7 +18,7 @@ type Props = { children: React.ReactNode }
 export default function ResumeProvider({ children }: Props): ReactElement {
   const { resumeId } = useParams()
   const t = useTranslations('Resume')
-  const { data, isLoading } = useResume(resumeId as string)
+  const { data, isLoading, mutate } = useResume(resumeId as string)
 
   const [resume, setResume] = useState<IResume>()
   const [initLoading, setInitLoading] = useState(true)
@@ -45,5 +45,5 @@ export default function ResumeProvider({ children }: Props): ReactElement {
     )
   }
 
-  return <ResumeContext.Provider value={{ resume, activeTab, setActiveTab }}>{children}</ResumeContext.Provider>
+  return <ResumeContext.Provider value={{ resume, activeTab, mutate, setActiveTab }}>{children}</ResumeContext.Provider>
 }

@@ -6,12 +6,13 @@ import { useFormContext, useWatch } from 'react-hook-form'
 
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { MonthPicker } from '@/components/ui/month-picker'
+import { Textarea } from '@/components/ui/textarea'
 
 import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
 
+import AIGenerate from '../../../Common/AIGenerate'
 import CompanySelect from '../../../Common/CompanySelect'
 import HighlightField from '../../../Common/HighlightsField'
 import LocationForm from '../../../Common/LocationForm'
@@ -27,9 +28,21 @@ interface Props {
 
 const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard, remove }) => {
   const t = useTranslations('form')
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null)
+
   const form = useFormContext<ResumeFormType>()
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
+
+  const value = useWatch({ control: form.control, name: `works.${position}.summary` })
+  const jobTitle = useWatch({ control: form.control, name: `works.${position}.position` })
   const stillWorking = useWatch({ control: form.control, name: `works.${position}.stillWorking` })
+
+  React.useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    }
+  }, [value])
 
   return (
     <div
@@ -109,7 +122,13 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
             <FormItem>
               <FormLabel>{t('resume.work.summary')}</FormLabel>
               <FormControl>
-                <Input {...field} inputSize="sm" placeholder={t('resume.work.summaryPlaceholder')} />
+                <Textarea
+                  {...field}
+                  rows={1}
+                  size="sm"
+                  ref={textareaRef}
+                  placeholder={t('resume.work.summaryPlaceholder')}
+                />
               </FormControl>
 
               <FormMessage />
@@ -168,13 +187,20 @@ const SingleWorkForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard,
       </div>
 
       <div className="col-span-12">
-        <FormLabel>{t('resume.work.highlights')}</FormLabel>
-        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
-          {t.rich('resume.work.highlightsTitle', {
-            first: chunks => <p>{chunks}</p>,
-            second: chunks => <p>{chunks}</p>,
-            high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
-          })}
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <FormLabel>{t('resume.work.highlights')}</FormLabel>
+            <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
+              {t.rich('resume.work.highlightsTitle', {
+                first: chunks => <p>{chunks}</p>,
+                second: chunks => <p>{chunks}</p>,
+                enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
+                high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
+              })}
+            </div>
+          </div>
+
+          <AIGenerate type="work" title={jobTitle} position={position} />
         </div>
 
         <HighlightField

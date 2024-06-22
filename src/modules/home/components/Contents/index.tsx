@@ -9,7 +9,7 @@ const Contents: React.FC = () => {
   const { resolvedTheme } = useTheme()
 
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-10 md:py-0">
       <div
         className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
         style={{
@@ -21,7 +21,7 @@ const Contents: React.FC = () => {
       />
 
       <div
-        className="absolute -top-10 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-[2]"
+        className="absolute top-0 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-[2]"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
@@ -30,7 +30,7 @@ const Contents: React.FC = () => {
         }}
       />
 
-      <div className="absolute -top-5 w-full h-64 dark:h-32 bg-gradient-to-b from-white dark:from-secondary to-transparent -z-[1]" />
+      <div className="absolute -top-0 w-full h-64 dark:h-32 bg-gradient-to-b from-background dark:from-background to-transparent -z-[1]" />
 
       <Resume />
 

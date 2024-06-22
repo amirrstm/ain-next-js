@@ -33,7 +33,7 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
   return (
     <div
       className={clsx(
-        'p-5 fixed left-0 top-0 bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between rtl:right-0',
+        'p-5 md:fixed md:left-0 md:top-0 md:bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between rtl:right-0',
         'transition-all duration-200 ease-in-out',
         {
           'max-w-[100px]': !isOpen,
@@ -54,12 +54,12 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
               </div>
             </Link>
 
-            <IconMenu className="w-5 h-5 cursor-pointer" onClick={() => setOpen(false)} />
+            <IconMenu className="w-5 h-5 cursor-pointer hidden md:block" onClick={() => setOpen(false)} />
           </div>
         ) : (
           <div onClick={() => setOpen(true)} className={clsx('relative flex w-full justify-center cursor-pointer')}>
             <div className="w-10 h-10">
-              <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--background))" />
+              <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--popover))" />
             </div>
           </div>
         )}
@@ -72,8 +72,8 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
               icon={menu.icon}
               title={isOpen ? <span className="text-[15px]">{menu.title}</span> : undefined}
               className={{
-                'bg-neutral-50 dark:bg-card !border-muted text-primary font-medium': isSamePage(menu.link),
                 'font-light': !isSamePage(menu.link),
+                'bg-neutral-50 dark:bg-card !border-muted text-primary font-medium': isSamePage(menu.link),
               }}
             />
           ))}

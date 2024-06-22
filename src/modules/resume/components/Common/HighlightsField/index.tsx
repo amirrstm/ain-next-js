@@ -22,7 +22,7 @@ const HighlightField: React.FC<Props> = ({ name, control, placeholder }) => {
   }
 
   return (
-    <ul className="space-y-6 list-disc m-4">
+    <ul className="space-y-6 list-disc my-4 ms-4">
       {fields.map((field, index) => (
         <li key={field.id}>
           <FormField
@@ -32,12 +32,18 @@ const HighlightField: React.FC<Props> = ({ name, control, placeholder }) => {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input {...field} inputSize="sm" placeholder={placeholder} onKeyDown={e => onKeyDown(e, index)} />
+                    <Input
+                      {...field}
+                      inputSize="sm"
+                      placeholder={placeholder}
+                      className="pe-8"
+                      onKeyDown={e => onKeyDown(e, index)}
+                    />
 
                     {fields.length > 1 && (
                       <IconX
                         onClick={() => remove(index)}
-                        className="absolute left-1 top-1/2 -translate-y-1/2 w-4 h-4 hover:text-red-500 cursor-pointer z-[2]"
+                        className="absolute end-2 top-1/2 -translate-y-1/2 w-4 h-4 hover:text-red-500 cursor-pointer z-[2]"
                       />
                     )}
                   </div>

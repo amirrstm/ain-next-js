@@ -1,7 +1,6 @@
 import { Viewport } from 'next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
-import { Manrope } from 'next/font/google'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
@@ -45,7 +44,7 @@ export default function RootLayout({
       >
         <Suspense fallback={<div />}>
           <StoreProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
               <>
                 <SWRProvider>
                   <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

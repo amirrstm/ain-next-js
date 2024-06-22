@@ -2,9 +2,8 @@ import { useTranslations } from 'next-intl'
 
 import { IconArrowsMove, IconX } from '@tabler/icons-react'
 import React from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
-import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { MonthPicker } from '@/components/ui/month-picker'
@@ -13,8 +12,6 @@ import { useDragAndDrop } from '@/hooks'
 import { ResumeFormType } from '@/modules/resume/interface'
 
 import HighlightField from '../../../Common/HighlightsField'
-import LocationForm from '../../../Common/LocationForm'
-import OccupationSelect from '../../../Common/OccupationSelect'
 
 interface Props {
   fieldId: string
@@ -142,6 +139,7 @@ const SingleVolunteerForm: React.FC<Props> = ({ position, fieldId, hasMove, move
           {t.rich('resume.work.highlightsTitle', {
             first: chunks => <p>{chunks}</p>,
             second: chunks => <p>{chunks}</p>,
+            enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
             high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
           })}
         </div>

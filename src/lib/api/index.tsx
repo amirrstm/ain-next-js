@@ -64,6 +64,7 @@ const API = {
     UPDATE_TEMPLATE: (id: string) => `/user/resume/${id}/template`,
 
     AI_BIO_CREATE: (id: string) => `/user/resume/${id}/bio-ai`,
+    AI_HIGHLIGHT_CREATE: (id: string) => `/user/resume/${id}/highlight-ai`,
 
     UPLOAD_IMAGE: (id: string) => `/user/resume/${id}/upload-image`,
     BASIC: (id: string) => `/user/resume/${id}/basic`,

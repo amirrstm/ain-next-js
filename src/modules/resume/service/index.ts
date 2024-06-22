@@ -140,13 +140,16 @@ export async function uploadResumeVoice(file: File, resumeId: string): Promise<s
   }
 }
 
-export async function createResumeFromVoice(file: File, template: string): Promise<string> {
+export async function createResumeFromVoice(
+  url = '',
+  { arg }: { arg: { file: File; template: string } },
+): Promise<string> {
   try {
     const formData = new FormData()
-    formData.append('file', file)
-    formData.append('template', template)
+    formData.append('file', arg.file)
+    formData.append('template', arg.template)
 
-    const res = await axios.post(API.RESUME.CREATE_FROM_VOICE, formData, {
+    const res = await axios.post(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
 
@@ -157,16 +160,13 @@ export async function createResumeFromVoice(file: File, template: string): Promi
 }
 
 export async function createResumeFromOccupation(
-  template: string,
-  occupation: string,
-  description?: string,
+  url = '',
+  {
+    arg: { occupation, template, description },
+  }: { arg: { occupation: string; template: string; description?: string } },
 ): Promise<string> {
   try {
-    const res = await axios.post(API.RESUME.CREATE_FROM_OCCUPATION, {
-      template,
-      occupation,
-      description,
-    })
+    const res = await axios.post(url, { template, occupation, description })
 
     return res.data.data
   } catch (e) {
@@ -177,6 +177,16 @@ export async function createResumeFromOccupation(
 export async function createResumeBio(resumeId: string): Promise<string> {
   try {
     const res = await axios.get(API.RESUME.AI_BIO_CREATE(resumeId))
+
+    return res.data.data.text
+  } catch (e) {
+    throw e
+  }
+}
+
+export async function createResumeHighligh(resumeId: string, title: string, type: string): Promise<string> {
+  try {
+    const res = await axios.put(API.RESUME.AI_HIGHLIGHT_CREATE(resumeId), { title, type })
 
     return res.data.data.text
   } catch (e) {

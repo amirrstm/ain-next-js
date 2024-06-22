@@ -14,6 +14,7 @@ import { useDragAndDrop } from '@/hooks'
 import { useConstants } from '@/modules/resume/hooks/useConstants'
 import { ResumeFormType } from '@/modules/resume/interface'
 
+import AIGenerate from '../../../Common/AIGenerate'
 import HighlightField from '../../../Common/HighlightsField'
 import LocationForm from '../../../Common/LocationForm'
 import StudyFieldSelect from '../../../Common/StudyFieldSelect'
@@ -33,6 +34,8 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
   const form = useFormContext<ResumeFormType>()
   const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
 
+  const area = useWatch({ control: form.control, name: `educations.${position}.area` })
+  const studyType = useWatch({ control: form.control, name: `educations.${position}.studyType` })
   const stillStudying = useWatch({ control: form.control, name: `educations.${position}.stillStudying` })
 
   return (
@@ -212,13 +215,24 @@ const SingleEducationForm: React.FC<Props> = ({ position, fieldId, hasMove, move
       </div>
 
       <div className="col-span-12">
-        <FormLabel>{t('resume.education.highlights')}</FormLabel>
-        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
-          {t.rich('resume.education.highlightsTitle', {
-            first: chunks => <p>{chunks}</p>,
-            second: chunks => <p>{chunks}</p>,
-            high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
-          })}
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <FormLabel>{t('resume.education.highlights')}</FormLabel>
+            <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-2 leading-normal">
+              {t.rich('resume.education.highlightsTitle', {
+                first: chunks => <p>{chunks}</p>,
+                second: chunks => <p>{chunks}</p>,
+                enter: chunks => <strong className="text-foreground mx-1">{chunks}</strong>,
+                high: chunks => <span className="text-red-500 dark:text-red-300">{chunks}</span>,
+              })}
+            </div>
+          </div>
+
+          <AIGenerate
+            type="education"
+            position={position}
+            title={studyType && area ? `${studyType}-${area}` : undefined}
+          />
         </div>
 
         <HighlightField

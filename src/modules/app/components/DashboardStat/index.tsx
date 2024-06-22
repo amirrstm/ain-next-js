@@ -19,20 +19,20 @@ const DashboardStat: React.FC = () => {
 
   if (!user) return null
 
-  const used = user.userPlan.used
   const plan = user.userPlan.plan
+  const used = user.userPlan.used?.generation
 
   const progress = (used / plan.generation) * 100
 
   return (
     <div className="mt-4 md:mt-10">
-      <p className="flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <div className="w-4 h-4 md:w-8 md:h-8 text-primary">
           <IconStats />
         </div>
 
         <span className="text-base md:text-xl">{t('Dashboard.Stats.Last30Days')}</span>
-      </p>
+      </div>
 
       <div className="border border-muted rounded-2xl p-2 md:p-6 bg-card mt-4">
         <div className="flex justify-center gap-3 md:gap-0 md:justify-start">

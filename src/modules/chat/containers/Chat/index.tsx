@@ -91,7 +91,13 @@ const ChatContainer: React.FC = () => {
         .then(data => {
           setMessages(data.messages)
           if (user) {
-            setUser({ ...user, userPlan: { ...user.userPlan, used: user.userPlan.used + 1 } })
+            setUser({
+              ...user,
+              userPlan: {
+                ...user.userPlan,
+                used: { ...user.userPlan.used, generation: user.userPlan.used.generation + 1 },
+              },
+            })
           }
         })
         .catch(e => {

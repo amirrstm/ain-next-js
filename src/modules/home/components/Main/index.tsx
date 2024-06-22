@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
@@ -40,6 +41,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
   const { locale } = useParams()
   const t = useTranslations('Layout')
   const ref = useRef<HTMLDivElement>(null)
+  const { resolvedTheme } = useTheme()
   const { height } = useWindowDimensions()
   const isMobile = useMediaQuery({ maxWidth: 764 })
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -58,79 +60,93 @@ export const MainScreen = ({ src }: { src?: string }) => {
   const firstTextOpacity = useTransform(scrollYProgress, [0.2, 0.35], [0, 1])
   const firstTextTransform = useTransform(scrollYProgress, [0.2, 0.35], [100, height > 1100 ? 200 : 0])
 
-  const secondTextOpacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1])
-  const secondTextTransform = useTransform(scrollYProgress, [0.4, 0.5], [-100, 0])
+  const secondTextOpacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1])
+  const secondTextTransform = useTransform(scrollYProgress, [0.35, 0.5], [-100, 0])
 
   return (
-    <div
-      ref={ref}
-      dir="lrt"
-      style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 1.8 }}
-      className="flex flex-col items-center py-10 relative bg-background justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
-    >
+    <>
       <motion.div style={{ opacity: boxOpacity }}>
-        <Boxes />
+        <div
+          className={cn(
+            'bg-[url("/images/hero-screen.svg")] w-screen h-screen fixed top-0 right-0 left-0',
+            'bg-background bg-no-repeat bg-cover bg-center z-[-10]',
+            resolvedTheme === 'light' && 'grayscale invert contrast-[1] hue-rotate-[180deg]',
+          )}
+        />
       </motion.div>
 
-      <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20">
-        <HeroHeader />
-      </motion.div>
+      <div
+        ref={ref}
+        dir="ltr"
+        style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
+        className="flex flex-col items-center py-10 relative  justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
+      >
+        <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20 md:mb-20">
+          <HeroHeader />
+        </motion.div>
 
-      <div className="md:scale-100 scale-50 sm:scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
-        <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
+        <div className="md:scale-100 scale-50 -translate-y-[100px] md:translate-y-0 relative z-[5]">
+          <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
 
-        {/* Base area */}
-        <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
-          {/* above keyboard bar */}
-          <div className="h-10 w-full relative">
-            <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+          {/* Base area */}
+          <div className="h-[22rem] w-[33rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
+            {/* above keyboard bar */}
+            <div className="h-10 w-full relative">
+              <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
+            </div>
+
+            <div className="flex relative">
+              <div className="mx-auto w-[10%] overflow-hidden  h-full">
+                <SpeakerGrid />
+              </div>
+              <div className="mx-auto w-[80%] h-full">
+                <Keypad />
+              </div>
+              <div className="mx-auto w-[10%] overflow-hidden  h-full">
+                <SpeakerGrid />
+              </div>
+            </div>
+
+            <TrackPad />
+
+            <div
+              style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
+              className="w-full absolute dark:bottom-0 rounded-2xl -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
+            ></div>
+
+            <motion.div
+              className="absolute bottom-8 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
+              style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
+            >
+              <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
+              <p
+                dir={locale === 'fa' ? 'rtl' : 'ltr'}
+                className="text-xl md:text-sm text-neutral-500 leading-loose mt-4"
+              >
+                {t('Home.Subtitles.First.Description')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="absolute z-[51] flex flex-col items-center justify-center text-center w-full"
+              style={{
+                top: isMobile ? height + 100 : height * 0.88,
+                opacity: secondTextOpacity,
+                translateY: secondTextTransform,
+              }}
+            >
+              <h2 className="text-4xl md:text-2xl rtl:md:text-3x font-bold">{t('Home.Subtitles.Second.Title')}</h2>
+              <p
+                dir={locale === 'fa' ? 'rtl' : 'ltr'}
+                className="text-xl md:text-sm text-neutral-500 leading-loose mt-4"
+              >
+                {t('Home.Subtitles.Second.Description')}
+              </p>
+            </motion.div>
           </div>
-
-          <div className="flex relative">
-            <div className="mx-auto w-[10%] overflow-hidden  h-full">
-              <SpeakerGrid />
-            </div>
-            <div className="mx-auto w-[80%] h-full">
-              <Keypad />
-            </div>
-            <div className="mx-auto w-[10%] overflow-hidden  h-full">
-              <SpeakerGrid />
-            </div>
-          </div>
-
-          <TrackPad />
-
-          <div
-            style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
-            className="w-full absolute dark:bottom-0 -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
-          ></div>
-
-          <motion.div
-            className="absolute bottom-0 md:bottom-32 z-[51] flex flex-col items-center justify-center text-center w-full"
-            style={{ translateY: firstTextTransform, opacity: firstTextOpacity }}
-          >
-            <h2 className="text-4xl md:text-2xl rtl:md:text-3xl font-bold">{t('Home.Subtitles.First.Title')}</h2>
-            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
-              {t('Home.Subtitles.First.Description')}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="absolute z-[51] flex flex-col items-center justify-center text-center w-full"
-            style={{
-              top: isMobile ? height + 100 : height * 0.88,
-              opacity: secondTextOpacity,
-              translateY: secondTextTransform,
-            }}
-          >
-            <h2 className="text-4xl md:text-2xl rtl:md:text-3x font-bold">{t('Home.Subtitles.Second.Title')}</h2>
-            <p dir={locale === 'fa' ? 'rtl' : 'ltr'} className="text-xl md:text-sm text-neutral-500 leading-loose mt-4">
-              {t('Home.Subtitles.Second.Description')}
-            </p>
-          </motion.div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -151,11 +167,11 @@ export const Lid = ({
     <div className="relative [perspective:800px]">
       <div
         style={{
-          transform: 'perspective(800px) rotateX(-25deg) translateZ(0px)',
+          transform: 'perspective(900px) rotateX(-25deg) translateZ(0px)',
           transformOrigin: 'bottom',
           transformStyle: 'preserve-3d',
         }}
-        className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl p-2 relative"
+        className="h-[12rem] w-[33rem] bg-[#010101] rounded-2xl p-2 relative"
       >
         <div
           style={{ boxShadow: '0px 2px 0px 2px var(--neutral-900) inset' }}
@@ -173,10 +189,10 @@ export const Lid = ({
           scaleY: scaleY,
           rotateX: rotate,
           translateY: translate,
-          transformStyle: 'preserve-3d',
           transformOrigin: 'top',
+          transformStyle: 'preserve-3d',
         }}
-        className="h-[19.5rem] w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2"
+        className="h-[19rem] w-[33rem] absolute inset-0 bg-[#010101] rounded-2xl p-2 overflow-hidden"
       >
         <div className="absolute inset-0 bg-[#272729] rounded-lg" />
         <Image

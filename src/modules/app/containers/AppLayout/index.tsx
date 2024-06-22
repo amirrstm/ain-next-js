@@ -25,10 +25,12 @@ export default function AppLayoutContainer({ children }: { children: React.React
   const router = useRouter()
   const pathname = usePathname()
   const t = useTranslations('Layout')
+  const menuRef = React.useRef<HTMLDivElement>(null)
 
   const { user, setUser, reset: resetUser } = useUserStore()
   const [loading, setLoading] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(true)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     if (pathname.includes('/app/copywriting/') || pathname.includes('/app/resume/')) {
@@ -37,6 +39,20 @@ export default function AppLayoutContainer({ children }: { children: React.React
       setIsMenuOpen(true)
     }
   }, [pathname])
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node) && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClick)
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
+  }, [isMobileMenuOpen])
 
   const menus = [
     {
@@ -128,8 +144,28 @@ export default function AppLayoutContainer({ children }: { children: React.React
         <AppSiderBar menus={menus} isOpen={isMenuOpen} setOpen={setIsMenuOpen} />
       </div>
 
+      <div
+        className={clsx(
+          'fixed right-0 top-0 w-full h-screen bg-background/80 dark:bg-background/50 transition-all duration-300 ease-in-out',
+          {
+            'opacity-0 -z-[100]': !isMobileMenuOpen,
+            'opacity-100 z-[100]': isMobileMenuOpen,
+          },
+        )}
+      >
+        <div
+          ref={menuRef}
+          className={clsx('w-[250px] fixed bg-background h-screen transition-all duration-300 ease-in-out shadow-xl', {
+            'start-0': isMobileMenuOpen,
+            '-start-[250px]': !isMobileMenuOpen,
+          })}
+        >
+          <AppSiderBar menus={menus} isOpen={true} setOpen={setIsMenuOpen} />
+        </div>
+      </div>
+
       <div className="block md:hidden">
-        <AppHeader menus={user ? menus : [menus[0]]} />
+        <AppHeader setOpen={() => setIsMobileMenuOpen(true)} />
       </div>
 
       <div

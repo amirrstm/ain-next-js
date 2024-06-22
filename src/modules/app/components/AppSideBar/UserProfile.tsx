@@ -33,7 +33,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
   const { user, reset } = useUserStore()
   const { resolvedTheme, setTheme } = useTheme()
 
-  const used = user?.userPlan?.used || 0
+  const used = user?.userPlan?.used?.generation || 0
   const plan = user?.userPlan?.plan?.generation || 0
 
   const progress = (used / plan) * 100

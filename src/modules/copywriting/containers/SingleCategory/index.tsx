@@ -50,9 +50,8 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
     setContent(undefined)
     getPromptResponse({
       inputs,
-      category: category.data._id,
       tone: String(tone._id),
-      variant: Number(variant._id),
+      category: category.data._id,
       temperature: Number(temperature._id),
     })
       .then(data => {
@@ -62,7 +61,13 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
         setContent(data.content)
 
         if (user) {
-          setUser({ ...user, userPlan: { ...user.userPlan, used: user.userPlan.used + 1 } })
+          setUser({
+            ...user,
+            userPlan: {
+              ...user.userPlan,
+              used: { ...user.userPlan.used, generation: user.userPlan.used.generation + 1 },
+            },
+          })
         }
       })
       .catch(e => {

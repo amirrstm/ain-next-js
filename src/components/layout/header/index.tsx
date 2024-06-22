@@ -48,10 +48,10 @@ const Header: React.FC<Props> = () => {
           <ThemeMode />
 
           <Link href={user ? '/app' : '/login'}>
-            <Button size={isMobile ? 'sm' : 'default'} className="rounded-full px-6 gap-2">
+            <div className="bg-primary flex py-2 text-sm rounded-full gap-2 items-center px-6 text-primary-foreground">
               <IconSparkles />
               {user ? t('Header.OpenApp') : t('Header.SignUp')}
-            </Button>
+            </div>
           </Link>
         </div>
       </nav>

@@ -16,18 +16,18 @@ const HeroHeader: React.FC = () => {
   const t = useTranslations('Layout')
 
   return (
-    <div className=" flex flex-col items-center justify-center dark:bg-background/20">
-      <div className="max-w-xl text-center">
+    <div className=" flex flex-col items-center justify-center">
+      <div className="max-w-xl text-center px-1">
         <h1 className="text-3xl md:text-5xl leading-relaxed rtl:leading-[1.5] font-bold">{t('Title')}</h1>
         <p className="mt-4 text-xs md:text-base text-neutral-500 dark:text-gray-300">{t('Subtitle')}</p>
       </div>
 
       <div className="mt-12">
         <Link href="/login">
-          <Button className="rounded-full gap-2 items-center px-6">
-            {t('Home.GetStarted')}
+          <div className="bg-primary text-sm flex py-2 rounded-full gap-2 items-center px-6 text-primary-foreground flex-row-reverse rtl:flex-row">
             <IconArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0" />
-          </Button>
+            {t('Home.GetStarted')}
+          </div>
         </Link>
       </div>
 

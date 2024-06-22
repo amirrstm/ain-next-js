@@ -61,60 +61,34 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-8 h-full flex flex-col justify-between">
         <div className="space-y-8">
-          <FormField
-            name="tone"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('Category.ToneOfVoice')}</FormLabel>
-                <FormControl>
-                  <ReactSelect
-                    size="sm"
-                    useLabelValue
-                    options={tones}
-                    isSearchable={false}
-                    isLoading={tonesLoading}
-                    isDisabled={tonesLoading}
-                    getOptionLabel={(op: any) => op.name}
-                    getOptionValue={(op: any) => op._id}
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {appCategory.inputs.map(input => (
-            <FormField
-              key={input._id}
-              control={form.control}
-              name={input.name}
-              render={({ field }) => (
-                <FormItem className="relative">
-                  <FormLabel>{input.title}</FormLabel>
-                  <FormControl>
-                    {!input.multiline ? (
-                      <Input maxLength={100} placeholder={input.placeholder} {...field} />
-                    ) : (
-                      <Textarea maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
-                    )}
-                  </FormControl>
-
-                  <div className="absolute end-0">
-                    <p className="text-xs text-gray-400">
-                      {input.multiline ? 300 : 100} / {String(field.value || '').length}
-                    </p>
-                  </div>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
-
           <div className="flex gap-3">
+            <div className="flex-1">
+              <FormField
+                name="tone"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('Category.ToneOfVoice')}</FormLabel>
+                    <FormControl>
+                      <ReactSelect
+                        size="sm"
+                        useLabelValue
+                        options={tones}
+                        isSearchable={false}
+                        isLoading={tonesLoading}
+                        isDisabled={tonesLoading}
+                        getOptionLabel={(op: any) => op.name}
+                        getOptionValue={(op: any) => op._id}
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <div className="flex-1">
               <FormField
                 name="temperature"
@@ -146,36 +120,35 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
                 )}
               />
             </div>
-
-            <div className="flex-1">
-              <FormField
-                name="variant"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('Category.Variants.Title')}</FormLabel>
-                    <FormControl>
-                      <ReactSelect
-                        size="sm"
-                        useLabelValue
-                        options={[
-                          { _id: '1', name: t('Category.Variants.One') },
-                          { _id: '2', name: t('Category.Variants.Two') },
-                          { _id: '3', name: t('Category.Variants.Three') },
-                        ]}
-                        isSearchable={false}
-                        getOptionLabel={(op: any) => op.name}
-                        getOptionValue={(op: any) => op._id}
-                        {...field}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
           </div>
+
+          {appCategory.inputs.map(input => (
+            <FormField
+              key={input._id}
+              control={form.control}
+              name={input.name}
+              render={({ field }) => (
+                <FormItem className="relative">
+                  <FormLabel>{input.title}</FormLabel>
+                  <FormControl>
+                    {!input.multiline ? (
+                      <Input maxLength={100} placeholder={input.placeholder} {...field} />
+                    ) : (
+                      <Textarea maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
+                    )}
+                  </FormControl>
+
+                  <div className="absolute end-0">
+                    <p className="text-xs text-gray-400">
+                      {input.multiline ? 300 : 100} / {String(field.value || '').length}
+                    </p>
+                  </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ))}
         </div>
 
         <div className="pt-4">

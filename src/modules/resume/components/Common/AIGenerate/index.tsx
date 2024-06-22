@@ -65,7 +65,10 @@ function AIGenerate({ title, type, position, fieldName = 'highlights' }: Props) 
 
       setOpen(false)
       setCreatedTexts([])
-      form.setValue(`${formName}.${position}.${fieldName}` as any, [...(prevValues as any), ...createdTexts])
+      form.setValue(`${formName}.${position}.${fieldName}` as any, [
+        ...(prevValues?.length === 1 && prevValues?.[0]?.value === '' ? [] : prevValues),
+        ...createdTexts,
+      ])
     }
   }
 

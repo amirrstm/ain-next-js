@@ -401,13 +401,13 @@
         "AIWritten": "AI-Generated Text",
 
         "After": {
-          "Short": "Short and Informative Text",
-          "Attractive": "Use of Engaging Phrases",
-          "Principal": "Has a Proper Writing Structure"
+          "Short": "Informative Text",
+          "Attractive": "Engaging Phrases",
+          "Principal": "Proper Writing Structure"
         },
 
         "Before": {
-          "Short": "Long Text",
+          "Short": "Repetitive Text",
           "Attractive": "Unattractive",
           "Principal": "Lacks Proper Structure"
         }
@@ -483,7 +483,7 @@
     "List": "List of resumes created by you",
     "Loading": "Creating resume, please wait",
     "GetLoading": "Fetching resume data, please wait",
-    "Empty": "No resumes created yet, you can create up to 4 new resumes for yourself",
+    "Empty": "No resumes created yet, you can create up to {number} new resumes for yourself",
     "Success": "Your resume is ready, you can download it now",
     "Download": "Download Resume",
     "Feedback": "Leave your feedback with us",
@@ -496,7 +496,7 @@
       "Cancel": "Cancel",
       "Confirm": "Delete",
       "Title": "Are you sure you want to delete this resume?",
-      "Description": "This action is irreversible and all your resume data will be permanently deleted"
+      "Description": "This action is irreversible and all your resume data will be permanently deleted. Please note that this action will not increase your plan generations."
     },
 
     "Create": {

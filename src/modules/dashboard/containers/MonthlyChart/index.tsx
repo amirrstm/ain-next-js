@@ -51,8 +51,8 @@ const MonthlyChartContainer: React.FC = () => {
 
   if (!user) return null
 
-  const used = user.userPlan.used
   const plan = user.userPlan.plan
+  const used = user.userPlan.used?.generation
 
   const progress = (used / plan.generation) * 100
 

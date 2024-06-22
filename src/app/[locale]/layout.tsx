@@ -1,7 +1,6 @@
 import { Viewport } from 'next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
-import { Manrope } from 'next/font/google'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
@@ -37,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning={true} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      {/* <GoogleAnalytics gaId="G-30HPPFMJ63" /> */}
+      <GoogleAnalytics gaId="G-30HPPFMJ63" />
 
       <body
         suppressHydrationWarning={true}
@@ -45,7 +44,7 @@ export default function RootLayout({
       >
         <Suspense fallback={<div />}>
           <StoreProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
               <>
                 <SWRProvider>
                   <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
@@ -53,8 +52,8 @@ export default function RootLayout({
 
                 <Toaster richColors className={YekanBakhFont.className} />
 
-                {/* <Analytics />
-                <SpeedInsights /> */}
+                <Analytics />
+                <SpeedInsights />
               </>
             </ThemeProvider>
           </StoreProvider>

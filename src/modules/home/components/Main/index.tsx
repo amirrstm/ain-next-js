@@ -60,8 +60,8 @@ export const MainScreen = ({ src }: { src?: string }) => {
   const firstTextOpacity = useTransform(scrollYProgress, [0.2, 0.35], [0, 1])
   const firstTextTransform = useTransform(scrollYProgress, [0.2, 0.35], [100, height > 1100 ? 200 : 0])
 
-  const secondTextOpacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1])
-  const secondTextTransform = useTransform(scrollYProgress, [0.4, 0.5], [-100, 0])
+  const secondTextOpacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1])
+  const secondTextTransform = useTransform(scrollYProgress, [0.35, 0.5], [-100, 0])
 
   return (
     <>
@@ -81,7 +81,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
         style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
         className="flex flex-col items-center py-10 relative  justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
       >
-        <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-2 md:mb-20">
+        <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20 md:mb-20">
           <HeroHeader />
         </motion.div>
 
@@ -89,7 +89,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
           <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
 
           {/* Base area */}
-          <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
+          <div className="h-[22rem] w-[33rem] bg-gray-200 dark:bg-[#272729] rounded-2xl relative -z-10">
             {/* above keyboard bar */}
             <div className="h-10 w-full relative">
               <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
@@ -111,7 +111,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
 
             <div
               style={{ height: height > 1000 ? height * 0.3 : height * 0.6 }}
-              className="w-full absolute dark:bottom-0 rounded-3xl -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
+              className="w-full absolute dark:bottom-0 rounded-2xl -bottom-10 inset-x-0 bg-gradient-to-t dark:from-secondary from-background via-background dark:via-secondary to-transparent z-50"
             ></div>
 
             <motion.div
@@ -171,7 +171,7 @@ export const Lid = ({
           transformOrigin: 'bottom',
           transformStyle: 'preserve-3d',
         }}
-        className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl p-2 relative"
+        className="h-[12rem] w-[33rem] bg-[#010101] rounded-2xl p-2 relative"
       >
         <div
           style={{ boxShadow: '0px 2px 0px 2px var(--neutral-900) inset' }}
@@ -192,7 +192,7 @@ export const Lid = ({
           transformOrigin: 'top',
           transformStyle: 'preserve-3d',
         }}
-        className="h-[19.5rem] w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2 overflow-hidden"
+        className="h-[19rem] w-[33rem] absolute inset-0 bg-[#010101] rounded-2xl p-2 overflow-hidden"
       >
         <div className="absolute inset-0 bg-[#272729] rounded-lg" />
         <Image

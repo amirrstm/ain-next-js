@@ -15,7 +15,12 @@ export interface User {
 export interface UserPlan {
   plan: Plan
   _id: string
-  used: number
+  used: {
+    resumeAI: number
+    generation: number
+    resumeVoice: number
+    resumeCustom: number
+  }
   createdAt: string
   planExpired: string
   updatedAt: string

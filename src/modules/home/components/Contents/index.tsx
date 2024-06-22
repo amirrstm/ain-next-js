@@ -9,7 +9,7 @@ const Contents: React.FC = () => {
   const { resolvedTheme } = useTheme()
 
   return (
-    <section className="relative py-10 md:py-12">
+    <section className="relative py-10 md:py-0">
       <div
         className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
         style={{

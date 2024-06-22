@@ -78,7 +78,7 @@ export const MainScreen = ({ src }: { src?: string }) => {
       <div
         ref={ref}
         dir="ltr"
-        style={{ minHeight: isMobile ? height * 1.3 : height > 1100 ? height * 1.6 : height * 2 }}
+        style={{ minHeight: isMobile ? height * 1.4 : height > 1100 ? height * 1.6 : height * 2 }}
         className="flex flex-col items-center py-10 relative  justify-start flex-shrink-0 [perspective:800px] overflow-hidden"
       >
         <motion.div style={{ translateY: textTransform, opacity: textOpacity }} className="mb-20 md:mb-20">

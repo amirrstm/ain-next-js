@@ -61,7 +61,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
             <div>
               <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
               <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-1')}>
-                {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
+                {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : user?.email}
               </p>
             </div>
           )}
@@ -72,7 +72,7 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
           <div className="p-3">
             <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
             <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
-              {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : `${t('Email')}: ${user?.email}`}
+              {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : user?.email}
             </p>
           </div>
 

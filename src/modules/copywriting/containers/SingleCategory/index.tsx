@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 
 import { IconChevronRight } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
@@ -15,18 +15,17 @@ import useUserStore from '@/lib/store/auth'
 
 import ContentEditor from '../../components/ContentEditor'
 import ContentForm from '../../components/ContentForm'
+import useCategory from '../../hooks/useCategory'
 import { getPromptResponse } from '../../services'
 
-interface Props {
-  category: { data: AppCategory }
-}
-
-const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
+const SingleCategoryContainer: React.FC = () => {
   const router = useRouter()
   const pathname = usePathname()
+  const { categoryId } = useParams()
   const t = useTranslations('Copywriting')
   const { user, setUser } = useUserStore()
   const contentRef = useRef<HTMLDivElement>(null)
+  const { data: category } = useCategory(categoryId as string)
 
   const [content, setContent] = useState<string>()
   const [historyId, setHistoryId] = useState<string>()
@@ -34,13 +33,13 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
-  console.log(category)
-
   const onSubmit = (data: Record<string, any>) => {
     if (!user) {
       router.push(`/login?returnUrl=${pathname}`)
       return
     }
+
+    if (!category) return
 
     if (contentRef && contentRef.current) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -53,7 +52,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
     getPromptResponse({
       inputs,
       tone: String(tone._id),
-      category: category.data._id,
+      category: category._id,
       temperature: Number(temperature._id),
     })
       .then(data => {
@@ -83,7 +82,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
       })
   }
 
-  if (!category.data) return null
+  if (!category) return null
 
   return (
     <div className="p-2 xl:p-6">
@@ -101,7 +100,7 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
               <ContentForm
                 loading={loading}
                 onSubmit={onSubmit}
-                category={category.data}
+                category={category}
                 appCategory={appCategory}
                 setAppCategory={setAppCategory}
               />

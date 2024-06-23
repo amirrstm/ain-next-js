@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import { AppCategory } from '@/interface/Category.model'
 import { PageLang, ResponseModel } from '@/interface/General.model'
@@ -20,15 +20,8 @@ export async function generateMetadata({ params: { locale } }: PageLang): Promis
 
 export const viewport = appViewport.appDefaultViewport
 
-export default async function Copywriting({
-  params: { categoryId, locale },
-}: {
-  params: { categoryId: string; locale: string }
-}) {
-  const category: ResponseModel<AppCategory> = await fetchWithUrl(API.CATEGORY.GET(categoryId), {
-    locale,
-    next: { revalidate: 3600 },
-  })
+export default async function Copywriting({ params: { locale } }: { params: { categoryId: string; locale: string } }) {
+  unstable_setRequestLocale(locale)
 
-  return <SingleCategoryContainer category={category} />
+  return <SingleCategoryContainer />
 }

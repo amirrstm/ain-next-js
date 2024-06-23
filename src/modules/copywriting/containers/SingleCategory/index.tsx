@@ -34,6 +34,8 @@ const SingleCategoryContainer: React.FC<Props> = ({ category }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [appCategory, setAppCategory] = useState<AppCategory>()
 
+  console.log(category)
+
   const onSubmit = (data: Record<string, any>) => {
     if (!user) {
       router.push(`/login?returnUrl=${pathname}`)

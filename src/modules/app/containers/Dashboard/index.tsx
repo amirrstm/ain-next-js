@@ -8,12 +8,49 @@ import React from 'react'
 
 import { Link } from '@/components/ui/navigation'
 
+import IconChat from '@/icons/menus/chat'
+import IconCopywriting from '@/icons/menus/copywriting'
+import IconResume from '@/icons/menus/resume'
+
 import DashboardHeader from '../../components/DashboardHeader'
 import DashboardStat from '../../components/DashboardStat'
 import QuickAccess from '../../components/QuickAccess'
 
 const DashboardContainer: React.FC = () => {
   const t = useTranslations('Layout')
+
+  const menus = [
+    {
+      link: '/app/copywriting',
+      title: t('Dashboard.Access.Copywriting.Title'),
+      description: t('Dashboard.Access.Copywriting.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconCopywriting />
+        </div>
+      ),
+    },
+    {
+      link: '/app/resume',
+      title: t('Dashboard.Access.Resume.Title'),
+      description: t('Dashboard.Access.Resume.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconResume />
+        </div>
+      ),
+    },
+    {
+      link: '/app/chat',
+      title: t('Dashboard.Access.Chat.Title'),
+      description: t('Dashboard.Access.Chat.Description'),
+      icon: (
+        <div className="w-7 h-7">
+          <IconChat />
+        </div>
+      ),
+    },
+  ]
 
   return (
     <div className="p-2 md:p-6">
@@ -26,62 +63,25 @@ const DashboardContainer: React.FC = () => {
       </div>
 
       <div className="block md:hidden mt-6 space-y-6">
-        <Link
-          href="/app/resume"
-          className={clsx(
-            'cursor-pointer group transition-all ease-in-out duration-200',
-            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
-          )}
-        >
-          <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
-            <IconFileCv className="w-6 h-6 text-white" />
-          </span>
+        {menus.map((menu, index) => (
+          <Link
+            key={index}
+            href={menu.link}
+            className={clsx(
+              'cursor-pointer group transition-all ease-in-out duration-200',
+              'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
+            )}
+          >
+            <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
+              {menu.icon}
+            </span>
 
-          <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">{t('Dashboard.Access.Resume.Title')}</h3>
-            <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              {t('Dashboard.Access.Resume.Description')}
-            </p>
-          </div>
-        </Link>
-
-        <Link
-          href="/app/copywriting"
-          className={clsx(
-            'cursor-pointer group transition-all ease-in-out duration-200',
-            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
-          )}
-        >
-          <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
-            <IconPencil className="w-6 h-6 text-white" />
-          </span>
-
-          <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">{t('Dashboard.Access.Copywriting.Title')}</h3>
-            <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              {t('Dashboard.Access.Copywriting.Description')}
-            </p>
-          </div>
-        </Link>
-
-        <Link
-          href="/app/chat"
-          className={clsx(
-            'cursor-pointer group transition-all ease-in-out duration-200',
-            'border border-muted rounded-xl bg-background shadow-sm hover:shadow-primary p-4 flex gap-4 items-center',
-          )}
-        >
-          <span className="group-hover:text-primary px-4 h-14 flex items-center justify-center rounded-lg bg-secondary">
-            <IconMessage2Bolt className="w-6 h-6 text-white" />
-          </span>
-
-          <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
-            <h3 className="font-semibold">{t('Dashboard.Access.Chat.Title')}</h3>
-            <p className="text-xs text-gray-500 mt-1 leading-5 line-clamp-2">
-              {t('Dashboard.Access.Chat.Description')}
-            </p>
-          </div>
-        </Link>
+            <div className="flex flex-1 flex-col items-start transition-all ease-in-out duration-200 group-hover:scale-[1.01]">
+              <h3 className="font-semibold">{menu.title}</h3>
+              <p className="text-xs text-gray-500 mt-1 leading-5">{menu.description}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   )

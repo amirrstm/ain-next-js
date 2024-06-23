@@ -22,7 +22,7 @@ const AppHeader: React.FC<Props> = ({ setOpen }) => {
     <header className="border-b border-b-input bg-card">
       <div className="flex justify-between items-center py-1 md:py-3 px-3 md:px-6">
         <Link href="/app">
-          <div className="relative w-[100px] md:w-[120px] h-6 sm:h-9">
+          <div className="relative w-[100px] md:w-[120px] h-12 flex sm:h-9">
             {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
           </div>
         </Link>

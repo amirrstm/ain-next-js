@@ -48,7 +48,7 @@ const Header: React.FC<Props> = () => {
           <ThemeMode />
 
           <Link href={user ? '/app' : '/login'}>
-            <div className="bg-primary flex py-2 text-sm rounded-full gap-2 items-center px-6 text-primary-foreground">
+            <div className="bg-primary flex py-2 text-xs md:text-sm rounded-full gap-2 items-center px-6 text-primary-foreground">
               <IconSparkles />
               {user ? t('Header.OpenApp') : t('Header.SignUp')}
             </div>

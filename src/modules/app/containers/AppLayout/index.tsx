@@ -33,7 +33,7 @@ export default function AppLayoutContainer({ children }: { children: React.React
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    if (pathname.includes('/app/copywriting/') || pathname.includes('/app/resume/')) {
+    if (pathname.includes('/app/resume/')) {
       setIsMenuOpen(false)
     } else {
       setIsMenuOpen(true)

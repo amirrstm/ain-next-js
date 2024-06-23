@@ -132,9 +132,9 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
                   <FormLabel>{input.title}</FormLabel>
                   <FormControl>
                     {!input.multiline ? (
-                      <Input maxLength={100} placeholder={input.placeholder} {...field} />
+                      <Input inputSize="sm" maxLength={100} placeholder={input.placeholder} {...field} />
                     ) : (
-                      <Textarea maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
+                      <Textarea size="sm" maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
                     )}
                   </FormControl>
 
@@ -157,7 +157,7 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
             <span>{t('Category.Generate')}</span>
           </Button>
 
-          <span className="text-xs text-gray-400 mt-2 block text-center">{t('Category.GenerateCost')}</span>
+          {/* <span className="text-xs text-gray-400 mt-2 block text-center">{t('Category.GenerateCost')}</span> */}
         </div>
       </form>
     </Form>

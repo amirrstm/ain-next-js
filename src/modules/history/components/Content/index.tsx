@@ -5,13 +5,14 @@ import { EditorConfig } from '@editorjs/editorjs'
 import { IconClipboard, IconClipboardCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
+import { convert } from 'html-to-text'
 import React, { useEffect, useState } from 'react'
 
 import { AppCategory } from '@/interface/Category.model'
 
 import { createReactEditorJS } from '@/components/ui/text-editor'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
-import { displayEquation } from '@/lib/utils'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import { HistoryInput } from '../../interface'
@@ -51,7 +52,20 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
   const prepareText = (content: string) => {
     const blocks: any = JSON.parse(content)
 
-    setText(content.trim())
+    const raw = edjs.parse(blocks).join('')
+    const normalText = convert(raw, {
+      wordwrap: 130,
+      selectors: [
+        {
+          selector: 'ul',
+          options: {
+            itemPrefix: '-',
+          },
+        },
+      ],
+    })
+
+    setText(normalText)
     setEditorData({ blocks: blocks.blocks, time: new Date().getTime() })
   }
 
@@ -108,7 +122,16 @@ const HistoryContent: React.FC<Props> = ({ content, inputs, appCategory }) => {
                   {copied ? (
                     <IconClipboardCheck className={clsx('w-7 h-7 text-primary cursor-pointer')} />
                   ) : (
-                    <IconClipboard onClick={onCopy} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <IconClipboard onClick={onCopy} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{t('Content.Copy')}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
                 </div>
               </div>

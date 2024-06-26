@@ -98,7 +98,7 @@ const UserHistoryContainer: React.FC = () => {
                     })}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-foreground text-background rounded-md flex items-center justify-center">
+                      <div className="w-8 h-8 flex ">
                         {SUB_CATEGORY_ICONS[item.category.slug] || <IconBooks className="w-6 h-6" />}
                       </div>
                       <h3 className="font-semibold">{item.category.name}</h3>
@@ -109,7 +109,10 @@ const UserHistoryContainer: React.FC = () => {
                     )}
 
                     <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-gray-400 mt-3')}>
-                      {dayjs(item.createdAt).fromNow()}
+                      {dayjs(item.createdAt)
+                        .locale(locale as string)
+                        .calendar(locale === 'fa' ? 'jalali' : 'gregory')
+                        .fromNow()}
                     </p>
                   </div>
                 ))}

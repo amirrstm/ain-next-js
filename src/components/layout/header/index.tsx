@@ -5,10 +5,8 @@ import { useParams } from 'next/navigation'
 
 import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { useMediaQuery } from 'react-responsive'
 
 import ThemeMode from '@/components/theme'
-import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
 
 import { AppLogo, AppLogoEn } from '@/icons/logos'
@@ -19,7 +17,6 @@ const Header: React.FC<Props> = () => {
   const { locale } = useParams()
   const { user } = useUserStore()
   const t = useTranslations('Layout')
-  const isMobile = useMediaQuery({ maxWidth: 764 })
 
   return (
     <header className="bg-background/40 dark:bg-background/30 px-4 md:px-8 h-20 flex items-center relative border-b z-10">

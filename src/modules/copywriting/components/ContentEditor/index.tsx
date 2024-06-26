@@ -7,12 +7,14 @@ import clsx from 'clsx'
 import edjsHTML from 'editorjs-html'
 import { convert } from 'html-to-text'
 import React, { useEffect, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import { AppCategory } from '@/interface/Category.model'
 
 import Loader from '@/components/ui/loader'
 import { Link } from '@/components/ui/navigation'
 import { createReactEditorJS } from '@/components/ui/text-editor'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -31,9 +33,10 @@ interface Props {
 const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) => {
   const { locale } = useParams()
   const t = useTranslations('Copywriting')
-  const [copied, setCopied] = useState<boolean>(false)
+  const isMobile = useMediaQuery({ maxWidth: 768 })
 
   const [text, setText] = useState<string>('')
+  const [copied, setCopied] = useState<boolean>(false)
   const [editorData, setEditorData] = useState<EditorConfig['data']>()
 
   useEffect(() => {
@@ -53,12 +56,26 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
   const prepareText = (content: string) => {
     const blocks: any = JSON.parse(content)
 
-    setText(content.trim())
+    const raw = edjs.parse(blocks).join('')
+    const normalText = convert(raw, {
+      wordwrap: 130,
+      selectors: [
+        {
+          selector: 'ul',
+          options: {
+            itemPrefix: '-',
+          },
+        },
+      ],
+    })
+
+    setText(normalText)
     setEditorData({ blocks: blocks.blocks, time: new Date().getTime() })
   }
 
   const onChange = (data: API) => {
     data.saver.save().then(outputData => {
+      console.log(outputData)
       const raw = edjs.parse(outputData).join('')
       const normalText = convert(raw, {
         wordwrap: 130,
@@ -68,14 +85,6 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
             selector: 'ul',
             options: {
               itemPrefix: '-',
-            },
-          },
-          {
-            selector: 'h2',
-            format: 'inlineSurround',
-            options: {
-              prefix: '**',
-              suffix: '**',
             },
           },
         ],
@@ -125,7 +134,16 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
               {copied ? (
                 <IconClipboardCheck className={clsx('w-7 h-7 text-primary cursor-pointer')} />
               ) : (
-                <IconClipboard onClick={onCopy} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <IconClipboard onClick={onCopy} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{t('Content.Copy')}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
             </div>
           </div>
@@ -161,7 +179,13 @@ const ContentEditor: React.FC<Props> = ({ id, content, appCategory, loading }) =
           <div className="p-4">
             <div className="grid grid-cols-12 gap-4 md:min-h-[calc(100vh-310px)]">
               <div className="col-span-12" spellCheck={false}>
-                <ReactEditorJS locale={locale as string} onReady={onReady} value={editorData} onChange={onChange} />
+                <ReactEditorJS
+                  onReady={onReady}
+                  value={editorData}
+                  readOnly={isMobile}
+                  onChange={onChange}
+                  locale={locale as string}
+                />
               </div>
             </div>
           </div>

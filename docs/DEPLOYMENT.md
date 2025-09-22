@@ -25,7 +25,7 @@ Before deploying AINevis, ensure you have:
 - Git access to the repository
 - Environment variables configured
 - Backend API server running
-- External API services configured
+- Cloudflare Images account for image delivery
 
 ## Environment Configuration
 
@@ -86,6 +86,7 @@ Vercel provides the easiest deployment experience for Next.js applications.
    NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
    NEXT_PUBLIC_BASE_ENDPOINT=https://your-api-domain.com
    NEXT_PUBLIC_API_BASE_ENDPOINT=https://your-api-domain.com/api/v1
+   NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_account_hash
    ANALYZE=false
    ```
 
@@ -376,8 +377,8 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NEXT_PUBLIC_BASE_ENDPOINT=https://api.your-domain.com
 NEXT_PUBLIC_API_BASE_ENDPOINT=https://api.your-domain.com/api/v1
 
-# External Services
-# Add your external service configuration here
+# Cloudflare Images
+NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_account_hash
 
 # Optional
 ANALYZE=false
@@ -421,19 +422,43 @@ experimental: {
 }
 ```
 
-### CDN Configuration
+### Cloudflare Images Configuration
+
+The application uses Cloudflare Images for global image delivery and optimization.
+
+#### Setup Cloudflare Images
+
+1. **Create Cloudflare Account**: Sign up at [Cloudflare](https://cloudflare.com)
+2. **Enable Images**: Go to Cloudflare Dashboard → Images
+3. **Get Account Hash**: Copy your account hash from the Images dashboard
+4. **Configure Environment**: Set `NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME`
+
+#### Next.js Configuration
 
 ```javascript
 // next.config.mjs
 const nextConfig = {
   images: {
+    domains: ['imagedelivery.net'], // Cloudflare Images domain
     formats: ['image/webp', 'image/avif']
-  },
-  assetPrefix: process.env.NODE_ENV === 'production'
-    ? 'https://cdn.ainevis.com'
-    : ''
+  }
 }
 ```
+
+#### Image URL Structure
+
+Cloudflare Images URLs follow this pattern:
+```
+https://imagedelivery.net/{account_hash}/{image_id}/{variant}
+```
+
+#### Benefits
+
+- **Global CDN**: 300+ locations worldwide
+- **Automatic Optimization**: WebP/AVIF conversion
+- **Responsive Delivery**: Automatic resizing
+- **Fast Performance**: Optimized caching and delivery
+- **Cost Effective**: Pay per image stored and delivered
 
 ### Caching Strategy
 

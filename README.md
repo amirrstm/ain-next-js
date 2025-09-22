@@ -21,6 +21,7 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
 - **🎯 Smart Categories**: Organized content creation with intelligent categorization
 - **📊 Dashboard & Analytics**: Track your content creation progress and history
 - **🖼️ Image Generation**: AI-powered image generation capabilities
+- **☁️ Cloudflare Images**: Fast global image delivery and optimization
 - **📄 Resume Builder**: Professional resume creation tools
 - **💬 Chat Interface**: Interactive AI chat for content assistance
 - **🔐 Authentication**: Secure user authentication and authorization
@@ -58,6 +59,7 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
    NEXT_PUBLIC_SITE_URL=http://localhost:3500
    NEXT_PUBLIC_BASE_ENDPOINT=http://localhost:4000
    NEXT_PUBLIC_API_BASE_ENDPOINT=http://localhost:4000/api/v1
+   NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_name
    ```
 
 4. **Start the development server**
@@ -153,6 +155,18 @@ The project uses:
 - **Responsive design** for all screen sizes
 
 Theme configuration is in `tailwind.config.ts`.
+
+## ☁️ Image Management
+
+**Cloudflare Images** provides fast, global image delivery:
+
+- **Global CDN**: Images served from 300+ locations worldwide
+- **Automatic Optimization**: WebP/AVIF format conversion
+- **Responsive Images**: Automatic resizing based on device
+- **Fast Loading**: Optimized delivery with smart caching
+- **Image Transformations**: On-the-fly resizing and optimization
+
+Images are automatically optimized and delivered through Cloudflare's global network, ensuring fast loading times for users worldwide.
 
 ## 📚 Development
 

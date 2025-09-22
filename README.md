@@ -54,8 +54,6 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
    NEXT_PUBLIC_SITE_URL=http://localhost:3500
    NEXT_PUBLIC_BASE_ENDPOINT=http://localhost:4000
    NEXT_PUBLIC_API_BASE_ENDPOINT=http://localhost:4000/api/v1
-   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-   NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_name
    ```
 
 4. **Start the development server**

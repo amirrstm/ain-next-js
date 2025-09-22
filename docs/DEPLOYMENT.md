@@ -25,7 +25,7 @@ Before deploying AINevis, ensure you have:
 - Git access to the repository
 - Environment variables configured
 - Backend API server running
-- Cloud storage accounts (Cloudinary, Cloudflare)
+- External API services configured
 
 ## Environment Configuration
 
@@ -86,8 +86,6 @@ Vercel provides the easiest deployment experience for Next.js applications.
    NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
    NEXT_PUBLIC_BASE_ENDPOINT=https://your-api-domain.com
    NEXT_PUBLIC_API_BASE_ENDPOINT=https://your-api-domain.com/api/v1
-   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-   NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_name
    ANALYZE=false
    ```
 
@@ -159,8 +157,6 @@ services:
       - NEXT_PUBLIC_SITE_URL=http://localhost:3000
       - NEXT_PUBLIC_BASE_ENDPOINT=http://backend:4000
       - NEXT_PUBLIC_API_BASE_ENDPOINT=http://backend:4000/api/v1
-      - NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${CLOUDINARY_NAME}
-      - NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=${CLOUDFLARE_NAME}
     depends_on:
       - backend
     networks:
@@ -380,9 +376,8 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NEXT_PUBLIC_BASE_ENDPOINT=https://api.your-domain.com
 NEXT_PUBLIC_API_BASE_ENDPOINT=https://api.your-domain.com/api/v1
 
-# Cloud Services
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-NEXT_PUBLIC_CLOUDFLARE_CLOUD_NAME=your_cloudflare_name
+# External Services
+# Add your external service configuration here
 
 # Optional
 ANALYZE=false
@@ -432,7 +427,6 @@ experimental: {
 // next.config.mjs
 const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com'],
     formats: ['image/webp', 'image/avif']
   },
   assetPrefix: process.env.NODE_ENV === 'production'

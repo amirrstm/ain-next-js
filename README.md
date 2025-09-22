@@ -1,5 +1,9 @@
 # AINevis - Intelligent Content Creation Platform
 
+<div align="center">
+  <img src="https://fast.image.delivery/dhnaaum.png" alt="AINevis - Intelligent Content Creation Platform" width="800" />
+</div>
+
 ![AINevis](https://img.shields.io/badge/AINevis-Content%20Creation-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-14.1.0-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)

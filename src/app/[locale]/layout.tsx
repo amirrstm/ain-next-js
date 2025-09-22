@@ -1,12 +1,10 @@
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 
 import { Toaster } from '@/components/ui/sonner'
 import { appLayoutViewport } from '@/constants/viewport'
-import { locales } from '@/i18n'
+import { locales } from '@/i18n/routing'
 import StoreProvider from '@/providers/StoreProvider'
 import { SWRProvider } from '@/providers/SWRProvider'
 import { ThemeProvider } from '@/providers/ThemProvider'
@@ -33,16 +31,11 @@ export default function RootLayout({ children, params: { locale } }: { params: {
         <Suspense fallback={<div />}>
           <StoreProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange enableSystem>
-              <>
-                <SWRProvider>
-                  <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-                </SWRProvider>
+              <NextIntlClientProvider messages={messages}>
+                <SWRProvider>{children}</SWRProvider>
 
                 <Toaster className={YekanBakhFont.className} richColors />
-
-                <Analytics />
-                <SpeedInsights />
-              </>
+              </NextIntlClientProvider>
             </ThemeProvider>
           </StoreProvider>
         </Suspense>

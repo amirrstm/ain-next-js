@@ -6,9 +6,9 @@ import { SWRConfig } from 'swr'
 import { usePathname, useRouter } from '@/components/ui/navigation'
 import axios from '@/lib/axios'
 
-import type * as React from 'react'
+import type { ReactNode } from 'react'
 
-export function SWRProvider({ children }: { children: React.ReactNode }) {
+export function SWRProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   const pathname = usePathname()

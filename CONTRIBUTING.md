@@ -1,6 +1,6 @@
-# Contributing to AINevis
+# Contributing to AI-Nevis
 
-Thank you for your interest in contributing to AINevis! We welcome contributions from the community and are grateful for any help you can provide.
+Thank you for your interest in contributing to AI-Nevis! We welcome contributions from the community and are grateful for any help you can provide.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ This project and everyone participating in it is governed by our [Code of Conduc
 
 ## Getting Started
 
-1. **Fork the Repository**: Fork the AINevis repository to your GitHub account
+1. **Fork the Repository**: Fork the AI-Nevis repository to your GitHub account
 2. **Clone Your Fork**: Clone your fork to your local machine
 3. **Set Up Upstream**: Add the original repository as an upstream remote
 

@@ -233,7 +233,7 @@ Please read our [Security Policy](SECURITY.md) for information about reporting s
 ---
 
 <div align="center">
-  <p>Made with ❤️ by the AINevis Team</p>
+  <p>Made with ❤️ by Amir Rostami</p>
   <p>
     <a href="https://github.com/amirrstm/AIN-NextJS">⭐ Star this repository</a> if you find it helpful!
   </p>

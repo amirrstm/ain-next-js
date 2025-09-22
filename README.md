@@ -28,7 +28,7 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
 ### Prerequisites
 
 - Node.js 18+
-- Yarn package manager
+- pnpm package manager
 - Modern web browser
 
 ### Installation
@@ -41,7 +41,7 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
 
 2. **Install dependencies**
    ```bash
-   yarn install
+   pnpm install
    ```
 
 3. **Set up environment variables**
@@ -60,7 +60,7 @@ AINevis is a dynamic AI-powered platform that enables intelligent content creati
 
 4. **Start the development server**
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 5. **Open your browser**
@@ -158,19 +158,20 @@ Theme configuration is in `tailwind.config.ts`.
 
 ```bash
 # Development
-yarn dev          # Start development server on port 3500
-yarn build        # Build for production
-yarn start        # Start production server
-yarn lint         # Run ESLint
-yarn postbuild    # Generate sitemap (runs after build)
+pnpm dev          # Start development server on port 3500
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run Biome linting
+pnpm check        # Run Biome checks
+pnpm format       # Format code with Biome
+pnpm postbuild    # Generate sitemap (runs after build)
 ```
 
 ### Code Quality
 
-- **ESLint** for code linting
-- **Prettier** for code formatting
+- **Biome** for code linting and formatting
 - **TypeScript** for type safety
-- **Organized imports** with prettier plugin
+- **Organized imports** with Biome
 
 ### Architecture Principles
 
@@ -191,8 +192,8 @@ yarn postbuild    # Generate sitemap (runs after build)
 ### Manual Deployment
 
 ```bash
-yarn build
-yarn start
+pnpm build
+pnpm start
 ```
 
 ## 🤝 Contributing
@@ -204,7 +205,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
 3. Make your changes
-4. Run tests and linting: `yarn lint`
+4. Run linting and formatting: `pnpm check`
 5. Commit your changes: `git commit -m 'Add amazing feature'`
 6. Push to the branch: `git push origin feature/amazing-feature`
 7. Open a Pull Request

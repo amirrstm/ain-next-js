@@ -37,14 +37,14 @@ git remote add upstream https://github.com/original-username/AIN-NextJS.git
 ### Prerequisites
 
 - Node.js 18 or higher
-- Yarn package manager
+- pnpm package manager
 - Git
 
 ### Installation
 
 1. **Install dependencies**:
    ```bash
-   yarn install
+   pnpm install
    ```
 
 2. **Set up environment variables**:
@@ -56,7 +56,7 @@ git remote add upstream https://github.com/original-username/AIN-NextJS.git
 
 3. **Start the development server**:
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 ## How to Contribute
@@ -102,14 +102,14 @@ git checkout -b fix/your-bug-fix
 ### 3. Test Your Changes
 
 ```bash
-# Run linting
-yarn lint
+# Run linting and formatting
+pnpm check
 
 # Build the project
-yarn build
+pnpm build
 
 # Test in development
-yarn dev
+pnpm dev
 ```
 
 ### 4. Commit Your Changes
@@ -271,11 +271,11 @@ When suggesting features, please include:
 ### Running Tests
 
 ```bash
-# Run linting
-yarn lint
+# Run linting and formatting
+pnpm check
 
 # Build project
-yarn build
+pnpm build
 ```
 
 ### Test Coverage

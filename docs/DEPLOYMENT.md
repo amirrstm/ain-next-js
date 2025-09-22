@@ -21,7 +21,7 @@ This guide covers different deployment strategies for the AINevis application, f
 Before deploying AINevis, ensure you have:
 
 - Node.js 18+ installed
-- Yarn package manager
+- pnpm package manager
 - Git access to the repository
 - Environment variables configured
 - Backend API server running
@@ -37,26 +37,26 @@ git clone https://github.com/amirrstm/AIN-NextJS.git
 cd AIN-NextJS
 
 # Install dependencies
-yarn install
+pnpm install
 
 # Copy environment file
 cp .env.example .env.development
 
 # Start development server
-yarn dev
+pnpm dev
 ```
 
 ### Production Environment
 
 ```bash
 # Install production dependencies
-yarn install --production
+pnpm install --prod
 
 # Build the application
-yarn build
+pnpm build
 
 # Start production server
-yarn start
+pnpm start
 ```
 
 ## Deployment Options
@@ -74,10 +74,10 @@ Vercel provides the easiest deployment experience for Next.js applications.
 
 2. **Configure Build Settings**
    ```bash
-   Build Command: yarn build
+   Build Command: pnpm build
    Output Directory: .next (default)
-   Install Command: yarn install
-   Development Command: yarn dev
+   Install Command: pnpm install
+   Development Command: pnpm dev
    ```
 
 3. **Set Environment Variables**
@@ -125,22 +125,22 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Copy source code
 COPY . .
 
 # Build the application
-RUN yarn build
+RUN pnpm build
 
 # Expose port 3000
 EXPOSE 3000
 
 # Start the application
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]
 ```
 
 #### Docker Compose
@@ -211,7 +211,7 @@ module.exports = {
   apps: [
     {
       name: 'ainevis-frontend',
-      script: 'yarn start',
+      script: 'pnpm start',
       cwd: '/path/to/your/project',
       env: {
         NODE_ENV: 'production',
@@ -302,16 +302,16 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'yarn'
+        cache: 'pnpm'
 
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: pnpm install --frozen-lockfile
 
     - name: Run linting
-      run: yarn lint
+      run: pnpm check
 
     - name: Build application
-      run: yarn build
+      run: pnpm build
       env:
         NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
         NEXT_PUBLIC_BASE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_BASE_ENDPOINT }}
@@ -345,17 +345,17 @@ cache:
 install_dependencies:
   stage: test
   script:
-    - yarn install --frozen-lockfile
+    - pnpm install --frozen-lockfile
 
 lint:
   stage: test
   script:
-    - yarn lint
+    - pnpm check
 
 build:
   stage: build
   script:
-    - yarn build
+    - pnpm build
   artifacts:
     paths:
       - .next/
@@ -364,7 +364,7 @@ build:
 deploy:
   stage: deploy
   script:
-    - yarn global add vercel
+    - pnpm add -g vercel
     - vercel --token $VERCEL_TOKEN --prod
   only:
     - main
@@ -417,7 +417,7 @@ NEXT_PUBLIC_API_BASE_ENDPOINT=https://api.ainevis.com/api/v1
 
 ```bash
 # Analyze bundle size
-ANALYZE=true yarn build
+ANALYZE=true pnpm build
 
 # Enable experimental features
 # Add to next.config.mjs
@@ -517,22 +517,22 @@ export const logError = (error, context) => {
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules .next
-yarn install
-yarn build
+pnpm install
+pnpm build
 ```
 
 #### Memory Issues
 
 ```bash
 # Increase Node.js memory limit
-NODE_OPTIONS="--max-old-space-size=4096" yarn build
+NODE_OPTIONS="--max-old-space-size=4096" pnpm build
 ```
 
 #### Environment Variable Issues
 
 ```bash
 # Debug environment variables
-yarn build 2>&1 | grep "NEXT_PUBLIC"
+pnpm build 2>&1 | grep "NEXT_PUBLIC"
 ```
 
 ### Health Checks

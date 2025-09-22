@@ -1,19 +1,19 @@
-import React from 'react'
+import type React from 'react'
 
 const IconStats: React.FC = () => {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
-        fillRule="evenodd"
         clipRule="evenodd"
         d="M12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20Z"
         fill="#D2D2D2"
+        fillRule="evenodd"
       />
       <path
-        fillRule="evenodd"
         clipRule="evenodd"
         d="M12.0009 15.1199C10.2777 15.1199 8.88086 13.723 8.88086 11.9999C8.88086 10.2768 10.2777 8.87988 12.0009 8.87988C13.724 8.87988 15.1209 10.2768 15.1209 11.9999C15.1209 13.723 13.724 15.1199 12.0009 15.1199Z"
         fill="hsl(var(--primary))"
+        fillRule="evenodd"
       />
       <path
         d="M12.75 4.04H12.74C12.5 4.01 12.25 4 12 4C11.75 4 11.5 4.01 11.26 4.04H11.25V2C11.25 1.59 11.59 1.25 12 1.25C12.41 1.25 12.75 1.59 12.75 2V4.04Z"

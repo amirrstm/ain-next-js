@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconCopywriting: React.FC = () => {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M18.0098 8.98988L15.0098 5.98988L16.4998 4.49988C16.9198 4.07988 17.4598 3.87988 17.9998 3.87988C18.5398 3.87988 19.0798 4.07988 19.4998 4.49988C20.3298 5.32988 20.3298 6.66988 19.4998 7.49988L18.0098 8.98988Z"
         fill="hsl(var(--primary))"

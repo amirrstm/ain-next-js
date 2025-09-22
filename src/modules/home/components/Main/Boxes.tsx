@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const rows = new Array(150).fill(1)
   const cols = new Array(100).fill(1)
-  let colors = [
+  const colors = [
     '--sky-300',
     '--pink-300',
     '--green-300',
@@ -17,7 +17,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     '--purple-300',
     '--blue-300',
     '--indigo-300',
-    '--violet-300',
+    '--violet-300'
   ]
   const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)]
@@ -25,35 +25,35 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
 
   return (
     <div
+      className={cn(
+        '-top-[10%] -translate-x-1/2 -translate-y-1/2 -z-[1] absolute left-1/4 flex h-full w-full bg-background p-4 opacity-15 dark:opacity-40',
+        className
+      )}
       dir="ltr"
       style={{
-        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`,
+        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`
       }}
-      className={cn(
-        'absolute left-1/4 p-4 -top-[10%] flex  -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background -z-[1] opacity-15 dark:opacity-40',
-        className,
-      )}
       {...rest}
     >
       {rows.map((_, i) => (
-        <motion.div key={`row` + i} className="w-16 h-8  border-l  border-slate-700 relative">
+        <motion.div className="relative h-8 w-16 border-slate-700 border-l" key={`row${i}`}>
           {cols.map((_, j) => (
             <motion.div
-              key={`col` + j}
               animate={{ transition: { duration: 2 } }}
-              className="w-16 h-8  border-r border-t border-slate-700 relative"
+              className="relative h-8 w-16 border-slate-700 border-t border-r"
+              key={`col${j}`}
               whileHover={{ backgroundColor: `var(${getRandomColor()})`, transition: { duration: 0 } }}
             >
               {j % 2 === 0 && i % 2 === 0 ? (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="-top-[14px] -left-[22px] pointer-events-none absolute h-6 w-10 stroke-[1px] text-slate-100 dark:text-slate-700"
                   fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
                   stroke="currentColor"
-                  className="absolute h-6 w-10 -top-[14px] -left-[22px] text-slate-100 dark:text-slate-700 stroke-[1px] pointer-events-none"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+                  <path d="M12 6v12m6-6H6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               ) : null}
             </motion.div>

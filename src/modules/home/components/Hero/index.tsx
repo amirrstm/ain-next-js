@@ -1,14 +1,11 @@
 'use client'
 
+import { IconArrowLeft } from '@tabler/icons-react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
-import Image from 'next/image'
 
-import { IconArrowLeft } from '@tabler/icons-react'
-
-import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
-
 import { OPEN_AI_LOGO } from '@/constants'
 
 const HeroHeader: React.FC = () => {
@@ -16,36 +13,36 @@ const HeroHeader: React.FC = () => {
   const t = useTranslations('Layout')
 
   return (
-    <div className=" flex flex-col items-center justify-center">
-      <div className="max-w-xl text-center px-1">
-        <h1 className="text-3xl md:text-5xl leading-relaxed rtl:leading-[1.5] font-bold">{t('Title')}</h1>
-        <p className="mt-4 text-xs md:text-base text-neutral-500 dark:text-gray-300">{t('Subtitle')}</p>
+    <div className="flex flex-col items-center justify-center">
+      <div className="max-w-xl px-1 text-center">
+        <h1 className="font-bold text-3xl leading-relaxed md:text-5xl rtl:leading-[1.5]">{t('Title')}</h1>
+        <p className="mt-4 text-neutral-500 text-xs md:text-base dark:text-gray-300">{t('Subtitle')}</p>
       </div>
 
       <div className="mt-12">
         <Link href="/login">
-          <div className="bg-primary text-sm flex py-2 rounded-full gap-2 items-center px-6 text-primary-foreground flex-row-reverse rtl:flex-row">
-            <IconArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0" />
+          <div className="flex flex-row-reverse items-center gap-2 rounded-full bg-primary px-6 py-2 text-primary-foreground text-sm rtl:flex-row">
+            <IconArrowLeft className="h-4 w-4 rotate-180 rtl:rotate-0" />
             {t('Home.GetStarted')}
           </div>
         </Link>
       </div>
 
-      <div className="mt-4 flex items-center flex-row-reverse rtl:flex-row gap-2">
-        <div className="flex gap-6 items-center">
+      <div className="mt-4 flex flex-row-reverse items-center gap-2 rtl:flex-row">
+        <div className="flex items-center gap-6">
           <div className="relative h-7 sm:h-4">
             <Image
-              priority
-              width={100}
-              height={100}
               alt="open-ai"
+              className={`h-full w-full object-contain ${resolvedTheme === 'light' ? 'contrast-[1] grayscale hue-rotate-[180deg] invert' : ''}`}
+              height={100}
+              priority
               src={OPEN_AI_LOGO}
-              className={`w-full h-full object-contain ${resolvedTheme === 'light' ? 'grayscale invert contrast-[1] hue-rotate-[180deg]' : ''}`}
+              width={100}
             />
           </div>
         </div>
 
-        <p className="text-xs text-center rtl:mt-1">{t('Home.PoweredBy')}</p>
+        <p className="text-center text-xs rtl:mt-1">{t('Home.PoweredBy')}</p>
       </div>
     </div>
   )

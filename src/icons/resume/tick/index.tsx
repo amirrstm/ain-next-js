@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconTick: React.FC = () => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M7.75925 3.64984C5.28925 3.64984 3.28925 5.65984 3.28925 8.11984V17.5298C3.28925 19.9898 5.29925 21.9998 7.75925 21.9998H16.2292C18.6992 21.9998 20.6992 19.9898 20.6992 17.5298V8.11984C20.7092 5.64984 18.6992 3.64984 16.2392 3.64984H7.75925Z"
         fill="#D2D2D2"

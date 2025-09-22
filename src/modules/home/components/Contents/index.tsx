@@ -11,26 +11,26 @@ const Contents: React.FC = () => {
   return (
     <section className="relative py-10 md:py-0">
       <div
-        className="absolute -bottom-10 left-0 right-0 h-full bg-background bg-no-repeat bg-contain bg-top -z-10 rotate-180"
+        className="-bottom-10 -z-10 absolute right-0 left-0 h-full rotate-180 bg-background bg-contain bg-top bg-no-repeat"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
               ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
+              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")'
         }}
       />
 
       <div
-        className="absolute top-0 left-0 right-0 h-1/2 bg-background bg-no-repeat bg-contain bg-top -z-[2]"
+        className="-z-[2] absolute top-0 right-0 left-0 h-1/2 bg-background bg-contain bg-top bg-no-repeat"
         style={{
           backgroundImage:
             resolvedTheme === 'light'
               ? 'url("/images/bg-content.svg")'
-              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")',
+              : 'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.7)),url("/images/bg-content.svg")'
         }}
       />
 
-      <div className="absolute -top-0 w-full h-64 dark:h-32 bg-gradient-to-b from-background dark:from-background to-transparent -z-[1]" />
+      <div className="-top-0 -z-[1] absolute h-64 w-full bg-gradient-to-b from-background to-transparent dark:h-32 dark:from-background" />
 
       <Resume />
 

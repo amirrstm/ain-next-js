@@ -1,7 +1,6 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconOctagonPlus } from '@tabler/icons-react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
 
@@ -12,17 +11,15 @@ const ResumeEmpty: React.FC<{ onCreate: () => void }> = ({ onCreate }) => {
   const t = useTranslations('Resume')
 
   return (
-    <div className="w-full max-w-sm mx-auto p-4 py-10 text-center z-[1] flex gap-4 flex-col justify-center items-center">
-      <div className="w-[500px] h-full">
+    <div className="z-[1] mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 p-4 py-10 text-center">
+      <div className="h-full w-[500px]">
         <Icon />
       </div>
-      <Button className="flex gap-2 items-center" onClick={onCreate}>
-        <IconOctagonPlus className="w-5 h-5" />
+      <Button className="flex items-center gap-2" onClick={onCreate}>
+        <IconOctagonPlus className="h-5 w-5" />
         {t('Create.Title')}
       </Button>
-      <span className="flex-1 leading-relaxed text-gray-500">
-        {t('Empty', { number: locale === 'fa' ? '۳' : '3' })}
-      </span>
+      <span className="flex-1 text-gray-500 leading-relaxed">{t('Empty', { number: locale === 'fa' ? '۳' : '3' })}</span>
     </div>
   )
 }

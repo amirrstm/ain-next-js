@@ -19,5 +19,5 @@ export const SOCIAL_NETWORKS = [
   { en: 'Behance', fa: 'Behance' },
   { en: 'Medium', fa: 'مدیم' },
   { en: 'Dev.to', fa: 'دولوپر تو' },
-  { en: 'Figma', fa: 'فیگما' },
+  { en: 'Figma', fa: 'فیگما' }
 ]

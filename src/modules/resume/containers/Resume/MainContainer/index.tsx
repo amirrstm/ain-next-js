@@ -1,26 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import React, { ReactNode, useContext, useEffect } from 'react'
+import { type ReactNode, useContext, useEffect } from 'react'
 import { FormProvider, useForm, useFormState } from 'react-hook-form'
 
 import useUserStore from '@/lib/store/auth'
 import { resumeDefaultValues } from '@/modules/resume/constants/resume.default'
-import { ResumeFormType } from '@/modules/resume/interface'
-import { IResumeEducation } from '@/modules/resume/interface/resume/resume.education'
-import { IResumeInterest } from '@/modules/resume/interface/resume/resume.interest'
-import { IResumeProject } from '@/modules/resume/interface/resume/resume.project'
-import { IResumeVolunteer } from '@/modules/resume/interface/resume/resume.volunteer'
-import { IResumeWork } from '@/modules/resume/interface/resume/resume.work'
 import { resumeSchema } from '@/modules/resume/validations'
 
-import {
-  BasicTab,
-  EducationTab,
-  OtherTab,
-  ProjectTab,
-  PublicationTab,
-  SkillTab,
-  WorkTab,
-} from '../../../components/Tabs'
+import { BasicTab, EducationTab, OtherTab, ProjectTab, PublicationTab, SkillTab, WorkTab } from '../../../components/Tabs'
 import { RESUME_ENUM_TABS } from '../../../constants/resume.enum'
 import { ResumeContext } from '../../../context'
 import {
@@ -39,8 +25,16 @@ import {
   useSpeech,
   useTeaching,
   useVolunteer,
-  useWork,
+  useWork
 } from '../../../hooks/mutations'
+
+import type React from 'react'
+import type { ResumeFormType } from '@/modules/resume/interface'
+import type { IResumeEducation } from '@/modules/resume/interface/resume/resume.education'
+import type { IResumeInterest } from '@/modules/resume/interface/resume/resume.interest'
+import type { IResumeProject } from '@/modules/resume/interface/resume/resume.project'
+import type { IResumeVolunteer } from '@/modules/resume/interface/resume/resume.volunteer'
+import type { IResumeWork } from '@/modules/resume/interface/resume/resume.work'
 
 const Tabs: Record<RESUME_ENUM_TABS, ReactNode> = {
   [RESUME_ENUM_TABS.Basic]: <BasicTab />,
@@ -49,7 +43,7 @@ const Tabs: Record<RESUME_ENUM_TABS, ReactNode> = {
   [RESUME_ENUM_TABS.Skills]: <SkillTab />,
   [RESUME_ENUM_TABS.Projects]: <ProjectTab />,
   [RESUME_ENUM_TABS.Publications]: <PublicationTab />,
-  [RESUME_ENUM_TABS.Others]: <OtherTab />,
+  [RESUME_ENUM_TABS.Others]: <OtherTab />
 }
 
 const ResumeMainContainer: React.FC = () => {
@@ -74,8 +68,8 @@ const ResumeMainContainer: React.FC = () => {
   const { trigger: triggerPublication } = usePublication()
 
   const form = useForm<ResumeFormType>({
-    resolver: zodResolver(resumeSchema),
     defaultValues: resumeDefaultValues,
+    resolver: zodResolver(resumeSchema)
   })
   const { dirtyFields } = useFormState({ control: form.control })
 
@@ -89,10 +83,10 @@ const ResumeMainContainer: React.FC = () => {
       if (dirtyFields.educations) {
         const educations = form.getValues().educations
         triggerEducation({
-          educations: educations.map(e => ({
+          educations: educations.map((e) => ({
             ...e,
-            highlights: (e.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
-          })) as IResumeEducation[],
+            highlights: (e.highlights || []).filter(({ value }) => !!value).map(({ value }) => value)
+          })) as IResumeEducation[]
         })
       }
 
@@ -100,10 +94,10 @@ const ResumeMainContainer: React.FC = () => {
         const works = form.getValues().works
 
         triggerWork({
-          works: works.map(w => ({
+          works: works.map((w) => ({
             ...w,
-            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
-          })) as IResumeWork[],
+            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value)
+          })) as IResumeWork[]
         })
       }
 
@@ -111,10 +105,10 @@ const ResumeMainContainer: React.FC = () => {
         const projects = form.getValues().projects
 
         triggerProject({
-          projects: projects.map(w => ({
+          projects: projects.map((w) => ({
             ...w,
-            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
-          })) as IResumeProject[],
+            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value)
+          })) as IResumeProject[]
         })
       }
 
@@ -161,10 +155,10 @@ const ResumeMainContainer: React.FC = () => {
       if (dirtyFields.interests) {
         const interests = form.getValues().interests
         triggerInterest({
-          interests: interests.map(w => ({
+          interests: interests.map((w) => ({
             ...w,
-            keywords: (w.keywords || []).filter(({ value }) => !!value).map(({ value }) => value),
-          })) as IResumeInterest[],
+            keywords: (w.keywords || []).filter(({ value }) => !!value).map(({ value }) => value)
+          })) as IResumeInterest[]
         })
       }
 
@@ -176,10 +170,10 @@ const ResumeMainContainer: React.FC = () => {
       if (dirtyFields.volunteers) {
         const volunteers = form.getValues().volunteers
         triggerVolunteer({
-          volunteers: volunteers.map(w => ({
+          volunteers: volunteers.map((w) => ({
             ...w,
-            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value),
-          })) as IResumeVolunteer[],
+            highlights: (w.highlights || []).filter(({ value }) => !!value).map(({ value }) => value)
+          })) as IResumeVolunteer[]
         })
       }
 
@@ -190,7 +184,28 @@ const ResumeMainContainer: React.FC = () => {
 
       form.reset({}, { keepValues: true })
     }
-  }, [activeTab])
+  }, [
+    activeTab,
+    dirtyFields,
+    form.getValues,
+    form.reset,
+    triggerAward,
+    triggerBasic,
+    triggerCertificate,
+    triggerEducation,
+    triggerInterest,
+    triggerInvention,
+    triggerLanguage,
+    triggerProfile,
+    triggerProject,
+    triggerPublication,
+    triggerReference,
+    triggerSkill,
+    triggerSpeech,
+    triggerTeaching,
+    triggerVolunteer,
+    triggerWork
+  ])
 
   useEffect(() => {
     if (resume && user) {
@@ -223,7 +238,7 @@ const ResumeMainContainer: React.FC = () => {
         form.setValue('basic.military', resume.basic.military, { shouldDirty: false })
         form.setValue('basic.location', resume.basic.location, { shouldDirty: false })
         form.setValue('basic.birthDate', !resume.basic.birthDate ? new Date() : new Date(resume.basic.birthDate), {
-          shouldDirty: false,
+          shouldDirty: false
         })
       }
 
@@ -234,33 +249,33 @@ const ResumeMainContainer: React.FC = () => {
       if (resume.education && resume.education.length > 0) {
         form.setValue(
           'educations',
-          resume.education.map(w => ({
+          resume.education.map((w) => ({
             ...w,
-            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
-          })) as any,
-          { shouldDirty: false },
+            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map((h) => ({ value: h }))
+          })),
+          { shouldDirty: false }
         )
       }
 
       if (resume.work && resume.work.length > 0) {
         form.setValue(
           'works',
-          resume.work.map(w => ({
+          resume.work.map((w) => ({
             ...w,
-            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
-          })) as any,
-          { shouldDirty: false },
+            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map((h) => ({ value: h }))
+          })),
+          { shouldDirty: false }
         )
       }
 
       if (resume.projects && resume.projects.length > 0) {
         form.setValue(
           'projects',
-          resume.projects.map(w => ({
+          resume.projects.map((w) => ({
             ...w,
-            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
-          })) as any,
-          { shouldDirty: false },
+            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map((h) => ({ value: h }))
+          })),
+          { shouldDirty: false }
         )
       }
 
@@ -295,10 +310,10 @@ const ResumeMainContainer: React.FC = () => {
       if (resume.interests && resume.interests.length > 0) {
         form.setValue(
           'interests',
-          resume.interests.map(w => ({
+          resume.interests.map((w) => ({
             ...w,
-            keywords: (w.keywords || []).map(h => ({ value: h, label: h })),
-          })) as any,
+            keywords: (w.keywords || []).map((h) => ({ label: h, value: h }))
+          }))
         )
       }
 
@@ -309,11 +324,11 @@ const ResumeMainContainer: React.FC = () => {
       if (resume.volunteers && resume.volunteers.length > 0) {
         form.setValue(
           'volunteers',
-          resume.volunteers.map(w => ({
+          resume.volunteers.map((w) => ({
             ...w,
-            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map(h => ({ value: h })),
-          })) as any,
-          { shouldDirty: false },
+            highlights: (w.highlights && w.highlights.length > 0 ? w.highlights : ['']).map((h) => ({ value: h }))
+          })),
+          { shouldDirty: false }
         )
       }
 
@@ -323,7 +338,7 @@ const ResumeMainContainer: React.FC = () => {
 
       form.reset({}, { keepValues: true })
     }
-  }, [user])
+  }, [user, form.reset, form.setValue, resume])
 
   if (!resume) return null
 

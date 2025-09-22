@@ -1,1455 +1,1455 @@
 export const COUNTRY_CODES = [
   {
-    name: 'Afghanistan',
-    persian_name: 'افغانستان',
-    dial_code: '+93',
     code: 'AF',
+    dial_code: '+93',
+    name: 'Afghanistan',
+    persian_name: 'افغانستان'
   },
   {
-    name: 'Aland Islands',
-    persian_name: 'جزایر آلند',
-    dial_code: '+358',
     code: 'AX',
-  },
-  {
-    name: 'Albania',
-    persian_name: 'آلبانی',
-    dial_code: '+355',
-    code: 'AL',
-  },
-  {
-    name: 'Algeria',
-    persian_name: 'الجزایر',
-    dial_code: '+213',
-    code: 'DZ',
-  },
-  {
-    name: 'AmericanSamoa',
-    persian_name: 'ساموآی امریکایی',
-    dial_code: '+1684',
-    code: 'AS',
-  },
-  {
-    name: 'Andorra',
-    persian_name: 'آندورا',
-    dial_code: '+376',
-    code: 'AD',
-  },
-  {
-    name: 'Angola',
-    persian_name: 'آنگولا',
-    dial_code: '+244',
-    code: 'AO',
-  },
-  {
-    name: 'Anguilla',
-    persian_name: 'آنگوئیلا',
-    dial_code: '+1264',
-    code: 'AI',
-  },
-  {
-    name: 'Antarctica',
-    persian_name: 'جنوبگان',
-    dial_code: '+672',
-    code: 'AQ',
-  },
-  {
-    name: 'Antigua and Barbuda',
-    persian_name: 'آنتیگوا و باربودا',
-    dial_code: '+1268',
-    code: 'AG',
-  },
-  {
-    name: 'Argentina',
-    persian_name: 'آرژانتین',
-    dial_code: '+54',
-    code: 'AR',
-  },
-  {
-    name: 'Armenia',
-    persian_name: 'ارمنستان',
-    dial_code: '+374',
-    code: 'AM',
-  },
-  {
-    name: 'Aruba',
-    persian_name: 'آروبا',
-    dial_code: '+297',
-    code: 'AW',
-  },
-  {
-    name: 'Australia',
-    persian_name: 'استرالیا',
-    dial_code: '+61',
-    code: 'AU',
-  },
-  {
-    name: 'Austria',
-    persian_name: 'اتریش',
-    dial_code: '+43',
-    code: 'AT',
-  },
-  {
-    name: 'Azerbaijan',
-    persian_name: 'آذربایجان',
-    dial_code: '+994',
-    code: 'AZ',
-  },
-  {
-    name: 'Bahamas',
-    persian_name: 'باهاما',
-    dial_code: '+1242',
-    code: 'BS',
-  },
-  {
-    name: 'Bahrain',
-    persian_name: 'بحرین',
-    dial_code: '+973',
-    code: 'BH',
-  },
-  {
-    name: 'Bangladesh',
-    persian_name: 'بنگلادش',
-    dial_code: '+880',
-    code: 'BD',
-  },
-  {
-    name: 'Barbados',
-    persian_name: 'باربادوس',
-    dial_code: '+1246',
-    code: 'BB',
-  },
-  {
-    name: 'Belarus',
-    persian_name: 'بلاروس',
-    dial_code: '+375',
-    code: 'BY',
-  },
-  {
-    name: 'Belgium',
-    persian_name: 'بلژیک',
-    dial_code: '+32',
-    code: 'BE',
-  },
-  {
-    name: 'Belize',
-    persian_name: 'بلیز',
-    dial_code: '+501',
-    code: 'BZ',
-  },
-  {
-    name: 'Benin',
-    persian_name: 'بنین',
-    dial_code: '+229',
-    code: 'BJ',
-  },
-  {
-    name: 'Bermuda',
-    persian_name: 'برمودا',
-    dial_code: '+1441',
-    code: 'BM',
-  },
-  {
-    name: 'Bhutan',
-    persian_name: 'بوتان',
-    dial_code: '+975',
-    code: 'BT',
-  },
-  {
-    name: 'Bolivia, Plurinational State of',
-    persian_name: 'بولیوی',
-    dial_code: '+591',
-    code: 'BO',
-  },
-  {
-    name: 'Bosnia and Herzegovina',
-    persian_name: 'بوسنی و هرزگوین',
-    dial_code: '+387',
-    code: 'BA',
-  },
-  {
-    name: 'Botswana',
-    persian_name: 'بوتسوانا',
-    dial_code: '+267',
-    code: 'BW',
-  },
-  {
-    name: 'Brazil',
-    persian_name: 'برزیل',
-    dial_code: '+55',
-    code: 'BR',
-  },
-  {
-    name: 'British Indian Ocean Territory',
-    persian_name: 'قلمرو هندی اقیانوس هند بریتانیا',
-    dial_code: '+246',
-    code: 'IO',
-  },
-  {
-    name: 'Brunei Darussalam',
-    persian_name: 'برونئی',
-    dial_code: '+673',
-    code: 'BN',
-  },
-  {
-    name: 'Bulgaria',
-    persian_name: 'بلغارستان',
-    dial_code: '+359',
-    code: 'BG',
-  },
-  {
-    name: 'Burkina Faso',
-    persian_name: 'بورکینافاسو',
-    dial_code: '+226',
-    code: 'BF',
-  },
-  {
-    name: 'Burundi',
-    persian_name: 'بوروندی',
-    dial_code: '+257',
-    code: 'BI',
-  },
-  {
-    name: 'Cambodia',
-    persian_name: 'کامبوج',
-    dial_code: '+855',
-    code: 'KH',
-  },
-  {
-    name: 'Cameroon',
-    persian_name: 'کامرون',
-    dial_code: '+237',
-    code: 'CM',
-  },
-  {
-    name: 'Canada',
-    persian_name: 'کانادا',
-    dial_code: '+1',
-    code: 'CA',
-  },
-  {
-    name: 'Cape Verde',
-    persian_name: 'کیپ ورد',
-    dial_code: '+238',
-    code: 'CV',
-  },
-  {
-    name: 'Cayman Islands',
-    persian_name: 'جزایر کیمن',
-    dial_code: '+ 345',
-    code: 'KY',
-  },
-  {
-    name: 'Central African Republic',
-    persian_name: 'جمهوری آفریقای مرکزی',
-    dial_code: '+236',
-    code: 'CF',
-  },
-  {
-    name: 'Chad',
-    persian_name: 'چاد',
-    dial_code: '+235',
-    code: 'TD',
-  },
-  {
-    name: 'Chile',
-    persian_name: 'شیلی',
-    dial_code: '+56',
-    code: 'CL',
-  },
-  {
-    name: 'China',
-    persian_name: 'چین',
-    dial_code: '+86',
-    code: 'CN',
-  },
-  {
-    name: 'Christmas Island',
-    persian_name: 'جزیره کریسمس',
-    dial_code: '+61',
-    code: 'CX',
-  },
-  {
-    name: 'Cocos (Keeling) Islands',
-    persian_name: 'جزایر کوکوس (کیلینگ)',
-    dial_code: '+61',
-    code: 'CC',
-  },
-  {
-    name: 'Colombia',
-    persian_name: 'کلمبیا',
-    dial_code: '+57',
-    code: 'CO',
-  },
-  {
-    name: 'Comoros',
-    persian_name: 'کومور',
-    dial_code: '+269',
-    code: 'KM',
-  },
-  {
-    name: 'Congo',
-    persian_name: 'کنگو',
-    dial_code: '+242',
-    code: 'CG',
-  },
-  {
-    name: 'Congo, The Democratic Republic of the Congo',
-    persian_name: 'جمهوری دموکراتیک کنگو',
-    dial_code: '+243',
-    code: 'CD',
-  },
-  {
-    name: 'Cook Islands',
-    persian_name: 'جزایر کوک',
-    dial_code: '+682',
-    code: 'CK',
-  },
-  {
-    name: 'Costa Rica',
-    persian_name: 'کاستاریکا',
-    dial_code: '+506',
-    code: 'CR',
-  },
-  {
-    name: "Cote d'Ivoire",
-    persian_name: 'ساحل عاج',
-    dial_code: '+225',
-    code: 'CI',
-  },
-  {
-    name: 'Croatia',
-    persian_name: 'کرواسی',
-    dial_code: '+385',
-    code: 'HR',
-  },
-  {
-    name: 'Cuba',
-    persian_name: 'کوبا',
-    dial_code: '+53',
-    code: 'CU',
-  },
-  {
-    name: 'Cyprus',
-    persian_name: 'قبرس',
-    dial_code: '+357',
-    code: 'CY',
-  },
-  {
-    name: 'Czech Republic',
-    persian_name: 'جمهوری چک',
-    dial_code: '+420',
-    code: 'CZ',
-  },
-  {
-    name: 'Denmark',
-    persian_name: 'دانمارک',
-    dial_code: '+45',
-    code: 'DK',
-  },
-  {
-    name: 'Djibouti',
-    persian_name: 'جیبوتی',
-    dial_code: '+253',
-    code: 'DJ',
-  },
-  {
-    name: 'Dominica',
-    persian_name: 'دومینیکا',
-    dial_code: '+1767',
-    code: 'DM',
-  },
-  {
-    name: 'Dominican Republic',
-    persian_name: 'جمهوری دومینیکن',
-    dial_code: '+1849',
-    code: 'DO',
-  },
-  {
-    name: 'Ecuador',
-    persian_name: 'اکوادور',
-    dial_code: '+593',
-    code: 'EC',
-  },
-  {
-    name: 'Egypt',
-    persian_name: 'مصر',
-    dial_code: '+20',
-    code: 'EG',
-  },
-  {
-    name: 'El Salvador',
-    persian_name: 'السالوادور',
-    dial_code: '+503',
-    code: 'SV',
-  },
-  {
-    name: 'Equatorial Guinea',
-    persian_name: 'گینه استوایی',
-    dial_code: '+240',
-    code: 'GQ',
-  },
-  {
-    name: 'Eritrea',
-    persian_name: 'اریتره',
-    dial_code: '+291',
-    code: 'ER',
-  },
-  {
-    name: 'Estonia',
-    persian_name: 'استونی',
-    dial_code: '+372',
-    code: 'EE',
-  },
-  {
-    name: 'Ethiopia',
-    persian_name: 'اتیوپی',
-    dial_code: '+251',
-    code: 'ET',
-  },
-  {
-    name: 'Falkland Islands (Malvinas)',
-    persian_name: 'جزایر فالکلند (مالویناس)',
-    dial_code: '+500',
-    code: 'FK',
-  },
-  {
-    name: 'Faroe Islands',
-    persian_name: 'جزایر فارو',
-    dial_code: '+298',
-    code: 'FO',
-  },
-  {
-    name: 'Fiji',
-    persian_name: 'فیجی',
-    dial_code: '+679',
-    code: 'FJ',
-  },
-  {
-    name: 'Finland',
-    persian_name: 'فنلاند',
     dial_code: '+358',
-    code: 'FI',
+    name: 'Aland Islands',
+    persian_name: 'جزایر آلند'
   },
   {
-    name: 'France',
-    persian_name: 'فرانسه',
-    dial_code: '+33',
-    code: 'FR',
+    code: 'AL',
+    dial_code: '+355',
+    name: 'Albania',
+    persian_name: 'آلبانی'
   },
   {
-    name: 'French Guiana',
-    persian_name: 'گویان فرانسه',
-    dial_code: '+594',
-    code: 'GF',
+    code: 'DZ',
+    dial_code: '+213',
+    name: 'Algeria',
+    persian_name: 'الجزایر'
   },
   {
-    name: 'French Polynesia',
-    persian_name: 'پلی‌نزی فرانسه',
-    dial_code: '+689',
-    code: 'PF',
+    code: 'AS',
+    dial_code: '+1684',
+    name: 'AmericanSamoa',
+    persian_name: 'ساموآی امریکایی'
   },
   {
-    name: 'Gabon',
-    persian_name: 'گابن',
-    dial_code: '+241',
-    code: 'GA',
+    code: 'AD',
+    dial_code: '+376',
+    name: 'Andorra',
+    persian_name: 'آندورا'
   },
   {
-    name: 'Gambia',
-    persian_name: 'گامبیا',
-    dial_code: '+220',
-    code: 'GM',
+    code: 'AO',
+    dial_code: '+244',
+    name: 'Angola',
+    persian_name: 'آنگولا'
   },
   {
-    name: 'Georgia',
-    persian_name: 'گرجستان',
-    dial_code: '+995',
-    code: 'GE',
+    code: 'AI',
+    dial_code: '+1264',
+    name: 'Anguilla',
+    persian_name: 'آنگوئیلا'
   },
   {
-    name: 'Germany',
-    persian_name: 'آلمان',
-    dial_code: '+49',
-    code: 'DE',
-  },
-  {
-    name: 'Ghana',
-    persian_name: 'غنا',
-    dial_code: '+233',
-    code: 'GH',
-  },
-  {
-    name: 'Gibraltar',
-    persian_name: 'جبل‌طارق',
-    dial_code: '+350',
-    code: 'GI',
-  },
-  {
-    name: 'Greece',
-    persian_name: 'یونان',
-    dial_code: '+30',
-    code: 'GR',
-  },
-  {
-    name: 'Greenland',
-    persian_name: 'گرینلند',
-    dial_code: '+299',
-    code: 'GL',
-  },
-  {
-    name: 'Grenada',
-    persian_name: 'گرنادا',
-    dial_code: '+1473',
-    code: 'GD',
-  },
-  {
-    name: 'Guadeloupe',
-    persian_name: 'گوادلوپ',
-    dial_code: '+590',
-    code: 'GP',
-  },
-  {
-    name: 'Guam',
-    persian_name: 'گوام',
-    dial_code: '+1671',
-    code: 'GU',
-  },
-  {
-    name: 'Guatemala',
-    persian_name: 'گواتمالا',
-    dial_code: '+502',
-    code: 'GT',
-  },
-  {
-    name: 'Guernsey',
-    persian_name: 'گرنزی',
-    dial_code: '+44',
-    code: 'GG',
-  },
-  {
-    name: 'Guinea',
-    persian_name: 'گینه',
-    dial_code: '+224',
-    code: 'GN',
-  },
-  {
-    name: 'Guinea-Bissau',
-    persian_name: 'گینه بیسائو',
-    dial_code: '+245',
-    code: 'GW',
-  },
-  {
-    name: 'Guyana',
-    persian_name: 'گویان',
-    dial_code: '+592',
-    code: 'GY',
-  },
-  {
-    name: 'Haiti',
-    persian_name: 'هائیتی',
-    dial_code: '+509',
-    code: 'HT',
-  },
-  {
-    name: 'Holy See (Vatican City State)',
-    persian_name: 'واتیکان',
-    dial_code: '+379',
-    code: 'VA',
-  },
-  {
-    name: 'Honduras',
-    persian_name: 'هندوراس',
-    dial_code: '+504',
-    code: 'HN',
-  },
-  {
-    name: 'Hong Kong',
-    persian_name: 'هنگ کنگ',
-    dial_code: '+852',
-    code: 'HK',
-  },
-  {
-    name: 'Hungary',
-    persian_name: 'مجارستان',
-    dial_code: '+36',
-    code: 'HU',
-  },
-  {
-    name: 'Iceland',
-    persian_name: 'ایسلند',
-    dial_code: '+354',
-    code: 'IS',
-  },
-  {
-    name: 'India',
-    persian_name: 'هند',
-    dial_code: '+91',
-    code: 'IN',
-  },
-  {
-    name: 'Indonesia',
-    persian_name: 'اندونزی',
-    dial_code: '+62',
-    code: 'ID',
-  },
-  {
-    name: 'Iran',
-    persian_name: 'ایران',
-    dial_code: '+98',
-    code: 'IR',
-  },
-  {
-    name: 'Iraq',
-    persian_name: 'عراق',
-    dial_code: '+964',
-    code: 'IQ',
-  },
-  {
-    name: 'Ireland',
-    persian_name: 'ایرلند',
-    dial_code: '+353',
-    code: 'IE',
-  },
-  {
-    name: 'Isle of Man',
-    persian_name: 'جزیره من',
-    dial_code: '+44',
-    code: 'IM',
-  },
-  {
-    name: 'Israel',
-    persian_name: 'اسرائیل',
-    dial_code: '+972',
-    code: 'IL',
-  },
-  {
-    name: 'Italy',
-    persian_name: 'ایتالیا',
-    dial_code: '+39',
-    code: 'IT',
-  },
-  {
-    name: 'Jamaica',
-    persian_name: 'جامائیکا',
-    dial_code: '+1876',
-    code: 'JM',
-  },
-  {
-    name: 'Japan',
-    persian_name: 'ژاپن',
-    dial_code: '+81',
-    code: 'JP',
-  },
-  {
-    name: 'Jersey',
-    persian_name: 'جرزی',
-    dial_code: '+44',
-    code: 'JE',
-  },
-  {
-    name: 'Jordan',
-    persian_name: 'اردن',
-    dial_code: '+962',
-    code: 'JO',
-  },
-  {
-    name: 'Kazakhstan',
-    persian_name: 'قزاقستان',
-    dial_code: '+7',
-    code: 'KZ',
-  },
-  {
-    name: 'Kenya',
-    persian_name: 'کنیا',
-    dial_code: '+254',
-    code: 'KE',
-  },
-  {
-    name: 'Kiribati',
-    persian_name: 'کیریباتی',
-    dial_code: '+686',
-    code: 'KI',
-  },
-  {
-    name: "Korea, Democratic People's Republic of",
-    persian_name: 'کره شمالی',
-    dial_code: '+850',
-    code: 'KP',
-  },
-  {
-    name: 'Korea, Republic of',
-    persian_name: 'کره جنوبی',
-    dial_code: '+82',
-    code: 'KR',
-  },
-  {
-    name: 'Kuwait',
-    persian_name: 'کویت',
-    dial_code: '+965',
-    code: 'KW',
-  },
-  {
-    name: 'Kyrgyzstan',
-    persian_name: 'قرقیزستان',
-    dial_code: '+996',
-    code: 'KG',
-  },
-  {
-    name: "Lao People's Democratic Republic",
-    persian_name: 'لائوس',
-    dial_code: '+856',
-    code: 'LA',
-  },
-  {
-    name: 'Latvia',
-    persian_name: 'لتونی',
-    dial_code: '+371',
-    code: 'LV',
-  },
-  {
-    name: 'Lebanon',
-    persian_name: 'لبنان',
-    dial_code: '+961',
-    code: 'LB',
-  },
-  {
-    name: 'Lesotho',
-    persian_name: 'لسوتو',
-    dial_code: '+266',
-    code: 'LS',
-  },
-  {
-    name: 'Liberia',
-    persian_name: 'لیبریا',
-    dial_code: '+231',
-    code: 'LR',
-  },
-  {
-    name: 'Libyan Arab Jamahiriya',
-    persian_name: 'لیبی',
-    dial_code: '+218',
-    code: 'LY',
-  },
-  {
-    name: 'Liechtenstein',
-    persian_name: 'لیختن‌اشتاین',
-    dial_code: '+423',
-    code: 'LI',
-  },
-  {
-    name: 'Lithuania',
-    persian_name: 'لیتوانی',
-    dial_code: '+370',
-    code: 'LT',
-  },
-  {
-    name: 'Luxembourg',
-    persian_name: 'لوکزامبورگ',
-    dial_code: '+352',
-    code: 'LU',
-  },
-  {
-    name: 'Macao',
-    persian_name: 'ماکائو',
-    dial_code: '+853',
-    code: 'MO',
-  },
-  {
-    name: 'Macedonia',
-    persian_name: 'مقدونیه',
-    dial_code: '+389',
-    code: 'MK',
-  },
-  {
-    name: 'Madagascar',
-    persian_name: 'ماداگاسکار',
-    dial_code: '+261',
-    code: 'MG',
-  },
-  {
-    name: 'Malawi',
-    persian_name: 'مالاوی',
-    dial_code: '+265',
-    code: 'MW',
-  },
-  {
-    name: 'Malaysia',
-    persian_name: 'مالزی',
-    dial_code: '+60',
-    code: 'MY',
-  },
-  {
-    name: 'Maldives',
-    persian_name: 'مالدیو',
-    dial_code: '+960',
-    code: 'MV',
-  },
-  {
-    name: 'Mali',
-    persian_name: 'مالی',
-    dial_code: '+223',
-    code: 'ML',
-  },
-  {
-    name: 'Malta',
-    persian_name: 'مالت',
-    dial_code: '+356',
-    code: 'MT',
-  },
-  {
-    name: 'Marshall Islands',
-    persian_name: 'جزایر مارشال',
-    dial_code: '+692',
-    code: 'MH',
-  },
-  {
-    name: 'Martinique',
-    persian_name: 'مارتینیک',
-    dial_code: '+596',
-    code: 'MQ',
-  },
-  {
-    name: 'Mauritania',
-    persian_name: 'موریتانی',
-    dial_code: '+222',
-    code: 'MR',
-  },
-  {
-    name: 'Mauritius',
-    persian_name: 'موریس',
-    dial_code: '+230',
-    code: 'MU',
-  },
-  {
-    name: 'Mayotte',
-    persian_name: 'مایوت',
-    dial_code: '+262',
-    code: 'YT',
-  },
-  {
-    name: 'Mexico',
-    persian_name: 'مکزیک',
-    dial_code: '+52',
-    code: 'MX',
-  },
-  {
-    name: 'Micronesia, Federated States of Micronesia',
-    persian_name: 'میکرونزی',
-    dial_code: '+691',
-    code: 'FM',
-  },
-  {
-    name: 'Moldova',
-    persian_name: 'مولداوی',
-    dial_code: '+373',
-    code: 'MD',
-  },
-  {
-    name: 'Monaco',
-    persian_name: 'موناکو',
-    dial_code: '+377',
-    code: 'MC',
-  },
-  {
-    name: 'Mongolia',
-    persian_name: 'مغولستان',
-    dial_code: '+976',
-    code: 'MN',
-  },
-  {
-    name: 'Montenegro',
-    persian_name: 'مونته‌نگرو',
-    dial_code: '+382',
-    code: 'ME',
-  },
-  {
-    name: 'Montserrat',
-    persian_name: 'مونت‌سرات',
-    dial_code: '+1664',
-    code: 'MS',
-  },
-  {
-    name: 'Morocco',
-    persian_name: 'مراکش',
-    dial_code: '+212',
-    code: 'MA',
-  },
-  {
-    name: 'Mozambique',
-    persian_name: 'موزامبیک',
-    dial_code: '+258',
-    code: 'MZ',
-  },
-  {
-    name: 'Myanmar',
-    persian_name: 'میانمار',
-    dial_code: '+95',
-    code: 'MM',
-  },
-  {
-    name: 'Namibia',
-    persian_name: 'نامیبیا',
-    dial_code: '+264',
-    code: 'NA',
-  },
-  {
-    name: 'Nauru',
-    persian_name: 'نائورو',
-    dial_code: '+674',
-    code: 'NR',
-  },
-  {
-    name: 'Nepal',
-    persian_name: 'نپال',
-    dial_code: '+977',
-    code: 'NP',
-  },
-  {
-    name: 'Netherlands',
-    persian_name: 'هلند',
-    dial_code: '+31',
-    code: 'NL',
-  },
-  {
-    name: 'Netherlands Antilles',
-    persian_name: 'جزایر آنتیل هلند',
-    dial_code: '+599',
-    code: 'AN',
-  },
-  {
-    name: 'New Caledonia',
-    persian_name: 'کالدونیای جدید',
-    dial_code: '+687',
-    code: 'NC',
-  },
-  {
-    name: 'New Zealand',
-    persian_name: 'نیوزیلند',
-    dial_code: '+64',
-    code: 'NZ',
-  },
-  {
-    name: 'Nicaragua',
-    persian_name: 'نیکاراگوئه',
-    dial_code: '+505',
-    code: 'NI',
-  },
-  {
-    name: 'Niger',
-    persian_name: 'نیجر',
-    dial_code: '+227',
-    code: 'NE',
-  },
-  {
-    name: 'Nigeria',
-    persian_name: 'نیجریه',
-    dial_code: '+234',
-    code: 'NG',
-  },
-  {
-    name: 'Niue',
-    persian_name: 'نیوئه',
-    dial_code: '+683',
-    code: 'NU',
-  },
-  {
-    name: 'Norfolk Island',
-    persian_name: 'جزیره نورفک',
+    code: 'AQ',
     dial_code: '+672',
-    code: 'NF',
+    name: 'Antarctica',
+    persian_name: 'جنوبگان'
   },
   {
-    name: 'Northern Mariana Islands',
-    persian_name: 'جزایر ماریانای شمالی',
-    dial_code: '+1670',
-    code: 'MP',
+    code: 'AG',
+    dial_code: '+1268',
+    name: 'Antigua and Barbuda',
+    persian_name: 'آنتیگوا و باربودا'
   },
   {
-    name: 'Norway',
-    persian_name: 'نروژ',
-    dial_code: '+47',
-    code: 'NO',
+    code: 'AR',
+    dial_code: '+54',
+    name: 'Argentina',
+    persian_name: 'آرژانتین'
   },
   {
-    name: 'Oman',
-    persian_name: 'عمان',
-    dial_code: '+968',
-    code: 'OM',
+    code: 'AM',
+    dial_code: '+374',
+    name: 'Armenia',
+    persian_name: 'ارمنستان'
   },
   {
-    name: 'Pakistan',
-    persian_name: 'پاکستان',
-    dial_code: '+92',
-    code: 'PK',
+    code: 'AW',
+    dial_code: '+297',
+    name: 'Aruba',
+    persian_name: 'آروبا'
   },
   {
-    name: 'Palau',
-    persian_name: 'پالائو',
-    dial_code: '+680',
-    code: 'PW',
+    code: 'AU',
+    dial_code: '+61',
+    name: 'Australia',
+    persian_name: 'استرالیا'
   },
   {
-    name: 'Palestine',
-    persian_name: 'فلسطین',
-    dial_code: '+970',
-    code: 'PS',
+    code: 'AT',
+    dial_code: '+43',
+    name: 'Austria',
+    persian_name: 'اتریش'
   },
   {
-    name: 'Panama',
-    persian_name: 'پاناما',
-    dial_code: '+507',
-    code: 'PA',
+    code: 'AZ',
+    dial_code: '+994',
+    name: 'Azerbaijan',
+    persian_name: 'آذربایجان'
   },
   {
-    name: 'Papua New Guinea',
-    persian_name: 'پاپوا گینه نو',
-    dial_code: '+675',
-    code: 'PG',
+    code: 'BS',
+    dial_code: '+1242',
+    name: 'Bahamas',
+    persian_name: 'باهاما'
   },
   {
-    name: 'Paraguay',
-    persian_name: 'پاراگوئه',
-    dial_code: '+595',
-    code: 'PY',
+    code: 'BH',
+    dial_code: '+973',
+    name: 'Bahrain',
+    persian_name: 'بحرین'
   },
   {
-    name: 'Peru',
-    persian_name: 'پرو',
-    dial_code: '+51',
-    code: 'PE',
+    code: 'BD',
+    dial_code: '+880',
+    name: 'Bangladesh',
+    persian_name: 'بنگلادش'
   },
   {
-    name: 'Philippines',
-    persian_name: 'فیلیپین',
-    dial_code: '+63',
-    code: 'PH',
+    code: 'BB',
+    dial_code: '+1246',
+    name: 'Barbados',
+    persian_name: 'باربادوس'
   },
   {
-    name: 'Pitcairn',
-    persian_name: 'پیتکرن',
-    dial_code: '+872',
-    code: 'PN',
+    code: 'BY',
+    dial_code: '+375',
+    name: 'Belarus',
+    persian_name: 'بلاروس'
   },
   {
-    name: 'Poland',
-    persian_name: 'لهستان',
-    dial_code: '+48',
-    code: 'PL',
+    code: 'BE',
+    dial_code: '+32',
+    name: 'Belgium',
+    persian_name: 'بلژیک'
   },
   {
-    name: 'Portugal',
-    persian_name: 'پرتغال',
-    dial_code: '+351',
-    code: 'PT',
+    code: 'BZ',
+    dial_code: '+501',
+    name: 'Belize',
+    persian_name: 'بلیز'
   },
   {
-    name: 'Puerto Rico',
-    persian_name: 'پورتوریکو',
-    dial_code: '+1939',
-    code: 'PR',
+    code: 'BJ',
+    dial_code: '+229',
+    name: 'Benin',
+    persian_name: 'بنین'
   },
   {
-    name: 'Qatar',
-    persian_name: 'قطر',
-    dial_code: '+974',
-    code: 'QA',
+    code: 'BM',
+    dial_code: '+1441',
+    name: 'Bermuda',
+    persian_name: 'برمودا'
   },
   {
-    name: 'Romania',
-    persian_name: 'رومانی',
-    dial_code: '+40',
-    code: 'RO',
+    code: 'BT',
+    dial_code: '+975',
+    name: 'Bhutan',
+    persian_name: 'بوتان'
   },
   {
-    name: 'Russia',
-    persian_name: 'روسیه',
-    dial_code: '+7',
-    code: 'RU',
+    code: 'BO',
+    dial_code: '+591',
+    name: 'Bolivia, Plurinational State of',
+    persian_name: 'بولیوی'
   },
   {
-    name: 'Rwanda',
-    persian_name: 'رواندا',
-    dial_code: '+250',
-    code: 'RW',
+    code: 'BA',
+    dial_code: '+387',
+    name: 'Bosnia and Herzegovina',
+    persian_name: 'بوسنی و هرزگوین'
   },
   {
-    name: 'Réunion',
-    persian_name: 'ریونیون',
-    dial_code: '+262',
-    code: 'RE',
+    code: 'BW',
+    dial_code: '+267',
+    name: 'Botswana',
+    persian_name: 'بوتسوانا'
   },
   {
-    name: 'Saint Barthélemy',
-    persian_name: 'سن بارتلمی',
-    dial_code: '+590',
-    code: 'BL',
+    code: 'BR',
+    dial_code: '+55',
+    name: 'Brazil',
+    persian_name: 'برزیل'
   },
   {
-    name: 'Saint Helena, Ascension and Tristan Da Cunha',
-    persian_name: 'سنت هلنا',
-    dial_code: '+290',
-    code: 'SH',
+    code: 'IO',
+    dial_code: '+246',
+    name: 'British Indian Ocean Territory',
+    persian_name: 'قلمرو هندی اقیانوس هند بریتانیا'
   },
   {
-    name: 'Saint Kitts and Nevis',
-    persian_name: 'سنت کیتس و نویس',
-    dial_code: '+1869',
-    code: 'KN',
+    code: 'BN',
+    dial_code: '+673',
+    name: 'Brunei Darussalam',
+    persian_name: 'برونئی'
   },
   {
-    name: 'Saint Lucia',
-    persian_name: 'سنت لوسیا',
-    dial_code: '+1758',
-    code: 'LC',
+    code: 'BG',
+    dial_code: '+359',
+    name: 'Bulgaria',
+    persian_name: 'بلغارستان'
   },
   {
-    name: 'Saint Martin',
-    persian_name: 'سنت مارتین',
-    dial_code: '+590',
-    code: 'MF',
+    code: 'BF',
+    dial_code: '+226',
+    name: 'Burkina Faso',
+    persian_name: 'بورکینافاسو'
   },
   {
-    name: 'Saint Pierre and Miquelon',
-    persian_name: 'سنت پیر و میکلن',
-    dial_code: '+508',
-    code: 'PM',
+    code: 'BI',
+    dial_code: '+257',
+    name: 'Burundi',
+    persian_name: 'بوروندی'
   },
   {
-    name: 'Saint Vincent and the Grenadines',
-    persian_name: 'سنت وینسنت و گرنادین',
-    dial_code: '+1784',
-    code: 'VC',
+    code: 'KH',
+    dial_code: '+855',
+    name: 'Cambodia',
+    persian_name: 'کامبوج'
   },
   {
-    name: 'Samoa',
-    persian_name: 'ساموآ',
-    dial_code: '+685',
-    code: 'WS',
+    code: 'CM',
+    dial_code: '+237',
+    name: 'Cameroon',
+    persian_name: 'کامرون'
   },
   {
-    name: 'San Marino',
-    persian_name: 'سان‌مارینو',
-    dial_code: '+378',
-    code: 'SM',
-  },
-  {
-    name: 'Sao Tome and Principe',
-    persian_name: 'سائوتومه و پرنسیپ',
-    dial_code: '+239',
-    code: 'ST',
-  },
-  {
-    name: 'Saudi Arabia',
-    persian_name: 'عربستان سعودی',
-    dial_code: '+966',
-    code: 'SA',
-  },
-  {
-    name: 'Senegal',
-    persian_name: 'سنگال',
-    dial_code: '+221',
-    code: 'SN',
-  },
-  {
-    name: 'Serbia',
-    persian_name: 'صربستان',
-    dial_code: '+381',
-    code: 'RS',
-  },
-  {
-    name: 'Seychelles',
-    persian_name: 'سیشل',
-    dial_code: '+248',
-    code: 'SC',
-  },
-  {
-    name: 'Sierra Leone',
-    persian_name: 'سیرالئون',
-    dial_code: '+232',
-    code: 'SL',
-  },
-  {
-    name: 'Singapore',
-    persian_name: 'سنگاپور',
-    dial_code: '+65',
-    code: 'SG',
-  },
-  {
-    name: 'Slovakia',
-    persian_name: 'اسلواکی',
-    dial_code: '+421',
-    code: 'SK',
-  },
-  {
-    name: 'Slovenia',
-    persian_name: 'اسلوونی',
-    dial_code: '+386',
-    code: 'SI',
-  },
-  {
-    name: 'Solomon Islands',
-    persian_name: 'جزایر سلیمان',
-    dial_code: '+677',
-    code: 'SB',
-  },
-  {
-    name: 'Somalia',
-    persian_name: 'سومالی',
-    dial_code: '+252',
-    code: 'SO',
-  },
-  {
-    name: 'South Africa',
-    persian_name: 'آفریقای جنوبی',
-    dial_code: '+27',
-    code: 'ZA',
-  },
-  {
-    name: 'South Georgia and the South Sandwich Islands',
-    persian_name: 'جزایر جورجیای جنوبی و ساندویچ جنوبی',
-    dial_code: '+500',
-    code: 'GS',
-  },
-  {
-    name: 'Spain',
-    persian_name: 'اسپانیا',
-    dial_code: '+34',
-    code: 'ES',
-  },
-  {
-    name: 'Sri Lanka',
-    persian_name: 'سریلانکا',
-    dial_code: '+94',
-    code: 'LK',
-  },
-  {
-    name: 'Sudan',
-    persian_name: 'سودان',
-    dial_code: '+249',
-    code: 'SD',
-  },
-  {
-    name: 'Suriname',
-    persian_name: 'سورینام',
-    dial_code: '+597',
-    code: 'SR',
-  },
-  {
-    name: 'Svalbard and Jan Mayen',
-    persian_name: 'سوالبارد و یان ماین',
-    dial_code: '+47',
-    code: 'SJ',
-  },
-  {
-    name: 'Swaziland',
-    persian_name: 'سوازیلند',
-    dial_code: '+268',
-    code: 'SZ',
-  },
-  {
-    name: 'Sweden',
-    persian_name: 'سوئد',
-    dial_code: '+46',
-    code: 'SE',
-  },
-  {
-    name: 'Switzerland',
-    persian_name: 'سوئیس',
-    dial_code: '+41',
-    code: 'CH',
-  },
-  {
-    name: 'Syrian Arab Republic',
-    persian_name: 'سوریه',
-    dial_code: '+963',
-    code: 'SY',
-  },
-  {
-    name: 'Taiwan',
-    persian_name: 'تایوان',
-    dial_code: '+886',
-    code: 'TW',
-  },
-  {
-    name: 'Tajikistan',
-    persian_name: 'تاجیکستان',
-    dial_code: '+992',
-    code: 'TJ',
-  },
-  {
-    name: 'Tanzania, United Republic of Tanzania',
-    persian_name: 'تانزانیا',
-    dial_code: '+255',
-    code: 'TZ',
-  },
-  {
-    name: 'Thailand',
-    persian_name: 'تایلند',
-    dial_code: '+66',
-    code: 'TH',
-  },
-  {
-    name: 'Timor-Leste',
-    persian_name: 'تیمور شرقی',
-    dial_code: '+670',
-    code: 'TL',
-  },
-  {
-    name: 'Togo',
-    persian_name: 'توگو',
-    dial_code: '+228',
-    code: 'TG',
-  },
-  {
-    name: 'Tokelau',
-    persian_name: 'توکلائو',
-    dial_code: '+690',
-    code: 'TK',
-  },
-  {
-    name: 'Tonga',
-    persian_name: 'تونگا',
-    dial_code: '+676',
-    code: 'TO',
-  },
-  {
-    name: 'Trinidad and Tobago',
-    persian_name: 'ترینیداد و توباگو',
-    dial_code: '+1868',
-    code: 'TT',
-  },
-  {
-    name: 'Tunisia',
-    persian_name: 'تونس',
-    dial_code: '+216',
-    code: 'TN',
-  },
-  {
-    name: 'Turkey',
-    persian_name: 'ترکیه',
-    dial_code: '+90',
-    code: 'TR',
-  },
-  {
-    name: 'Turkmenistan',
-    persian_name: 'ترکمنستان',
-    dial_code: '+993',
-    code: 'TM',
-  },
-  {
-    name: 'Turks and Caicos Islands',
-    persian_name: 'جزایر تورکس و کایکوس',
-    dial_code: '+1649',
-    code: 'TC',
-  },
-  {
-    name: 'Tuvalu',
-    persian_name: 'تووالو',
-    dial_code: '+688',
-    code: 'TV',
-  },
-  {
-    name: 'Uganda',
-    persian_name: 'اوگاندا',
-    dial_code: '+256',
-    code: 'UG',
-  },
-  {
-    name: 'Ukraine',
-    persian_name: 'اوکراین',
-    dial_code: '+380',
-    code: 'UA',
-  },
-  {
-    name: 'United Arab Emirates',
-    persian_name: 'امارات متحده عربی',
-    dial_code: '+971',
-    code: 'AE',
-  },
-  {
-    name: 'United Kingdom',
-    persian_name: 'بریتانیا',
-    dial_code: '+44',
-    code: 'GB',
-  },
-  {
-    name: 'United States',
-    persian_name: 'ایالات متحده آمریکا',
+    code: 'CA',
     dial_code: '+1',
+    name: 'Canada',
+    persian_name: 'کانادا'
+  },
+  {
+    code: 'CV',
+    dial_code: '+238',
+    name: 'Cape Verde',
+    persian_name: 'کیپ ورد'
+  },
+  {
+    code: 'KY',
+    dial_code: '+ 345',
+    name: 'Cayman Islands',
+    persian_name: 'جزایر کیمن'
+  },
+  {
+    code: 'CF',
+    dial_code: '+236',
+    name: 'Central African Republic',
+    persian_name: 'جمهوری آفریقای مرکزی'
+  },
+  {
+    code: 'TD',
+    dial_code: '+235',
+    name: 'Chad',
+    persian_name: 'چاد'
+  },
+  {
+    code: 'CL',
+    dial_code: '+56',
+    name: 'Chile',
+    persian_name: 'شیلی'
+  },
+  {
+    code: 'CN',
+    dial_code: '+86',
+    name: 'China',
+    persian_name: 'چین'
+  },
+  {
+    code: 'CX',
+    dial_code: '+61',
+    name: 'Christmas Island',
+    persian_name: 'جزیره کریسمس'
+  },
+  {
+    code: 'CC',
+    dial_code: '+61',
+    name: 'Cocos (Keeling) Islands',
+    persian_name: 'جزایر کوکوس (کیلینگ)'
+  },
+  {
+    code: 'CO',
+    dial_code: '+57',
+    name: 'Colombia',
+    persian_name: 'کلمبیا'
+  },
+  {
+    code: 'KM',
+    dial_code: '+269',
+    name: 'Comoros',
+    persian_name: 'کومور'
+  },
+  {
+    code: 'CG',
+    dial_code: '+242',
+    name: 'Congo',
+    persian_name: 'کنگو'
+  },
+  {
+    code: 'CD',
+    dial_code: '+243',
+    name: 'Congo, The Democratic Republic of the Congo',
+    persian_name: 'جمهوری دموکراتیک کنگو'
+  },
+  {
+    code: 'CK',
+    dial_code: '+682',
+    name: 'Cook Islands',
+    persian_name: 'جزایر کوک'
+  },
+  {
+    code: 'CR',
+    dial_code: '+506',
+    name: 'Costa Rica',
+    persian_name: 'کاستاریکا'
+  },
+  {
+    code: 'CI',
+    dial_code: '+225',
+    name: "Cote d'Ivoire",
+    persian_name: 'ساحل عاج'
+  },
+  {
+    code: 'HR',
+    dial_code: '+385',
+    name: 'Croatia',
+    persian_name: 'کرواسی'
+  },
+  {
+    code: 'CU',
+    dial_code: '+53',
+    name: 'Cuba',
+    persian_name: 'کوبا'
+  },
+  {
+    code: 'CY',
+    dial_code: '+357',
+    name: 'Cyprus',
+    persian_name: 'قبرس'
+  },
+  {
+    code: 'CZ',
+    dial_code: '+420',
+    name: 'Czech Republic',
+    persian_name: 'جمهوری چک'
+  },
+  {
+    code: 'DK',
+    dial_code: '+45',
+    name: 'Denmark',
+    persian_name: 'دانمارک'
+  },
+  {
+    code: 'DJ',
+    dial_code: '+253',
+    name: 'Djibouti',
+    persian_name: 'جیبوتی'
+  },
+  {
+    code: 'DM',
+    dial_code: '+1767',
+    name: 'Dominica',
+    persian_name: 'دومینیکا'
+  },
+  {
+    code: 'DO',
+    dial_code: '+1849',
+    name: 'Dominican Republic',
+    persian_name: 'جمهوری دومینیکن'
+  },
+  {
+    code: 'EC',
+    dial_code: '+593',
+    name: 'Ecuador',
+    persian_name: 'اکوادور'
+  },
+  {
+    code: 'EG',
+    dial_code: '+20',
+    name: 'Egypt',
+    persian_name: 'مصر'
+  },
+  {
+    code: 'SV',
+    dial_code: '+503',
+    name: 'El Salvador',
+    persian_name: 'السالوادور'
+  },
+  {
+    code: 'GQ',
+    dial_code: '+240',
+    name: 'Equatorial Guinea',
+    persian_name: 'گینه استوایی'
+  },
+  {
+    code: 'ER',
+    dial_code: '+291',
+    name: 'Eritrea',
+    persian_name: 'اریتره'
+  },
+  {
+    code: 'EE',
+    dial_code: '+372',
+    name: 'Estonia',
+    persian_name: 'استونی'
+  },
+  {
+    code: 'ET',
+    dial_code: '+251',
+    name: 'Ethiopia',
+    persian_name: 'اتیوپی'
+  },
+  {
+    code: 'FK',
+    dial_code: '+500',
+    name: 'Falkland Islands (Malvinas)',
+    persian_name: 'جزایر فالکلند (مالویناس)'
+  },
+  {
+    code: 'FO',
+    dial_code: '+298',
+    name: 'Faroe Islands',
+    persian_name: 'جزایر فارو'
+  },
+  {
+    code: 'FJ',
+    dial_code: '+679',
+    name: 'Fiji',
+    persian_name: 'فیجی'
+  },
+  {
+    code: 'FI',
+    dial_code: '+358',
+    name: 'Finland',
+    persian_name: 'فنلاند'
+  },
+  {
+    code: 'FR',
+    dial_code: '+33',
+    name: 'France',
+    persian_name: 'فرانسه'
+  },
+  {
+    code: 'GF',
+    dial_code: '+594',
+    name: 'French Guiana',
+    persian_name: 'گویان فرانسه'
+  },
+  {
+    code: 'PF',
+    dial_code: '+689',
+    name: 'French Polynesia',
+    persian_name: 'پلی‌نزی فرانسه'
+  },
+  {
+    code: 'GA',
+    dial_code: '+241',
+    name: 'Gabon',
+    persian_name: 'گابن'
+  },
+  {
+    code: 'GM',
+    dial_code: '+220',
+    name: 'Gambia',
+    persian_name: 'گامبیا'
+  },
+  {
+    code: 'GE',
+    dial_code: '+995',
+    name: 'Georgia',
+    persian_name: 'گرجستان'
+  },
+  {
+    code: 'DE',
+    dial_code: '+49',
+    name: 'Germany',
+    persian_name: 'آلمان'
+  },
+  {
+    code: 'GH',
+    dial_code: '+233',
+    name: 'Ghana',
+    persian_name: 'غنا'
+  },
+  {
+    code: 'GI',
+    dial_code: '+350',
+    name: 'Gibraltar',
+    persian_name: 'جبل‌طارق'
+  },
+  {
+    code: 'GR',
+    dial_code: '+30',
+    name: 'Greece',
+    persian_name: 'یونان'
+  },
+  {
+    code: 'GL',
+    dial_code: '+299',
+    name: 'Greenland',
+    persian_name: 'گرینلند'
+  },
+  {
+    code: 'GD',
+    dial_code: '+1473',
+    name: 'Grenada',
+    persian_name: 'گرنادا'
+  },
+  {
+    code: 'GP',
+    dial_code: '+590',
+    name: 'Guadeloupe',
+    persian_name: 'گوادلوپ'
+  },
+  {
+    code: 'GU',
+    dial_code: '+1671',
+    name: 'Guam',
+    persian_name: 'گوام'
+  },
+  {
+    code: 'GT',
+    dial_code: '+502',
+    name: 'Guatemala',
+    persian_name: 'گواتمالا'
+  },
+  {
+    code: 'GG',
+    dial_code: '+44',
+    name: 'Guernsey',
+    persian_name: 'گرنزی'
+  },
+  {
+    code: 'GN',
+    dial_code: '+224',
+    name: 'Guinea',
+    persian_name: 'گینه'
+  },
+  {
+    code: 'GW',
+    dial_code: '+245',
+    name: 'Guinea-Bissau',
+    persian_name: 'گینه بیسائو'
+  },
+  {
+    code: 'GY',
+    dial_code: '+592',
+    name: 'Guyana',
+    persian_name: 'گویان'
+  },
+  {
+    code: 'HT',
+    dial_code: '+509',
+    name: 'Haiti',
+    persian_name: 'هائیتی'
+  },
+  {
+    code: 'VA',
+    dial_code: '+379',
+    name: 'Holy See (Vatican City State)',
+    persian_name: 'واتیکان'
+  },
+  {
+    code: 'HN',
+    dial_code: '+504',
+    name: 'Honduras',
+    persian_name: 'هندوراس'
+  },
+  {
+    code: 'HK',
+    dial_code: '+852',
+    name: 'Hong Kong',
+    persian_name: 'هنگ کنگ'
+  },
+  {
+    code: 'HU',
+    dial_code: '+36',
+    name: 'Hungary',
+    persian_name: 'مجارستان'
+  },
+  {
+    code: 'IS',
+    dial_code: '+354',
+    name: 'Iceland',
+    persian_name: 'ایسلند'
+  },
+  {
+    code: 'IN',
+    dial_code: '+91',
+    name: 'India',
+    persian_name: 'هند'
+  },
+  {
+    code: 'ID',
+    dial_code: '+62',
+    name: 'Indonesia',
+    persian_name: 'اندونزی'
+  },
+  {
+    code: 'IR',
+    dial_code: '+98',
+    name: 'Iran',
+    persian_name: 'ایران'
+  },
+  {
+    code: 'IQ',
+    dial_code: '+964',
+    name: 'Iraq',
+    persian_name: 'عراق'
+  },
+  {
+    code: 'IE',
+    dial_code: '+353',
+    name: 'Ireland',
+    persian_name: 'ایرلند'
+  },
+  {
+    code: 'IM',
+    dial_code: '+44',
+    name: 'Isle of Man',
+    persian_name: 'جزیره من'
+  },
+  {
+    code: 'IL',
+    dial_code: '+972',
+    name: 'Israel',
+    persian_name: 'اسرائیل'
+  },
+  {
+    code: 'IT',
+    dial_code: '+39',
+    name: 'Italy',
+    persian_name: 'ایتالیا'
+  },
+  {
+    code: 'JM',
+    dial_code: '+1876',
+    name: 'Jamaica',
+    persian_name: 'جامائیکا'
+  },
+  {
+    code: 'JP',
+    dial_code: '+81',
+    name: 'Japan',
+    persian_name: 'ژاپن'
+  },
+  {
+    code: 'JE',
+    dial_code: '+44',
+    name: 'Jersey',
+    persian_name: 'جرزی'
+  },
+  {
+    code: 'JO',
+    dial_code: '+962',
+    name: 'Jordan',
+    persian_name: 'اردن'
+  },
+  {
+    code: 'KZ',
+    dial_code: '+7',
+    name: 'Kazakhstan',
+    persian_name: 'قزاقستان'
+  },
+  {
+    code: 'KE',
+    dial_code: '+254',
+    name: 'Kenya',
+    persian_name: 'کنیا'
+  },
+  {
+    code: 'KI',
+    dial_code: '+686',
+    name: 'Kiribati',
+    persian_name: 'کیریباتی'
+  },
+  {
+    code: 'KP',
+    dial_code: '+850',
+    name: "Korea, Democratic People's Republic of",
+    persian_name: 'کره شمالی'
+  },
+  {
+    code: 'KR',
+    dial_code: '+82',
+    name: 'Korea, Republic of',
+    persian_name: 'کره جنوبی'
+  },
+  {
+    code: 'KW',
+    dial_code: '+965',
+    name: 'Kuwait',
+    persian_name: 'کویت'
+  },
+  {
+    code: 'KG',
+    dial_code: '+996',
+    name: 'Kyrgyzstan',
+    persian_name: 'قرقیزستان'
+  },
+  {
+    code: 'LA',
+    dial_code: '+856',
+    name: "Lao People's Democratic Republic",
+    persian_name: 'لائوس'
+  },
+  {
+    code: 'LV',
+    dial_code: '+371',
+    name: 'Latvia',
+    persian_name: 'لتونی'
+  },
+  {
+    code: 'LB',
+    dial_code: '+961',
+    name: 'Lebanon',
+    persian_name: 'لبنان'
+  },
+  {
+    code: 'LS',
+    dial_code: '+266',
+    name: 'Lesotho',
+    persian_name: 'لسوتو'
+  },
+  {
+    code: 'LR',
+    dial_code: '+231',
+    name: 'Liberia',
+    persian_name: 'لیبریا'
+  },
+  {
+    code: 'LY',
+    dial_code: '+218',
+    name: 'Libyan Arab Jamahiriya',
+    persian_name: 'لیبی'
+  },
+  {
+    code: 'LI',
+    dial_code: '+423',
+    name: 'Liechtenstein',
+    persian_name: 'لیختن‌اشتاین'
+  },
+  {
+    code: 'LT',
+    dial_code: '+370',
+    name: 'Lithuania',
+    persian_name: 'لیتوانی'
+  },
+  {
+    code: 'LU',
+    dial_code: '+352',
+    name: 'Luxembourg',
+    persian_name: 'لوکزامبورگ'
+  },
+  {
+    code: 'MO',
+    dial_code: '+853',
+    name: 'Macao',
+    persian_name: 'ماکائو'
+  },
+  {
+    code: 'MK',
+    dial_code: '+389',
+    name: 'Macedonia',
+    persian_name: 'مقدونیه'
+  },
+  {
+    code: 'MG',
+    dial_code: '+261',
+    name: 'Madagascar',
+    persian_name: 'ماداگاسکار'
+  },
+  {
+    code: 'MW',
+    dial_code: '+265',
+    name: 'Malawi',
+    persian_name: 'مالاوی'
+  },
+  {
+    code: 'MY',
+    dial_code: '+60',
+    name: 'Malaysia',
+    persian_name: 'مالزی'
+  },
+  {
+    code: 'MV',
+    dial_code: '+960',
+    name: 'Maldives',
+    persian_name: 'مالدیو'
+  },
+  {
+    code: 'ML',
+    dial_code: '+223',
+    name: 'Mali',
+    persian_name: 'مالی'
+  },
+  {
+    code: 'MT',
+    dial_code: '+356',
+    name: 'Malta',
+    persian_name: 'مالت'
+  },
+  {
+    code: 'MH',
+    dial_code: '+692',
+    name: 'Marshall Islands',
+    persian_name: 'جزایر مارشال'
+  },
+  {
+    code: 'MQ',
+    dial_code: '+596',
+    name: 'Martinique',
+    persian_name: 'مارتینیک'
+  },
+  {
+    code: 'MR',
+    dial_code: '+222',
+    name: 'Mauritania',
+    persian_name: 'موریتانی'
+  },
+  {
+    code: 'MU',
+    dial_code: '+230',
+    name: 'Mauritius',
+    persian_name: 'موریس'
+  },
+  {
+    code: 'YT',
+    dial_code: '+262',
+    name: 'Mayotte',
+    persian_name: 'مایوت'
+  },
+  {
+    code: 'MX',
+    dial_code: '+52',
+    name: 'Mexico',
+    persian_name: 'مکزیک'
+  },
+  {
+    code: 'FM',
+    dial_code: '+691',
+    name: 'Micronesia, Federated States of Micronesia',
+    persian_name: 'میکرونزی'
+  },
+  {
+    code: 'MD',
+    dial_code: '+373',
+    name: 'Moldova',
+    persian_name: 'مولداوی'
+  },
+  {
+    code: 'MC',
+    dial_code: '+377',
+    name: 'Monaco',
+    persian_name: 'موناکو'
+  },
+  {
+    code: 'MN',
+    dial_code: '+976',
+    name: 'Mongolia',
+    persian_name: 'مغولستان'
+  },
+  {
+    code: 'ME',
+    dial_code: '+382',
+    name: 'Montenegro',
+    persian_name: 'مونته‌نگرو'
+  },
+  {
+    code: 'MS',
+    dial_code: '+1664',
+    name: 'Montserrat',
+    persian_name: 'مونت‌سرات'
+  },
+  {
+    code: 'MA',
+    dial_code: '+212',
+    name: 'Morocco',
+    persian_name: 'مراکش'
+  },
+  {
+    code: 'MZ',
+    dial_code: '+258',
+    name: 'Mozambique',
+    persian_name: 'موزامبیک'
+  },
+  {
+    code: 'MM',
+    dial_code: '+95',
+    name: 'Myanmar',
+    persian_name: 'میانمار'
+  },
+  {
+    code: 'NA',
+    dial_code: '+264',
+    name: 'Namibia',
+    persian_name: 'نامیبیا'
+  },
+  {
+    code: 'NR',
+    dial_code: '+674',
+    name: 'Nauru',
+    persian_name: 'نائورو'
+  },
+  {
+    code: 'NP',
+    dial_code: '+977',
+    name: 'Nepal',
+    persian_name: 'نپال'
+  },
+  {
+    code: 'NL',
+    dial_code: '+31',
+    name: 'Netherlands',
+    persian_name: 'هلند'
+  },
+  {
+    code: 'AN',
+    dial_code: '+599',
+    name: 'Netherlands Antilles',
+    persian_name: 'جزایر آنتیل هلند'
+  },
+  {
+    code: 'NC',
+    dial_code: '+687',
+    name: 'New Caledonia',
+    persian_name: 'کالدونیای جدید'
+  },
+  {
+    code: 'NZ',
+    dial_code: '+64',
+    name: 'New Zealand',
+    persian_name: 'نیوزیلند'
+  },
+  {
+    code: 'NI',
+    dial_code: '+505',
+    name: 'Nicaragua',
+    persian_name: 'نیکاراگوئه'
+  },
+  {
+    code: 'NE',
+    dial_code: '+227',
+    name: 'Niger',
+    persian_name: 'نیجر'
+  },
+  {
+    code: 'NG',
+    dial_code: '+234',
+    name: 'Nigeria',
+    persian_name: 'نیجریه'
+  },
+  {
+    code: 'NU',
+    dial_code: '+683',
+    name: 'Niue',
+    persian_name: 'نیوئه'
+  },
+  {
+    code: 'NF',
+    dial_code: '+672',
+    name: 'Norfolk Island',
+    persian_name: 'جزیره نورفک'
+  },
+  {
+    code: 'MP',
+    dial_code: '+1670',
+    name: 'Northern Mariana Islands',
+    persian_name: 'جزایر ماریانای شمالی'
+  },
+  {
+    code: 'NO',
+    dial_code: '+47',
+    name: 'Norway',
+    persian_name: 'نروژ'
+  },
+  {
+    code: 'OM',
+    dial_code: '+968',
+    name: 'Oman',
+    persian_name: 'عمان'
+  },
+  {
+    code: 'PK',
+    dial_code: '+92',
+    name: 'Pakistan',
+    persian_name: 'پاکستان'
+  },
+  {
+    code: 'PW',
+    dial_code: '+680',
+    name: 'Palau',
+    persian_name: 'پالائو'
+  },
+  {
+    code: 'PS',
+    dial_code: '+970',
+    name: 'Palestine',
+    persian_name: 'فلسطین'
+  },
+  {
+    code: 'PA',
+    dial_code: '+507',
+    name: 'Panama',
+    persian_name: 'پاناما'
+  },
+  {
+    code: 'PG',
+    dial_code: '+675',
+    name: 'Papua New Guinea',
+    persian_name: 'پاپوا گینه نو'
+  },
+  {
+    code: 'PY',
+    dial_code: '+595',
+    name: 'Paraguay',
+    persian_name: 'پاراگوئه'
+  },
+  {
+    code: 'PE',
+    dial_code: '+51',
+    name: 'Peru',
+    persian_name: 'پرو'
+  },
+  {
+    code: 'PH',
+    dial_code: '+63',
+    name: 'Philippines',
+    persian_name: 'فیلیپین'
+  },
+  {
+    code: 'PN',
+    dial_code: '+872',
+    name: 'Pitcairn',
+    persian_name: 'پیتکرن'
+  },
+  {
+    code: 'PL',
+    dial_code: '+48',
+    name: 'Poland',
+    persian_name: 'لهستان'
+  },
+  {
+    code: 'PT',
+    dial_code: '+351',
+    name: 'Portugal',
+    persian_name: 'پرتغال'
+  },
+  {
+    code: 'PR',
+    dial_code: '+1939',
+    name: 'Puerto Rico',
+    persian_name: 'پورتوریکو'
+  },
+  {
+    code: 'QA',
+    dial_code: '+974',
+    name: 'Qatar',
+    persian_name: 'قطر'
+  },
+  {
+    code: 'RO',
+    dial_code: '+40',
+    name: 'Romania',
+    persian_name: 'رومانی'
+  },
+  {
+    code: 'RU',
+    dial_code: '+7',
+    name: 'Russia',
+    persian_name: 'روسیه'
+  },
+  {
+    code: 'RW',
+    dial_code: '+250',
+    name: 'Rwanda',
+    persian_name: 'رواندا'
+  },
+  {
+    code: 'RE',
+    dial_code: '+262',
+    name: 'Réunion',
+    persian_name: 'ریونیون'
+  },
+  {
+    code: 'BL',
+    dial_code: '+590',
+    name: 'Saint Barthélemy',
+    persian_name: 'سن بارتلمی'
+  },
+  {
+    code: 'SH',
+    dial_code: '+290',
+    name: 'Saint Helena, Ascension and Tristan Da Cunha',
+    persian_name: 'سنت هلنا'
+  },
+  {
+    code: 'KN',
+    dial_code: '+1869',
+    name: 'Saint Kitts and Nevis',
+    persian_name: 'سنت کیتس و نویس'
+  },
+  {
+    code: 'LC',
+    dial_code: '+1758',
+    name: 'Saint Lucia',
+    persian_name: 'سنت لوسیا'
+  },
+  {
+    code: 'MF',
+    dial_code: '+590',
+    name: 'Saint Martin',
+    persian_name: 'سنت مارتین'
+  },
+  {
+    code: 'PM',
+    dial_code: '+508',
+    name: 'Saint Pierre and Miquelon',
+    persian_name: 'سنت پیر و میکلن'
+  },
+  {
+    code: 'VC',
+    dial_code: '+1784',
+    name: 'Saint Vincent and the Grenadines',
+    persian_name: 'سنت وینسنت و گرنادین'
+  },
+  {
+    code: 'WS',
+    dial_code: '+685',
+    name: 'Samoa',
+    persian_name: 'ساموآ'
+  },
+  {
+    code: 'SM',
+    dial_code: '+378',
+    name: 'San Marino',
+    persian_name: 'سان‌مارینو'
+  },
+  {
+    code: 'ST',
+    dial_code: '+239',
+    name: 'Sao Tome and Principe',
+    persian_name: 'سائوتومه و پرنسیپ'
+  },
+  {
+    code: 'SA',
+    dial_code: '+966',
+    name: 'Saudi Arabia',
+    persian_name: 'عربستان سعودی'
+  },
+  {
+    code: 'SN',
+    dial_code: '+221',
+    name: 'Senegal',
+    persian_name: 'سنگال'
+  },
+  {
+    code: 'RS',
+    dial_code: '+381',
+    name: 'Serbia',
+    persian_name: 'صربستان'
+  },
+  {
+    code: 'SC',
+    dial_code: '+248',
+    name: 'Seychelles',
+    persian_name: 'سیشل'
+  },
+  {
+    code: 'SL',
+    dial_code: '+232',
+    name: 'Sierra Leone',
+    persian_name: 'سیرالئون'
+  },
+  {
+    code: 'SG',
+    dial_code: '+65',
+    name: 'Singapore',
+    persian_name: 'سنگاپور'
+  },
+  {
+    code: 'SK',
+    dial_code: '+421',
+    name: 'Slovakia',
+    persian_name: 'اسلواکی'
+  },
+  {
+    code: 'SI',
+    dial_code: '+386',
+    name: 'Slovenia',
+    persian_name: 'اسلوونی'
+  },
+  {
+    code: 'SB',
+    dial_code: '+677',
+    name: 'Solomon Islands',
+    persian_name: 'جزایر سلیمان'
+  },
+  {
+    code: 'SO',
+    dial_code: '+252',
+    name: 'Somalia',
+    persian_name: 'سومالی'
+  },
+  {
+    code: 'ZA',
+    dial_code: '+27',
+    name: 'South Africa',
+    persian_name: 'آفریقای جنوبی'
+  },
+  {
+    code: 'GS',
+    dial_code: '+500',
+    name: 'South Georgia and the South Sandwich Islands',
+    persian_name: 'جزایر جورجیای جنوبی و ساندویچ جنوبی'
+  },
+  {
+    code: 'ES',
+    dial_code: '+34',
+    name: 'Spain',
+    persian_name: 'اسپانیا'
+  },
+  {
+    code: 'LK',
+    dial_code: '+94',
+    name: 'Sri Lanka',
+    persian_name: 'سریلانکا'
+  },
+  {
+    code: 'SD',
+    dial_code: '+249',
+    name: 'Sudan',
+    persian_name: 'سودان'
+  },
+  {
+    code: 'SR',
+    dial_code: '+597',
+    name: 'Suriname',
+    persian_name: 'سورینام'
+  },
+  {
+    code: 'SJ',
+    dial_code: '+47',
+    name: 'Svalbard and Jan Mayen',
+    persian_name: 'سوالبارد و یان ماین'
+  },
+  {
+    code: 'SZ',
+    dial_code: '+268',
+    name: 'Swaziland',
+    persian_name: 'سوازیلند'
+  },
+  {
+    code: 'SE',
+    dial_code: '+46',
+    name: 'Sweden',
+    persian_name: 'سوئد'
+  },
+  {
+    code: 'CH',
+    dial_code: '+41',
+    name: 'Switzerland',
+    persian_name: 'سوئیس'
+  },
+  {
+    code: 'SY',
+    dial_code: '+963',
+    name: 'Syrian Arab Republic',
+    persian_name: 'سوریه'
+  },
+  {
+    code: 'TW',
+    dial_code: '+886',
+    name: 'Taiwan',
+    persian_name: 'تایوان'
+  },
+  {
+    code: 'TJ',
+    dial_code: '+992',
+    name: 'Tajikistan',
+    persian_name: 'تاجیکستان'
+  },
+  {
+    code: 'TZ',
+    dial_code: '+255',
+    name: 'Tanzania, United Republic of Tanzania',
+    persian_name: 'تانزانیا'
+  },
+  {
+    code: 'TH',
+    dial_code: '+66',
+    name: 'Thailand',
+    persian_name: 'تایلند'
+  },
+  {
+    code: 'TL',
+    dial_code: '+670',
+    name: 'Timor-Leste',
+    persian_name: 'تیمور شرقی'
+  },
+  {
+    code: 'TG',
+    dial_code: '+228',
+    name: 'Togo',
+    persian_name: 'توگو'
+  },
+  {
+    code: 'TK',
+    dial_code: '+690',
+    name: 'Tokelau',
+    persian_name: 'توکلائو'
+  },
+  {
+    code: 'TO',
+    dial_code: '+676',
+    name: 'Tonga',
+    persian_name: 'تونگا'
+  },
+  {
+    code: 'TT',
+    dial_code: '+1868',
+    name: 'Trinidad and Tobago',
+    persian_name: 'ترینیداد و توباگو'
+  },
+  {
+    code: 'TN',
+    dial_code: '+216',
+    name: 'Tunisia',
+    persian_name: 'تونس'
+  },
+  {
+    code: 'TR',
+    dial_code: '+90',
+    name: 'Turkey',
+    persian_name: 'ترکیه'
+  },
+  {
+    code: 'TM',
+    dial_code: '+993',
+    name: 'Turkmenistan',
+    persian_name: 'ترکمنستان'
+  },
+  {
+    code: 'TC',
+    dial_code: '+1649',
+    name: 'Turks and Caicos Islands',
+    persian_name: 'جزایر تورکس و کایکوس'
+  },
+  {
+    code: 'TV',
+    dial_code: '+688',
+    name: 'Tuvalu',
+    persian_name: 'تووالو'
+  },
+  {
+    code: 'UG',
+    dial_code: '+256',
+    name: 'Uganda',
+    persian_name: 'اوگاندا'
+  },
+  {
+    code: 'UA',
+    dial_code: '+380',
+    name: 'Ukraine',
+    persian_name: 'اوکراین'
+  },
+  {
+    code: 'AE',
+    dial_code: '+971',
+    name: 'United Arab Emirates',
+    persian_name: 'امارات متحده عربی'
+  },
+  {
+    code: 'GB',
+    dial_code: '+44',
+    name: 'United Kingdom',
+    persian_name: 'بریتانیا'
+  },
+  {
     code: 'US',
+    dial_code: '+1',
+    name: 'United States',
+    persian_name: 'ایالات متحده آمریکا'
   },
   {
-    name: 'Uruguay',
-    persian_name: 'اروگوئه',
-    dial_code: '+598',
     code: 'UY',
+    dial_code: '+598',
+    name: 'Uruguay',
+    persian_name: 'اروگوئه'
   },
   {
-    name: 'Uzbekistan',
-    persian_name: 'ازبکستان',
-    dial_code: '+998',
     code: 'UZ',
+    dial_code: '+998',
+    name: 'Uzbekistan',
+    persian_name: 'ازبکستان'
   },
   {
-    name: 'Vanuatu',
-    persian_name: 'وانواتو',
-    dial_code: '+678',
     code: 'VU',
+    dial_code: '+678',
+    name: 'Vanuatu',
+    persian_name: 'وانواتو'
   },
   {
-    name: 'Venezuela, Bolivarian Republic of Venezuela',
-    persian_name: 'ونزوئلا',
-    dial_code: '+58',
     code: 'VE',
+    dial_code: '+58',
+    name: 'Venezuela, Bolivarian Republic of Venezuela',
+    persian_name: 'ونزوئلا'
   },
   {
-    name: 'Vietnam',
-    dial_code: '+84',
-    persian_name: 'ویتنام',
     code: 'VN',
+    dial_code: '+84',
+    name: 'Vietnam',
+    persian_name: 'ویتنام'
   },
   {
-    name: 'Virgin Islands, British',
-    persian_name: 'جزایر ویرجین بریتانیا',
-    dial_code: '+1284',
     code: 'VG',
+    dial_code: '+1284',
+    name: 'Virgin Islands, British',
+    persian_name: 'جزایر ویرجین بریتانیا'
   },
   {
-    name: 'Virgin Islands, U.S.',
-    persian_name: 'جزایر ویرجین آمریکا',
-    dial_code: '+1340',
     code: 'VI',
+    dial_code: '+1340',
+    name: 'Virgin Islands, U.S.',
+    persian_name: 'جزایر ویرجین آمریکا'
   },
   {
-    name: 'Wallis and Futuna',
-    persian_name: 'والیس و فوتونا',
-    dial_code: '+681',
     code: 'WF',
+    dial_code: '+681',
+    name: 'Wallis and Futuna',
+    persian_name: 'والیس و فوتونا'
   },
   {
-    name: 'Yemen',
-    dial_code: '+967',
-    persian_name: 'یمن',
     code: 'YE',
+    dial_code: '+967',
+    name: 'Yemen',
+    persian_name: 'یمن'
   },
   {
-    name: 'Zambia',
-    dial_code: '+260',
-    persian_name: 'زامبیا',
     code: 'ZM',
+    dial_code: '+260',
+    name: 'Zambia',
+    persian_name: 'زامبیا'
   },
   {
-    name: 'Zimbabwe',
-    dial_code: '+263',
-    persian_name: 'زیمبابوه',
     code: 'ZW',
-  },
+    dial_code: '+263',
+    name: 'Zimbabwe',
+    persian_name: 'زیمبابوه'
+  }
 ]
 
 export const COUNTRY_LABELED = (locale: string) =>
-  COUNTRY_CODES.map(country => ({
+  COUNTRY_CODES.map((country) => ({
     ...country,
     label: locale === 'fa' ? country.persian_name : country.name,
-    value: locale === 'fa' ? country.persian_name : country.name,
+    value: locale === 'fa' ? country.persian_name : country.name
   }))

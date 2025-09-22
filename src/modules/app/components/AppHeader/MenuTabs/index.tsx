@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 import { Link, usePathname } from '@/components/ui/navigation'
-
 import { cn } from '@/lib/utils'
 
 type Tab = {
@@ -23,35 +22,35 @@ export const MenuTabs = ({ tabs: propTabs }: { tabs: Tab[] }) => {
     <>
       <div
         className={cn(
-          'flex flex-row items-center justify-start [perspective:1000px] relative',
-          'overflow-x-auto overflow-y-visible sm:overflow-visible no-visible-scrollbar max-w-full w-full py-2 px-2',
+          'relative flex flex-row items-center justify-start [perspective:1000px]',
+          'no-visible-scrollbar w-full max-w-full overflow-x-auto overflow-y-visible px-2 py-2 sm:overflow-visible'
         )}
       >
         {propTabs.map((tab, idx) => (
           <Link
-            key={tab.title}
-            href={tab.link}
-            onMouseLeave={() => setHoverTab(-1)}
-            onMouseEnter={() => setHoverTab(idx)}
-            style={{ transformStyle: 'preserve-3d' }}
-            className={cn('relative px-4 py-2 rounded-md text-sm flex items-center gap-2', {
+            className={cn('relative flex items-center gap-2 rounded-md px-4 py-2 text-sm', {
               'text-neutral-500': !isSamePage(tab.link),
-              'text-primary': isSamePage(tab.link),
+              'text-primary': isSamePage(tab.link)
             })}
+            href={tab.link}
+            key={tab.title}
+            onMouseEnter={() => setHoverTab(idx)}
+            onMouseLeave={() => setHoverTab(-1)}
+            style={{ transformStyle: 'preserve-3d' }}
           >
             {hoverTab === idx && (
               <motion.div
+                className={cn('absolute inset-0 rounded-md bg-gray-200 dark:bg-zinc-800')}
                 layoutId="clickedButton"
-                transition={{ type: 'spring', bounce: 0.3, duration: 0.6 }}
-                className={cn('absolute inset-0 bg-gray-200 dark:bg-zinc-800 rounded-md ')}
+                transition={{ bounce: 0.3, duration: 0.6, type: 'spring' }}
               />
             )}
 
             {isSamePage(tab.link) && (
               <motion.div
+                className={cn('-bottom-[9px] absolute right-0 left-0 h-[1px] bg-primary')}
                 layoutId="clickedLine"
-                transition={{ type: 'spring', bounce: 0.3, duration: 0.6 }}
-                className={cn('absolute -bottom-[9px] left-0 right-0 h-[1px] bg-primary')}
+                transition={{ bounce: 0.3, duration: 0.6, type: 'spring' }}
               />
             )}
 

@@ -1,7 +1,6 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -30,28 +29,28 @@ const NameForm: React.FC<Props> = ({ loading, returnUrl, onSubmit }) => {
   }
 
   return (
-    <div className="p-6 w-full">
+    <div className="w-full p-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+        <h1 className="bg-gradient-to-r from-primary to-textWhite bg-clip-text font-bold text-3xl text-transparent">
           {t('NameTitle')}
         </h1>
 
-        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('Fields.Name')}</p>
+        <p className="mx-auto mt-2 max-w-[80%] text-gray-400 text-xs leading-relaxed">{t('Fields.Name')}</p>
       </div>
 
       <div className="py-4">
         <Input
-          value={value}
           loading={loading}
+          onChange={(e) => setValue(e.target.value)}
           onKeyDown={onKeyDown}
           onRequestSubmit={onRequestSubmit}
-          onChange={e => setValue(e.target.value)}
           placeholder={t('Fields.NamePlaceholder')}
+          value={value}
         />
       </div>
 
-      <div className="font-light text-sm text-center">
-        <Link href={returnUrl ? returnUrl : '/app'} className="text-primary dark:text-gray-400 cursor-pointer">
+      <div className="text-center font-light text-sm">
+        <Link className="cursor-pointer text-primary dark:text-gray-400" href={returnUrl ? returnUrl : '/app'}>
           {t('Skip')}
         </Link>
       </div>

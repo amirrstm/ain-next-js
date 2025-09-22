@@ -2,13 +2,11 @@
 
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import { useRouter } from '@/components/ui/navigation'
-
 import { LOGIN_BG } from '@/constants'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
@@ -18,6 +16,8 @@ import CodeForm from '../../components/CodeForm'
 import LoginForm from '../../components/LoginForm'
 import { getUserProfile, loginUser, verifyUser } from '../../services'
 import { setUserToken } from '../../utils'
+
+import type React from 'react'
 
 const LoginContainer: React.FC = () => {
   const router = useRouter()
@@ -38,7 +38,7 @@ const LoginContainer: React.FC = () => {
     if (user) {
       router.push(`/app`)
     }
-  }, [])
+  }, [router.push, user])
 
   useEffect(() => {
     if (params) {
@@ -50,7 +50,7 @@ const LoginContainer: React.FC = () => {
         setUserToken(accessToken as string, refreshToken as string)
 
         setGoogleLoading(true)
-        getUserProfile().then(data => {
+        getUserProfile().then((data) => {
           setUser(data)
           if (data.firstName) {
             router.push(returnUrl ? returnUrl : `/app`)
@@ -60,10 +60,10 @@ const LoginContainer: React.FC = () => {
         })
       }
     }
-  }, [params])
+  }, [params, router.push, setUser])
 
   const onSubmit = (data: { mobile: string }) => {
-    trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then(res => {
+    trigger({ mobileNumber: persianToEnglishNumbers(data.mobile) }).then((res) => {
       setIsCode(true)
       setMobile(data.mobile)
 
@@ -78,7 +78,7 @@ const LoginContainer: React.FC = () => {
 
     verifyTrigger({ code: data.code, userId })
       .then(() => {
-        getUserProfile().then(data => {
+        getUserProfile().then((data) => {
           setUser(data)
           if (data.firstName) {
             router.push(returnUrl ? returnUrl : `/app`)
@@ -92,30 +92,30 @@ const LoginContainer: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="absolute bg-[#000002] w-screen h-screen inset-0 -z-10">
+      <div className="-z-10 absolute inset-0 h-screen w-screen bg-[#000002]">
         <Image
-          priority
-          width={1440}
-          height={960}
           alt="login-bg"
+          className="mx-auto h-full w-full max-w-[1440px] animate-blur-image object-cover md:object-contain"
+          height={960}
+          priority
           src={LOGIN_BG}
-          className="w-full h-full md:object-contain object-cover max-w-[1440px] mx-auto animate-blur-image"
+          width={1440}
         />
       </div>
 
-      <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[400px] mx-auto">
+      <div className="mx-auto flex h-full min-h-[100dvh] w-full items-center justify-center p-3 sm:w-[400px]">
         {isCode ? (
-          <div className="animate-slide-in-blurred-bottom delay-300 w-full">
+          <div className="w-full animate-slide-in-blurred-bottom delay-300">
             <CodeForm
               loading={loading}
-              onSubmit={onCodeSubmit}
               onBack={() => setIsCode(false)}
               onResend={() => onSubmit({ mobile })}
+              onSubmit={onCodeSubmit}
             />
           </div>
         ) : (
           <div className="animate-slide-in-blurred-bottom delay-300">
-            <LoginForm onSubmit={onSubmit} googleLoading={googleLoading} loading={isMutating} />
+            <LoginForm googleLoading={googleLoading} loading={isMutating} onSubmit={onSubmit} />
           </div>
         )}
       </div>

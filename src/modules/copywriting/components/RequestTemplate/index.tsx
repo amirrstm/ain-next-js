@@ -1,9 +1,8 @@
-import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconPlus, IconSend2 } from '@tabler/icons-react'
-import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
@@ -14,14 +13,15 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-
 import API from '@/lib/api'
 
 import { requestTemplate } from '../../services'
 
+import type React from 'react'
+
 const formSchema = z.object({
-  name: z.string(),
   description: z.string(),
+  name: z.string()
 })
 
 const RequestTemplate: React.FC = () => {
@@ -31,8 +31,8 @@ const RequestTemplate: React.FC = () => {
   const { trigger, isMutating } = useSWRMutation(API.CATEGORY.REQUEST, requestTemplate)
 
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { name: '', description: '' },
+    defaultValues: { description: '', name: '' },
+    resolver: zodResolver(formSchema)
   })
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
@@ -51,26 +51,26 @@ const RequestTemplate: React.FC = () => {
         onClick={() => setIsOpen(true)}
         variant={resolvedTheme === 'dark' ? 'default' : 'secondary'}
       >
-        <IconPlus className="w-5 h-5" />
+        <IconPlus className="h-5 w-5" />
         <span>{t('Template.Title')}</span>
       </Button>
 
-      <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
+      <Dialog onOpenChange={() => setIsOpen(false)} open={isOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle asChild>
               <>
                 <h1 className="text-xl"> {t('Template.Title')}</h1>
-                <div className="border-b text-xs pb-2">
+                <div className="border-b pb-2 text-xs">
                   <p>{t('Template.Subtitle')}</p>
                 </div>
               </>
             </DialogTitle>
             <DialogDescription asChild>
-              <div className="w-full px-2 overflow-y-auto">
+              <div className="w-full overflow-y-auto px-2">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="grid grid-cols-12 gap-6 mt-4">
+                    <div className="mt-4 grid grid-cols-12 gap-6">
                       <div className="col-span-12">
                         <FormField
                           control={form.control}
@@ -110,15 +110,10 @@ const RequestTemplate: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="pt-6 flex justify-end">
-                      <Button
-                        type="submit"
-                        className="flex gap-2"
-                        loading={isMutating}
-                        disabled={!form.getValues().name}
-                      >
+                    <div className="flex justify-end pt-6">
+                      <Button className="flex gap-2" disabled={!form.getValues().name} loading={isMutating} type="submit">
                         {t('Template.Fields.Submit')}
-                        <IconSend2 className="w-5 h-5 rotate-180" />
+                        <IconSend2 className="h-5 w-5 rotate-180" />
                       </Button>
                     </div>
                   </form>

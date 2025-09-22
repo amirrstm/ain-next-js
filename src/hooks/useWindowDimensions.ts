@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 function getWindowDimensions(): { width: number; height: number } {
   const { innerWidth: width, innerHeight: height } = window
   return {
-    width,
     height,
+    width
   }
 }
 

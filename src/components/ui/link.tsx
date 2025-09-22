@@ -1,4 +1,4 @@
-import NextLink, { LinkProps } from 'next/link'
+import NextLink, { type LinkProps } from 'next/link'
 
 export default function Link({
   lng,
@@ -9,7 +9,7 @@ export default function Link({
   ...rest
 }: LinkProps & { lng: string; children: React.ReactNode; className?: string }) {
   return (
-    <NextLink {...rest} href={`/${lng}${href}`} prefetch={prefetch} className={className}>
+    <NextLink {...rest} className={className} href={`/${lng}${href}`} prefetch={prefetch}>
       {children}
     </NextLink>
   )

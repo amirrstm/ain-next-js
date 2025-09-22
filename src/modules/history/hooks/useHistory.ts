@@ -1,11 +1,10 @@
 import useSWRInfinite from 'swr/infinite'
 
-import { ResponseModel } from '@/interface/General.model'
-
 import API from '@/lib/api'
 import axios from '@/lib/axios'
 
-import { IHistory } from '../interface'
+import type { ResponseModel } from '@/interface/General.model'
+import type { IHistory } from '../interface'
 
 const getKey = (pageIndex: number, previous: ResponseModel<IHistory[]>) =>
   previous && previous._metadata.pagination.totalPage === previous._metadata.pagination.page
@@ -19,11 +18,7 @@ function useHistory() {
 export default useHistory
 
 export async function getHistory(url = ''): Promise<ResponseModel<IHistory[]>> {
-  try {
-    const res = await axios.get<ResponseModel<IHistory[]>>(url)
+  const res = await axios.get<ResponseModel<IHistory[]>>(url)
 
-    return res.data
-  } catch (e) {
-    throw e
-  }
+  return res.data
 }

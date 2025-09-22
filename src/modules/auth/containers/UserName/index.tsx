@@ -2,18 +2,18 @@
 
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 
 import { useRouter } from '@/components/ui/navigation'
-
 import { LOGIN_BG } from '@/constants'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
 import NameForm from '../../components/NameForm'
 import { updateName } from '../../services'
+
+import type React from 'react'
 
 const UserNameContainer: React.FC = () => {
   const router = useRouter()
@@ -36,10 +36,10 @@ const UserNameContainer: React.FC = () => {
       setReturnUrl(paramReturnUrl)
     }
 
-    if (user && user.firstName) {
+    if (user?.firstName) {
       router.push(`/app`)
     }
-  }, [])
+  }, [params.get, router.push, user])
 
   const onSubmit = (data: { name: string }) => {
     const nameSplit = data.name.split(' ')
@@ -57,20 +57,20 @@ const UserNameContainer: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="absolute bg-[#000002] w-screen h-screen inset-0 -z-10">
+      <div className="-z-10 absolute inset-0 h-screen w-screen bg-[#000002]">
         <Image
-          priority
-          width={1440}
-          height={960}
           alt="login-bg"
+          className="mx-auto h-full w-full max-w-[1440px] animate-blur-image object-cover md:object-contain"
+          height={960}
+          priority
           src={LOGIN_BG}
-          className="w-full h-full md:object-contain object-cover max-w-[1440px] mx-auto animate-blur-image"
+          width={1440}
         />
       </div>
 
-      <div className="w-full h-full min-h-[100dvh] flex items-center justify-center p-3 sm:w-[350px] mx-auto">
-        <div className="animate-slide-in-blurred-bottom delay-300 w-full">
-          <NameForm onSubmit={onSubmit} returnUrl={returnUrl} loading={loading} />
+      <div className="mx-auto flex h-full min-h-[100dvh] w-full items-center justify-center p-3 sm:w-[350px]">
+        <div className="w-full animate-slide-in-blurred-bottom delay-300">
+          <NameForm loading={loading} onSubmit={onSubmit} returnUrl={returnUrl} />
         </div>
       </div>
     </div>

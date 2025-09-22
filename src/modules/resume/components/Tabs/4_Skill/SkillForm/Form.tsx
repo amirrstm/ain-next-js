@@ -1,20 +1,19 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconArrowsMove, IconX } from '@tabler/icons-react'
-import React from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useFormContext } from 'react-hook-form'
 
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ReactSelect } from '@/components/ui/react-select'
-
 import { useDragAndDrop } from '@/hooks'
-import { ResumeFormType } from '@/modules/resume/interface'
 import { YekanBakhNumFont } from '@/styles/fonts'
 
 import SkillSelect from '../../../Common/SkillSelect'
+
+import type React from 'react'
+import type { ResumeFormType } from '@/modules/resume/interface'
 
 interface Props {
   fieldId: string
@@ -28,28 +27,28 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
   const { locale } = useParams()
   const t = useTranslations('form')
   const form = useFormContext<ResumeFormType>()
-  const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, position, moveCard })
+  const { drag, dragPreview, drop, isDragging } = useDragAndDrop({ fieldId, moveCard, position })
 
   return (
     <div
-      ref={node => dragPreview(drop(node))}
-      style={{ opacity: isDragging ? 0.5 : 1, borderStyle: isDragging ? 'dashed' : 'solid' }}
-      className="grid grid-cols-12 gap-x-3 gap-y-6 border border-muted rounded-lg p-4 relative"
+      className="relative grid grid-cols-12 gap-x-3 gap-y-6 rounded-lg border border-muted p-4"
+      ref={(node) => dragPreview(drop(node))}
+      style={{ borderStyle: isDragging ? 'dashed' : 'solid', opacity: isDragging ? 0.5 : 1 }}
     >
       {hasMove && (
         <div
-          ref={node => drag(drop(node))}
-          className="absolute -right-3 -top-3 w-7 h-7 bg-muted z-[2] rounded-full flex items-center justify-center cursor-move"
+          className="-right-3 -top-3 absolute z-[2] flex h-7 w-7 cursor-move items-center justify-center rounded-full bg-muted"
+          ref={(node) => drag(drop(node))}
         >
-          <IconArrowsMove className="text-neutral-600 dark:text-white w-4 h-4" />
+          <IconArrowsMove className="h-4 w-4 text-neutral-600 dark:text-white" />
         </div>
       )}
 
       <div
+        className="-left-3 -top-3 absolute z-[2] flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-muted"
         onClick={() => remove(position)}
-        className="absolute -left-3 -top-3 w-7 h-7 bg-muted z-[2] rounded-full flex items-center justify-center cursor-pointer"
       >
-        <IconX className="text-destructive w-4 h-4" />
+        <IconX className="h-4 w-4 text-destructive" />
       </div>
 
       <div className="col-span-6 sm:col-span-5">
@@ -62,10 +61,10 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
 
               <FormControl>
                 <SkillSelect
-                  value={field.value}
                   onBlur={field.onBlur}
                   onChange={field.onChange}
                   placeholder={t('resume.skill.name')}
+                  value={field.value}
                 />
               </FormControl>
 
@@ -85,15 +84,15 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
               <FormControl>
                 <ReactSelect
                   {...field}
-                  size="sm"
                   className={locale === 'fa' ? YekanBakhNumFont.className : ''}
                   options={[
                     { label: 1, value: 1 },
                     { label: 2, value: 2 },
                     { label: 3, value: 3 },
                     { label: 4, value: 4 },
-                    { label: 5, value: 5 },
+                    { label: 5, value: 5 }
                   ]}
+                  size="sm"
                 />
               </FormControl>
 
@@ -103,12 +102,12 @@ const SingleSkillForm: React.FC<Props> = ({ position, fieldId, hasMove, moveCard
         />
       </div>
 
-      <div className="col-span-12 sm:col-span-4 lg:col-span-4 sm:pt-3">
+      <div className="col-span-12 sm:col-span-4 sm:pt-3 lg:col-span-4">
         <FormField
           control={form.control}
           name={`skills.${position}.hasLevel`}
           render={({ field }) => (
-            <FormItem className="flex items-center gap-1 mt-3">
+            <FormItem className="mt-3 flex items-center gap-1">
               <FormControl>
                 <Checkbox {...field} />
               </FormControl>

@@ -1,24 +1,26 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 import { generateImage } from '../service'
 
+import type React from 'react'
+
 const ImageGenerationContainer: React.FC = () => {
   const [prompt, setPrompt] = useState('')
 
   const onGenerateImage = () => {
-    generateImage(prompt).then(data => {
+    generateImage(prompt).then((data) => {
       console.log(data)
     })
   }
 
   return (
     <div>
-      <Input placeholder="Enter prompt" value={prompt} onChange={e => setPrompt(e.target.value)} />
+      <Input onChange={(e) => setPrompt(e.target.value)} placeholder="Enter prompt" value={prompt} />
 
       <Button onClick={onGenerateImage}>Generate</Button>
     </div>

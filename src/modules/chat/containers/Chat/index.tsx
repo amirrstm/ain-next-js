@@ -1,10 +1,9 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
-
 import { IconLoader, IconSend2, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
@@ -18,18 +17,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import Loader from '@/components/ui/loader'
-
 import IconChat from '@/icons/menus/chat'
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
 import ChatMessages from '../../components/Messages'
 import useMessages from '../../hooks/useMessages'
-import { ChatMessage } from '../../interface'
 import { deleteChat, sendMessage } from '../../service'
+
+import type { ChatMessage } from '../../interface'
 
 const ChatContainer: React.FC = () => {
   const router = useRouter()
@@ -60,9 +59,9 @@ const ChatContainer: React.FC = () => {
     if (inputRef.current) {
       inputRef.current.style.height = '0px'
       const scrollHeight = inputRef.current.scrollHeight
-      inputRef.current.style.height = scrollHeight + 'px'
+      inputRef.current.style.height = `${scrollHeight}px`
     }
-  }, [value])
+  }, [])
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length < 1000) {
@@ -83,25 +82,25 @@ const ChatContainer: React.FC = () => {
       return
     } else if (value) {
       setValue('')
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
-        { role: 'user', content: value, _id: Math.random().toString(), time: new Date().toISOString() },
+        { _id: Math.random().toString(), content: value, role: 'user', time: new Date().toISOString() }
       ])
-      send({ role: 'user', content: value })
-        .then(data => {
+      send({ content: value, role: 'user' })
+        .then((data) => {
           setMessages(data.messages)
           if (user) {
             setUser({
               ...user,
               userPlan: {
                 ...user.userPlan,
-                used: { ...user.userPlan.used, generation: user.userPlan.used.generation + 1 },
-              },
+                used: { ...user.userPlan.used, generation: user.userPlan.used.generation + 1 }
+              }
             })
           }
         })
-        .catch(e => {
-          setMessages(prev => prev.slice(0, prev.length - 1))
+        .catch((e) => {
+          setMessages((prev) => prev.slice(0, prev.length - 1))
 
           if (e.status === 5215) {
             toast.error(t('PlanError', { error: e.message }))
@@ -116,25 +115,25 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="md:p-8 h-[calc(100vh-80px)] md:h-[calc(100vh-24px)] min-h-[200px]">
-      <div className="md:border md:border-muted md:rounded-2xl bg-background h-full flex flex-col justify-between">
-        <div className="p-4 w-full border-b border-b-muted">
-          <div className="flex gap-2 items-center justify-between">
+    <div className="h-[calc(100vh-80px)] min-h-[200px] md:h-[calc(100vh-24px)] md:p-8">
+      <div className="flex h-full flex-col justify-between bg-background md:rounded-2xl md:border md:border-muted">
+        <div className="w-full border-b border-b-muted p-4">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex flex-1 items-center gap-2">
-              <div className="w-12 h-12">
+              <div className="h-12 w-12">
                 <IconChat />
               </div>
               <div className="flex-1">
-                <h1 className="md:text-xl font-bold">{t('Title')}</h1>
-                <h2 className="text-gray-500 hidden md:block">{t('Description')}</h2>
+                <h1 className="font-bold md:text-xl">{t('Title')}</h1>
+                <h2 className="hidden text-gray-500 md:block">{t('Description')}</h2>
               </div>
             </div>
 
             {messages.length > 0 && (
               <AlertDialog>
                 <AlertDialogTrigger>
-                  <div className="border rounded-full p-1 md:p-3 cursor-pointer flex justify-center items-center text-gray-400 hover:text-red-500 hover:border-red-500">
-                    <IconTrash className="w-5 md:w-7 h-5 md:h-7 " />
+                  <div className="flex cursor-pointer items-center justify-center rounded-full border p-1 text-gray-400 hover:border-red-500 hover:text-red-500 md:p-3">
+                    <IconTrash className="h-5 w-5 md:h-7 md:w-7" />
                   </div>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
@@ -154,20 +153,20 @@ const ChatContainer: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-4 flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto p-4">
           {messages.length === 0 ? (
             <div>
               {isLoading ? (
-                <div className="flex flex-col items-center text-center gap-3 p-4">
-                  <div className="w-10 h-10">
+                <div className="flex flex-col items-center gap-3 p-4 text-center">
+                  <div className="h-10 w-10">
                     <Loader />
                   </div>
                   <span className="flex-1 leading-normal">{t('Loading')}</span>
                 </div>
               ) : (
-                <div className="p-6 text-center flex justify-center">
-                  <div className="border border-muted shadow-md rounded-lg max-w-sm p-4 text-center">
-                    <p className="text-neutral-500 flex">
+                <div className="flex justify-center p-6 text-center">
+                  <div className="max-w-sm rounded-lg border border-muted p-4 text-center shadow-md">
+                    <p className="flex text-neutral-500">
                       <span className="flex-1 leading-normal">{t('Empty')}</span>
                     </p>
                   </div>
@@ -179,39 +178,38 @@ const ChatContainer: React.FC = () => {
           )}
         </div>
 
-        <div className="px-2 py-1 md:p-4 border-t border-t-muted border-b md:border-b-transparent">
+        <div className="border-t border-t-muted border-b px-2 py-1 md:border-b-transparent md:p-4">
           <div className="flex items-center">
             <textarea
-              rows={1}
-              autoFocus
-              value={value}
-              ref={inputRef}
-              onChange={onChange}
+              className="max-h-[100px] flex-1 resize-none border-none bg-transparent text-xs outline-none md:p-2 md:text-base placeholder:dark:text-neutral-600"
               disabled={isLoading}
+              onChange={onChange}
               onKeyDown={onKeyDown}
               placeholder={t('InputPlaceholder')}
-              className="flex-1 border-none md:p-2 max-h-[100px] resize-none outline-none text-xs bg-transparent md:text-base placeholder:dark:text-neutral-600"
+              ref={inputRef}
+              rows={1}
+              value={value}
             />
 
             <div
-              onClick={onGenerate}
-              className={clsx('w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-primary rounded-full', {
+              className={clsx('flex h-9 w-9 items-center justify-center rounded-full bg-primary md:h-10 md:w-10', {
                 'cursor-pointer': !isMutating,
-                'pointer-events-none': isMutating || isLoading || !value,
+                'pointer-events-none': isMutating || isLoading || !value
               })}
+              onClick={onGenerate}
             >
               {isMutating ? (
                 <IconLoader className="h-5 w-5 animate-spin text-white" />
               ) : (
-                <IconSend2 className="w-6 h-6 rtl:rotate-180 text-white" />
+                <IconSend2 className="h-6 w-6 text-white rtl:rotate-180" />
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <div ref={endRef} className="text-center pt-1">
-        <p className="text-[10px] md:text-xs text-neutral-600">{t('Info')}</p>
+      <div className="pt-1 text-center" ref={endRef}>
+        <p className="text-[10px] text-neutral-600 md:text-xs">{t('Info')}</p>
       </div>
     </div>
   )

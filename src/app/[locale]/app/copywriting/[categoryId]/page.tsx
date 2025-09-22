@@ -1,24 +1,24 @@
-import { Metadata } from 'next'
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
-
-import { PageLang } from '@/interface/General.model'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { appViewport } from '@/constants'
 import SingleCategoryContainer from '@/modules/copywriting/containers/SingleCategory'
+
+import type { Metadata } from 'next'
+import type { PageLang } from '@/interface/General.model'
 
 export async function generateMetadata({ params: { locale } }: PageLang): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   return {
-    title: t('Copywriting.Title'),
     description: t('Copywriting.Description'),
+    title: t('Copywriting.Title')
   }
 }
 
 export const viewport = appViewport.appDefaultViewport
 
 export default async function Copywriting({ params: { locale } }: { params: { categoryId: string; locale: string } }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
 
   return <SingleCategoryContainer />
 }

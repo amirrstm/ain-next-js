@@ -4,7 +4,6 @@ import { useParams } from 'next/navigation'
 
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
-
 import { EN_LAYOUT_IMAGE, LAYOUT_IMAGE } from '@/constants'
 
 import Contents from '../../components/Contents'

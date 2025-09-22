@@ -1,13 +1,10 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import clsx from 'clsx'
-import React, { ReactNode } from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useMediaQuery } from 'react-responsive'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
-
 import IconArrowUp from '@/icons/resume/arrow-up'
 import IconFirstLine from '@/icons/resume/first-line'
 import IconFlag from '@/icons/resume/flag'
@@ -23,6 +20,9 @@ import IconTick from '@/icons/resume/tick'
 import IconVoice from '@/icons/resume/voice'
 import IconWand from '@/icons/resume/wand'
 
+import type React from 'react'
+import type { ReactNode } from 'react'
+
 const textGradient = 'from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent'
 
 const Resume: React.FC = () => {
@@ -31,30 +31,30 @@ const Resume: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 1280 })
 
   return (
-    <div className="max-w-6xl mx-auto py-12 md:py-20 px-2 md:px-6">
+    <div className="mx-auto max-w-6xl px-2 py-12 md:px-6 md:py-20">
       <div className="flex flex-col items-center">
-        <div className="py-2 w-32 rtl:w-24 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
+        <div className="flex w-32 justify-center rounded-full bg-primary py-2 text-white text-xs tracking-widest shadow-primary shadow-xl rtl:w-24 dark:text-foreground">
           {t('Resume.Title')}
         </div>
 
-        <h1 className="text-2xl md:text-4xl font-bold my-6 block">{t('Resume.Description')}</h1>
+        <h1 className="my-6 block font-bold text-2xl md:text-4xl">{t('Resume.Description')}</h1>
       </div>
 
-      <div className="grid grid-cols-12 gap-2 md:gap-4 md:mt-12">
+      <div className="grid grid-cols-12 gap-2 md:mt-12 md:gap-4">
         <div className="col-span-12 xl:col-span-5">
-          <div className="md:space-y-4 space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2 md:space-y-4">
             <SingleBox>
               <div className="flex flex-col p-6">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8">
+                  <div className="h-8 w-8">
                     <MicIcon />
                   </div>
 
-                  <p className="text-sm text-accent/60">{t('Resume.Voice.Topic')}</p>
+                  <p className="text-accent/60 text-sm">{t('Resume.Voice.Topic')}</p>
                 </div>
 
                 <div className="pt-8">
-                  <h2 className={clsx('text-2xl xl:text-3xl font-bold', textGradient)}>{t('Resume.Voice.Title')}</h2>
+                  <h2 className={clsx('font-bold text-2xl xl:text-3xl', textGradient)}>{t('Resume.Voice.Title')}</h2>
 
                   <div
                     className="mt-6 text-sm leading-loose"
@@ -63,7 +63,7 @@ const Resume: React.FC = () => {
                 </div>
 
                 <div className="px-4 pt-8 pb-7">
-                  <div className="bg-black p-4 rounded-xl flex items-center justify-center">
+                  <div className="flex items-center justify-center rounded-xl bg-black p-4">
                     <IconVoice />
                   </div>
                 </div>
@@ -71,7 +71,7 @@ const Resume: React.FC = () => {
             </SingleBox>
 
             <div className="grid grid-cols-12 gap-2 xl:gap-4">
-              <div className="xl:col-span-6 md:col-span-6 col-span-6">
+              <div className="col-span-6 md:col-span-6 xl:col-span-6">
                 <SingleBox>
                   <div className="flex flex-col">
                     <div className="p-4">
@@ -79,35 +79,33 @@ const Resume: React.FC = () => {
                         <IconProfile />
                       </RoundedBtn>
 
-                      <h2 className={clsx('font-medium mt-4', textGradient)}>{t('Resume.Introduce.Title')}</h2>
+                      <h2 className={clsx('mt-4 font-medium', textGradient)}>{t('Resume.Introduce.Title')}</h2>
 
-                      <p className="text-xs mt-3 leading-5">{t('Resume.Introduce.Description')}</p>
+                      <p className="mt-3 text-xs leading-5">{t('Resume.Introduce.Description')}</p>
                     </div>
                   </div>
                 </SingleBox>
               </div>
 
-              <div className="xl:col-span-6 md:col-span-6 col-span-6">
+              <div className="col-span-6 md:col-span-6 xl:col-span-6">
                 <SingleBox>
-                  <div className="flex flex-col relative xl:h-auto md:h-[200px]">
+                  <div className="relative flex flex-col md:h-[200px] xl:h-auto">
                     <div className="p-3">
                       <div className="flex items-center gap-1">
-                        <div className="w-8 h-8">
+                        <div className="h-8 w-8">
                           <IconTick />
                         </div>
 
-                        <p className="text-xs text-accent/60 mb-1">{t('Resume.ATS.Topic')}</p>
+                        <p className="mb-1 text-accent/60 text-xs">{t('Resume.ATS.Topic')}</p>
                       </div>
                     </div>
 
-                    <div className="w-[200px] top-6 left-1/2 -translate-x-1/2 absolute">
-                      <div className="absolute left-1/2 text-center -translate-x-1/2 max-w-[90px] bottom-10 rtl:bottom-14">
+                    <div className="-translate-x-1/2 absolute top-6 left-1/2 w-[200px]">
+                      <div className="-translate-x-1/2 absolute bottom-10 left-1/2 max-w-[90px] text-center rtl:bottom-14">
                         <p className={clsx('font-medium text-2xl leading-relaxed', textGradient)}>
                           {locale === 'fa' ? '۱۵۰%+' : '150%'}
                         </p>
-                        <p className={clsx('font-medium text-xs leading-relaxed', textGradient)}>
-                          {t('Resume.ATS.Description')}
-                        </p>
+                        <p className={clsx('font-medium text-xs leading-relaxed', textGradient)}>{t('Resume.ATS.Description')}</p>
                       </div>
                       <IconProgress />
                     </div>
@@ -126,11 +124,11 @@ const Resume: React.FC = () => {
                   <div className="flex flex-col">
                     <div className="p-3">
                       <div className="flex items-center gap-1 pb-2">
-                        <div className="w-8 h-8">
+                        <div className="h-8 w-8">
                           <IconArrowUp />
                         </div>
 
-                        <p className="text-xs text-accent/60 mb-1">{t('Resume.Structure.Topic')}</p>
+                        <p className="mb-1 text-accent/60 text-xs">{t('Resume.Structure.Topic')}</p>
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
@@ -148,7 +146,7 @@ const Resume: React.FC = () => {
 
             <div className="col-span-12 md:col-span-8">
               <SingleBox>
-                <div className="p-6 flex flex-col md:flex-row gap-3">
+                <div className="flex flex-col gap-3 p-6 md:flex-row">
                   <RoundedBtn>
                     <IconNote />
                   </RoundedBtn>
@@ -156,7 +154,7 @@ const Resume: React.FC = () => {
                   <div className="flex-1">
                     <h2 className={clsx('font-medium leading-relaxed', textGradient)}>{t('Resume.Suggest.Title')}</h2>
 
-                    <p className="text-xs mt-3 leading-relaxed">{t('Resume.Suggest.Description')}</p>
+                    <p className="mt-3 text-xs leading-relaxed">{t('Resume.Suggest.Description')}</p>
                   </div>
                 </div>
               </SingleBox>
@@ -170,24 +168,22 @@ const Resume: React.FC = () => {
                       <IconMedal />
                     </RoundedBtn>
 
-                    <h2 className={clsx('font-medium mt-4', textGradient)}>{t('Resume.Project.Title')}</h2>
+                    <h2 className={clsx('mt-4 font-medium', textGradient)}>{t('Resume.Project.Title')}</h2>
 
-                    <p className="text-xs mt-3 leading-5">{t('Resume.Project.Description')}</p>
+                    <p className="mt-3 text-xs leading-5">{t('Resume.Project.Description')}</p>
                   </div>
                 </div>
               </SingleBox>
             </div>
 
             <div className="col-span-6 md:col-span-4">
-              <div className="bg-primary/80 px-5 py-6 h-full rounded-2xl relative">
+              <div className="relative h-full rounded-2xl bg-primary/80 px-5 py-6">
                 <div className="absolute bottom-2 left-2 opacity-70">
                   <IconWand />
                 </div>
-                <h2 className={clsx('font-bold text-xl text-white dark:text-foreground')}>
-                  {t('Resume.Principle.Title')}
-                </h2>
+                <h2 className={clsx('font-bold text-white text-xl dark:text-foreground')}>{t('Resume.Principle.Title')}</h2>
 
-                <p className="text-xs mt-4 leading-relaxed text-white dark:text-foreground">
+                <p className="mt-4 text-white text-xs leading-relaxed dark:text-foreground">
                   {t('Resume.Principle.Description')}
                 </p>
               </div>
@@ -201,25 +197,25 @@ const Resume: React.FC = () => {
                       <IconTemplate />
                     </RoundedBtn>
 
-                    <h2 className={clsx('font-medium mt-4', textGradient)}>{t('Resume.Template.Title')}</h2>
+                    <h2 className={clsx('mt-4 font-medium', textGradient)}>{t('Resume.Template.Title')}</h2>
 
-                    <p className="text-xs mt-3 leading-5">{t('Resume.Template.Description')}</p>
+                    <p className="mt-3 text-xs leading-5">{t('Resume.Template.Description')}</p>
                   </div>
                 </div>
               </SingleBox>
             </div>
 
             {isMobile && (
-              <div className="md:col-span-4 col-span-6">
+              <div className="col-span-6 md:col-span-4">
                 <SingleBox>
                   <div className="flex flex-col">
                     <div className="p-3">
                       <div className="flex items-center gap-1 pb-2">
-                        <div className="w-8 h-8">
+                        <div className="h-8 w-8">
                           <IconArrowUp />
                         </div>
 
-                        <p className="text-xs text-accent/60 mb-1">{t('Resume.Structure.Topic')}</p>
+                        <p className="mb-1 text-accent/60 text-xs">{t('Resume.Structure.Topic')}</p>
                       </div>
 
                       <h2 className={clsx('font-medium text-sm leading-relaxed', textGradient)}>
@@ -237,7 +233,7 @@ const Resume: React.FC = () => {
 
             <div className="col-span-12 md:col-span-8">
               <SingleBox>
-                <div className="p-6 flex flex-col md:flex-row gap-3">
+                <div className="flex flex-col gap-3 p-6 md:flex-row">
                   <RoundedBtn>
                     <IconFirstLine />
                   </RoundedBtn>
@@ -245,7 +241,7 @@ const Resume: React.FC = () => {
                   <div className="flex-1">
                     <h2 className={clsx('font-medium leading-relaxed', textGradient)}>{t('Resume.Writing.Title')}</h2>
 
-                    <p className="text-xs mt-3 leading-relaxed">{t('Resume.Writing.Description')}</p>
+                    <p className="mt-3 text-xs leading-relaxed">{t('Resume.Writing.Description')}</p>
                   </div>
                 </div>
               </SingleBox>
@@ -256,11 +252,11 @@ const Resume: React.FC = () => {
                 <div className="flex flex-col">
                   <div className="p-3">
                     <div className="flex items-center gap-1 pb-2">
-                      <div className="w-8 h-8">
+                      <div className="h-8 w-8">
                         <IconFlag />
                       </div>
 
-                      <p className="text-xs text-accent/60 mb-1">{t('Resume.Satisfy.Topic')}</p>
+                      <p className="mb-1 text-accent/60 text-xs">{t('Resume.Satisfy.Topic')}</p>
                     </div>
 
                     <h2 className={clsx('font-medium leading-relaxed', textGradient)}>
@@ -271,7 +267,7 @@ const Resume: React.FC = () => {
                   <div className="py-3">
                     <IconMilestone />
 
-                    <p className="text-[10px] text-center mt-2 text-gray-400">{t('Resume.Satisfy.Description')}</p>
+                    <p className="mt-2 text-center text-[10px] text-gray-400">{t('Resume.Satisfy.Description')}</p>
                   </div>
                 </div>
               </SingleBox>
@@ -280,9 +276,9 @@ const Resume: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mt-12">
+      <div className="mt-12 flex justify-center">
         <Link href={'/app/resume'}>
-          <Button className="rounded-full px-8 gap-2">{t('Resume.Button')}</Button>
+          <Button className="gap-2 rounded-full px-8">{t('Resume.Button')}</Button>
         </Link>
       </div>
     </div>
@@ -292,9 +288,9 @@ const Resume: React.FC = () => {
 export default Resume
 
 const SingleBox: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
-  return <div className={clsx('border border-foreground/15 rounded-2xl h-full', className)}>{children}</div>
+  return <div className={clsx('h-full rounded-2xl border border-foreground/15', className)}>{children}</div>
 }
 
 const RoundedBtn: React.FC<{ children: ReactNode }> = ({ children }) => {
-  return <div className="flex justify-center items-center w-14 h-14 bg-black rounded-full">{children}</div>
+  return <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black">{children}</div>
 }

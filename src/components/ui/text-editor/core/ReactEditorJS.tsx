@@ -1,7 +1,7 @@
-import React from 'react'
+import { type ReactElement, useEffect, useRef } from 'react'
 
-import { Props } from './component-types'
-import { EditorCore } from './editor-core'
+import type { Props } from './component-types'
+import type { EditorCore } from './editor-core'
 
 function ReactEditorJS({
   factory,
@@ -12,16 +12,16 @@ function ReactEditorJS({
 
   onInitialize,
   ...restProps
-}: Props): React.ReactElement {
-  const memoizedHolder = React.useRef(holder ?? `react-editor-js-${Date.now().toString(16)}`)
+}: Props): ReactElement {
+  const memoizedHolder = useRef(holder ?? `react-editor-js-${Date.now().toString(16)}`)
 
-  const editorJS = React.useRef<EditorCore | null>(null)
+  const editorJS = useRef<EditorCore | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     editorJS.current = factory({
       holder: memoizedHolder.current,
       ...(defaultValue && { data: defaultValue }),
-      ...restProps,
+      ...restProps
     })
 
     onInitialize?.(editorJS.current)
@@ -29,9 +29,9 @@ function ReactEditorJS({
     return () => {
       editorJS.current?.destroy()
     }
-  }, [])
+  }, [defaultValue, factory, onInitialize])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (value) {
       editorJS.current?.render(value)
     }

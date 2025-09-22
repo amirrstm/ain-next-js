@@ -1,13 +1,13 @@
-import React from 'react'
-
 import { Skeleton } from '@/components/ui/skeleton'
+
+import type React from 'react'
 
 const HistoryLoading: React.FC = () => {
   return (
-    <div className="col-span-4 bg-white h-full rounded-xl border shadow-md divide-y overflow-auto">
-      {Array.from({ length: 4 }, (_, i) => i).map(idx => (
-        <div key={idx} className="p-4">
-          <div className="flex gap-4 items-center">
+    <div className="col-span-4 h-full divide-y overflow-auto rounded-xl border bg-white shadow-md">
+      {Array.from({ length: 4 }, (_, i) => i).map((idx) => (
+        <div className="p-4" key={idx}>
+          <div className="flex items-center gap-4">
             <Skeleton className="h-10 w-10" />
             <Skeleton className="h-5 flex-1" />
           </div>

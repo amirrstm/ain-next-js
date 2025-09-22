@@ -4,97 +4,90 @@ async function fetchCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/public/category/plain-list`)
   const categories = await res.json()
 
-  const copywriting = categories.data.map(category => ({
-    priority: 0.9,
+  const copywriting = categories.data.map((category) => ({
     changefreq: 'daily',
     lastmod: new Date().toISOString(),
     loc: `/app/copywriting/${category.slug}`,
+    priority: 0.9
   }))
-
-  // const useCases = categories.data.map(category => ({
-  //   priority: 0.9,
-  //   changefreq: 'daily',
-  //   lastmod: new Date().toISOString(),
-  //   loc: `/use-cases/${category.slug}`,
-  // }))
 
   return [...copywriting]
 }
 
 module.exports = {
-  generateRobotsTxt: true,
-  exclude: ['/user-name', '/fa', '/fa/*'],
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ainevis.com',
-  additionalPaths: async config => {
+  additionalPaths: async (_config) => {
     const categories = await fetchCategories()
 
     const result = [
       {
+        changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/',
-        priority: 0.9,
-        changefreq: 'daily',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
+        changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/login',
-        priority: 0.9,
-        changefreq: 'daily',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
 
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/app/copywriting',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
 
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/app/history',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/app/resume',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/app/settings',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/app/dashboard',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/privacy',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
+        lastmod: new Date().toISOString(),
         loc: '/pricing',
-        lastmod: new Date().toISOString(),
+        priority: 0.9
       },
       {
-        priority: 0.9,
         changefreq: 'daily',
-        loc: '/about',
         lastmod: new Date().toISOString(),
+        loc: '/about',
+        priority: 0.9
       },
 
-      ...categories,
+      ...categories
     ]
 
     return result
   },
+  exclude: ['/user-name', '/fa', '/fa/*'],
+  generateRobotsTxt: true,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL
 }

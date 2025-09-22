@@ -11,15 +11,15 @@ const BasicTab: React.FC = () => {
 
   return (
     <>
-      <div className="bg-card rounded-lg border border-muted">
-        <div className="p-3 sm:p-4 border-b border-b-muted flex justify-between items-center">
+      <div className="rounded-lg border border-muted bg-card">
+        <div className="flex items-center justify-between border-b border-b-muted p-3 sm:p-4">
           <div>
-            <h2 className="text-md sm:text-lg font-semibold">{t('Title')}</h2>
-            <p className="text-xs sm:text-sm text-gray-400">{t('Description')}</p>
+            <h2 className="font-semibold text-md sm:text-lg">{t('Title')}</h2>
+            <p className="text-gray-400 text-xs sm:text-sm">{t('Description')}</p>
           </div>
         </div>
 
-        <div className="py-6 px-4 flex flex-col lg:flex-row items-center gap-8 sm:gap-6 lg:gap-3">
+        <div className="flex flex-col items-center gap-8 px-4 py-6 sm:gap-6 lg:flex-row lg:gap-3">
           <div className="px-8">
             <ProfileAvatar />
           </div>
@@ -30,13 +30,13 @@ const BasicTab: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-card rounded-lg border border-muted">
-        <div className="p-3 sm:p-4 border-b border-b-muted">
-          <h2 className="text-md sm:text-lg font-semibold">{t('ContactTitle')}</h2>
-          <p className="text-xs sm:text-sm text-gray-400">{t('ContactDescription')}</p>
+      <div className="rounded-lg border border-muted bg-card">
+        <div className="border-b border-b-muted p-3 sm:p-4">
+          <h2 className="font-semibold text-md sm:text-lg">{t('ContactTitle')}</h2>
+          <p className="text-gray-400 text-xs sm:text-sm">{t('ContactDescription')}</p>
         </div>
 
-        <div className="py-6 px-4">
+        <div className="px-4 py-6">
           <ContactForm />
         </div>
       </div>

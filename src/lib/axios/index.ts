@@ -1,5 +1,4 @@
-/* eslint-disable */
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import axios, { type AxiosError, type AxiosRequestConfig, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 
 import { refreshAccessToken } from '@/modules/auth/services'
 
@@ -10,9 +9,9 @@ const NO_ERROR_REQUESTS = [API.DATA.OCCUPATIONS]
 
 const getAxiosClient = () =>
   axios.create({
-    timeout: REQUEST_TIMEOUT,
-    headers: { 'Content-Type': 'application/json' },
     baseURL: process.env.NEXT_PUBLIC_API_BASE_ENDPOINT,
+    headers: { 'Content-Type': 'application/json' },
+    timeout: REQUEST_TIMEOUT
   })
 
 const AxiosClient = getAxiosClient()
@@ -44,7 +43,7 @@ async function axiosErrorMiddleware(error: AxiosError) {
   const isErrorResponseValid = !!error.response
   const statusCode = Object(error.response?.data).statusCode
 
-  if (error.code === 'ERR_CANCELED' && NO_ERROR_REQUESTS.some(e => e === error.config?.url)) {
+  if (error.code === 'ERR_CANCELED' && NO_ERROR_REQUESTS.some((e) => e === error.config?.url)) {
     throw error.code
   }
 
@@ -58,16 +57,19 @@ async function axiosErrorMiddleware(error: AxiosError) {
 
   if (isErrorResponseValid) {
     const messages: string[] = []
-    const allErrors = error.response?.data as any
-    const errorMessage = (error.response?.data as any)?.message ?? (error.response?.data as any)?.error ?? 'خطای شبکه'
+    const allErrors = error.response?.data as unknown as { errors: { message: string }[] }
+    const errorMessage =
+      (error.response?.data as unknown as { message: string })?.message ??
+      (error.response?.data as unknown as { error: string })?.error ??
+      'خطای شبکه'
 
     if (allErrors?.errors) {
-      allErrors.errors.forEach((err: any) => {
+      allErrors.errors.forEach((err: { message: string }) => {
         messages.push(err.message)
       })
     }
 
-    throw { error: errorMessage, status: (error.response?.data as any)?.statusCode, messages }
+    throw { error: errorMessage, messages, status: (error.response?.data as unknown as { statusCode: number })?.statusCode }
   } else {
     throw { error: 'خطای شبکه', status: error.response?.status }
   }

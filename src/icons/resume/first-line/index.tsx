@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconFirstLine: React.FC = () => {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="40" viewBox="0 0 40 40" width="40" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M23.3333 8.75C22.65 8.75 22.0833 8.18333 22.0833 7.5C22.0833 6.81667 22.65 6.25 23.3333 6.25H35C35.6833 6.25 36.25 6.81667 36.25 7.5C36.25 8.18333 35.6833 8.75 35 8.75H23.3333Z"
         fill="white"

@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconNote: React.FC = () => {
   return (
-    <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="35" viewBox="0 0 40 40" width="35" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M34.467 24.3666C33.067 30.3833 30.3003 32.8166 25.1003 32.3166C24.267 32.25 23.367 32.1 22.4003 31.8666L19.6003 31.2C12.6503 29.55 10.5003 26.1166 12.1336 19.15L13.767 12.1666C14.1003 10.75 14.5003 9.51664 15.0003 8.49997C16.9503 4.46664 20.267 3.38331 25.8336 4.69997L28.617 5.34997C35.6003 6.98331 37.7336 10.4333 36.1003 17.4L34.467 24.3666Z"
         fill="#D2D2D2"

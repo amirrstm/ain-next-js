@@ -1,4 +1,4 @@
-import { Plan } from '@/interface/Plan.model'
+import type { Plan } from '@/interface/Plan.model'
 
 export interface User {
   _id: string

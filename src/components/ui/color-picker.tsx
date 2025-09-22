@@ -6,12 +6,12 @@ export interface ColorProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 const ColorPicker = React.forwardRef<HTMLInputElement, ColorProps>(({ className, type, label, ...props }, ref) => {
   return (
-    <div className="border border-input rounded-md flex bg-white dark:bg-transparent">
-      <div className="border-e border-e-input flex-1 h-9 flex items-center px-3">
+    <div className="flex rounded-md border border-input bg-white dark:bg-transparent">
+      <div className="flex h-9 flex-1 items-center border-e border-e-input px-3">
         <p className="text-sm">{label}</p>
       </div>
-      <div className="px-3 flex items-center">
-        <input ref={ref} type="color" className="bg-transparent h-8 border-none" {...props} />
+      <div className="flex items-center px-3">
+        <input className="h-8 border-none bg-transparent" ref={ref} type="color" {...props} />
       </div>
     </div>
   )

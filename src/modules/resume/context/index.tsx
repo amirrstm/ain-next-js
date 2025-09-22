@@ -1,16 +1,17 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
-
-import React, { createContext, ReactElement, useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { createContext, type ReactElement, useEffect, useState } from 'react'
 
 import Loader from '@/components/ui/loader'
 
 import { RESUME_ENUM_TABS } from '../constants/resume.enum'
 import useResume from '../hooks/useResume'
-import { IResumeContext } from '../interface'
-import { IResume } from '../interface/resume'
+
+import type React from 'react'
+import type { IResumeContext } from '../interface'
+import type { IResume } from '../interface/resume'
 
 export const ResumeContext = createContext<IResumeContext>({} as IResumeContext)
 
@@ -34,7 +35,7 @@ export default function ResumeProvider({ children }: Props): ReactElement {
   if (initLoading || isLoading || !resume) {
     return (
       <div className="flex flex-col items-center justify-center py-10">
-        <div className="w-20 h-20">
+        <div className="h-20 w-20">
           <Loader />
         </div>
 
@@ -45,5 +46,5 @@ export default function ResumeProvider({ children }: Props): ReactElement {
     )
   }
 
-  return <ResumeContext.Provider value={{ resume, activeTab, mutate, setActiveTab }}>{children}</ResumeContext.Provider>
+  return <ResumeContext.Provider value={{ activeTab, mutate, resume, setActiveTab }}>{children}</ResumeContext.Provider>
 }

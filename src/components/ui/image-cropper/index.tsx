@@ -1,9 +1,8 @@
-/* eslint-disable */
-import { useTranslations } from 'next-intl'
-
 import { DialogTitle } from '@radix-ui/react-dialog'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
-import ReactCrop, { centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop'
+import ReactCrop, { type Crop, centerCrop, makeAspectCrop, type PixelCrop } from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import { Button } from '../button'
@@ -15,14 +14,14 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
     makeAspectCrop(
       {
         unit: '%',
-        width: 90,
+        width: 90
       },
       aspect,
       mediaWidth,
-      mediaHeight,
+      mediaHeight
     ),
     mediaWidth,
-    mediaHeight,
+    mediaHeight
   )
 }
 
@@ -31,7 +30,7 @@ type Props = {
   imgSrc: string
   aspect?: number
   onResetImage: () => void
-  setFile?: (file: File) => void | null
+  setFile?: (file: File) => undefined | null
   onComplete: (img: string, file?: File) => void
 }
 export const ImageCropper: React.FC<Props> = ({
@@ -40,7 +39,7 @@ export const ImageCropper: React.FC<Props> = ({
   title = 'Crop Your Profile Picture',
   setFile,
   onComplete,
-  onResetImage,
+  onResetImage
 }) => {
   const t = useTranslations('User')
   const imgRef = useRef<HTMLImageElement>(null)
@@ -82,7 +81,7 @@ export const ImageCropper: React.FC<Props> = ({
 
     if (canvas) {
       canvas.toBlob(
-        blob => {
+        (blob) => {
           if (blob) {
             setVisible(false)
             if (setFile) {
@@ -92,7 +91,7 @@ export const ImageCropper: React.FC<Props> = ({
           }
         },
         'image/jpeg',
-        1,
+        1
       )
     }
   }
@@ -103,24 +102,24 @@ export const ImageCropper: React.FC<Props> = ({
   }
 
   return (
-    <Dialog open={isVisible} onOpenChange={handleCloseModal}>
+    <Dialog onOpenChange={handleCloseModal} open={isVisible}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription asChild>
             <div className="py-4">
               {imgSrc && (
-                <div className="rounded-md overflow-hidden text-center">
+                <div className="overflow-hidden rounded-md text-center">
                   <ReactCrop
-                    crop={crop}
-                    circularCrop
-                    minWidth={200}
-                    minHeight={200}
                     aspect={aspect}
-                    onComplete={c => setCompletedCrop(c)}
+                    circularCrop
+                    crop={crop}
+                    minHeight={200}
+                    minWidth={200}
                     onChange={(_, percentCrop) => setCrop(percentCrop)}
+                    onComplete={(c) => setCompletedCrop(c)}
                   >
-                    <img ref={imgRef} alt="Crop me" src={imgSrc} onLoad={onImageLoad} />
+                    <Image alt="Crop me" height={300} onLoad={onImageLoad} ref={imgRef} src={imgSrc} width={500} />
                   </ReactCrop>
                 </div>
               )}
@@ -130,7 +129,7 @@ export const ImageCropper: React.FC<Props> = ({
           </DialogDescription>
 
           <DialogFooter>
-            <Button type="submit" onClick={handleComplete}>
+            <Button onClick={handleComplete} type="submit">
               {t('SaveUpload')}
             </Button>
           </DialogFooter>

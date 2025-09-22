@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconDashboard: React.FC = () => {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M21 14.1C21 16 20 17 18.1 17H5.89999C3.99999 17 3 16 3 14.1V2H21V14.1Z" fill="#D2D2D2" />
       <path
         d="M2 2.75C1.59 2.75 1.25 2.41 1.25 2C1.25 1.59 1.59 1.25 2 1.25H22C22.41 1.25 22.75 1.59 22.75 2C22.75 2.41 22.41 2.75 22 2.75H2Z"

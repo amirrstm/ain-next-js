@@ -1,29 +1,29 @@
-import { Metadata } from 'next'
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
-
-import { PageLang } from '@/interface/General.model'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { appViewport } from '@/constants'
 import { locales } from '@/i18n'
 import ImageGenerationContainer from '@/modules/image-generation/containers'
 
+import type { Metadata } from 'next'
+import type { PageLang } from '@/interface/General.model'
+
 export async function generateStaticParams() {
-  return locales.map(locale => ({ locale }))
+  return locales.map((locale) => ({ locale }))
 }
 
 export async function generateMetadata({ params: { locale } }: PageLang): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   return {
-    title: t('Resume.Title'),
     description: t('Resume.Description'),
+    title: t('Resume.Title')
   }
 }
 
 export const viewport = appViewport.appDefaultViewport
 
 export default async function Resume({ params: { locale } }: { params: { locale: string } }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
 
   return <ImageGenerationContainer />
 }

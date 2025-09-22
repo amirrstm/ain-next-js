@@ -1,14 +1,12 @@
-import { useTranslations } from 'next-intl'
-
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import Loader from '@/components/ui/loader'
 import { useRouter } from '@/components/ui/navigation'
-
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 
@@ -17,6 +15,8 @@ import AICreate from './AI'
 import ResumeTemplates from './Templates'
 import ResumeTypes from './Types'
 import VoiceCreate from './Voice'
+
+import type React from 'react'
 
 interface Props {
   open: boolean
@@ -37,39 +37,39 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
 
   const RESUME_TYPES = [
     {
-      id: 'custom',
-      title: t('Create.Type.CustomTitle'),
       description: t('Create.Type.CustomDescription'),
+      id: 'custom',
+      title: t('Create.Type.CustomTitle')
     },
     {
-      id: 'ai',
-      title: t('Create.Type.AITitle'),
       description: t('Create.Type.AIDescription'),
+      id: 'ai',
+      title: t('Create.Type.AITitle')
     },
     {
-      id: 'voice',
-      title: t('Create.Type.VoiceTitle'),
       description: t('Create.Type.VoiceDescription'),
-    },
+      id: 'voice',
+      title: t('Create.Type.VoiceTitle')
+    }
   ]
 
   const titles = {
     ai: {
-      title: t('Create.AI.Title'),
       description: t('Create.AI.Description'),
-    },
-    voice: {
-      title: t('Create.Voice.Title'),
-      description: t('Create.Voice.Description'),
+      title: t('Create.AI.Title')
     },
     templates: {
-      title: t('Create.Title'),
       description: t('Create.Template.Description'),
+      title: t('Create.Title')
     },
     type: {
-      title: t('Create.Title'),
       description: t('Create.Type.Description'),
+      title: t('Create.Title')
     },
+    voice: {
+      description: t('Create.Voice.Description'),
+      title: t('Create.Voice.Title')
+    }
   }
 
   const onSelectTemplate = (id: string) => {
@@ -81,8 +81,8 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
     if (id === 'custom') {
       trigger({
         template: templateId,
-        title: t('Create.TitleForCustom', { name: `${user?.firstName ?? ''}` }),
-      }).then(data => {
+        title: t('Create.TitleForCustom', { name: `${user?.firstName ?? ''}` })
+      }).then((data) => {
         closeResume()
         toast.success(t('Create.Success'))
         router.push(`/app/resume/${data}`)
@@ -95,8 +95,8 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
   const onCreateAI = (occupation: string, description?: string) => {
     if (templateId) {
       setLoading(true)
-      triggerOccupation({ occupation, template: templateId, description })
-        .then(data => {
+      triggerOccupation({ description, occupation, template: templateId })
+        .then((data) => {
           setLoading(false)
           closeResume()
 
@@ -111,7 +111,7 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
     if (templateId) {
       setLoading(true)
       triggerVoice({ file, template: templateId })
-        .then(data => {
+        .then((data) => {
           setLoading(false)
 
           closeResume()
@@ -129,11 +129,11 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={closeResume}>
+    <Dialog onOpenChange={closeResume} open={open}>
       <DialogContent
         className={clsx({
-          'max-w-5xl': activeTab === 'type',
           'max-w-2xl': activeTab === 'templates',
+          'max-w-5xl': activeTab === 'type'
         })}
       >
         <DialogHeader>
@@ -141,10 +141,10 @@ const CreateResume: React.FC<Props> = ({ open, onClose }) => {
           <DialogDescription>{titles[activeTab as 'ai' | 'voice' | 'templates'].description}</DialogDescription>
         </DialogHeader>
 
-        <div className="w-full overflow-x-hidden overflow-y-auto min-h-[88vh] md:min-h-max">
+        <div className="min-h-[88vh] w-full overflow-y-auto overflow-x-hidden md:min-h-max">
           {(isMutating || loading) && (
-            <div className="absolute inset-0 bg-background/80 z-20 flex flex-col gap-3 items-center justify-center rounded-xl">
-              <div className="w-14 h-14">
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 rounded-xl bg-background/80">
+              <div className="h-14 w-14">
                 <Loader />
               </div>
               <p>{t('Loading')}</p>

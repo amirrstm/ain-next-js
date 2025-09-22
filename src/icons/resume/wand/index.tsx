@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconWand: React.FC = () => {
   return (
-    <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="92" viewBox="0 0 92 92" width="92" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.2">
         <path
           d="M69.0374 34.4612L57.5374 22.9612L63.2491 17.2495C64.8591 15.6395 66.9291 14.8729 68.9991 14.8729C71.0691 14.8729 73.1391 15.6395 74.7491 17.2495C77.9308 20.4312 77.9308 25.5679 74.7491 28.7495L69.0374 34.4612Z"

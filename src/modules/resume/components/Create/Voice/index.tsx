@@ -1,11 +1,12 @@
 import { useTranslations } from 'next-intl'
-
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAudioRecorder } from 'react-audio-voice-recorder'
 
 import { Button } from '@/components/ui/button'
 
 import RecordButton from '../../Common/RecordButton'
+
+import type React from 'react'
 
 interface Props {
   onSubmit: (file: File) => void
@@ -20,7 +21,7 @@ const VoiceCreate: React.FC<Props> = ({ onSubmit }) => {
 
   const { startRecording, stopRecording, recordingBlob, isRecording } = useAudioRecorder({
     echoCancellation: false,
-    noiseSuppression: false,
+    noiseSuppression: false
   })
 
   useEffect(() => {
@@ -59,21 +60,23 @@ const VoiceCreate: React.FC<Props> = ({ onSubmit }) => {
   return (
     <div className="px-2 py-4">
       <div className="flex flex-col items-center justify-center gap-5">
-        <p className="text-center leading-relaxed text-sm">{t('Voice.Subtitle')}</p>
+        <p className="text-center text-sm leading-relaxed">{t('Voice.Subtitle')}</p>
         <RecordButton
-          className="w-16 h-16"
-          loading={voiceLoading}
+          className="h-16 w-16"
           isRecording={isRecording}
+          loading={voiceLoading}
           onClick={isRecording ? stopRecording : startRecording}
         />
 
         {recordedFile && !isRecording && (
-          <div className="flex flex-col gap-2 items-center">
-            <audio controls src={URL.createObjectURL(recordedFile)} />
+          <div className="flex flex-col items-center gap-2">
+            <audio controls src={URL.createObjectURL(recordedFile)}>
+              <track kind="captions" />
+            </audio>
           </div>
         )}
 
-        <small className="text-neutral-400 flex gap-1">
+        <small className="flex gap-1 text-neutral-400">
           <span className="text-red-500">*</span>
           <span>{t('Voice.Attention')}</span>
           <span className="text-red-500">*</span>
@@ -81,9 +84,9 @@ const VoiceCreate: React.FC<Props> = ({ onSubmit }) => {
       </div>
 
       <div className="mt-6">
-        <p className="text-xs text-center">{t('Voice.Guide')}</p>
+        <p className="text-center text-xs">{t('Voice.Guide')}</p>
 
-        <div className="border border-muted rounded-md p-3 mt-3 bg-black">
+        <div className="mt-3 rounded-md border border-muted bg-black p-3">
           <p className="text-sm leading-loose">
             {t('Voice.Text.First')}
             <br />

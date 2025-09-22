@@ -1,49 +1,36 @@
-import { AxiosResponse } from 'axios'
-
-import { ResponseModel } from '@/interface/General.model'
-
 import API from '@/lib/api'
 import axios from '@/lib/axios'
 
-import { Login } from '../interface'
-import { User } from '../interface/auth.model'
 import { setUserToken } from '../utils'
+
+import type { AxiosResponse } from 'axios'
+import type { ResponseModel } from '@/interface/General.model'
+import type { Login } from '../interface'
+import type { User } from '../interface/auth.model'
 
 export async function loginUser(
   url = '',
-  { arg }: { arg: { mobileNumber: string } },
+  { arg }: { arg: { mobileNumber: string } }
 ): Promise<{ message: string; userId: string }> {
-  try {
-    const res = await axios.post<{ message: string; data: { userId: string } }>(url, arg)
+  const res = await axios.post<{ message: string; data: { userId: string } }>(url, arg)
 
-    return {
-      message: res.data.message,
-      userId: res.data.data.userId,
-    }
-  } catch (e) {
-    throw e
+  return {
+    message: res.data.message,
+    userId: res.data.data.userId
   }
 }
 
 export async function verifyUser(url = '', { arg }: { arg: { code: string; userId: string } }): Promise<Login> {
-  try {
-    const res = await axios.post<ResponseModel<Login>>(url, arg)
+  const res = await axios.post<ResponseModel<Login>>(url, arg)
 
-    setUserToken(res.data.data.accessToken, res.data.data.refreshToken)
-    return res.data.data
-  } catch (e) {
-    throw e
-  }
+  setUserToken(res.data.data.accessToken, res.data.data.refreshToken)
+  return res.data.data
 }
 
 export async function updateName(url = '', { arg }: { arg: { firstName: string; lastName?: string } }): Promise<User> {
-  try {
-    const res = await axios.put<AxiosResponse<User>>(url, arg)
+  const res = await axios.put<AxiosResponse<User>>(url, arg)
 
-    return res.data.data
-  } catch (e) {
-    throw e
-  }
+  return res.data.data
 }
 
 export async function getUserProfile(): Promise<User> {

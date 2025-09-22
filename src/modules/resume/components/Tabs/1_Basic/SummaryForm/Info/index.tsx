@@ -2,13 +2,11 @@ import { IconInfoOctagon } from '@tabler/icons-react'
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 
-interface Props {}
-
-const Info = ({}: Props) => {
+const Info = () => {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <div className="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 rounded-full flex items-center justify-center cursor-pointer">
+        <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-neutral-200 dark:bg-neutral-700">
           <IconInfoOctagon />
         </div>
       </HoverCardTrigger>
@@ -17,16 +15,16 @@ const Info = ({}: Props) => {
           <h1 className="text-sm">خلاصه حرفه‌ای رزومه</h1>
 
           <p className="mt-1 text-xs leading-5">
-            بخش خلاصه رزومه شما جایی است که می‌توانید داستان یا خلاصه‌ای از تجربه حرفه‌ای، مهارت‌ها و دستاوردهای مرتبط
-            خود را بنویسید. خلاصه رزومه جایی است که شما خواننده را مجاب می‌کنید رزومه شما را مطالعه کند. در نظر داشته
-            باشید که از اعداد و شرکت‌ها یا محصولات خود استفاده کنید
+            بخش خلاصه رزومه شما جایی است که می‌توانید داستان یا خلاصه‌ای از تجربه حرفه‌ای، مهارت‌ها و دستاوردهای مرتبط خود را بنویسید.
+            خلاصه رزومه جایی است که شما خواننده را مجاب می‌کنید رزومه شما را مطالعه کند. در نظر داشته باشید که از اعداد و شرکت‌ها یا
+            محصولات خود استفاده کنید
           </p>
 
-          <ul className="list-disc text-xs ms-5 mt-2 leading-5">
+          <ul className="ms-5 mt-2 list-disc text-xs leading-5">
             <li>برای مخاطب، کاملا شفاف باشید</li>
             <li>
               <p>راجع به اطلاعات مشخص صحبت کنید</p>
-              <ul className="list-disc ms-3 my-2">
+              <ul className="my-2 ms-3 list-disc">
                 <li>سال های تجربه</li>
                 <li>شرکت ها و محصولات چشمگیر</li>
                 <li>مهارت های اصلی و کلمات کلیدی</li>

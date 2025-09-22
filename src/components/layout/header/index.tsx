@@ -1,14 +1,12 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconSparkles } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import ThemeMode from '@/components/theme'
 import { Link } from '@/components/ui/navigation'
-
 import { AppLogo, AppLogoEn } from '@/icons/logos'
 import useUserStore from '@/lib/store/auth'
 
@@ -19,10 +17,10 @@ const Header: React.FC<Props> = () => {
   const t = useTranslations('Layout')
 
   return (
-    <header className="bg-background/40 dark:bg-background/30 px-4 md:px-8 h-20 flex items-center relative border-b z-10">
-      <nav className={clsx('flex justify-between items-center w-full gap-1')}>
+    <header className="relative z-10 flex h-20 items-center border-b bg-background/40 px-4 md:px-8 dark:bg-background/30">
+      <nav className={clsx('flex w-full items-center justify-between gap-1')}>
         <div className="flex items-center gap-3">
-          <Link href="/" className="relative w-[100px] md:w-[140px] h-7 sm:h-10 flex pb-1">
+          <Link className="relative flex h-7 w-[100px] pb-1 sm:h-10 md:w-[140px]" href="/">
             {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
           </Link>
         </div>
@@ -41,11 +39,11 @@ const Header: React.FC<Props> = () => {
           </Link>
         </div> */}
 
-        <div className="flex gap-3 items-center">
+        <div className="flex items-center gap-3">
           <ThemeMode />
 
           <Link href={user ? '/app' : '/login'}>
-            <div className="bg-primary flex py-2 text-xs md:text-sm rounded-full gap-2 items-center px-6 text-primary-foreground">
+            <div className="flex items-center gap-2 rounded-full bg-primary px-6 py-2 text-primary-foreground text-xs md:text-sm">
               <IconSparkles />
               {user ? t('Header.OpenApp') : t('Header.SignUp')}
             </div>

@@ -1,4 +1,4 @@
-import { ZodIssueCode, ZodParsedType, defaultErrorMap, ZodErrorMap } from 'zod'
+import { defaultErrorMap, type ZodErrorMap, ZodIssueCode, ZodParsedType } from 'zod'
 
 const jsonStringifyReplacer = (_: string, value: unknown): unknown => {
   if (typeof value === 'bigint') {
@@ -8,15 +8,14 @@ const jsonStringifyReplacer = (_: string, value: unknown): unknown => {
 }
 
 function joinValues<T extends unknown[]>(array: T, separator = ' | '): string {
-  return array.map(val => (typeof val === 'string' ? `'${val}'` : val)).join(separator)
+  return array.map((val) => (typeof val === 'string' ? `'${val}'` : val)).join(separator)
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => {
   if (typeof value !== 'object' || value === null) return false
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const key in value) {
-    if (!Object.prototype.hasOwnProperty.call(value, key)) return false
+    if (!Object.hasOwn(value, key)) return false
   }
 
   return true
@@ -24,7 +23,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => {
 
 const getKeyAndValues = (
   param: unknown,
-  defaultKey: string,
+  defaultKey: string
 ): {
   values: Record<string, unknown>
   key: string
@@ -41,16 +40,16 @@ const getKeyAndValues = (
 }
 
 type ZodI18nMapOption = {
-  t: (e: string, opt?: any) => string
-  tForm?: (e: string, opt?: any) => string
+  t: (e: string, opt?: unknown) => string
+  tForm?: (e: string, opt?: unknown) => string
   ns?: string | readonly string[]
 }
 
 type MakeZodI18nMap = (option: ZodI18nMapOption) => ZodErrorMap
 
-export const makeZodI18nMap: MakeZodI18nMap = option => (issue, ctx) => {
+export const makeZodI18nMap: MakeZodI18nMap = (option) => (issue, ctx) => {
   const { t, tForm } = {
-    ...option,
+    ...option
   }
 
   let message: string
@@ -62,60 +61,60 @@ export const makeZodI18nMap: MakeZodI18nMap = option => (issue, ctx) => {
     case ZodIssueCode.invalid_type:
       if (issue.received === ZodParsedType.undefined) {
         message = t('errors.invalid_type_received_undefined', {
-          ...path,
+          ...path
         })
       } else {
         message = t('errors.invalid_type', {
           expected: t(`types.${issue.expected}`),
           received: t(`types.${issue.received}`),
-          ...path,
+          ...path
         })
       }
       break
     case ZodIssueCode.invalid_literal:
       message = t('errors.invalid_literal', {
         expected: JSON.stringify(issue.expected, jsonStringifyReplacer),
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.unrecognized_keys:
       message = t('errors.unrecognized_keys', {
-        keys: joinValues(issue.keys, ', '),
         count: issue.keys.length,
-        ...path,
+        keys: joinValues(issue.keys, ', '),
+        ...path
       })
       break
     case ZodIssueCode.invalid_union:
       message = t('errors.invalid_union', {
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_union_discriminator:
       message = t('errors.invalid_union_discriminator', {
         options: joinValues(issue.options),
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_enum_value:
       message = t('errors.invalid_enum_value', {
         options: joinValues(issue.options),
         received: issue.received,
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_arguments:
       message = t('errors.invalid_arguments', {
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_return_type:
       message = t('errors.invalid_return_type', {
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_date:
       message = t('errors.invalid_date', {
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.invalid_string:
@@ -123,49 +122,37 @@ export const makeZodI18nMap: MakeZodI18nMap = option => (issue, ctx) => {
         if ('startsWith' in issue.validation) {
           message = t('errors.invalid_string.startsWith', {
             startsWith: issue.validation.startsWith,
-            ...path,
+            ...path
           })
         } else if ('endsWith' in issue.validation) {
           message = t('errors.invalid_string.endsWith', {
             endsWith: issue.validation.endsWith,
-            ...path,
+            ...path
           })
         }
       } else {
         message = t(`errors.invalid_string.${issue.validation}`, {
           validation: t(`validations.${issue.validation}`),
-          ...path,
+          ...path
         })
       }
       break
     case ZodIssueCode.too_small: {
       const minimum = issue.type === 'date' ? new Date(issue.minimum as number) : (issue.minimum as number)
-      message = t(
-        `errors.too_small.${issue.type}.${
-          // eslint-disable-next-line no-nested-ternary
-          issue.exact ? 'exact' : issue.inclusive ? 'inclusive' : 'not_inclusive'
-        }`,
-        {
-          minimum,
-          count: typeof minimum === 'number' ? minimum : undefined,
-          ...path,
-        },
-      )
+      message = t(`errors.too_small.${issue.type}.${issue.exact ? 'exact' : issue.inclusive ? 'inclusive' : 'not_inclusive'}`, {
+        count: typeof minimum === 'number' ? minimum : undefined,
+        minimum,
+        ...path
+      })
       break
     }
     case ZodIssueCode.too_big: {
       const maximum = issue.type === 'date' ? new Date(issue.maximum as number) : (issue.maximum as number)
-      message = t(
-        `errors.too_big.${issue.type}.${
-          // eslint-disable-next-line no-nested-ternary
-          issue.exact ? 'exact' : issue.inclusive ? 'inclusive' : 'not_inclusive'
-        }`,
-        {
-          maximum,
-          count: typeof maximum === 'number' ? maximum : undefined,
-          ...path,
-        },
-      )
+      message = t(`errors.too_big.${issue.type}.${issue.exact ? 'exact' : issue.inclusive ? 'inclusive' : 'not_inclusive'}`, {
+        count: typeof maximum === 'number' ? maximum : undefined,
+        maximum,
+        ...path
+      })
       break
     }
     case ZodIssueCode.custom: {
@@ -173,24 +160,24 @@ export const makeZodI18nMap: MakeZodI18nMap = option => (issue, ctx) => {
 
       message = t(key as Parameters<typeof t>[0], {
         ...values,
-        ...path,
+        ...path
       })
       break
     }
     case ZodIssueCode.invalid_intersection_types:
       message = t('errors.invalid_intersection_types', {
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.not_multiple_of:
       message = t('errors.not_multiple_of', {
         multipleOf: issue.multipleOf as number,
-        ...path,
+        ...path
       })
       break
     case ZodIssueCode.not_finite:
       message = t('errors.not_finite', {
-        ...path,
+        ...path
       })
       break
     default:

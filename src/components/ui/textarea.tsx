@@ -6,28 +6,26 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   size?: string
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, size = 'default', ...props }, ref) => {
-    const sizes: Record<string, string> = {
-      sm: 'text-xs',
-      default: 'text-sm',
-    }
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, size = 'default', ...props }, ref) => {
+  const sizes: Record<string, string> = {
+    default: 'text-sm',
+    sm: 'text-xs'
+  }
 
-    return (
-      <textarea
-        className={cn(
-          'border-input bg-card dark:text-white dark:placeholder:text-neutral-600 dark:ring-offset-card dark:leading-5',
-          'flex  w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-          sizes[size],
-          props?.rows === 1 ? 'min-h-[30px]' : 'min-h-[80px]',
-          className,
-        )}
-        ref={ref}
-        {...props}
-      />
-    )
-  },
-)
+  return (
+    <textarea
+      className={cn(
+        'border-input bg-card dark:text-white dark:leading-5 dark:ring-offset-card dark:placeholder:text-neutral-600',
+        'flex w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+        sizes[size],
+        props?.rows === 1 ? 'min-h-[30px]' : 'min-h-[80px]',
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+})
 Textarea.displayName = 'Textarea'
 
 export { Textarea }

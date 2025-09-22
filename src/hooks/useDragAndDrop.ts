@@ -10,7 +10,7 @@ export const useDragAndDrop = ({ fieldId, position, moveCard }: Props) => {
   const [, drop] = useDrop({
     accept: 'CARD',
 
-    hover: (item: Record<string, any>) => {
+    hover: (item: Record<string, number>) => {
       const dragIndex = item.index
       const hoverIndex = position
 
@@ -19,19 +19,19 @@ export const useDragAndDrop = ({ fieldId, position, moveCard }: Props) => {
       }
       moveCard(dragIndex, hoverIndex)
       item.index = hoverIndex
-    },
+    }
   })
 
   const [{ isDragging }, drag, dragPreview] = useDrag(
     () => ({
-      type: 'CARD',
-      item: { type: 'CARD', id: fieldId, index: position },
-      collect: monitor => ({
-        isDragging: monitor.isDragging(),
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging()
       }),
+      item: { id: fieldId, index: position, type: 'CARD' },
+      type: 'CARD'
     }),
-    [position],
+    [position]
   )
 
-  return { drop, drag, dragPreview, isDragging }
+  return { drag, dragPreview, drop, isDragging }
 }

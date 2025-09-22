@@ -1,4 +1,4 @@
-import { WrapperProps } from './core'
+import type { WrapperProps } from './core'
 
 export function createReactEditorJS(): (props: WrapperProps) => JSX.Element {
   if (typeof window !== 'undefined') {

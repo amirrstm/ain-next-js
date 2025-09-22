@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconVoice: React.FC = () => {
   return (
-    <svg width="275" height="79" viewBox="0 0 275 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="79" viewBox="0 0 275 79" width="275" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M0 53.8566V25.0778C0 22.3273 2.28083 20.0465 5.03125 20.0465C7.78167 20.0465 10.0625 22.3273 10.0625 25.0778V53.8566C10.0625 56.6741 7.78167 58.8878 5.03125 58.8878C2.28083 58.8878 0 56.607 0 53.8566Z"
         fill="url(#paint0_linear_16_399)"
@@ -25,56 +25,56 @@ const IconVoice: React.FC = () => {
       />
       <defs>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint0_linear_16_399"
           x1="5.03125"
-          y1="20.0465"
           x2="5.03125"
+          y1="20.0465"
           y2="58.8878"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F79999" />
           <stop offset="1" stopColor="#FFDBB0" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint1_linear_16_399"
           x1="71.0938"
-          y1="10.5212"
           x2="71.0938"
+          y1="10.5212"
           y2="68.4813"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F79999" />
           <stop offset="1" stopColor="#FFDBB0" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint2_linear_16_399"
           x1="137.156"
-          y1="0.927124"
           x2="137.156"
+          y1="0.927124"
           y2="78.073"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F79999" />
           <stop offset="1" stopColor="#FFDBB0" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint3_linear_16_399"
           x1="203.219"
-          y1="10.5212"
           x2="203.219"
+          y1="10.5212"
           y2="68.4813"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F79999" />
           <stop offset="1" stopColor="#FFDBB0" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint4_linear_16_399"
           x1="269.281"
-          y1="20.0465"
           x2="269.281"
+          y1="20.0465"
           y2="58.8878"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F79999" />
           <stop offset="1" stopColor="#FFDBB0" />

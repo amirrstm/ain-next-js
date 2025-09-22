@@ -1,12 +1,12 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
-
 import { IconSend2 } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React from 'react'
+import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 import { TypeAnimation } from 'react-type-animation'
+
+import type React from 'react'
 
 const DashboardHeader: React.FC = () => {
   const { resolvedTheme } = useTheme()
@@ -15,22 +15,21 @@ const DashboardHeader: React.FC = () => {
   return (
     <div
       className={clsx(
-        'bg-secondary bg-no-repeat bg-cover bg-center rounded-2xl py-6 md:py-16 px-3 md:px-6',
+        'rounded-2xl bg-center bg-cover bg-secondary bg-no-repeat px-3 py-6 md:px-6 md:py-16',
         'bg-[url("https://res.cloudinary.com/dwwcd5u9v/image/upload/v1708678667/images/hero-screen.svg")]',
-        resolvedTheme === 'light' && 'grayscale invert contrast-[0.9] hue-rotate-[180deg]',
+        resolvedTheme === 'light' && 'contrast-[0.9] grayscale hue-rotate-[180deg] invert'
       )}
     >
       <div className="flex flex-col items-center justify-center">
-        <p className="text-sm text-gray-200">{t('Dashboard.Welcome')}</p>
+        <p className="text-gray-200 text-sm">{t('Dashboard.Welcome')}</p>
 
-        <h2 className="text-white text-lg md:text-2xl mt-2">{t('Dashboard.CreateNew')}</h2>
+        <h2 className="mt-2 text-lg text-white md:text-2xl">{t('Dashboard.CreateNew')}</h2>
       </div>
 
-      <div className="flex justify-center mt-6">
-        <div className="flex items-center gap-3 max-w-xl w-full px-3 py-2 bg-[#ffffff0d] rounded-md">
+      <div className="mt-6 flex justify-center">
+        <div className="flex w-full max-w-xl items-center gap-3 rounded-md bg-[#ffffff0d] px-3 py-2">
           <div className="flex-1">
             <TypeAnimation
-              wrapper="span"
               cursor={true}
               repeat={Infinity}
               sequence={[
@@ -41,14 +40,15 @@ const DashboardHeader: React.FC = () => {
                 t('Dashboard.Messages.Third'),
                 2000,
                 t('Dashboard.Messages.Forth'),
-                2000,
+                2000
               ]}
-              style={{ fontSize: '1em', display: 'inline-block', color: '#ffffffcd' }}
+              style={{ color: '#ffffffcd', display: 'inline-block', fontSize: '1em' }}
+              wrapper="span"
             />
           </div>
 
-          <div className="w-9 h-9 flex items-center justify-center bg-[#ffffff22] rounded-md">
-            <IconSend2 className="w-5 h-5 rotate-0 text-white rtl:rotate-180" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-[#ffffff22]">
+            <IconSend2 className="h-5 w-5 rotate-0 text-white rtl:rotate-180" />
           </div>
         </div>
       </div>

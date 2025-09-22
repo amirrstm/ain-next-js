@@ -1,65 +1,66 @@
+import { IconBolt, IconCash, IconClick, IconClock, IconEaseInOutControlPoints, IconSparkles } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 
-import { IconBolt, IconCash, IconClick, IconClock, IconEaseInOutControlPoints, IconSparkles } from '@tabler/icons-react'
-import React, { ReactNode } from 'react'
+import type React from 'react'
+import type { ReactNode } from 'react'
 
 const Benefits: React.FC = () => {
   const t = useTranslations('Layout.Home')
 
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6 relative z-[1]">
-      <div className="py-1 w-14 rounded-full bg-primary text-white dark:text-foreground flex justify-center text-xs shadow-xl shadow-primary tracking-widest">
+    <div className="relative z-[1] mx-auto max-w-6xl px-6 py-12">
+      <div className="flex w-14 justify-center rounded-full bg-primary py-1 text-white text-xs tracking-widest shadow-primary shadow-xl dark:text-foreground">
         {t('Benefits.Title')}
       </div>
 
-      <h1 className="text-2xl md:text-4xl font-bold my-6 block">{t('Benefits.Subtitle')}</h1>
+      <h1 className="my-6 block font-bold text-2xl md:text-4xl">{t('Benefits.Subtitle')}</h1>
 
       <div className="grid grid-cols-11 gap-4 md:mt-12">
         <div className="col-span-11 md:col-span-5">
           <SingleBox
-            title={t('Benefits.UseCase.Title')}
             description={t('Benefits.UseCase.Description')}
-            icon={<IconSparkles className="w-10 h-10 text-primary" />}
+            icon={<IconSparkles className="h-10 w-10 text-primary" />}
+            title={t('Benefits.UseCase.Title')}
           />
         </div>
 
         <div className="col-span-11 md:col-span-3">
           <SingleBox
-            title={t('Benefits.Time.Title')}
             description={t('Benefits.Time.Description')}
-            icon={<IconClock className="w-10 h-10 text-primary" />}
+            icon={<IconClock className="h-10 w-10 text-primary" />}
+            title={t('Benefits.Time.Title')}
           />
         </div>
 
         <div className="col-span-11 md:col-span-3">
           <SingleBox
-            title={t('Benefits.Use.Title')}
             description={t('Benefits.Use.Description')}
-            icon={<IconClick className="w-10 h-10 text-primary" />}
+            icon={<IconClick className="h-10 w-10 text-primary" />}
+            title={t('Benefits.Use.Title')}
           />
         </div>
 
         <div className="col-span-11 md:col-span-4">
           <SingleBox
-            title={t('Benefits.Money.Title')}
             description={t('Benefits.Money.Description')}
-            icon={<IconCash className="w-10 h-10 text-primary" />}
+            icon={<IconCash className="h-10 w-10 text-primary" />}
+            title={t('Benefits.Money.Title')}
           />
         </div>
 
         <div className="col-span-11 md:col-span-3">
           <SingleBox
-            title={t('Benefits.Plagiarism.Title')}
             description={t('Benefits.Plagiarism.Description')}
-            icon={<IconBolt className="w-10 h-10 text-primary" />}
+            icon={<IconBolt className="h-10 w-10 text-primary" />}
+            title={t('Benefits.Plagiarism.Title')}
           />
         </div>
 
         <div className="col-span-11 md:col-span-4">
           <SingleBox
-            title={t('Benefits.Workflow.Title')}
             description={t('Benefits.Workflow.Description')}
-            icon={<IconEaseInOutControlPoints className="w-10 h-10 text-primary" />}
+            icon={<IconEaseInOutControlPoints className="h-10 w-10 text-primary" />}
+            title={t('Benefits.Workflow.Title')}
           />
         </div>
       </div>
@@ -71,11 +72,11 @@ export default Benefits
 
 const SingleBox: React.FC<{ title: string; description: string; icon: ReactNode }> = ({ title, description, icon }) => {
   return (
-    <div className="flex flex-col gap-6 bg-background border border-muted rounded-xl p-4">
+    <div className="flex flex-col gap-6 rounded-xl border border-muted bg-background p-4">
       {icon}
       <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-sm font-light mt-2">{description}</p>
+        <h2 className="font-semibold text-lg">{title}</h2>
+        <p className="mt-2 font-light text-sm">{description}</p>
       </div>
     </div>
   )

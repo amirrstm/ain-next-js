@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconPasFramework: React.FC = () => {
   return (
-    <svg viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 30 12" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_3709_3262)">
         <path
           d="M4.9002 0.450195C5.77391 0.450195 6.51749 0.591476 7.13095 0.870319C7.7444 1.14916 8.21286 1.55441 8.53631 2.08236C8.85977 2.6103 9.01964 3.2535 9.01964 4.00823C9.01964 4.76297 8.85977 5.40617 8.53631 5.93411C8.21286 6.46205 7.7444 6.8673 7.13095 7.14615C6.51749 7.42499 5.77391 7.56627 4.9002 7.56627H2.78099V11.1243H0V0.450195H4.9002ZM4.46521 5.47681C5.04892 5.47681 5.48763 5.35412 5.78135 5.11245C6.07506 4.87079 6.22749 4.499 6.22749 4.00451C6.22749 3.51003 6.07878 3.13824 5.78135 2.89658C5.48391 2.65491 5.0452 2.53222 4.46521 2.53222H2.78471V5.47681H4.46521Z"
@@ -19,7 +19,7 @@ const IconPasFramework: React.FC = () => {
       </g>
       <defs>
         <clipPath id="clip0_3709_3262">
-          <rect width="29.4012" height="10.9976" fill="white" transform="translate(0 0.286621)"></rect>
+          <rect fill="white" height="10.9976" transform="translate(0 0.286621)" width="29.4012"></rect>
         </clipPath>
       </defs>
     </svg>

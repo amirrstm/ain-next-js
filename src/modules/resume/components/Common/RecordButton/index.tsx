@@ -1,7 +1,8 @@
-import { IconLoader } from '@tabler/icons-react'
-import { IconMicrophone, IconPlayerStopFilled } from '@tabler/icons-react'
+import { IconLoader, IconMicrophone, IconPlayerStopFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import type React from 'react'
 
 interface Props {
   isRecording: boolean
@@ -15,7 +16,7 @@ const RecordButton: React.FC<Props> = ({ isRecording, loading, className, onClic
   const circumference = 2 * Math.PI * radius
 
   const startTimeRef = useRef(Date.now())
-  const [seconds, setSeconds] = useState(30)
+  const [_seconds, setSeconds] = useState(30)
   const [strokeDashoffset, setStrokeDashoffset] = useState(circumference)
 
   useEffect(() => {
@@ -33,42 +34,36 @@ const RecordButton: React.FC<Props> = ({ isRecording, loading, className, onClic
       setStrokeDashoffset(circumference)
       startTimeRef.current = Date.now()
     }
-  }, [isRecording, startTimeRef, circumference])
+  }, [isRecording, circumference])
 
   return (
     <div
-      onClick={onClick}
       className={clsx(
-        'w-10 h-10 relative border border-muted bg-muted rounded-full flex items-center justify-center cursor-pointer',
+        'relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-muted bg-muted',
         className,
-        { 'border-primary pulse-animation': isRecording, 'pointer-events-none': loading },
+        { 'pointer-events-none': loading, 'pulse-animation border-primary': isRecording }
       )}
+      onClick={onClick}
     >
       {isRecording && (
-        <div className="absolute start-[-7px] top-[-2px] w-[72px] h-[72px]">
-          <svg className="rotate-270 w-full h-full">
+        <div className="absolute start-[-7px] top-[-2px] h-[72px] w-[72px]">
+          <svg className="h-full w-full rotate-270">
             <circle
               className="text-primary"
-              strokeWidth="4"
+              cx="35"
+              cy="35"
+              fill="transparent"
+              r={radius}
+              stroke="currentColor"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
               strokeLinecap="round"
-              stroke="currentColor"
-              fill="transparent"
-              r={radius}
-              cx="35"
-              cy="35"
+              strokeWidth="4"
             />
           </svg>
         </div>
       )}
-      {loading ? (
-        <IconLoader className="h-5 w-5 animate-spin" />
-      ) : isRecording ? (
-        <IconPlayerStopFilled />
-      ) : (
-        <IconMicrophone />
-      )}
+      {loading ? <IconLoader className="h-5 w-5 animate-spin" /> : isRecording ? <IconPlayerStopFilled /> : <IconMicrophone />}
     </div>
   )
 }

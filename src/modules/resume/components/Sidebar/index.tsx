@@ -1,9 +1,8 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { ReactNode, useContext } from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { type ReactNode, useContext } from 'react'
 
 import { YekanBakhNumFont } from '@/styles/fonts'
 
@@ -15,37 +14,37 @@ const MainSidebar: React.FC = () => {
   const { activeTab, setActiveTab } = useContext(ResumeContext)
 
   const tabs: Record<RESUME_ENUM_TABS, { title: string; description: string }> = {
-    [RESUME_ENUM_TABS.Basic]: { title: t('Tabs.Personal.Title'), description: t('Tabs.Personal.Description') },
-    [RESUME_ENUM_TABS.Education]: { title: t('Tabs.Education.Title'), description: t('Tabs.Education.Description') },
-    [RESUME_ENUM_TABS.Experience]: { title: t('Tabs.Experience.Title'), description: t('Tabs.Experience.Description') },
-    [RESUME_ENUM_TABS.Skills]: { title: t('Tabs.Skills.Title'), description: t('Tabs.Skills.Description') },
-    [RESUME_ENUM_TABS.Projects]: { title: t('Tabs.Projects.Title'), description: t('Tabs.Projects.Description') },
+    [RESUME_ENUM_TABS.Basic]: { description: t('Tabs.Personal.Description'), title: t('Tabs.Personal.Title') },
+    [RESUME_ENUM_TABS.Education]: { description: t('Tabs.Education.Description'), title: t('Tabs.Education.Title') },
+    [RESUME_ENUM_TABS.Experience]: { description: t('Tabs.Experience.Description'), title: t('Tabs.Experience.Title') },
+    [RESUME_ENUM_TABS.Skills]: { description: t('Tabs.Skills.Description'), title: t('Tabs.Skills.Title') },
+    [RESUME_ENUM_TABS.Projects]: { description: t('Tabs.Projects.Description'), title: t('Tabs.Projects.Title') },
     [RESUME_ENUM_TABS.Publications]: {
-      title: t('Tabs.Publications.Title'),
       description: t('Tabs.Publications.Description'),
+      title: t('Tabs.Publications.Title')
     },
-    [RESUME_ENUM_TABS.Others]: { title: t('Tabs.Other.Title'), description: t('Tabs.Other.Description') },
+    [RESUME_ENUM_TABS.Others]: { description: t('Tabs.Other.Description'), title: t('Tabs.Other.Title') }
   }
 
   return (
-    <div className="bg-card rounded-xl border border-muted">
-      <div className="p-2 xl:p-4 border-b border-b-muted">
-        <h1 className="text-primary sm:text-lg font-semibold">{t('Title')}</h1>
-        <p className="text-xs text-gray-500 mt-1">{t('Description')}</p>
+    <div className="rounded-xl border border-muted bg-card">
+      <div className="border-b border-b-muted p-2 xl:p-4">
+        <h1 className="font-semibold text-primary sm:text-lg">{t('Title')}</h1>
+        <p className="mt-1 text-gray-500 text-xs">{t('Description')}</p>
       </div>
-      <div className="ps-2 xl:ps-8 pe-6 xl:pe-2 py-4 overflow-x-auto">
-        <ol className="relative text-gray-500 xl:border-s xl:border-muted flex flex-nowrap min-w-[480px] sm:flex-wrap justify-between xl:block">
-          <div className="absolute w-[calc(100%-40px)] h-[1px] bg-muted top-3 sm:top-4 right-8 block xl:hidden" />
+      <div className="overflow-x-auto py-4 ps-2 pe-6 xl:ps-8 xl:pe-2">
+        <ol className="relative flex min-w-[480px] flex-nowrap justify-between text-gray-500 sm:flex-wrap xl:block xl:border-muted xl:border-s">
+          <div className="absolute top-3 right-8 block h-[1px] w-[calc(100%-40px)] bg-muted sm:top-4 xl:hidden" />
           {Object.keys(tabs).map((tab, index) => (
             <SingleTab
-              key={tab}
+              completed={index < Object.keys(tabs).indexOf(activeTab)}
+              description={tabs[tab as RESUME_ENUM_TABS].description}
               index={index + 1}
               isActive={activeTab === tab}
-              title={tabs[tab as RESUME_ENUM_TABS].title}
               isLast={index === Object.keys(tabs).length - 1}
-              description={tabs[tab as RESUME_ENUM_TABS].description}
-              completed={index < Object.keys(tabs).indexOf(activeTab)}
+              key={tab}
               onClick={() => activeTab !== tab && setActiveTab(tab as RESUME_ENUM_TABS)}
+              title={tabs[tab as RESUME_ENUM_TABS].title}
             />
           ))}
         </ol>
@@ -70,25 +69,25 @@ const SingleTab: React.FC<{
 
   return (
     <li
-      onClick={onClick}
-      className={clsx('xl:ms-6 flex flex-col xl:flex-row items-center cursor-pointer group relative gap-3 xl:gap-0', {
-        'xl:mb-10': !isLast,
+      className={clsx('group relative flex cursor-pointer flex-col items-center gap-3 xl:ms-6 xl:flex-row xl:gap-0', {
         'opacity-85 dark:opacity-100': !isActive && !completed,
+        'xl:mb-10': !isLast
       })}
+      onClick={onClick}
     >
       <span
         className={clsx(
-          'xl:absolute xl:-start-10 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full',
-          'bg-muted -start-4 ring-4 ring-muted',
+          'xl:-start-10 flex h-6 w-6 items-center justify-center rounded-full sm:h-7 sm:w-7 xl:absolute',
+          '-start-4 bg-muted ring-4 ring-muted',
           {
             '!bg-green-500 !text-white !ring-green-500': completed,
             'bg-primary text-white ring-primary': isActive,
-            'group-hover:text-primary': !isActive && !completed,
-          },
+            'group-hover:text-primary': !isActive && !completed
+          }
         )}
       >
         {completed ? (
-          <IconCheck className="w-4 h-4" />
+          <IconCheck className="h-4 w-4" />
         ) : index ? (
           <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-sm sm:text-lg')}>{index}</p>
         ) : (
@@ -98,17 +97,17 @@ const SingleTab: React.FC<{
       <div className="text-center xl:text-start">
         <h3
           className={clsx('font-medium text-xs lg:text-base', {
-            'text-primary': isActive,
-            'text-green-500': completed,
             'group-hover:text-primary': !isActive && !completed,
+            'text-green-500': completed,
+            'text-primary': isActive
           })}
         >
           {title}
         </h3>
         <p
-          className={clsx('hidden xl:block text-xs text-gray-400 group-hover:text-primary font-light', {
-            '!text-primary': isActive,
+          className={clsx('hidden font-light text-gray-400 text-xs group-hover:text-primary xl:block', {
             '!text-green-500': completed,
+            '!text-primary': isActive
           })}
         >
           {description}

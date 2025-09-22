@@ -1,12 +1,10 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 import React, { useEffect, useState } from 'react'
 
 import { usePathname, useRouter } from '@/components/ui/navigation'
-
 import IconChat from '@/icons/menus/chat'
 import IconCopywriting from '@/icons/menus/copywriting'
 import IconDashboard from '@/icons/menus/dashboard'
@@ -56,75 +54,75 @@ export default function AppLayoutContainer({ children }: { children: React.React
 
   const menus = [
     {
-      title: t('Menus.Home'),
-      link: '/app',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconHome />
         </div>
       ),
+      link: '/app',
+      title: t('Menus.Home')
     },
     {
-      title: t('Menus.Copywriting'),
-      link: '/app/copywriting',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconCopywriting />
         </div>
       ),
+      link: '/app/copywriting',
+      title: t('Menus.Copywriting')
     },
     {
-      title: t('Menus.Resume'),
-      link: '/app/resume',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconResume />
         </div>
       ),
+      link: '/app/resume',
+      title: t('Menus.Resume')
     },
     {
-      title: t('Menus.Chat'),
-      link: '/app/chat',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconChat />
         </div>
       ),
+      link: '/app/chat',
+      title: t('Menus.Chat')
     },
     {
-      title: t('Menus.Dashboard'),
-      link: '/app/dashboard',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconDashboard />
         </div>
       ),
+      link: '/app/dashboard',
+      title: t('Menus.Dashboard')
     },
     {
-      title: t('Menus.History'),
-      link: '/app/history',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconHistory />
         </div>
       ),
+      link: '/app/history',
+      title: t('Menus.History')
     },
     {
-      title: t('Menus.Settings'),
-      link: '/app/settings',
       icon: (
-        <div className="flex w-6 h-6">
+        <div className="flex h-6 w-6">
           <IconSettings />
         </div>
       ),
-    },
+      link: '/app/settings',
+      title: t('Menus.Settings')
+    }
   ]
 
   useEffect(() => {
     if (user) {
       setLoading(true)
       getUserProfile()
-        .then(res => {
+        .then((res) => {
           setUser(res)
           setLoading(false)
         })
@@ -134,33 +132,33 @@ export default function AppLayoutContainer({ children }: { children: React.React
           router.push(`/login?returnUrl=${pathname}`)
         })
     }
-  }, [])
+  }, [pathname, resetUser, router.push, setUser, user])
 
   if (loading) return null
 
   return (
-    <main className="dark:bg-popover bg-white">
+    <main className="bg-white dark:bg-popover">
       <div className="hidden md:block">
-        <AppSiderBar menus={menus} isOpen={isMenuOpen} setOpen={setIsMenuOpen} />
+        <AppSiderBar isOpen={isMenuOpen} menus={menus} setOpen={setIsMenuOpen} />
       </div>
 
       <div
         className={clsx(
-          'fixed right-0 top-0 w-full h-screen bg-background/80 dark:bg-background/50 transition-all duration-300 ease-in-out',
+          'fixed top-0 right-0 h-screen w-full bg-background/80 transition-all duration-300 ease-in-out dark:bg-background/50',
           {
-            'opacity-0 -z-[100]': !isMobileMenuOpen,
-            'opacity-100 z-[100]': isMobileMenuOpen,
-          },
+            '-z-[100] opacity-0': !isMobileMenuOpen,
+            'z-[100] opacity-100': isMobileMenuOpen
+          }
         )}
       >
         <div
-          ref={menuRef}
-          className={clsx('w-[250px] fixed bg-background h-screen transition-all duration-300 ease-in-out shadow-xl', {
-            'start-0': isMobileMenuOpen,
+          className={clsx('fixed h-screen w-[250px] bg-background shadow-xl transition-all duration-300 ease-in-out', {
             '-start-[250px]': !isMobileMenuOpen,
+            'start-0': isMobileMenuOpen
           })}
+          ref={menuRef}
         >
-          <AppSiderBar menus={menus} isOpen={true} setOpen={setIsMenuOpen} />
+          <AppSiderBar isOpen={true} menus={menus} setOpen={setIsMenuOpen} />
         </div>
       </div>
 
@@ -169,14 +167,12 @@ export default function AppLayoutContainer({ children }: { children: React.React
       </div>
 
       <div
-        className={clsx('md:py-3 md:pe-3 transition-all duration-200 ease-in-out', {
+        className={clsx('transition-all duration-200 ease-in-out md:py-3 md:pe-3', {
           'md:ps-[100px]': !isMenuOpen,
-          'md:ps-[250px]': isMenuOpen,
+          'md:ps-[250px]': isMenuOpen
         })}
       >
-        <div className={clsx('bg-popover dark:bg-background rounded-xl shadow-inner min-h-[calc(100vh-24px)]')}>
-          {children}
-        </div>
+        <div className={clsx('min-h-[calc(100vh-24px)] rounded-xl bg-popover shadow-inner dark:bg-background')}>{children}</div>
       </div>
     </main>
   )

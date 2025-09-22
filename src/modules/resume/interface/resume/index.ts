@@ -1,19 +1,19 @@
-import { IResumeAward } from './resume.award'
-import { IResumeBasic } from './resume.basic'
-import { IResumeCertificate } from './resume.certificate'
-import { IResumeEducation } from './resume.education'
-import { IResumeInterest } from './resume.interest'
-import { IResumeInvention } from './resume.invention'
-import { IResumeLanguage } from './resume.language'
-import { IResumeProfile } from './resume.profile'
-import { IResumeProject } from './resume.project'
-import { IResumePublication } from './resume.publication'
-import { IResumeReference } from './resume.reference'
-import { IResumeSkill } from './resume.skill'
-import { IResumeSpeech } from './resume.speech'
-import { IResumeTeaching } from './resume.teaching'
-import { IResumeVolunteer } from './resume.volunteer'
-import { IResumeWork } from './resume.work'
+import type { IResumeAward } from './resume.award'
+import type { IResumeBasic } from './resume.basic'
+import type { IResumeCertificate } from './resume.certificate'
+import type { IResumeEducation } from './resume.education'
+import type { IResumeInterest } from './resume.interest'
+import type { IResumeInvention } from './resume.invention'
+import type { IResumeLanguage } from './resume.language'
+import type { IResumeProfile } from './resume.profile'
+import type { IResumeProject } from './resume.project'
+import type { IResumePublication } from './resume.publication'
+import type { IResumeReference } from './resume.reference'
+import type { IResumeSkill } from './resume.skill'
+import type { IResumeSpeech } from './resume.speech'
+import type { IResumeTeaching } from './resume.teaching'
+import type { IResumeVolunteer } from './resume.volunteer'
+import type { IResumeWork } from './resume.work'
 
 export interface ResumeFile {
   mime: string
@@ -78,5 +78,5 @@ export interface IResumeTemplateSettings {
   skillBarColor?: string
   hideInformationIcon?: boolean
   blockMargins?: string
-  extra?: Record<string, any>
+  extra?: Record<string, unknown>
 }

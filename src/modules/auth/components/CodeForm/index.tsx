@@ -1,16 +1,16 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconProgress } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 
 import { CodeInput } from '@/components/ui/code-input'
-
 import { useI18nZodErrors } from '@/lib/zodValidation'
 import { YekanBakhNumFont } from '@/styles/fonts'
+
+import type React from 'react'
 
 type Props = {
   loading: boolean
@@ -45,7 +45,7 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
     return () => {
       clearInterval(interval)
     }
-  }, [seconds])
+  }, [seconds, minutes])
 
   const onCodeChange = (e: string) => {
     setValue(e)
@@ -56,26 +56,26 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
   }
 
   return (
-    <div className="p-6 w-full">
+    <div className="w-full p-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+        <h1 className="bg-gradient-to-r from-primary to-textWhite bg-clip-text font-bold text-3xl text-transparent">
           {t('CodeTitle')}
         </h1>
 
-        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('CodeSubtitle')}</p>
+        <p className="mx-auto mt-2 max-w-[80%] text-gray-400 text-xs leading-relaxed">{t('CodeSubtitle')}</p>
       </div>
 
-      <div dir="ltr" className="relative pt-4">
+      <div className="relative pt-4" dir="ltr">
         {loading && (
-          <div className="absolute w-full top-4 bottom-0 right-0 left-0 bg-secondary/80 z-10 flex items-center justify-center">
-            <IconProgress className="animate-spin w-6 h-6 text-neutral-400" />
+          <div className="absolute top-4 right-0 bottom-0 left-0 z-10 flex w-full items-center justify-center bg-secondary/80">
+            <IconProgress className="h-6 w-6 animate-spin text-neutral-400" />
           </div>
         )}
 
-        <CodeInput value={value} onChange={onCodeChange} name="code" />
+        <CodeInput name="code" onChange={onCodeChange} value={value} />
       </div>
 
-      <div className="flex justify-between items-center text-xs py-6">
+      <div className="flex items-center justify-between py-6 text-xs">
         {seconds > 0 || minutes > 0 ? (
           <p className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
             {t('Time')}: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
@@ -85,17 +85,17 @@ const CodeForm: React.FC<Props> = ({ loading, onSubmit, onBack, onResend }) => {
         )}
 
         <span
-          onClick={onResend}
-          className={clsx('text-xs text-primary cursor-pointer', {
-            '!text-white opacity-35 !cursor-not-allowed': seconds > 0 || minutes > 0,
+          className={clsx('cursor-pointer text-primary text-xs', {
+            '!text-white !cursor-not-allowed opacity-35': seconds > 0 || minutes > 0
           })}
+          onClick={onResend}
         >
           {t('Resend')}
         </span>
       </div>
 
-      <div className="font-light text-xs text-center">
-        <span className="text-primary dark:text-primary-foreground cursor-pointer" onClick={onBack}>
+      <div className="text-center font-light text-xs">
+        <span className="cursor-pointer text-primary dark:text-primary-foreground" onClick={onBack}>
           {t('Fields.TwoFactorBack')}
         </span>
       </div>

@@ -1,10 +1,7 @@
-import { useTranslations } from 'next-intl'
-
 import { IconWand } from '@tabler/icons-react'
-import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { type Dispatch, type SetStateAction, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-
-import { AppCategory } from '@/interface/Category.model'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -13,6 +10,9 @@ import { ReactSelect } from '@/components/ui/react-select'
 import { Textarea } from '@/components/ui/textarea'
 
 import useTones from '../../hooks/useTones'
+
+import type React from 'react'
+import type { AppCategory } from '@/interface/Category.model'
 
 interface Props {
   loading: boolean
@@ -26,59 +26,59 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
   const t = useTranslations('Copywriting')
   const { isLoading: tonesLoading, data: tones } = useTones()
 
-  const form = useForm<any>({
+  const form = useForm({
     defaultValues: {
-      variant: { _id: '1', name: t('Category.Variants.One') },
       temperature: { _id: '0.7', name: t('Category.Creativity.Optimal') },
-    },
+      variant: { _id: '1', name: t('Category.Variants.One') }
+    }
   })
 
   useEffect(() => {
     if (category) {
       setAppCategory(category)
 
-      category.inputs.forEach(input => {
+      category.inputs.forEach((input) => {
         form.register(input.name, {
-          value: '',
-          required: { value: input.isRequired, message: t('Content.RequiredError') },
+          required: { message: t('Content.RequiredError'), value: input.isRequired },
+          value: ''
         })
       })
     }
-  }, [category])
+  }, [category, form.register, setAppCategory, t])
 
   useEffect(() => {
     if (tones) {
       form.setValue(
         'tone',
-        tones.find(tone => tone.name === 'متقاعدکننده' || tone.name === 'Convincing'),
+        tones.find((tone) => tone.name === 'متقاعدکننده' || tone.name === 'Convincing')
       )
     }
-  }, [tones])
+  }, [tones, form.setValue])
 
   if (!appCategory) return null
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-8 h-full flex flex-col justify-between">
+      <form className="flex h-full flex-col justify-between space-y-8 p-4" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="space-y-8">
           <div className="flex gap-3">
             <div className="flex-1">
               <FormField
-                name="tone"
                 control={form.control}
+                name="tone"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('Category.ToneOfVoice')}</FormLabel>
                     <FormControl>
                       <ReactSelect
+                        getOptionLabel={(op) => op.name}
+                        getOptionValue={(op) => op._id}
+                        isDisabled={tonesLoading}
+                        isLoading={tonesLoading}
+                        isSearchable={false}
+                        options={tones}
                         size="sm"
                         useLabelValue
-                        options={tones}
-                        isSearchable={false}
-                        isLoading={tonesLoading}
-                        isDisabled={tonesLoading}
-                        getOptionLabel={(op: any) => op.name}
-                        getOptionValue={(op: any) => op._id}
                         {...field}
                       />
                     </FormControl>
@@ -91,26 +91,26 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
 
             <div className="flex-1">
               <FormField
-                name="temperature"
                 control={form.control}
+                name="temperature"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('Category.Creativity.Title')}</FormLabel>
                     <FormControl>
                       <ReactSelect
-                        size="sm"
-                        useLabelValue
+                        getOptionLabel={(op) => op.name}
+                        getOptionValue={(op) => op._id}
+                        isSearchable={false}
                         options={[
                           { _id: '0.7', name: t('Category.Creativity.Optimal') },
                           { _id: '0', name: t('Category.Creativity.None') },
                           { _id: '0.3', name: t('Category.Creativity.Low') },
                           { _id: '0.5', name: t('Category.Creativity.Medium') },
                           { _id: '0.8', name: t('Category.Creativity.High') },
-                          { _id: '1', name: t('Category.Creativity.Max') },
+                          { _id: '1', name: t('Category.Creativity.Max') }
                         ]}
-                        isSearchable={false}
-                        getOptionLabel={(op: any) => op.name}
-                        getOptionValue={(op: any) => op._id}
+                        size="sm"
+                        useLabelValue
                         {...field}
                       />
                     </FormControl>
@@ -122,10 +122,10 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
             </div>
           </div>
 
-          {appCategory.inputs.map(input => (
+          {appCategory.inputs.map((input) => (
             <FormField
-              key={input._id}
               control={form.control}
+              key={input._id}
               name={input.name}
               render={({ field }) => (
                 <FormItem className="relative">
@@ -134,12 +134,12 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
                     {!input.multiline ? (
                       <Input inputSize="sm" maxLength={100} placeholder={input.placeholder} {...field} />
                     ) : (
-                      <Textarea size="sm" maxLength={300} rows={4} placeholder={input.placeholder} {...field} />
+                      <Textarea maxLength={300} placeholder={input.placeholder} rows={4} size="sm" {...field} />
                     )}
                   </FormControl>
 
                   <div className="absolute end-0">
-                    <p className="text-xs text-gray-400">
+                    <p className="text-gray-400 text-xs">
                       {input.multiline ? 300 : 100} / {String(field.value || '').length}
                     </p>
                   </div>
@@ -152,8 +152,8 @@ const ContentForm: React.FC<Props> = ({ loading, category, appCategory, onSubmit
         </div>
 
         <div className="pt-4">
-          <Button type="submit" className="w-full gap-2" loading={loading}>
-            <IconWand className="w-5 h-5" />
+          <Button className="w-full gap-2" loading={loading} type="submit">
+            <IconWand className="h-5 w-5" />
             <span>{t('Category.Generate')}</span>
           </Button>
 

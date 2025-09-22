@@ -11,10 +11,10 @@ const AppSettingsContainer: React.FC = () => {
   const t = useTranslations('User')
 
   return (
-    <div className="p-2 md:py-3 md:px-8">
-      <div className="md:mb-4 pt-2 pb-4 md:pb-0">
+    <div className="p-2 md:px-8 md:py-3">
+      <div className="pt-2 pb-4 md:mb-4 md:pb-0">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7">
+          <div className="h-7 w-7">
             <IconSettings />
           </div>
           <span className="text-lg">{t('Settings.Title')}</span>

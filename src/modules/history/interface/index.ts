@@ -1,4 +1,4 @@
-import { AppCategory } from '@/interface/Category.model'
+import type { AppCategory } from '@/interface/Category.model'
 
 export interface IHistory {
   _id: string

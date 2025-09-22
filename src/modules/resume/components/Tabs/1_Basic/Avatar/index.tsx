@@ -1,17 +1,17 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { AvatarFallback } from '@radix-ui/react-avatar'
 import { IconTrash, IconUpload, IconUser } from '@tabler/icons-react'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { ImageCropper } from '@/components/ui/image-cropper'
-
 import { ResumeContext } from '@/modules/resume/context'
 import { removeResumeImage, updateResumeImage } from '@/modules/resume/service'
+
+import type React from 'react'
 
 export const ProfileAvatar: React.FC = () => {
   const { resumeId } = useParams()
@@ -22,7 +22,7 @@ export const ProfileAvatar: React.FC = () => {
   const { resume, mutate } = useContext(ResumeContext)
 
   useEffect(() => {
-    if (resume && resume.image) {
+    if (resume?.image) {
       setPreview(resume.image.completedUrl)
     }
   }, [resume])
@@ -39,12 +39,12 @@ export const ProfileAvatar: React.FC = () => {
   }
 
   const { getRootProps, getInputProps, open } = useDropzone({
-    onDrop,
-    maxFiles: 1,
     accept: {
       'image/jpeg': ['.jpeg', '.png'],
-      'image/png': [],
+      'image/png': []
     },
+    maxFiles: 1,
+    onDrop
   })
 
   const handleResetImage = () => {
@@ -68,36 +68,36 @@ export const ProfileAvatar: React.FC = () => {
       <div className="relative">
         <div {...getRootProps()} className="flex flex-col items-center gap-3">
           <input {...getInputProps()} />
-          <Avatar className="w-20 h-20 bg-card cursor-pointer">
+          <Avatar className="h-20 w-20 cursor-pointer bg-card">
             <AvatarImage src={preview} />
-            <AvatarFallback className="flex items-center justify-center w-full">
-              <IconUser className="w-10 h-10" />
+            <AvatarFallback className="flex w-full items-center justify-center">
+              <IconUser className="h-10 w-10" />
             </AvatarFallback>
           </Avatar>
 
-          <Button type="button" onClick={open} size="sm" className="flex gap-2 items-center">
-            <IconUpload className="w-4 h-4" />
+          <Button className="flex items-center gap-2" onClick={open} size="sm" type="button">
+            <IconUpload className="h-4 w-4" />
             <span className="text-xs">{t('Upload')}</span>
           </Button>
         </div>
 
         {preview && (
           <div
+            className="-top-1 -right-1 absolute flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-destructive"
             onClick={onRemoveImage}
-            className="absolute -top-1 -right-1 bg-destructive w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
           >
-            <IconTrash className="w-4 h-4 text-white" />
+            <IconTrash className="h-4 w-4 text-white" />
           </div>
         )}
       </div>
 
       <ImageCropper
         aspect={1}
-        setFile={onSetFile}
         imgSrc={actualImage}
-        title={t('CropImage')}
         onComplete={handleImageUpload}
         onResetImage={handleResetImage}
+        setFile={onSetFile}
+        title={t('CropImage')}
       />
     </>
   )

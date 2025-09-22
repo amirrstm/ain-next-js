@@ -1,107 +1,107 @@
 export const resumeDefaultValues = {
+  awards: [
+    {
+      awarder: '',
+      date: new Date(),
+      summary: '',
+      title: ''
+    }
+  ],
   basic: {
-    url: '',
-    label: '',
     email: '',
-    gender: '',
-    marriage: '',
-    lastName: '',
-    military: '',
     firstName: '',
+    gender: '',
+    label: '',
+    lastName: '',
+    location: { address: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '', state: '' },
+    marriage: '',
+    military: '',
     phone: { countryCode: '+98', text: '' },
-    location: { country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '', state: '', address: '' },
+    url: ''
   },
+  certificates: [],
   educations: [
     {
-      institution: '',
       area: '',
-      studyType: '',
+      endDate: new Date(),
       fieldOfStudy: '',
-      startDate: new Date(),
-      endDate: new Date(),
+      highlights: [{ value: '' }],
+      institution: '',
+      location: { city: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '', state: '' },
       score: '',
-      stillStudying: false,
-      highlights: [{ value: '' }],
-      location: { city: '', state: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '' },
-    },
-  ],
-  works: [
-    {
-      name: '',
-      position: '',
-      website: '',
       startDate: new Date(),
-      endDate: new Date(),
-      summary: '',
-      stillWorking: false,
-      highlights: [{ value: '' }],
-      location: { city: '', state: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '' },
-    },
-  ],
-  skills: [
-    {
-      name: '',
-      level: 1,
-      hasLevel: false,
-      description: '',
-    },
-    {
-      name: '',
-      level: 1,
-      hasLevel: false,
-      description: '',
-    },
+      stillStudying: false,
+      studyType: ''
+    }
   ],
   languages: [
     {
-      language: '',
       fluency: '',
-      level: 1,
       hasLevel: false,
-    },
-  ],
-  awards: [
-    {
-      title: '',
-      awarder: '',
-      summary: '',
-      date: new Date(),
-    },
-  ],
-  certificates: [],
-  publications: [
-    {
-      name: '',
-      url: '',
-      summary: '',
-      publisher: '',
-      releaseDate: new Date(),
-    },
+      language: '',
+      level: 1
+    }
   ],
   projects: [
     {
-      name: '',
-      url: '',
       description: '',
-      organization: '',
-      startDate: new Date(),
       endDate: new Date(),
       highlights: [{ value: '' }],
-    },
+      name: '',
+      organization: '',
+      startDate: new Date(),
+      url: ''
+    }
   ],
+  publications: [
+    {
+      name: '',
+      publisher: '',
+      releaseDate: new Date(),
+      summary: '',
+      url: ''
+    }
+  ],
+  skills: [
+    {
+      description: '',
+      hasLevel: false,
+      level: 1,
+      name: ''
+    },
+    {
+      description: '',
+      hasLevel: false,
+      level: 1,
+      name: ''
+    }
+  ],
+  works: [
+    {
+      endDate: new Date(),
+      highlights: [{ value: '' }],
+      location: { city: '', country: localStorage.getItem('lang') === 'fa' ? 'ایران' : '', state: '' },
+      name: '',
+      position: '',
+      startDate: new Date(),
+      stillWorking: false,
+      summary: '',
+      website: ''
+    }
+  ]
 }
 
 export const RESUME_FONTS = [
   {
     label: 'ایران سنس',
-    value: 'IranSans',
+    value: 'IranSans'
   },
   {
     label: 'یکان بخ',
-    value: 'YekanBakh',
+    value: 'YekanBakh'
   },
   {
     label: 'وزیر متن',
-    value: 'Vazirmatn',
-  },
+    value: 'Vazirmatn'
+  }
 ]

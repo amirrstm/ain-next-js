@@ -1,7 +1,8 @@
-import { useTranslations } from 'next-intl'
+/** biome-ignore-all lint/suspicious/noExplicitAny: fast fix*/
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
-import Select, { ActionMeta, OnChangeValue, Props } from 'react-select'
+import Select, { type ActionMeta, type OnChangeValue, type Props } from 'react-select'
 import AsyncSelect from 'react-select/async'
 import CreatableSelect from 'react-select/creatable'
 
@@ -31,14 +32,14 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
       placeholder = '',
       ...props
     },
-    ref,
+    ref
   ) => {
     const t = useTranslations('')
     const MainSelect = isAsync ? AsyncSelect : creatable ? CreatableSelect : Select
 
     const sizes: Record<string, string> = {
-      sm: 'text-xs',
       default: 'text-base',
+      sm: 'text-xs'
     }
 
     const handleChange = (value: OnChangeValue<any, any>, actionMeta: ActionMeta<any>) => {
@@ -56,32 +57,28 @@ const ReactSelect = React.forwardRef<React.ElementRef<typeof Select>, SelectProp
     }
 
     const innerProps: SelectProps = {
-      options,
-      isMulti,
-      placeholder,
-      menuPlacement: 'auto',
-      onChange: handleChange,
-      classNamePrefix: 'ain-select',
-      noOptionsMessage: () => t('Common.Select.NoOption'),
       className: cn(sizes[size], 'ain-select-container', className),
-      value: isMulti || useLabelValue ? value : value ? { value: value, label: value } : null,
+      classNamePrefix: 'ain-select',
+      isMulti,
+      menuPlacement: 'auto',
+      noOptionsMessage: () => t('Common.Select.NoOption'),
+      onChange: handleChange,
+      options,
+      placeholder,
       theme: reactSelectTheme,
+      value: isMulti || useLabelValue ? value : value ? { label: value, value: value } : null,
 
-      ...props,
+      ...props
     }
 
     if (creatable) {
       return (
-        <MainSelect
-          ref={ref}
-          formatCreateLabel={inputValue => `${t('Common.Select.Create')}: ${inputValue}`}
-          {...innerProps}
-        />
+        <MainSelect formatCreateLabel={(inputValue) => `${t('Common.Select.Create')}: ${inputValue}`} ref={ref} {...innerProps} />
       )
     }
 
     return <MainSelect ref={ref} {...innerProps} />
-  },
+  }
 )
 ReactSelect.displayName = 'ReactSelect'
 

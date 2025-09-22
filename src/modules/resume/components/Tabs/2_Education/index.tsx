@@ -1,16 +1,16 @@
 import { useTranslations } from 'next-intl'
-
-import React from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 
 import { useI18nZodErrors } from '@/lib/zodValidation'
 import { resumeDefaultValues } from '@/modules/resume/constants/resume.default'
-import { ResumeFormType } from '@/modules/resume/interface'
 
 import AddNew from '../../Common/AddNew'
 import EducationForm from './EducationForm'
+
+import type React from 'react'
+import type { ResumeFormType } from '@/modules/resume/interface'
 
 const EducationTab: React.FC = () => {
   useI18nZodErrors('resume.education')
@@ -21,31 +21,31 @@ const EducationTab: React.FC = () => {
     append,
     remove,
     move: moveEducation,
-    fields: educationFields,
+    fields: educationFields
   } = useFieldArray({ control: form.control, name: 'educations' })
 
   return (
-    <div className="bg-card rounded-lg border border-muted">
-      <div className="p-3 sm:p-4 border-b border-b-muted">
-        <h2 className="text-md sm:text-lg font-semibold">{t('Title')}</h2>
-        <p className="text-xs sm:text-sm text-gray-400">{t('Description')}</p>
+    <div className="rounded-lg border border-muted bg-card">
+      <div className="border-b border-b-muted p-3 sm:p-4">
+        <h2 className="font-semibold text-md sm:text-lg">{t('Title')}</h2>
+        <p className="text-gray-400 text-xs sm:text-sm">{t('Description')}</p>
       </div>
 
-      <div className="p-4 space-y-6">
+      <div className="space-y-6 p-4">
         <DndProvider backend={HTML5Backend}>
           {educationFields.map((field, index) => (
             <EducationForm
-              key={field.id}
               fieldId={field.id}
+              hasMove={educationFields.length !== 1}
+              key={field.id}
+              moveCard={moveEducation}
               position={index}
               remove={remove}
-              moveCard={moveEducation}
-              hasMove={educationFields.length !== 1}
             />
           ))}
         </DndProvider>
 
-        <AddNew title={t('AddNew')} onClick={() => append(resumeDefaultValues.educations[0])} />
+        <AddNew onClick={() => append(resumeDefaultValues.educations[0])} title={t('AddNew')} />
       </div>
     </div>
   )

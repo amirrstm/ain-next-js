@@ -1,13 +1,13 @@
-import React from 'react'
+import type React from 'react'
 
 const IconProfile: React.FC = () => {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
       <path
-        fillRule="evenodd"
         clipRule="evenodd"
         d="M16 29.3467C8.63619 29.3467 2.66666 23.3771 2.66666 16.0133C2.66666 8.64953 8.63619 2.67999 16 2.67999C23.3638 2.67999 29.3333 8.64953 29.3333 16.0133C29.3333 23.3771 23.3638 29.3467 16 29.3467Z"
         fill="#D2D2D2"
+        fillRule="evenodd"
       />
       <path
         d="M11 14.2532C11 16.9599 13.12 19.1599 15.9333 19.2399C15.9733 19.2399 16.0267 19.2399 16.0533 19.2399C16.08 19.2399 16.12 19.2399 16.1467 19.2399C16.16 19.2399 16.1733 19.2399 16.1733 19.2399C18.8667 19.1466 20.9867 16.9599 21 14.2532C21 11.4932 18.76 9.25323 16 9.25323C13.24 9.25323 11 11.4932 11 14.2532Z"

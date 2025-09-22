@@ -1,18 +1,17 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-
 import { IconMenu } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React from 'react'
+import { useParams } from 'next/navigation'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
 import { Link, usePathname } from '@/components/ui/navigation'
-
 import { AppLogo, AppLogoEn } from '@/icons/logos'
 import IconLogoSmall from '@/icons/logos/logo-small'
 
 import UserProfile from './UserProfile'
+
+import type React from 'react'
 
 interface Props {
   isOpen: boolean
@@ -33,33 +32,29 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
   return (
     <div
       className={clsx(
-        'p-5 md:fixed md:left-0 md:top-0 md:bottom-0 w-full h-full overflow-y-auto flex flex-col justify-between rtl:right-0',
+        'flex h-full w-full flex-col justify-between overflow-y-auto p-5 md:fixed md:top-0 md:bottom-0 md:left-0 rtl:right-0',
         'transition-all duration-200 ease-in-out',
         {
           'max-w-[100px]': !isOpen,
-          'max-w-[250px]': isOpen,
-        },
+          'max-w-[250px]': isOpen
+        }
       )}
     >
       <div>
         {isOpen ? (
           <div className="flex items-center justify-between">
-            <Link href="/app" className="flex">
-              <div className={clsx('relative w-[100px] md:w-[120px] h-6 sm:h-9')}>
-                {locale === 'fa' ? (
-                  <AppLogo fill="hsl(var(--foreground))" />
-                ) : (
-                  <AppLogoEn fill="hsl(var(--foreground))" />
-                )}
+            <Link className="flex" href="/app">
+              <div className={clsx('relative h-6 w-[100px] sm:h-9 md:w-[120px]')}>
+                {locale === 'fa' ? <AppLogo fill="hsl(var(--foreground))" /> : <AppLogoEn fill="hsl(var(--foreground))" />}
               </div>
             </Link>
 
-            <IconMenu className="w-5 h-5 cursor-pointer hidden md:block" onClick={() => setOpen(false)} />
+            <IconMenu className="hidden h-5 w-5 cursor-pointer md:block" onClick={() => setOpen(false)} />
           </div>
         ) : (
-          <div onClick={() => setOpen(true)} className={clsx('relative flex w-full justify-center cursor-pointer')}>
-            <div className="w-10 h-10">
-              <IconLogoSmall fill="hsl(var(--foreground))" bg="hsl(var(--popover))" />
+          <div className={clsx('relative flex w-full cursor-pointer justify-center')} onClick={() => setOpen(true)}>
+            <div className="h-10 w-10">
+              <IconLogoSmall bg="hsl(var(--popover))" fill="hsl(var(--foreground))" />
             </div>
           </div>
         )}
@@ -67,14 +62,14 @@ const AppSiderBar: React.FC<Props> = ({ menus, isOpen, setOpen }) => {
         <div className="mt-8 space-y-4">
           {menus.map((menu, index) => (
             <DashboardMenu
+              className={{
+                '!border-muted bg-neutral-50 font-medium text-primary dark:bg-card': isSamePage(menu.link),
+                'font-light': !isSamePage(menu.link)
+              }}
+              icon={menu.icon}
               key={index}
               link={menu.link}
-              icon={menu.icon}
               title={isOpen ? <span className="text-[15px]">{menu.title}</span> : undefined}
-              className={{
-                'font-light': !isSamePage(menu.link),
-                'bg-neutral-50 dark:bg-card !border-muted text-primary font-medium': isSamePage(menu.link),
-              }}
             />
           ))}
         </div>

@@ -1,10 +1,8 @@
+import { IconLock, IconLogout, IconMoon, IconSun, IconUser } from '@tabler/icons-react'
+import clsx from 'clsx'
+import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
-import { useParams } from 'next/navigation'
-
-import { IconLock, IconLogout, IconMoon, IconSettings, IconSun, IconUser } from '@tabler/icons-react'
-import clsx from 'clsx'
-import React from 'react'
 
 import {
   AlertDialog,
@@ -14,14 +12,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Progress } from '@/components/ui/progress'
-
 import useUserStore from '@/lib/store/auth'
 import { YekanBakhNumFont } from '@/styles/fonts'
+
+import type React from 'react'
 
 interface Props {
   isOpen: boolean
@@ -52,65 +51,65 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="flex items-center text-start gap-3">
-          <div className="w-12 h-12 bg-primary dark:bg-background rounded-full flex items-center justify-center">
-            <IconUser className="w-6 h-6 text-white" />
+        <div className="flex items-center gap-3 text-start">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary dark:bg-background">
+            <IconUser className="h-6 w-6 text-white" />
           </div>
 
           {isOpen && (
             <div>
               <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
-              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-1')}>
+              <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'mt-1 text-neutral-500 text-xs')}>
                 {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : user?.email}
               </p>
             </div>
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="p-0 w-auto bg-card" align="start">
+      <PopoverContent align="start" className="w-auto bg-card p-0">
         <div className="w-[250px]">
           <div className="p-3">
             <p className="text-sm">{user?.firstName ? `${user.firstName} ${user.lastName || ''}` : t('User')}</p>
-            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-neutral-500 mt-2')}>
+            <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'mt-2 text-neutral-500 text-xs')}>
               {user?.mobileNumber ? `${t('Mobile')}: ${user?.mobileNumber}` : user?.email}
             </p>
           </div>
 
-          <div className="border-t border-t-muted py-2 space-y-2">
+          <div className="space-y-2 border-t border-t-muted py-2">
             <div
+              className="flex cursor-pointer items-center justify-between px-3 py-2 text-neutral-500 hover:bg-white/5"
               onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-              className="flex items-center justify-between text-neutral-500 px-3 py-2 cursor-pointer hover:bg-white/5"
             >
-              <p className="text-xs m-0">{resolvedTheme === 'light' ? t('DarkMode') : t('LightMode')}</p>
-              {resolvedTheme === 'light' ? <IconMoon className="w-5 h-5" /> : <IconSun className="w-5 h-5" />}
+              <p className="m-0 text-xs">{resolvedTheme === 'light' ? t('DarkMode') : t('LightMode')}</p>
+              {resolvedTheme === 'light' ? <IconMoon className="h-5 w-5" /> : <IconSun className="h-5 w-5" />}
             </div>
 
             <div
+              className="flex cursor-pointer items-center justify-between px-3 py-2 text-destructive hover:bg-white/5"
               onClick={onLogout}
-              className="flex items-center justify-between text-destructive px-3 py-2 cursor-pointer hover:bg-white/5"
             >
-              <p className="text-xs m-0">{t('Logout')}</p>
-              <IconLogout className="w-5 h-5" />
+              <p className="m-0 text-xs">{t('Logout')}</p>
+              <IconLogout className="h-5 w-5" />
             </div>
           </div>
 
-          <div className="border-t border-t-muted pt-6 p-3">
+          <div className="border-t border-t-muted p-3 pt-6">
             <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs')}>
               {t('Generations')}: {used} {t('Of')} {user?.userPlan?.plan?.generation}
             </p>
 
-            <div className="mt-4 bg-gray-100 dark:bg-neutral-700 rounded-full">
+            <div className="mt-4 rounded-full bg-gray-100 dark:bg-neutral-700">
               <div className="relative" style={{ width: `${progress}%` }}>
-                <Progress value={progress} className="h-2" />
+                <Progress className="h-2" value={progress} />
               </div>
             </div>
 
-            <div className="border-t border-t-muted my-4" />
+            <div className="my-4 border-t border-t-muted" />
 
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button size="sm" className="w-full gap-2">
-                  <IconLock className="w-4 h-4" />
+                <Button className="w-full gap-2" size="sm">
+                  <IconLock className="h-4 w-4" />
                   {t('Upgrade')}
                 </Button>
               </AlertDialogTrigger>
@@ -119,11 +118,11 @@ const UserProfile: React.FC<Props> = ({ isOpen }) => {
                   <AlertDialogTitle>{t('UpgradeAlert.Title')}</AlertDialogTitle>
                   <AlertDialogDescription>
                     {t.rich('UpgradeAlert.Description', {
-                      upgrade: chunks => (
-                        <a href="mailto:info@ainevis.com" className="text-blue-400">
+                      upgrade: (chunks) => (
+                        <a className="text-blue-400" href="mailto:info@ainevis.com">
                           {chunks}
                         </a>
-                      ),
+                      )
                     })}
                   </AlertDialogDescription>
                 </AlertDialogHeader>

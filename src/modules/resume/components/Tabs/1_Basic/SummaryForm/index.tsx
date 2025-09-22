@@ -1,50 +1,47 @@
 import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { useFormContext } from 'react-hook-form'
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 
-import { ResumeFormType } from '@/modules/resume/interface'
-
 import GenerateBio from './Generate'
 import Info from './Info'
 
+import type { ResumeFormType } from '@/modules/resume/interface'
+
 const SummaryForm: React.FC = () => {
-  const { resumeId } = useParams()
   const t = useTranslations('form')
   const mainT = useTranslations('Resume.Basic')
   const form = useFormContext<ResumeFormType>()
 
   return (
-    <div className="bg-card rounded-lg border border-muted">
-      <div className="p-3 sm:p-4 border-b border-b-muted flex items-center justify-between">
+    <div className="rounded-lg border border-muted bg-card">
+      <div className="flex items-center justify-between border-b border-b-muted p-3 sm:p-4">
         <div>
-          <h2 className="text-md sm:text-lg font-semibold">{mainT('SummaryTitle')}</h2>
-          <p className="text-xs sm:text-sm text-gray-400">{mainT('SummaryDescription')}</p>
+          <h2 className="font-semibold text-md sm:text-lg">{mainT('SummaryTitle')}</h2>
+          <p className="text-gray-400 text-xs sm:text-sm">{mainT('SummaryDescription')}</p>
         </div>
 
         <Info />
       </div>
-      <div className="py-6 px-4">
+      <div className="px-4 py-6">
         <div className="grid grid-cols-12 gap-x-3 gap-y-6">
-          <div className="col-span-12 ">
-            <div className="border border-muted rounded-md ring-primary focus-within:ring-1">
-              <div className="p-2 py-4 border-b border-muted flex items-center justify-between">
+          <div className="col-span-12">
+            <div className="rounded-md border border-muted ring-primary focus-within:ring-1">
+              <div className="flex items-center justify-between border-muted border-b p-2 py-4">
                 <GenerateBio />
               </div>
 
               <FormField
-                name="basic.summary"
                 control={form.control}
+                name="basic.summary"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Textarea
-                        size="sm"
+                        className="!ring-0 !ring-offset-0 !bg-transparent !outline-none border-none"
                         placeholder={t('resume.basic.summaryPlaceholder')}
-                        className="!ring-0 !ring-offset-0 border-none !bg-transparent !outline-none"
+                        size="sm"
                         {...field}
                       />
                     </FormControl>

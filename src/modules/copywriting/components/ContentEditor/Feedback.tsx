@@ -1,16 +1,16 @@
-import { useTranslations } from 'next-intl'
-
 import { IconThumbDown, IconThumbDownFilled, IconThumbUp, IconThumbUpFilled, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
 
 import { Button } from '@/components/ui/button'
-
 import API from '@/lib/api'
 
 import { putFeedback } from '../../services'
+
+import type React from 'react'
 
 const Feedback: React.FC<{ id: string }> = ({ id }) => {
   const t = useTranslations('Copywriting')
@@ -24,7 +24,7 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
     { text: t('Content.FeedbackMessages.First') },
     { text: t('Content.FeedbackMessages.Second') },
     { text: t('Content.FeedbackMessages.Third') },
-    { text: t('Content.FeedbackMessages.Fourth') },
+    { text: t('Content.FeedbackMessages.Fourth') }
   ]
 
   const onLike = () => {
@@ -53,20 +53,17 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
   return (
     <>
       {hasFeedbackText && (
-        <div className="p-4 border-t flex items-center gap-4">
+        <div className="flex items-center gap-4 border-t p-4">
           <div className="flex items-center gap-2">
-            <div
-              onClick={onIgnore}
-              className="w-6 h-6 border cursor-pointer flex items-center justify-center rounded-full"
-            >
-              <IconX className="w-4 h-4" />
+            <div className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border" onClick={onIgnore}>
+              <IconX className="h-4 w-4" />
             </div>
-            <p className="hidden md:block text-gray-600">{t('Content.Feedback')}</p>
+            <p className="hidden text-gray-600 md:block">{t('Content.Feedback')}</p>
           </div>
 
-          <div className="flex flex-1 overflow-x-auto gap-1">
+          <div className="flex flex-1 gap-1 overflow-x-auto">
             {messages.map((message, index) => (
-              <Button key={index} variant="outline" className="flex-shrink-0" onClick={() => onMessage(message.text)}>
+              <Button className="flex-shrink-0" key={index} onClick={() => onMessage(message.text)} variant="outline">
                 {message.text}
               </Button>
             ))}
@@ -74,20 +71,20 @@ const Feedback: React.FC<{ id: string }> = ({ id }) => {
         </div>
       )}
 
-      <div className="p-4 flex items-center justify-between border-t">
+      <div className="flex items-center justify-between border-t p-4">
         <p>{t('Content.Feedback')}</p>
 
         <div className="flex gap-6">
           {status === 'dislike' ? (
-            <IconThumbDownFilled className={clsx('w-7 h-7 text-red-500 cursor-pointer')} />
+            <IconThumbDownFilled className={clsx('h-7 w-7 cursor-pointer text-red-500')} />
           ) : (
-            <IconThumbDown onClick={onDislike} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+            <IconThumbDown className={clsx('h-7 w-7 cursor-pointer text-gray-400')} onClick={onDislike} />
           )}
 
           {status === 'like' ? (
-            <IconThumbUpFilled className={clsx('w-7 h-7 text-green-500 cursor-pointer')} />
+            <IconThumbUpFilled className={clsx('h-7 w-7 cursor-pointer text-green-500')} />
           ) : (
-            <IconThumbUp onClick={onLike} className={clsx('w-7 h-7 text-gray-400 cursor-pointer')} />
+            <IconThumbUp className={clsx('h-7 w-7 cursor-pointer text-gray-400')} onClick={onLike} />
           )}
         </div>
       </div>

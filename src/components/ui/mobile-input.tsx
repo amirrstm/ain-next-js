@@ -19,41 +19,37 @@ const MobileInput = React.forwardRef<HTMLInputElement, MobileInputProps>(
   ({ className, type, value, onChange, ...props }, ref) => {
     const [open, setOpen] = React.useState(false)
     const [codeValue, setCodeValue] = React.useState('+98')
-    const country = COUNTRY_CODES.find(country => country.dial_code === codeValue)
+    const country = COUNTRY_CODES.find((country) => country.dial_code === codeValue)
 
     return (
-      <div className="flex flex-row-reverse rtl:flex-row rounded-md border border-input overflow-hidden">
+      <div className="flex flex-row-reverse overflow-hidden rounded-md border border-input rtl:flex-row">
         <input
+          className={cn(
+            'flex h-[30px] w-full border-l border-l-input bg-transparent px-3 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-card',
+            className
+          )}
           dir="ltr"
+          onChange={(e) => onChange?.({ countryCode: codeValue, text: e.target.value })}
           ref={ref}
           type={type}
           value={value?.text}
-          className={cn(
-            'flex h-[30px] w-full border-l border-l-input bg-transparent dark:bg-card px-3 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50',
-            className,
-          )}
-          onChange={e => onChange?.({ text: e.target.value, countryCode: codeValue })}
           {...props}
         />
 
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover onOpenChange={setOpen} open={open}>
           <PopoverTrigger asChild>
             <Button
-              dir="ltr"
-              variant="outline"
-              role="combobox"
               aria-expanded={open}
               className={cn(
-                'w-[100px] h-[30px] py-0 justify-between border-none rounded-none !ring-0 px-1',
-                'dark:bg-card dark:text-white dark:placeholder-text-[#d9d9d9] dark:ring-offset-card dark:border-input',
+                '!ring-0 h-[30px] w-[100px] justify-between rounded-none border-none px-1 py-0',
+                'dark:border-input dark:bg-card dark:text-white dark:placeholder-text-[#d9d9d9] dark:ring-offset-card'
               )}
+              dir="ltr"
+              role="combobox"
+              variant="outline"
             >
               <span className="flex items-center gap-2">
-                <SVG
-                  width={18}
-                  height={18}
-                  src={`https://flagicons.lipis.dev/flags/4x3/${country?.code.toLowerCase()}.svg`}
-                />
+                <SVG height={18} src={`https://flagicons.lipis.dev/flags/4x3/${country?.code.toLowerCase()}.svg`} width={18} />
                 <span className="flex text-xs">{`${country?.dial_code}`}</span>
               </span>
               <IconChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -62,28 +58,26 @@ const MobileInput = React.forwardRef<HTMLInputElement, MobileInputProps>(
           <PopoverContent asChild className="w-[200px] p-0">
             <Command>
               <CommandList>
-                {COUNTRY_CODES.filter(c => c.code === 'IR').map(country => (
+                {COUNTRY_CODES.filter((c) => c.code === 'IR').map((country) => (
                   <CommandItem
                     dir="ltr"
                     key={country.code}
-                    value={country.code}
-                    onSelect={currentValue => {
+                    onSelect={(currentValue) => {
                       setCodeValue(currentValue)
                       setOpen(false)
                     }}
+                    value={country.code}
                   >
-                    <span className="flex justify-between items-center w-full">
+                    <span className="flex w-full items-center justify-between">
                       <span className="flex items-center gap-2">
                         <SVG
-                          width={18}
                           height={18}
                           src={`https://flagicons.lipis.dev/flags/4x3/${country.code.toLowerCase()}.svg`}
+                          width={18}
                         />
-                        <span className="flex text-xs mt-0.5">{`${country.dial_code}`}</span>
+                        <span className="mt-0.5 flex text-xs">{`${country.dial_code}`}</span>
                       </span>
-                      <IconCheck
-                        className={cn('mr-2 h-4 w-4', codeValue === country.code ? 'opacity-100' : 'opacity-0')}
-                      />
+                      <IconCheck className={cn('mr-2 h-4 w-4', codeValue === country.code ? 'opacity-100' : 'opacity-0')} />
                     </span>
                   </CommandItem>
                 ))}
@@ -93,7 +87,7 @@ const MobileInput = React.forwardRef<HTMLInputElement, MobileInputProps>(
         </Popover>
       </div>
     )
-  },
+  }
 )
 MobileInput.displayName = 'MobileInput'
 

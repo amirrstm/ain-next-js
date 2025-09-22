@@ -1,11 +1,8 @@
-import { useTranslations } from 'next-intl'
-
 import { IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-
-import { ResumeFormType } from '@/modules/resume/interface'
 
 import AwardForm from './AwardForm'
 import InterestForm from './InterestForm'
@@ -14,6 +11,8 @@ import ReferenceForm from './ReferenceForm'
 import SpeechForm from './SpeechForm'
 import TeachingForm from './TeachingForm'
 import VolunteerForm from './VolunteerForm'
+
+import type { ResumeFormType } from '@/modules/resume/interface'
 
 const BasicTab: React.FC = () => {
   const t = useTranslations('Resume')
@@ -25,11 +24,11 @@ const BasicTab: React.FC = () => {
   const speechRef = useRef<HTMLDivElement>(null)
   const volunteerRef = useRef<HTMLDivElement>(null)
 
-  const interests = useWatch({ name: 'interests', control: form.control })
-  const teachings = useWatch({ name: 'teachings', control: form.control })
-  const inventions = useWatch({ name: 'inventions', control: form.control })
-  const speeches = useWatch({ name: 'speeches', control: form.control })
-  const volunteers = useWatch({ name: 'volunteers', control: form.control })
+  const interests = useWatch({ control: form.control, name: 'interests' })
+  const teachings = useWatch({ control: form.control, name: 'teachings' })
+  const inventions = useWatch({ control: form.control, name: 'inventions' })
+  const speeches = useWatch({ control: form.control, name: 'speeches' })
+  const volunteers = useWatch({ control: form.control, name: 'volunteers' })
 
   const onAddNewField = (field: string) => {
     switch (field) {
@@ -43,12 +42,12 @@ const BasicTab: React.FC = () => {
       case 'teaching':
         form.setValue('teachings', [
           {
-            title: '',
-            summary: '',
-            institution: '',
             date: new Date(),
-            location: { city: '', state: '', country: 'ایران' },
-          },
+            institution: '',
+            location: { city: '', country: 'ایران', state: '' },
+            summary: '',
+            title: ''
+          }
         ])
         if (teachingRef.current) {
           teachingRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -56,14 +55,14 @@ const BasicTab: React.FC = () => {
         break
 
       case 'invention':
-        form.setValue('inventions', [{ url: '', name: '', date: new Date(), summary: '' }])
+        form.setValue('inventions', [{ date: new Date(), name: '', summary: '', url: '' }])
         if (inventionRef.current) {
           inventionRef.current.scrollIntoView({ behavior: 'smooth' })
         }
         break
 
       case 'speech':
-        form.setValue('speeches', [{ date: new Date(), summary: '', name: '', url: '' }])
+        form.setValue('speeches', [{ date: new Date(), name: '', summary: '', url: '' }])
         if (speechRef.current) {
           speechRef.current.scrollIntoView({ behavior: 'smooth' })
         }
@@ -72,14 +71,14 @@ const BasicTab: React.FC = () => {
       case 'volunteer':
         form.setValue('volunteers', [
           {
-            url: '',
-            summary: '',
-            position: '',
-            organization: '',
             endDate: new Date(),
-            startDate: new Date(),
             highlights: [{ value: '' }],
-          },
+            organization: '',
+            position: '',
+            startDate: new Date(),
+            summary: '',
+            url: ''
+          }
         ])
         if (volunteerRef.current) {
           volunteerRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -144,14 +143,14 @@ export default BasicTab
 const AddButton: React.FC<{ onClick: () => void; title: string }> = ({ onClick, title }) => {
   return (
     <div
-      onClick={onClick}
       className={clsx(
-        'hover:border-primary cursor-pointer bg-card',
-        'border border-dashed border-muted p-3 rounded-md flex items-center justify-center text-center gap-2 flex-col',
+        'cursor-pointer bg-card hover:border-primary',
+        'flex flex-col items-center justify-center gap-2 rounded-md border border-muted border-dashed p-3 text-center'
       )}
+      onClick={onClick}
     >
-      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white">
-        <IconPlus className="w-4 h-4" />
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+        <IconPlus className="h-4 w-4" />
       </div>
       <h3 className="text-sm">{title}</h3>
     </div>

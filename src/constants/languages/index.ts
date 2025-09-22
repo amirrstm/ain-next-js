@@ -50,5 +50,5 @@ export const LANGUAGES = [
   { en: 'Macedonian', fa: 'مقدونی' },
   { en: 'Luxembourgish', fa: 'لوکزامبورگی' },
   { en: 'Basque', fa: 'باسکی' },
-  { en: 'Galician', fa: 'گالیسیایی' },
+  { en: 'Galician', fa: 'گالیسیایی' }
 ]

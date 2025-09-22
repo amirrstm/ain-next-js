@@ -1,13 +1,13 @@
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { useState } from 'react'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-
 import useTemplates from '@/modules/resume/hooks/useTemplates'
+
+import type React from 'react'
 
 interface Props {
   onSelect: (id: string) => void
@@ -25,32 +25,32 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
   }
 
   const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      scale: 0.8,
-      zIndex: 0,
-    }),
     center: {
-      zIndex: 1,
-      x: 0,
       scale: 1,
+      x: 0,
+      zIndex: 1
     },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 300 : -300,
+    enter: (direction: number) => ({
       scale: 0.8,
-      opacity: 0,
+      x: direction > 0 ? 300 : -300,
+      zIndex: 0
     }),
+    exit: (direction: number) => ({
+      opacity: 0,
+      scale: 0.8,
+      x: direction < 0 ? 300 : -300,
+      zIndex: 0
+    })
   }
 
   const handlePrev = () => {
     setDirection(-1)
-    setCurrentIndex(prevIndex => (prevIndex - 1 + data.length) % data.length)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length)
   }
 
   const handleNext = () => {
     setDirection(1)
-    setCurrentIndex(prevIndex => (prevIndex + 1) % data.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
   }
 
   const getImage = (index: number) => {
@@ -66,107 +66,107 @@ const ResumeTemplates: React.FC<Props> = ({ onSelect }) => {
 
   return (
     <div className="flex items-center justify-center space-x-4 py-8">
-      <div className="relative w-[600px] h-[80vh] md:h-[500px] overflow-hidden flex items-center justify-center">
+      <div className="relative flex h-[80vh] w-[600px] items-center justify-center overflow-hidden md:h-[500px]">
         <div
+          className="absolute right-0 z-[2] flex h-full w-1/3 cursor-pointer items-center justify-center bg-gradient-to-r from-background to-background/60"
           onClick={handleNext}
-          className="absolute w-1/3 cursor-pointer flex items-center justify-center z-[2] right-0 h-full bg-gradient-to-r from-background to-background/60"
         >
-          <IconArrowRight className="w-10 h-10 ml-6" />
+          <IconArrowRight className="ml-6 h-10 w-10" />
         </div>
 
         <div
+          className="absolute left-0 z-[2] flex h-full w-1/3 cursor-pointer items-center justify-center bg-gradient-to-r from-background to-background/60"
           onClick={handlePrev}
-          className="absolute w-1/3 cursor-pointer flex items-center justify-center z-[2] left-0 h-full bg-gradient-to-r from-background to-background/60"
         >
-          <IconArrowLeft className="w-10 h-10 mr-6" />
+          <IconArrowLeft className="mr-6 h-10 w-10" />
         </div>
 
-        <div className="absolute left-0 w-1/3 h-full flex items-center justify-center">
-          <AnimatePresence initial={false} custom={direction}>
+        <div className="absolute left-0 flex h-full w-1/3 items-center justify-center">
+          <AnimatePresence custom={direction} initial={false}>
             <motion.div
-              key={getPreviousIndex(currentIndex)}
+              animate="center"
               className="absolute"
               custom={direction}
-              initial="enter"
-              animate="center"
               exit="exit"
-              variants={variants}
+              initial="enter"
+              key={getPreviousIndex(currentIndex)}
               transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                scale: { type: 'spring', stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
+                scale: { damping: 30, stiffness: 300, type: 'spring' },
+                x: { damping: 30, stiffness: 300, type: 'spring' }
               }}
+              variants={variants}
             >
-              <div className="w-[150px] h-1/3">
+              <div className="h-1/3 w-[150px]">
                 <Image
-                  width={150}
-                  height={250}
-                  className="rounded"
                   alt={getName(getPreviousIndex(currentIndex))}
+                  className="rounded"
+                  height={250}
                   src={getImage(getPreviousIndex(currentIndex))}
+                  width={150}
                 />
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
         <div
+          className="relative z-10 flex h-full w-[200px] cursor-pointer items-center justify-center md:w-[300px]"
           onClick={() => onSelect(data[currentIndex]._id)}
-          className="relative w-[200px] md:w-[300px] h-full flex items-center justify-center z-10 cursor-pointer"
         >
-          <AnimatePresence initial={false} custom={direction}>
+          <AnimatePresence custom={direction} initial={false}>
             <motion.div
-              key={currentIndex}
+              animate="center"
               className="absolute"
               custom={direction}
-              initial="enter"
-              animate="center"
               exit="exit"
-              variants={variants}
+              initial="enter"
+              key={currentIndex}
               transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                scale: { type: 'spring', stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
+                scale: { damping: 30, stiffness: 300, type: 'spring' },
+                x: { damping: 30, stiffness: 300, type: 'spring' }
               }}
+              variants={variants}
             >
-              <div className="absolute -top-3 bg-neutral-200 dark:bg-neutral-500 px-6 py-0.5 rounded-md left-1/2 -translate-x-1/2 z-[2]">
+              <div className="-top-3 -translate-x-1/2 absolute left-1/2 z-[2] rounded-md bg-neutral-200 px-6 py-0.5 dark:bg-neutral-500">
                 <p className="text-sm">{getName(currentIndex)}</p>
               </div>
 
-              <div className="w-full h-full relative border-4 border-neutral-200 dark:border-neutral-500 rounded-xl overflow-hidden">
-                <Image width={320} height={450} alt={getName(currentIndex)} src={getImage(currentIndex)} />
+              <div className="relative h-full w-full overflow-hidden rounded-xl border-4 border-neutral-200 dark:border-neutral-500">
+                <Image alt={getName(currentIndex)} height={450} src={getImage(currentIndex)} width={320} />
               </div>
 
-              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
-                <Button size="sm" onClick={() => onSelect(data[currentIndex]._id)}>
+              <div className="-bottom-12 -translate-x-1/2 absolute left-1/2">
+                <Button onClick={() => onSelect(data[currentIndex]._id)} size="sm">
                   {t('Select')}
                 </Button>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="absolute right-0 w-1/3 h-full flex items-center justify-center">
-          <AnimatePresence initial={false} custom={direction}>
+        <div className="absolute right-0 flex h-full w-1/3 items-center justify-center">
+          <AnimatePresence custom={direction} initial={false}>
             <motion.div
-              key={getNextIndex(currentIndex)}
+              animate="center"
               className="absolute"
               custom={direction}
-              initial="enter"
-              animate="center"
               exit="exit"
-              variants={variants}
+              initial="enter"
+              key={getNextIndex(currentIndex)}
               transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                scale: { type: 'spring', stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
+                scale: { damping: 30, stiffness: 300, type: 'spring' },
+                x: { damping: 30, stiffness: 300, type: 'spring' }
               }}
+              variants={variants}
             >
-              <div className="w-[150px] h-1/3">
+              <div className="h-1/3 w-[150px]">
                 <Image
-                  width={150}
-                  height={250}
-                  className="rounded"
                   alt={getName(getNextIndex(currentIndex))}
+                  className="rounded"
+                  height={250}
                   src={getImage(getNextIndex(currentIndex))}
+                  width={150}
                 />
               </div>
             </motion.div>

@@ -1,8 +1,8 @@
-import React from 'react'
+import type React from 'react'
 
 const IconResume: React.FC = () => {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M14 5.25C13.59 5.25 13.25 4.91 13.25 4.5C13.25 4.09 13.59 3.75 14 3.75H21C21.41 3.75 21.75 4.09 21.75 4.5C21.75 4.91 21.41 5.25 21 5.25H14Z"
         fill="hsl(var(--primary))"

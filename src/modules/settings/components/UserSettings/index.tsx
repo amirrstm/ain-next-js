@@ -1,9 +1,8 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-
 import { zodResolver } from '@hookform/resolvers/zod'
-import React, { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import useSWRMutation from 'swr/mutation'
@@ -12,11 +11,12 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-
 import API from '@/lib/api'
 import useUserStore from '@/lib/store/auth'
 import { useI18nZodErrors } from '@/lib/zodValidation'
 import { updateName } from '@/modules/auth/services'
+
+import type React from 'react'
 
 const formSchema = z.object({ firstName: z.string().min(1), lastName: z.string().min(1) })
 
@@ -29,8 +29,8 @@ const UserSettings: React.FC = () => {
   const { trigger } = useSWRMutation(API.USER.UPDATE_NAME, updateName)
 
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
     defaultValues: { firstName: '', lastName: '' },
+    resolver: zodResolver(formSchema)
   })
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const UserSettings: React.FC = () => {
       form.setValue('lastName', user.lastName)
       form.setValue('firstName', user.firstName)
     }
-  }, [user])
+  }, [user, form.setValue])
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     setLoading(true)
@@ -54,14 +54,14 @@ const UserSettings: React.FC = () => {
   }
 
   return (
-    <div className="border border-muted rounded-xl bg-card">
+    <div className="rounded-xl border border-muted bg-card">
       <div className="border-b border-b-muted p-4">
         <span className="text-lg">{t('Settings.EditProfile')}</span>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="p-4 grid grid-cols-12 gap-6">
+          <div className="grid grid-cols-12 gap-6 p-4">
             <div className="col-span-12 md:col-span-6">
               <FormField
                 control={form.control}
@@ -101,8 +101,8 @@ const UserSettings: React.FC = () => {
             </div>
           </div>
 
-          <div className="border-t border-t-muted mt-6 p-4 flex justify-end">
-            <Button type="submit" loading={loading}>
+          <div className="mt-6 flex justify-end border-t border-t-muted p-4">
+            <Button loading={loading} type="submit">
               {t('Settings.Save')}
             </Button>
           </div>

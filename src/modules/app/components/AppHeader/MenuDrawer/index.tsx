@@ -1,11 +1,9 @@
-import Image from 'next/image'
-
 import { IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { AnimatePresence, motion as m } from 'framer-motion'
+import Image from 'next/image'
 
 import DashboardMenu from '@/components/ui/dashboard-menu'
-
 import { LOGO_URL } from '@/constants'
 
 import UserProfile from '../../AppSideBar/UserProfile'
@@ -24,45 +22,41 @@ const MenuDrawer: React.FC<Props> = ({ open, menus, onClose }) => {
     <AnimatePresence>
       {open && (
         <m.aside
-          exit="unmount"
-          initial="unmount"
           animate={{ opacity: open ? 1 : 0 }}
           className={clsx('fixed inset-0 z-[100] h-full bg-background/30 backdrop-blur-sm')}
-          variants={{ unmount: { opacity: 0, transition: { delay: 0.2 } }, mount: { opacity: 1 } }}
+          exit="unmount"
+          initial="unmount"
+          variants={{ mount: { opacity: 1 }, unmount: { opacity: 0, transition: { delay: 0.2 } } }}
         >
-          <div className="absolute w-full h-full inset-0" onClick={onClose} />
+          <div className="absolute inset-0 h-full w-full" onClick={onClose} />
           <m.div
-            className="w-[300px] h-screen bg-background shadow-lg overflow-y-auto"
             animate={{ transform: open ? 'translateX(0)' : 'translateX(100%)' }}
+            className="h-screen w-[300px] overflow-y-auto bg-background shadow-lg"
             variants={{
-              unmount: { transform: 'translateX(100%)' },
               mount: { opacity: 'translateX(0)', transition: { delay: 0.3 } },
+              unmount: { transform: 'translateX(100%)' }
             }}
           >
-            <div className="flex justify-between items-center gap-3 pt-4 px-5">
+            <div className="flex items-center justify-between gap-3 px-5 pt-4">
               <div className="relative h-7 sm:h-8">
                 <Image
                   alt="logo"
-                  width={200}
+                  className="h-full w-full object-contain dark:contrast-[1] dark:grayscale dark:hue-rotate-[180deg] dark:invert"
                   height={200}
                   src={LOGO_URL}
-                  className="w-full h-full object-contain dark:grayscale dark:invert dark:contrast-[1] dark:hue-rotate-[180deg]"
+                  width={200}
                 />
               </div>
 
               <div className="cursor-pointer" onClick={onClose}>
-                <IconX className="w-7 h-7" />
+                <IconX className="h-7 w-7" />
               </div>
             </div>
 
             <div className="my-4 space-y-4">
               {menus.map((menu, index) => (
                 <div key={index} onClick={onClose}>
-                  <DashboardMenu
-                    link={menu.link}
-                    icon={menu.icon}
-                    title={<span className="text-sm">{menu.title}</span>}
-                  />
+                  <DashboardMenu icon={menu.icon} link={menu.link} title={<span className="text-sm">{menu.title}</span>} />
                 </div>
               ))}
             </div>

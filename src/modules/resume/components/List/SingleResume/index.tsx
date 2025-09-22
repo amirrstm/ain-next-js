@@ -1,9 +1,8 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconCopy, IconDownload, IconEdit, IconMaximize, IconTrash } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import 'dayjs/locale/fa'
 import jalaliday from 'jalaliday'
 import React, { useEffect } from 'react'
@@ -17,15 +16,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/components/ui/navigation'
-
-import { IResumeResponse } from '@/modules/resume/interface/resume'
 import { deleteResume, updateDownload, updateResumeTitle } from '@/modules/resume/service'
 import { YekanBakhNumFont } from '@/styles/fonts'
+
+import type { IResumeResponse } from '@/modules/resume/interface/resume'
 
 dayjs.extend(jalaliday)
 
@@ -70,7 +69,7 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
     if (resume.file) {
       setDownloadLoading(true)
       updateDownload(resume._id)
-        .then(url => {
+        .then((url) => {
           setDownloadLoading(false)
           window.open(url)
         })
@@ -89,43 +88,44 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-3 h-full">
-      <div className="h-[150px] md:h-[255px] w-[190px] md:w-[190px] overflow-hidden rounded-md relative mx-auto md:mx-0">
+    <div className="flex h-full flex-col gap-3 md:flex-row">
+      <div className="relative mx-auto h-[150px] w-[190px] overflow-hidden rounded-md md:mx-0 md:h-[255px] md:w-[190px]">
         <iframe
+          className="h-[360mm] w-[210mm]"
           referrerPolicy="no-referrer"
-          className="w-[210mm] h-[360mm]"
           src={`${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/public/resume/${resume._id}`}
           style={{ transform: 'scale(0.24)', transformOrigin: locale === 'fa' ? '100% 0' : '0 0' }}
+          title="Resume Preview"
         />
 
         <div
           className={clsx(
-            'group absolute top-0 left-0 right-0 bottom-0 z-10 flex items-center justify-center',
-            'bg-transparent transition-all duration-200 ease-in-out hover:bg-black/40 cursor-pointer',
+            'group absolute top-0 right-0 bottom-0 left-0 z-10 flex items-center justify-center',
+            'cursor-pointer bg-transparent transition-all duration-200 ease-in-out hover:bg-black/40'
           )}
         >
           <Link
-            target="_blank"
-            href={`/resume-preview/${resume._id}`}
             className={clsx(
               '-translate-y-[150px] group-hover:translate-y-0',
-              'bg-primary w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out',
+              'flex h-10 w-10 items-center justify-center rounded-full bg-primary transition-all duration-200 ease-in-out'
             )}
+            href={`/resume-preview/${resume._id}`}
+            target="_blank"
           >
-            <IconMaximize className="w-6 h-6 text-white" />
+            <IconMaximize className="h-6 w-6 text-white" />
           </Link>
         </div>
       </div>
 
-      <div className="h-full flex flex-col justify-between items-center md:items-start flex-1">
-        <div className="space-y-2 flex-1 text-center md:text-start">
+      <div className="flex h-full flex-1 flex-col items-center justify-between md:items-start">
+        <div className="flex-1 space-y-2 text-center md:text-start">
           {isEditingTitle ? (
             <Input
+              onBlur={onFinishEdit}
+              onChange={(e) => setTitleValue(e.target.value)}
+              onKeyDown={onKeyDown}
               ref={inputRef}
               value={titleValue}
-              onBlur={onFinishEdit}
-              onKeyDown={onKeyDown}
-              onChange={e => setTitleValue(e.target.value)}
             />
           ) : (
             <div className="text-lg" onClick={onStartEdit}>
@@ -133,7 +133,7 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
             </div>
           )}
 
-          <p className="text-sm text-gray-400">
+          <p className="text-gray-400 text-sm">
             <span>{t('Fields.CreatedAt')}</span>
             <span>:&nbsp;</span>
             <span className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
@@ -144,7 +144,7 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
             </span>
           </p>
 
-          <p className="text-sm text-gray-400">
+          <p className="text-gray-400 text-sm">
             <span>{t('Fields.UpdatedAt')}</span>
             <span>:&nbsp;</span>
             <span className={locale === 'fa' ? YekanBakhNumFont.className : ''}>
@@ -156,30 +156,30 @@ const SingleResume: React.FC<Props> = ({ resume, onRefresh }) => {
           </p>
         </div>
 
-        <div className="gap-3 pt-3 grid grid-cols-12 w-full">
+        <div className="grid w-full grid-cols-12 gap-3 pt-3">
           <div className="col-span-6">
             <Link href={`/app/resume/${resume._id}`}>
-              <Button size="sm" variant="secondary" className="flex gap-2 justify-start items-center w-full">
-                <IconEdit className="w-4 h-4" />
+              <Button className="flex w-full items-center justify-start gap-2" size="sm" variant="secondary">
+                <IconEdit className="h-4 w-4" />
                 {t('Fields.Edit')}
               </Button>
             </Link>
           </div>
           <div className="col-span-6">
-            <Button size="sm" disabled variant="secondary" className="flex gap-2 justify-start items-center w-full">
-              <IconCopy className="w-4 h-4" />
+            <Button className="flex w-full items-center justify-start gap-2" disabled size="sm" variant="secondary">
+              <IconCopy className="h-4 w-4" />
               {t('Fields.Copy')}
             </Button>
           </div>
           <div className="col-span-6">
             <Button
+              className="flex w-full items-center justify-start gap-2"
+              loading={downloadLoading}
+              onClick={onDownload}
               size="sm"
               variant="secondary"
-              onClick={onDownload}
-              loading={downloadLoading}
-              className="flex gap-2 justify-start items-center w-full"
             >
-              <IconDownload className="w-4 h-4" />
+              <IconDownload className="h-4 w-4" />
               {t('Fields.Download')}
             </Button>
           </div>
@@ -201,12 +201,12 @@ const AlertRemove: React.FC<{ loading: boolean; onDelete: () => void }> = ({ loa
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          size="sm"
+          className="flex w-full items-center justify-start gap-2 border-destructive text-destructive"
           loading={loading}
+          size="sm"
           variant="outline"
-          className="flex gap-2 justify-start items-center w-full text-destructive border-destructive"
         >
-          <IconTrash className="w-4 h-4" />
+          <IconTrash className="h-4 w-4" />
           {t('Fields.Delete')}
         </Button>
       </AlertDialogTrigger>

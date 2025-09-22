@@ -1,14 +1,14 @@
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconDeviceFloppy, IconEye } from '@tabler/icons-react'
-import React, { useContext } from 'react'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { useContext } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/navigation'
-
 import { RESUME_ENUM_TABS } from '@/modules/resume/constants/resume.enum'
 import { ResumeContext } from '@/modules/resume/context'
+
+import type React from 'react'
 
 const Buttons: React.FC = () => {
   const { resumeId } = useParams()
@@ -62,23 +62,23 @@ const Buttons: React.FC = () => {
   }
 
   return (
-    <div className="flex gap-3 flex-row-reverse xl:flex-col">
+    <div className="flex flex-row-reverse gap-3 xl:flex-col">
       <div className="flex gap-3">
         {activeTab !== RESUME_ENUM_TABS.Others && (
-          <Button className="flex-1 flex gap-1" onClick={onProgress}>
-            <IconDeviceFloppy className="w-5 h-5" />
+          <Button className="flex flex-1 gap-1" onClick={onProgress}>
+            <IconDeviceFloppy className="h-5 w-5" />
             <span> {t('Save')}</span>
           </Button>
         )}
         {activeTab !== RESUME_ENUM_TABS.Basic && (
-          <Button onClick={onBack} className="flex-1 bg-neutral-500 dark:bg-muted">
+          <Button className="flex-1 bg-neutral-500 dark:bg-muted" onClick={onBack}>
             {t('Back')}
           </Button>
         )}
       </div>
-      <Link href={`/resume-preview/${resumeId}`} target="_blank" className="block flex-auto xl:flex-1">
-        <Button className="w-full bg-blue-400 flex gap-1 hover:bg-blue-400/80">
-          <IconEye className="w-5 h-5" />
+      <Link className="block flex-auto xl:flex-1" href={`/resume-preview/${resumeId}`} target="_blank">
+        <Button className="flex w-full gap-1 bg-blue-400 hover:bg-blue-400/80">
+          <IconEye className="h-5 w-5" />
           <span>{t('Preview')}</span>
         </Button>
       </Link>

@@ -1,8 +1,6 @@
-import React from 'react'
-
 const IconAidaFramework = () => {
   return (
-    <svg viewBox="0 0 39 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" viewBox="0 0 39 11" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_3709_3184)">
         <path
           d="M10.8191 10.7039H7.95632L7.21274 8.29469H3.55804L2.79958 10.7039H0L3.75137 0.0297852H7.08261L10.8191 10.7039ZM4.07483 6.40228H6.69595L5.38725 2.08579L4.07854 6.40228H4.07483Z"
@@ -20,7 +18,7 @@ const IconAidaFramework = () => {
       </g>
       <defs>
         <clipPath id="clip0_3709_3184">
-          <rect width="38.1346" height="10.6741" fill="white" transform="translate(0 0.0297852)"></rect>
+          <rect fill="white" height="10.6741" transform="translate(0 0.0297852)" width="38.1346"></rect>
         </clipPath>
       </defs>
     </svg>

@@ -18,22 +18,22 @@ import { volunteerSchema } from './volunteer'
 import { workSchema } from './work'
 
 const resumeSchema = z.object({
-  works: workSchema,
-  basic: basicSchema,
-  skills: skillSchema,
   awards: awardSchema,
-  speeches: speechSchema,
-  projects: projectSchema,
-  profiles: profileSchema,
-  languages: languageSchema,
-  teachings: teachingSchema,
-  interests: interestSchema,
-  educations: educationSchema,
-  volunteers: volunteerSchema,
-  inventions: inventionSchema,
-  references: referenceSchema,
+  basic: basicSchema,
   certificates: certificateSchema,
+  educations: educationSchema,
+  interests: interestSchema,
+  inventions: inventionSchema,
+  languages: languageSchema,
+  profiles: profileSchema,
+  projects: projectSchema,
   publications: publicationSchema,
+  references: referenceSchema,
+  skills: skillSchema,
+  speeches: speechSchema,
+  teachings: teachingSchema,
+  volunteers: volunteerSchema,
+  works: workSchema
 })
 
 export { resumeSchema, basicSchema }

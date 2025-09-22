@@ -2,8 +2,10 @@
 
 import clsx from 'clsx'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import React, { useRef } from 'react'
-import Map from 'react-map-gl'
+import { useRef } from 'react'
+import MapComponent from 'react-map-gl'
+
+import type React from 'react'
 
 type Props = { children?: React.ReactNode; className?: string }
 const AppMap: React.FC<Props> = ({ children, className }) => {
@@ -11,16 +13,16 @@ const AppMap: React.FC<Props> = ({ children, className }) => {
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
   return (
-    <main className={clsx('overflow-hidden relative rounded-md h-[300px] sm:h-[700px]', className)}>
-      <Map
-        ref={mapRef}
-        style={{ height: '100%' }}
+    <main className={clsx('relative h-[300px] overflow-hidden rounded-md sm:h-[700px]', className)}>
+      <MapComponent
+        initialViewState={{ latitude: 52.52, longitude: 13.405, zoom: 6 }}
         mapboxAccessToken={mapboxToken}
         mapStyle="mapbox://styles/mapbox/streets-v12"
-        initialViewState={{ zoom: 6, latitude: 52.52, longitude: 13.405 }}
+        ref={mapRef}
+        style={{ height: '100%' }}
       >
         {children}
-      </Map>
+      </MapComponent>
     </main>
   )
 }

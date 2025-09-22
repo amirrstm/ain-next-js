@@ -1,7 +1,8 @@
-import clsx, { ClassValue } from 'clsx'
-import React from 'react'
+import clsx, { type ClassValue } from 'clsx'
 
 import { Link } from './navigation'
+
+import type React from 'react'
 
 interface Props {
   link?: string
@@ -13,30 +14,40 @@ interface Props {
 }
 
 const DashboardMenu: React.FC<Props> = ({ link, active, className, icon, title, onClick }) => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      onClick?.()
+    }
+  }
+
   if (onClick)
     return (
-      <div
-        onClick={onClick}
+      <button
+        aria-label={typeof title === 'string' ? title : 'Menu item'}
         className={clsx(
-          'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
-          'border border-transparent hover:dark:border-muted-foreground hover:bg-card hover:text-primary',
+          'flex cursor-pointer items-center gap-4 rounded-md px-4 py-2',
+          'border border-transparent hover:bg-card hover:text-primary hover:dark:border-muted-foreground',
           { 'text-primary': active },
-          className,
+          className
         )}
+        onClick={onClick}
+        onKeyDown={handleKeyDown}
+        type="button"
       >
         {icon}
         {title}
-      </div>
+      </button>
     )
 
   return (
     <Link
-      href={link as string}
       className={clsx(
-        'flex items-center cursor-pointer gap-4 px-4 py-2 rounded-md',
+        'flex cursor-pointer items-center gap-4 rounded-md px-4 py-2',
         'border border-transparent hover:border-muted hover:bg-card hover:text-primary dark:hover:text-primary',
-        className,
+        className
       )}
+      href={link as string}
     >
       {icon}
       {title}

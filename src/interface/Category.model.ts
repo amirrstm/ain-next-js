@@ -9,7 +9,7 @@ export interface Category {
   slug: string
   description: string
   children: Category[]
-  meta?: Record<string, any>
+  meta?: Record<string, string>
 }
 
 export interface AppInput {

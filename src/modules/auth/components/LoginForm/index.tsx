@@ -1,14 +1,15 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { toast } from 'sonner'
 
 import GoogleIcon from '@/icons/google'
 
 import { Input } from './Input'
+
+import type React from 'react'
 
 type Props = { loading: boolean; googleLoading: boolean; onSubmit: (data: { mobile: string }) => void }
 const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
@@ -35,36 +36,36 @@ const LoginForm: React.FC<Props> = ({ loading, onSubmit, googleLoading }) => {
   }
 
   return (
-    <div className=" p-6 w-full">
+    <div className="w-full p-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold from-primary to-textWhite bg-gradient-to-r bg-clip-text text-transparent">
+        <h1 className="bg-gradient-to-r from-primary to-textWhite bg-clip-text font-bold text-3xl text-transparent">
           {t('Title')}
         </h1>
 
-        <p className="text-xs text-gray-400 max-w-[80%] mx-auto leading-relaxed mt-2">{t('Subtitle')}</p>
+        <p className="mx-auto mt-2 max-w-[80%] text-gray-400 text-xs leading-relaxed">{t('Subtitle')}</p>
       </div>
 
       <div className="pt-6">
         <Input
           dir="ltr"
-          value={value}
-          loading={loading}
           inputMode="numeric"
+          loading={loading}
+          onChange={(e) => setValue(e.target.value)}
           onKeyDown={onKeyDown}
           onRequestSubmit={onRequestSubmit}
           placeholder={t('MobilePlaceholder')}
-          onChange={e => setValue(e.target.value)}
+          value={value}
         />
       </div>
 
       <div
-        onClick={onGoogle}
-        className={clsx('flex cursor-pointer items-center gap-2 px-1 py-4 justify-center', {
-          '!opacity-40 !cursor-not-allowed': googleLoading,
+        className={clsx('flex cursor-pointer items-center justify-center gap-2 px-1 py-4', {
+          '!opacity-40 !cursor-not-allowed': googleLoading
         })}
+        onClick={onGoogle}
       >
         <GoogleIcon />
-        <span className="text-xs text-white">{t('Google')}</span>
+        <span className="text-white text-xs">{t('Google')}</span>
       </div>
     </div>
   )

@@ -1,11 +1,10 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
-
 import { IconArrowLeft, IconBooks } from '@tabler/icons-react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import 'dayjs/locale/fa'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import jalaliday from 'jalaliday'
@@ -20,7 +19,8 @@ import HistoryContent from '../../components/Content'
 import HistoryEmpty from '../../components/Empty'
 import HistoryLoading from '../../components/Loading'
 import useHistory from '../../hooks/useHistory'
-import { IHistory } from '../../interface'
+
+import type { IHistory } from '../../interface'
 
 dayjs.extend(relativeTime)
 dayjs.extend(jalaliday)
@@ -33,9 +33,9 @@ const UserHistoryContainer: React.FC = () => {
   const [selectedHistory, setSelectedHistory] = useState<IHistory>()
 
   const { isLoading, data, size, setSize } = useHistory()
-  const items = (data || []).flatMap(page => page.data)
+  const items = (data || []).flatMap((page) => page.data)
 
-  const handleScroll = (event: any) => {
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget
     if (scrollHeight - scrollTop === clientHeight) {
       setSize(size + 1)
@@ -48,67 +48,65 @@ const UserHistoryContainer: React.FC = () => {
   }
 
   return (
-    <div className="p-2 md:py-3 md:px-8">
-      <div className="flex items-center justify-between gap-2 md:mb-4 pt-2 pb-4 md:pb-0 border-b border-b-muted md:border-none">
+    <div className="p-2 md:px-8 md:py-3">
+      <div className="flex items-center justify-between gap-2 border-b border-b-muted pt-2 pb-4 md:mb-4 md:border-none md:pb-0">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7">
+          <div className="h-7 w-7">
             <IconHistory />
           </div>
           <span className="text-lg">{t('Layout.Menus.History')}</span>
         </div>
 
         {isTabletOrMobile && selectedHistory && (
-          <div className="flex gap-1 items-center text-blue-500 text-sm" onClick={() => setSelectedHistory(undefined)}>
+          <div className="flex items-center gap-1 text-blue-500 text-sm" onClick={() => setSelectedHistory(undefined)}>
             <span>{t('Back')}</span>
-            <IconArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="h-4 w-4" />
           </div>
         )}
       </div>
 
       {!isLoading && items.length === 0 && (
-        <div className="bg-background  shadow-md border border-muted rounded-xl overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-muted bg-background shadow-md">
           <HistoryEmpty title={t('History.EmptyList')} />
         </div>
       )}
 
       {isLoading ||
         (items.length > 0 && (
-          <div className="grid grid-cols-12 md:gap-8 h-full min-h-[calc(100vh-100px)]">
+          <div className="grid h-full min-h-[calc(100vh-100px)] grid-cols-12 md:gap-8">
             {isLoading ? (
               <HistoryLoading />
             ) : isTabletOrMobile && selectedHistory ? (
               <div className="col-span-12 mt-4">
                 <HistoryContent
+                  appCategory={selectedHistory.category}
                   content={selectedHistory.content}
                   inputs={selectedHistory.inputValues}
-                  appCategory={selectedHistory.category}
                 />
               </div>
             ) : (
               <div
+                className="col-span-12 mt-2 h-full max-h-[calc(100vh-100px)] divide-y divide-muted overflow-auto rounded-xl bg-card md:col-span-6 md:mt-0 md:border md:border-muted md:shadow-md lg:col-span-4"
                 onScroll={handleScroll}
-                className="col-span-12 md:col-span-6 lg:col-span-4 mt-2 md:mt-0 bg-card h-full max-h-[calc(100vh-100px)] rounded-xl md:border md:border-muted md:shadow-md divide-y divide-muted overflow-auto"
               >
-                {items?.map(item => (
+                {items?.map((item) => (
                   <div
+                    className={clsx('cursor-pointer p-4 hover:bg-neutral-100 md:p-6 dark:hover:bg-neutral-800', {
+                      'bg-neutral-100 dark:bg-neutral-800': item._id === selectedHistory?._id
+                    })}
                     key={item._id}
                     onClick={() => onSelect(item)}
-                    className={clsx('p-4 cursor-pointer md:p-6 hover:bg-neutral-100 dark:hover:bg-neutral-800', {
-                      'bg-neutral-100 dark:bg-neutral-800': item._id === selectedHistory?._id,
-                    })}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 flex ">
-                        {SUB_CATEGORY_ICONS[item.category.slug] || <IconBooks className="w-6 h-6" />}
+                      <div className="flex h-8 w-8">
+                        {SUB_CATEGORY_ICONS[item.category.slug] || <IconBooks className="h-6 w-6" />}
                       </div>
                       <h3 className="font-semibold">{item.category.name}</h3>
                     </div>
 
-                    {item.inputValues && (
-                      <p className="text-sm line-clamp-3 mt-3 text-gray-600">{item.inputValues[0].value}</p>
-                    )}
+                    {item.inputValues && <p className="mt-3 line-clamp-3 text-gray-600 text-sm">{item.inputValues[0].value}</p>}
 
-                    <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'text-xs text-gray-400 mt-3')}>
+                    <p className={clsx(locale === 'fa' && YekanBakhNumFont.className, 'mt-3 text-gray-400 text-xs')}>
                       {dayjs(item.createdAt)
                         .locale(locale as string)
                         .calendar(locale === 'fa' ? 'jalali' : 'gregory')
@@ -119,12 +117,12 @@ const UserHistoryContainer: React.FC = () => {
               </div>
             )}
 
-            <div className="hidden relative md:block md:col-span-6 lg:col-span-8 h-full border border-muted rounded-xl shadow-md bg-background overflow-hidden">
+            <div className="relative hidden h-full overflow-hidden rounded-xl border border-muted bg-background shadow-md md:col-span-6 md:block lg:col-span-8">
               {selectedHistory ? (
                 <HistoryContent
+                  appCategory={selectedHistory.category}
                   content={selectedHistory.content}
                   inputs={selectedHistory.inputValues}
-                  appCategory={selectedHistory.category}
                 />
               ) : (
                 <HistoryEmpty title={t('History.EmptyContent')} />

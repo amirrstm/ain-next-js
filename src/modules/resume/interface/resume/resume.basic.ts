@@ -1,5 +1,3 @@
-import { SelectType } from '@/interface/General.model'
-
 export interface IResumeBasic {
   url?: string
   label?: string

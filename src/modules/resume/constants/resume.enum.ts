@@ -5,5 +5,5 @@ export enum RESUME_ENUM_TABS {
   Skills = 'Skills',
   Projects = 'Projects',
   Publications = 'Publications',
-  Others = 'Others',
+  Others = 'Others'
 }
